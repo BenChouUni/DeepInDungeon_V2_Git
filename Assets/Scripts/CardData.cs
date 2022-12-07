@@ -20,10 +20,7 @@ public class CardData
         this.cardName = _cardName;
     }
 
+
 }
 
-[CreateAssetMenu(fileName = "NewCardSO" , menuName = "Create SO/Card SO")]
-public class CardSO : ScriptableObject
-{
-    public CardData cardData;
-}
+
