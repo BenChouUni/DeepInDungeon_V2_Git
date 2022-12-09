@@ -9,6 +9,9 @@ using UnityEngine.UI;
 public class CardDisplay : MonoBehaviour
 {
     private CardData cardData;
+    /// <summary>
+    /// 傳入資料後自動顯示
+    /// </summary>
     public CardData CardData
     {
         get

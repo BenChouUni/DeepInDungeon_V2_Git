@@ -2,10 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+/// <summary>
+/// 掛載在武器模板上，傳入資料自動顯示
+/// </summary>
 public class WeaponDisplay : MonoBehaviour
 {
     private WeaponData weaponData;
+    /// <summary>
+    /// 傳入資料後自動顯示
+    /// </summary>
     public WeaponData WeaponData
     {
         get { return weaponData; }
