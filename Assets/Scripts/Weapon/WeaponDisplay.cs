@@ -14,6 +14,11 @@ public class WeaponDisplay : MonoBehaviour
     public WeaponData WeaponData
     {
         get { return weaponData; }
+        set
+        {
+            this.weaponData = value;
+            Show();
+        }
     }
 
     //UI

@@ -9,13 +9,19 @@ public class WeaponStoreManager : MonoBehaviour
     public GameObject WeaponPrefab;
     public Transform WeaponListPanel;
 
+    private void Start()
+    {
+        CreateWeaponOnPanel(1);
+    }
 
     public void CreateWeaponOnPanel(int id)
     {
         WeaponData weaponData = GetWeaponData(id);
+        GameObject new_weapon;
         if (weaponData != null)
         {
-            Instantiate(WeaponPrefab, WeaponListPanel, false);
+            new_weapon = Instantiate(WeaponPrefab, WeaponListPanel, false);
+            new_weapon.GetComponent<WeaponDisplay>().WeaponData = weaponData;
         }
     }
 
