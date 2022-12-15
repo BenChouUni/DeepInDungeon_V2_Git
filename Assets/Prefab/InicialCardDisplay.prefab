@@ -325,6 +325,7 @@ GameObject:
   - component: {fileID: 5801621023337570099}
   - component: {fileID: 5801621023337570097}
   - component: {fileID: 5801621023337570098}
+  - component: {fileID: 7069932224540612527}
   m_Layer: 5
   m_Name: InicialCardDisplay
   m_TagString: Untagged
@@ -354,7 +355,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 2.102295, y: 179.88673}
-  m_SizeDelta: {x: 271.146, y: 59.251}
+  m_SizeDelta: {x: 300, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5801621023337570097
 CanvasRenderer:
@@ -394,6 +395,21 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &7069932224540612527
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5801621023337570092}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4201613166e9e48be8d6ac8d22917f87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cardName_text: {fileID: 704851744482004965}
+  cost_text: {fileID: 5145146865696524951}
+  description_text: {fileID: 0}
 --- !u!1 &5801621024267528988
 GameObject:
   m_ObjectHideFlags: 0
