@@ -6,8 +6,10 @@ public class WeaponStoreManager : MonoBehaviour
 {
     public List<WeaponSO> weaponList;
 
+    [Header("武器模板")]
     public GameObject WeaponPrefab;
     public Transform WeaponListPanel;
+    
 
     private void Start()
     {
