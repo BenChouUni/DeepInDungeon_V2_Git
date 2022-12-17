@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class WeaponStoreManager : MonoBehaviour
 {
-    public List<WeaponSO> weaponList;
+    public WeaponDataBase weaponDataBase;
 
     public GameObject WeaponPrefab;
     public Transform WeaponListPanel;
@@ -27,7 +27,7 @@ public class WeaponStoreManager : MonoBehaviour
 
     public WeaponData GetWeaponData(int id)
     {
-        foreach (WeaponSO item in weaponList)
+        foreach (WeaponSO item in weaponDataBase.weaponData)
         {
             if (item.weaponData.id == id)
             {

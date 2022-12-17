@@ -498,7 +498,7 @@ GameObject:
   - component: {fileID: 326382936}
   - component: {fileID: 326382937}
   m_Layer: 0
-  m_Name: InicialCardManager
+  m_Name: InitialCardManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

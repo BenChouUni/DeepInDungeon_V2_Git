@@ -9,10 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e41fd07fb5a6b4bec82093d9be64cec5, type: 3}
-  m_Name: NewCardSO
+  m_Script: {fileID: 11500000, guid: 13d78b8c71eb042b1b18464c33a69566, type: 3}
+  m_Name: WeaponDataBase
   m_EditorClassIdentifier: 
-  cardData:
-    id: 0
-    cardName: 
-    cost: 0
+  weaponData:
+  - {fileID: 11400000, guid: 8987e8126ca304afdbbb4aae31a39ede, type: 2}
+  - {fileID: 11400000, guid: 2e8793231104e4600a2153e52aa74e54, type: 2}

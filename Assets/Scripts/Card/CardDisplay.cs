@@ -32,7 +32,11 @@ public class CardDisplay : MonoBehaviour
     {
         cardName_text.text = cardData.cardName;
         cost_text.text = cardData.cost.ToString();
-        description_text.text = "";
+        if (description_text != null)
+        {
+            description_text.text = "";
+        }
+        
     }
 
 }
