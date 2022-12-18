@@ -1145,9 +1145,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05a4cd6ad02e44e6e8d48d491ecbbcd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponList:
-  - {fileID: 11400000, guid: 2e8793231104e4600a2153e52aa74e54, type: 2}
-  - {fileID: 11400000, guid: 8987e8126ca304afdbbb4aae31a39ede, type: 2}
+  weaponDataBase: {fileID: 11400000, guid: 25223e3a2bbf5400abd8e0f797b9bde2, type: 2}
   WeaponPrefab: {fileID: 72189828560524285, guid: 5addef78373b3e6438ac5e3b4db8f36f, type: 3}
   WeaponListPanel: {fileID: 945498800}
 --- !u!1 &1521140750
@@ -1243,7 +1241,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05a4cd6ad02e44e6e8d48d491ecbbcd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponList: []
+  weaponDataBase: {fileID: 0}
   WeaponPrefab: {fileID: 0}
   WeaponListPanel: {fileID: 0}
 --- !u!114 &1521140755
