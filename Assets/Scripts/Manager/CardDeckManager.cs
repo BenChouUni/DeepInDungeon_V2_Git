@@ -11,20 +11,9 @@ public class CardDeckManager : MonoBehaviour
 
     void Start()
     {
-        int num = 0;
         for(int i = 0; i < 20; i++)
         {
-            foreach (CardSO item in CardList)
-            {
-                num++;
-
-                //if (num > 8 &&¡@num % 4 == 1)
-                //{
-                //    Panel.transform.localScale = Vector3.up += 340;
-                //}
-                
-                CreateCardOnPanel(item.cardData.id);
-            }
+            CreateCardOnPanel(1);
         }
     }
     public void CreateCardOnPanel(int id)
