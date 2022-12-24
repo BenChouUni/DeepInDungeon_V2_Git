@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6984170917248373283}
   - component: {fileID: 6231292227945731958}
   - component: {fileID: 3129940685252199467}
+  - component: {fileID: -7248448548385681702}
   m_Layer: 5
   m_Name: WeaponCard
   m_TagString: Untagged
@@ -95,6 +96,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c4f6e29f06354ace804202996017d90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  parentReturnTo: {fileID: 0}
+--- !u!225 &-7248448548385681702
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 72189828560524285}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &769535906389234871
 GameObject:
   m_ObjectHideFlags: 0

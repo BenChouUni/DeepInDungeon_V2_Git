@@ -11,17 +11,8 @@ public class DragCard : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDrag
     //初始parent 以便放開後返回
 
     private Transform StartParent;
-    private Transform parentReturnTo = null;//要返回的位置的parent
-
-    private GameObject canvas;
-
-
-    private void Start()
-    {
-        canvas = GameObject.Find("Canvas").gameObject;
-
-    }
-
+    [HideInInspector]
+    public Transform parentReturnTo = null;//要返回的位置的parent
 
 
     public void OnBeginDrag(PointerEventData eventData)//開始拖動執行一次
@@ -29,9 +20,9 @@ public class DragCard : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDrag
 
         parentReturnTo = this.transform.parent;
 
-
         //拖動時移到canvas底下
-        this.transform.SetParent(canvas.transform);
+        this.transform.SetParent(transform.root);
+        transform.SetAsLastSibling(); //移動到最下層
 
         //關閉Raycast Block
         TurnRaycastBlock(false);
