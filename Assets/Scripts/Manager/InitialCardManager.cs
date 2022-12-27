@@ -36,4 +36,6 @@ public class InitialCardManager : MonoBehaviour
         }
         return null;
     }
+
+
 }
