@@ -5,6 +5,7 @@ using UnityEngine.EventSystems;
 
 public class WeaponDropZone : MonoBehaviour, IDropHandler
 {
+
     public void OnDrop(PointerEventData eventData)
     {
         GameObject dropItem = eventData.pointerDrag;
@@ -13,5 +14,6 @@ public class WeaponDropZone : MonoBehaviour, IDropHandler
         {
             dragCard.parentReturnTo = this.transform;
         }
+        
     }
 }

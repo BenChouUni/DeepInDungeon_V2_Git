@@ -15,8 +15,16 @@ public class PlayerData : Character
         get { return supportWeaponData; }
     }
 
+    /// <summary>
+    /// 預設初始化 "no name", 50, 0
+    /// </summary>
+    public PlayerData() : base("no name", 50, 0)
+    {
+
+    }
     public PlayerData(string _name, int _maxHp, int _shield) :base(_name,_maxHp,_shield)
     {
-        
+        mainWeaponData = null;
+        supportWeaponData = null;
     }
 }

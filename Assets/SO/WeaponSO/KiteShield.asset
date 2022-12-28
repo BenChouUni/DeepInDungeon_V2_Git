@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponData:
     id: 1
-    weaponName: Lance
+    weaponName: KiteShield
     atk: 2
     def: 2
     distance: 0
