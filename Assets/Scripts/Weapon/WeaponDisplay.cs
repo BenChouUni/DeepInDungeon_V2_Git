@@ -33,7 +33,11 @@ public class WeaponDisplay : MonoBehaviour
         weaponName_text.text = weaponData.weaponName;
         atk_text.text = weaponData.atk.ToString();
         def_text.text = weaponData.def.ToString();
-        distance_text.text = string.Format("最遠距離{0}", weaponData.distance);
+        if (distance_text != null)
+        {
+            distance_text.text = string.Format("最遠距離{0}", weaponData.distance);
+        }
+        
         
     }
 }
