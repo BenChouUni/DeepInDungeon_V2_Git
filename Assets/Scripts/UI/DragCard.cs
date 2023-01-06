@@ -17,7 +17,7 @@ public class DragCard : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDrag
 
     public void OnBeginDrag(PointerEventData eventData)//開始拖動執行一次
     {
-
+        StartParent = this.transform.parent;
         parentReturnTo = this.transform.parent;
 
         //拖動時移到canvas底下
@@ -42,10 +42,13 @@ public class DragCard : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDrag
         //重新打開raycast的影響
         TurnRaycastBlock(true);
     }
-
+    /// <summary>
+    /// 返回初始所在
+    /// </summary>
     public void ReturnToStartParent()
     {
         this.transform.SetParent(StartParent);
+        parentReturnTo = StartParent;
     }
 
     private void TurnRaycastBlock(bool value)

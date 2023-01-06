@@ -11,5 +11,6 @@ public class GameData {
     public GameData()
     {
         weaponary = null;
+        playerData = new PlayerData();
     }
 }

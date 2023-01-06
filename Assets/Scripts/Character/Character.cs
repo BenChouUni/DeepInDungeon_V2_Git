@@ -8,7 +8,7 @@ using System;
 [Serializable]
 public abstract class Character
 {
-
+    [SerializeField]
     private string characterName;
     public string Name
     {
@@ -16,17 +16,20 @@ public abstract class Character
     }
     public bool isDeath;
     //hpstatus
+    [SerializeField]
     private int maxHp;
     public int MaxHp
     {
         get { return maxHp; }
     }
+    [SerializeField]
     private int currentHp;
     public int CurrentHp
     {
         get { return currentHp; }
     }
     //shield
+    [SerializeField]
     private int shield;
     public int Shield
     {

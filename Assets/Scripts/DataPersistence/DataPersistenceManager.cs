@@ -38,6 +38,7 @@ public class DataPersistenceManager : MonoSingleton<DataPersistenceManager>
 
     public void NewGame()
     {
+        Debug.Log("New Game");
         this.gameData = new GameData();
     }
 

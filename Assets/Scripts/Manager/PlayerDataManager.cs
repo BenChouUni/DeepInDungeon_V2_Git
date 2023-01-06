@@ -15,15 +15,15 @@ public class PlayerDataManager : MonoSingleton<PlayerDataManager>, IDataPersiste
 
     public void LoadData(GameData data)
     {
-        
+        playerData = data.playerData;
     }
 
     public void SaveData(ref GameData data)
     {
-        
+        data.playerData = playerData;
     }
     /// <summary>
-    /// 
+    /// 給drop相關使用
     /// </summary>
     /// <param name="type">0 is mainWeapon,1 is supportWeapon</param>
     public void SetWeapon(int type,WeaponData weaponData)
@@ -40,18 +40,15 @@ public class PlayerDataManager : MonoSingleton<PlayerDataManager>, IDataPersiste
 
     public void ShowPlayerData()
     {
-        if (playerName_text == null)
+        if (playerName_text != null)
         {
-            Debug.LogError("Cannot find the player name text");
-            return;
-        }
-        else if (playerHealth_text == null)
-        {
-            Debug.LogError("Cannot find the player health text");
-            return;
+            playerName_text.text = playerData.Name;
         }
 
-        playerName_text.text = playerData.Name;
-        playerHealth_text.text = playerData.CurrentHp.ToString();
+        if (playerHealth_text != null)
+        {
+            playerHealth_text.text = playerData.CurrentHp.ToString();
+        }
+ 
     }
 }
