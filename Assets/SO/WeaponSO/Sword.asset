@@ -17,4 +17,4 @@ MonoBehaviour:
     weaponName: Sword
     atk: 4
     def: 1
-    distance: 0
+    distance: 1

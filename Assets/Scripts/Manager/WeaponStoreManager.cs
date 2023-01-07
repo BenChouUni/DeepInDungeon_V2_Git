@@ -13,7 +13,11 @@ public class WeaponStoreManager : MonoBehaviour
 
     private void Start()
     {
-        CreateWeaponOnPanel(1);
+        foreach (WeaponSO item in weaponDataBase.weaponData)
+        {
+            CreateWeaponOnPanel(item.weaponData.id);
+        }
+            //CreateWeaponOnPanel(1);
     }
 
     public void CreateWeaponOnPanel(int id)
