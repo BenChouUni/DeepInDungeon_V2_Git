@@ -9,13 +9,15 @@ public class PlayerData : Character
     private WeaponData mainWeaponData;
     public WeaponData MainWeaponData
     {
-        get;set;
+        get { return mainWeaponData; }
+        set { mainWeaponData = value; }
     }
     [SerializeField]
     private WeaponData supportWeaponData;
     public WeaponData SupportWeaponData
     {
-        get;set;
+        get { return supportWeaponData; }
+        set { supportWeaponData = value; }
     }
     [SerializeField]
     private int coin;
@@ -29,6 +31,8 @@ public class PlayerData : Character
     public PlayerData() : base("no name", 50, 0)
     {
         coin = 0;
+        mainWeaponData = null;
+        supportWeaponData = null;
     }
     public PlayerData(string _name, int _maxHp, int _shield) :base(_name,_maxHp,_shield)
     {
@@ -39,6 +43,6 @@ public class PlayerData : Character
 
     public void CoinAdd(int num)
     {
-        coin += 0;
+        coin += num;
     }
 }
