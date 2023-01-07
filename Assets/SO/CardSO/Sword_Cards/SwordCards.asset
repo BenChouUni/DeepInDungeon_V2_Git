@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbe3b5c5af74745b7a3b679cb6531150, type: 3}
   m_Name: SwordCards
   m_EditorClassIdentifier: 
-  cardList: []
+  cardList:
+  - {fileID: 11400000, guid: 03fb2acced627c149a2ffcdcd3dcab95, type: 2}
