@@ -46,9 +46,6 @@ public abstract class Character
         this.shield = _shield;
     }
 
-    protected Character()
-    {
-    }
 
     public void GetDamage(int dmg)
     {
