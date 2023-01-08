@@ -15,6 +15,7 @@ public class WeaponDropZone : MonoBehaviour, IDropHandler
     public void OnDrop(PointerEventData eventData)
     {
         GameObject dropItem = eventData.pointerDrag;
+        //Debug.Log("DropNow");
 
         PutInWeapon(dropItem);
         
@@ -22,15 +23,23 @@ public class WeaponDropZone : MonoBehaviour, IDropHandler
 
     public void PutInWeapon(GameObject weaponCard)
     {
+        //Debug.Log("I want to put something");
+
         if (weaponOn != null) //如果裡面有東西
         {
+            //Debug.Log("Something in weaponOn");
             RemoveWeapon(weaponOn);
+        }
+        else
+        {
+            //Debug.Log("Nothing in weaponOn");
         }
         //放入武器
         if (weaponCard.TryGetComponent(out DragCard dragCard))
         {
             dragCard.parentReturnTo = this.transform;
             this.weaponOn = weaponCard;
+
             WeaponData data = weaponCard.GetComponent<WeaponDisplay>().WeaponData;
             PlayerDataManager.instance.SetWeapon(dropZoneType, data);
         }
