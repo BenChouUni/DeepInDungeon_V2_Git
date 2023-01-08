@@ -10,11 +10,11 @@ public class WeaponData
     public int atk;
     public int def;
     public int distance;
+    
     public WeaponData()
     {
         weaponName = "";
         distance = 0;
         
     }
-    
 }

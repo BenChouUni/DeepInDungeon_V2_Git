@@ -17,12 +17,18 @@ public class DragCard : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDrag
 
     public void OnBeginDrag(PointerEventData eventData)//開始拖動執行一次
     {
-        StartParent = this.transform.parent;
+        if(StartParent == null)                 //初始化StartParent，且不再更改，否則會疊在手上
+        {
+            //Debug.Log("SET START");
+            StartParent = this.transform.parent;
+        }
+
         parentReturnTo = this.transform.parent;
 
         //拖動時移到canvas底下
         this.transform.SetParent(transform.root);
         transform.SetAsLastSibling(); //移動到最下層
+        //transform.SetAsFirstSibling();
 
         //關閉Raycast Block
         TurnRaycastBlock(false);
@@ -32,11 +38,13 @@ public class DragCard : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDrag
     public void OnDrag(PointerEventData eventData)//拖動中
     {
         this.transform.position = eventData.position;
+        //Debug.Log("DragNow");
 
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
+        //Debug.Log("Go Back");
         this.transform.SetParent(parentReturnTo);
 
         //重新打開raycast的影響
