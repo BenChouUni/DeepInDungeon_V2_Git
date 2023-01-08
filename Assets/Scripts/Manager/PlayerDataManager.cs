@@ -11,7 +11,7 @@ public class PlayerDataManager : MonoSingleton<PlayerDataManager>, IDataPersiste
     public PlayerData playerData;
     //UI
     public Text playerName_text;
-    public Text playerHealth_text;
+    public HealthBar playerHpBar;
 
     public void LoadData(GameData data)
     {
@@ -45,9 +45,9 @@ public class PlayerDataManager : MonoSingleton<PlayerDataManager>, IDataPersiste
             playerName_text.text = playerData.Name;
         }
 
-        if (playerHealth_text != null)
+        if (playerHpBar != null)
         {
-            playerHealth_text.text = playerData.CurrentHp.ToString();
+            playerHpBar.SetMaxHealth(playerData.MaxHp);
         }
  
     }
