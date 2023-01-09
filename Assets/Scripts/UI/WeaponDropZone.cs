@@ -1,61 +1,67 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
-
+public enum DropZoneType
+{
+    WeaponList,MainWeapon,SupportWeapon
+}
 public class WeaponDropZone : MonoBehaviour, IDropHandler
 {
-    private GameObject weaponOn; //在此dropzone的武器
-    /// <summary>
-    /// 0 is main 1 is support
-    /// </summary>
+    public List<GameObject> weaponOn; //在此dropzone的武器
+    public bool isFull;
     [SerializeField]
-    private int dropZoneType;
+    public DropZoneType dropZoneType;
 
     public void OnDrop(PointerEventData eventData)
     {
-        GameObject dropItem = eventData.pointerDrag;
         //Debug.Log("DropNow");
-
-        PutInWeapon(dropItem);
-        
+        WeaponaryMainManager.instance.WeaponDropRequest(this);
     }
 
-    public void PutInWeapon(GameObject weaponCard)
+    public void PutInWeapon(GameObject GO)
     {
-        //Debug.Log("I want to put something");
-
-        if (weaponOn != null) //如果裡面有東西
-        {
-            //Debug.Log("Something in weaponOn");
-            RemoveWeapon(weaponOn);
-        }
-        else
-        {
-            //Debug.Log("Nothing in weaponOn");
-        }
         //放入武器
-        if (weaponCard.TryGetComponent(out DragCard dragCard))
-        {
-            dragCard.parentReturnTo = this.transform;
-            this.weaponOn = weaponCard;
+        DragCard dragCard;
+        dragCard = GO.GetComponent<DragCard>();
+        dragCard.parentReturnTo = this.transform;
+        dragCard.currentDropZone = this;
+        this.weaponOn.Add(GO);
+        isFull = true;
+        /*
+        WeaponData data = OnDragGO.GetComponent<WeaponDisplay>().WeaponData;
+        PlayerDataManager.instance.SetWeapon(type, data);*/
 
-            WeaponData data = weaponCard.GetComponent<WeaponDisplay>().WeaponData;
-            PlayerDataManager.instance.SetWeapon(dropZoneType, data);
-        }
     }
-
-    public void RemoveWeapon(GameObject weaponCard)
+    /// <summary>
+    /// 由於weaponlist的drop感應區域並非parent，所以特例
+    /// </summary>
+    /// <param name="GO"></param>
+    /// <param name="panel"></param>
+    public void PutInList(GameObject GO,Transform panel)
     {
-        if (weaponCard.TryGetComponent(out DragCard dragCard))
-        {
-            dragCard.ReturnToStartParent();
-            this.weaponOn = null;
-        }
+        DragCard dragCard;
+        dragCard = GO.GetComponent<DragCard>();
+        dragCard.parentReturnTo = panel;
+        dragCard.currentDropZone = this;
+        this.weaponOn.Add(GO);
     }
-
-    public void SetZoneType(int n)
+    /*
+    public void MoveWeaponToParent(WeaponDropZone dropZone)
     {
-        dropZoneType = n;
+        foreach (GameObject item in weaponOn)
+        {
+            DragCard dragCard;
+            dragCard = item.GetComponent<DragCard>();
+            dragCard.parentReturnTo = dropZone.transform;
+            dragCard.currentDropZone = dropZone;
+        }
+        isFull = false;
+    }
+    */
+    public void SetZoneType(DropZoneType type)
+    {
+        dropZoneType = type;
     }
 }
