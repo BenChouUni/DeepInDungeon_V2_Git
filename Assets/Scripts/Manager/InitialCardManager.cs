@@ -8,34 +8,49 @@ public class InitialCardManager : MonoBehaviour
     public GameObject InicialCardPrefab;
     public Transform InicialCardListPanel;
 
+    private List<GameObject> mainWeaponCards;
+    private List<GameObject> supWeaponCards;
 
-    private void Start()
+    public void CreateCardOnPanel(CardData cardData,DropZoneType type)
     {
-        CreateInicialCardOnPanel(1);
-    }
-    public void CreateInicialCardOnPanel(int id)
-    {
-        CardData inicialcardData = GetInicialCardData(id);
+   
         GameObject new_inicialcard;
 
-        if (inicialcardData != null)
+
+        new_inicialcard = Instantiate(InicialCardPrefab, InicialCardListPanel, false);
+        new_inicialcard.GetComponent<CardDisplay>().CardData = cardData;
+
+        if (type == DropZoneType.MainWeapon)
         {
-            new_inicialcard = Instantiate(InicialCardPrefab, InicialCardListPanel, false);
-            new_inicialcard.GetComponent<CardDisplay>().CardData = inicialcardData;
+            mainWeaponCards.Add(new_inicialcard);
+        }
+        else if (type == DropZoneType.SupportWeapon)
+        {
+            supWeaponCards.Add(new_inicialcard);
         }
     }
-
-    public CardData GetInicialCardData(int id)
+    /// <summary>
+    /// 給定類型，直接把對應類型刪掉
+    /// </summary>
+    /// <param name="type"></param>
+    public void RemoveCardsByType(DropZoneType type)
     {
-        foreach (CardSO item in InicialCardList)
+        if (type == DropZoneType.MainWeapon)
         {
-            if (item.cardData.id == id)
+            foreach (GameObject item in mainWeaponCards)
             {
-                return item.cardData;
+                Destroy(item);
             }
+            mainWeaponCards.Clear();
         }
-        return null;
+        else if (type == DropZoneType.SupportWeapon)
+        {
+            foreach (GameObject item in supWeaponCards)
+            {
+                Destroy(item);
+            }
+            supWeaponCards.Clear();
+        }
     }
-
 
 }

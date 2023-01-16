@@ -78,10 +78,17 @@ public class WeaponaryMainManager : MonoSingleton<WeaponaryMainManager>
                 PlayerDataManager.instance.RemoveWeapon(type);
             }
             dropZone.PutInWeapon(OnDragGO);
+            CreateDeckByWeapon(data.id);
             PlayerDataManager.instance.SetWeapon(type, data);
             dropZone.isFull = true;
         }
     }
+    /// <summary>
+    /// 根據放入武器創建卡牌
+    /// </summary>
+    /// <param name="weaponId"></param>
+    private void CreateDeckByWeapon(int weaponId)
+    {
 
-
+    }
 }
