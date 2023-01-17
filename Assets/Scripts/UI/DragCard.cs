@@ -14,7 +14,7 @@ public class DragCard : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDrag
     [HideInInspector]
     public Transform parentReturnTo = null;//要返回的位置的parent
 
-    public WeaponDropZone currentDropZone;
+    public WeaponDropZone currentDropZone;//被抓取之前在哪個dropzone
 
     public void OnBeginDrag(PointerEventData eventData)//開始拖動執行一次
     {

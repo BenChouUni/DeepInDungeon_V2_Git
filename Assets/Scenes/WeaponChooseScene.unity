@@ -1474,7 +1474,6 @@ GameObject:
   - component: {fileID: 1521140751}
   - component: {fileID: 1521140753}
   - component: {fileID: 1521140752}
-  - component: {fileID: 1521140754}
   - component: {fileID: 1521140755}
   m_Layer: 5
   m_Name: WeaponInicialCard
@@ -1544,21 +1543,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1521140750}
   m_CullTransparentMesh: 1
---- !u!114 &1521140754
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1521140750}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 05a4cd6ad02e44e6e8d48d491ecbbcd8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  weaponDataBase: {fileID: 0}
-  WeaponPrefab: {fileID: 0}
-  WeaponListPanel: {fileID: 0}
 --- !u!114 &1521140755
 MonoBehaviour:
   m_ObjectHideFlags: 0
