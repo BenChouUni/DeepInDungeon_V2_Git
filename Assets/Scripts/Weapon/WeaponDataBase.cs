@@ -5,6 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "WeaponDataBase",menuName = "Create SO/DataBase/Weapon")]
 public class WeaponDataBase : ScriptableObject
 {
-    public List<WeaponSO> weaponData;
+    public List<WeaponSO> weaponDataList
+        ;
 
 }
