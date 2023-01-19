@@ -13,7 +13,7 @@ public class WeaponStoreManager : MonoBehaviour
 
     private void Start()
     {
-        foreach (WeaponSO item in weaponDataBase.weaponData)
+        foreach (WeaponSO item in weaponDataBase.weaponDataList)
         {
             CreateWeaponOnPanel(item.weaponData.id);
         }
@@ -33,7 +33,7 @@ public class WeaponStoreManager : MonoBehaviour
 
     public WeaponData GetWeaponData(int id)
     {
-        foreach (WeaponSO item in weaponDataBase.weaponData)
+        foreach (WeaponSO item in weaponDataBase.weaponDataList)
         {
             if (item.weaponData.id == id)
             {

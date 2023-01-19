@@ -17,4 +17,13 @@ public class WeaponData
         distance = 0;
         
     }
+
+    public WeaponData(int _id,string _name,int _atk,int _def,int _distance)
+    {
+        this.id = _id;
+        this.weaponName = _name;
+        this.atk = _atk;
+        this.def = _def;
+        this.distance = _distance;
+    }
 }
