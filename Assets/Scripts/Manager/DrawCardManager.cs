@@ -87,8 +87,9 @@ namespace DrawCardManager
             {
                 TargetPosition.Add(new Vector3(960f, 250f, 1f));
                 TargetRotation.Add(Quaternion.Euler(Vector3.zero));
+                HandCardList[0].position = TargetPosition[0];
                 //HandCardList[0].position = TargetRotation[0] * TargetPosition[0];
-                Debug.Log(HandCardList[0]);
+                Debug.Log(HandCardList[0].position);
             }
             else
             {
@@ -96,8 +97,9 @@ namespace DrawCardManager
                 {
                     TargetPosition.Add(new Vector3(Mathf.Lerp(positionX, -positionX, i / (HandCardList.Count - 1f)) + 960f, 250f, 1f));
                     TargetRotation.Add(Quaternion.Euler(Vector3.zero));
+                    HandCardList[i].position = TargetPosition[i];
                     //HandCardList[0].position = TargetRotation[i] * TargetPosition[i];
-                    Debug.Log(HandCardList[i]);
+                    Debug.Log(HandCardList[i].position);
                 }
             }
         }
