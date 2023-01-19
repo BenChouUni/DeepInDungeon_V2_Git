@@ -56,32 +56,54 @@ public class WeaponaryMainManager : MonoSingleton<WeaponaryMainManager>
         {
             return;
         }
+
         WeaponData data = OnDragGO.GetComponent<WeaponDisplay>().WeaponData;
         DropZoneType type = dropZone.dropZoneType;
+
+
         if (type == DropZoneType.WeaponList)
         {
-            dropZone.PutInList(OnDragGO,weaponListPanel);
+            dropZone.PutInWeapon(OnDragGO,weaponListPanel);
             DropZoneType typeFrom = OnDragGO.GetComponent<DragCard>().currentDropZone.dropZoneType;
             PlayerDataManager.instance.RemoveWeapon(typeFrom);
         }
-        else
+        else //主武器輔助武器區域
         {
             if (dropZone.isFull)
             {
-                //將上面武器卡牌物件丟回list
-                //Debug.Log("將上面武器卡牌物件丟回list");
-                GameObject weaponToList = dropZone.weaponOn[0];
+                //將上面武器卡牌物件跟新來卡牌的dropzone區域交換
+                WeaponDropZone ExchangeZone = OnDragGO.GetComponent<DragCard>().currentDropZone;//交換要去的dropzone
+                DropZoneType typeFrom =ExchangeZone.dropZoneType; 
+                //原本在此dropzone上的物件
+                GameObject weaponOn = dropZone.weaponOn[0];
                 dropZone.weaponOn.RemoveAt(0);
-                weaponList.PutInWeapon(weaponToList);
-                weaponToList.transform.SetParent(weaponListPanel);
-                dropZone.isFull = false;
-                PlayerDataManager.instance.RemoveWeapon(type);
+
+                if (typeFrom == DropZoneType.WeaponList)
+                {
+                    ExchangeZone.PutInWeapon(weaponOn, weaponListPanel);
+
+                }
+                else
+                {
+                    WeaponData weaponData = weaponOn.GetComponent<WeaponDisplay>().WeaponData;
+                    ExchangeZone.PutInWeapon(weaponOn);
+                    PlayerDataManager.instance.SetWeapon(typeFrom,weaponData);
+                }
+                
+                
             }
             dropZone.PutInWeapon(OnDragGO);
+            CreateDeckByWeapon(data.id);
             PlayerDataManager.instance.SetWeapon(type, data);
             dropZone.isFull = true;
         }
     }
+    /// <summary>
+    /// 根據放入武器創建卡牌
+    /// </summary>
+    /// <param name="weaponId"></param>
+    private void CreateDeckByWeapon(int weaponId)
+    {
 
-
+    }
 }

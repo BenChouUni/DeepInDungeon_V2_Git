@@ -25,6 +25,7 @@ public class WeaponDropZone : MonoBehaviour, IDropHandler
         //放入武器
         DragCard dragCard;
         dragCard = GO.GetComponent<DragCard>();
+        GO.transform.SetParent(this.transform);
         dragCard.parentReturnTo = this.transform;
         dragCard.currentDropZone = this;
         this.weaponOn.Add(GO);
@@ -35,17 +36,19 @@ public class WeaponDropZone : MonoBehaviour, IDropHandler
 
     }
     /// <summary>
-    /// 由於weaponlist的drop感應區域並非parent，所以特例
+    /// 由於weaponlist的drop感應區域並非parent，所以多載
     /// </summary>
     /// <param name="GO"></param>
     /// <param name="panel"></param>
-    public void PutInList(GameObject GO,Transform panel)
+    public void PutInWeapon(GameObject GO,Transform panel)
     {
         DragCard dragCard;
         dragCard = GO.GetComponent<DragCard>();
+        GO.transform.SetParent(panel);
         dragCard.parentReturnTo = panel;
         dragCard.currentDropZone = this;
         this.weaponOn.Add(GO);
+        isFull = true;
     }
     /*
     public void MoveWeaponToParent(WeaponDropZone dropZone)
