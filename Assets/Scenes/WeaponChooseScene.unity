@@ -766,7 +766,7 @@ MonoBehaviour:
       distance: 0
     coin: 0
   playerName_text: {fileID: 714339127}
-  playerHealth_text: {fileID: 0}
+  playerHpBar: {fileID: 0}
 --- !u!1001 &731330916
 PrefabInstance:
   m_ObjectHideFlags: 0
