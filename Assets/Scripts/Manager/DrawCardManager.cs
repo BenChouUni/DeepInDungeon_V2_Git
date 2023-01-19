@@ -30,6 +30,7 @@ namespace DrawCardManager
                 new_card = Instantiate(CardPrefab, HandCardPanel, false);
                 new_card.GetComponent<CardDisplay>().CardData = cardData;
                 HandCardList.Add(new_card.transform);
+                SetLayout();
             }
         }
 
@@ -59,25 +60,44 @@ namespace DrawCardManager
 
         public void SetCircleLayout()
         {
-
+            Debug.Log("SetCircleLayout");
+            TargetPosition.Clear();
+            TargetRotation.Clear();
+            float startAngle = Mathf.PI * 105f / 180f;
+            float endAngle = Mathf.PI * 75f / 180f;
+            float radius = 800f;
+            /*
+            for(int i = 0 ; i < HandCardList.Count; i++)
+            {
+                float angle = Mathf.Lerp(startAngle, endAngle, i / HandCardList.Count - 1f);
+                TargetPosition.Add(new Vector3(Mathf.Cos(angle) * radius, Mathf.Sin(angle) * radius - radius - 250f, 1f);
+                TargetRotation.Add(Quaternion(0f, Mathf.Lerp(15f, -15f, i / (HandCardList.Count - 1f)), 0f));
+            }
+            */
+            
         }
 
         public void SetLineLayout()
         {
+            Debug.Log("SetLineLayout");
             TargetPosition.Clear();
             TargetRotation.Clear();
             float positionX = (1f - HandCardList.Count) * 100f / 2f;
             if(HandCardList.Count == 1)
             {
-                TargetPosition.Add(new Vector3(0f, -0.3f, 1f));
+                TargetPosition.Add(new Vector3(960f, 250f, 1f));
                 TargetRotation.Add(Quaternion.Euler(Vector3.zero));
+                //HandCardList[0].position = TargetRotation[0] * TargetPosition[0];
+                Debug.Log(HandCardList[0]);
             }
             else
             {
                 for(int i = 0; i < HandCardList.Count; i++)
                 {
-                    TargetPosition.Add(new Vector3(Mathf.Lerp(positionX, -positionX, i / (HandCardList.Count - 1f)), -0.3f, 1f));
+                    TargetPosition.Add(new Vector3(Mathf.Lerp(positionX, -positionX, i / (HandCardList.Count - 1f)) + 960f, 250f, 1f));
                     TargetRotation.Add(Quaternion.Euler(Vector3.zero));
+                    //HandCardList[0].position = TargetRotation[i] * TargetPosition[i];
+                    Debug.Log(HandCardList[i]);
                 }
             }
         }
