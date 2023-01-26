@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbe3b5c5af74745b7a3b679cb6531150, type: 3}
+  m_Name: FanCards
+  m_EditorClassIdentifier: 
+  cardList:
+  - {fileID: 11400000, guid: 04575209214cb1446a289669993a0036, type: 2}
+  - {fileID: 11400000, guid: 62284954fc079a641a357e4f70fc25bb, type: 2}
+  - {fileID: 11400000, guid: 9139b5661e19da84485c4e55c505287a, type: 2}
+  - {fileID: 11400000, guid: 877bc70ca3b36f34f9fd04d8b7bdb17c, type: 2}
+  - {fileID: 11400000, guid: 69f2f626b91216f4881f10b6f0cd7232, type: 2}
+  - {fileID: 11400000, guid: 4b587a0925a342e49b4619da8ebf4295, type: 2}
+  - {fileID: 11400000, guid: 75ed161e2ad222f44b9a9059b4c1f5ad, type: 2}
+  - {fileID: 11400000, guid: 2aa1d963e34fbe7469ad9d6d3f5419a7, type: 2}
+  - {fileID: 11400000, guid: f318271d7f0cd1d42b479c9b2a16cd50, type: 2}

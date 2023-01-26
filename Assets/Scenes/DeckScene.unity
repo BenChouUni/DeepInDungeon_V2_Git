@@ -168,7 +168,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CardList:
-  - {fileID: 11400000, guid: e3c85c7bf4ca6e541940d6b51287acdc, type: 2}
+  - {fileID: 11400000, guid: 03fb2acced627c149a2ffcdcd3dcab95, type: 2}
   CardPrefab: {fileID: 6232508073499098107, guid: 6e89a30a7165ca648a25045790e82531, type: 3}
   CardShowListPanel: {fileID: 1581947424}
   Panel: {fileID: 0}
