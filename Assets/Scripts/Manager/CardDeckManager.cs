@@ -13,7 +13,7 @@ public class CardDeckManager : MonoBehaviour
     {
         for(int i = 0; i < 20; i++)
         {
-            CreateCardOnPanel(1);
+            CreateCardOnPanel(0);
         }
     }
     public void CreateCardOnPanel(int id)
