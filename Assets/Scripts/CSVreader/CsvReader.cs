@@ -5,7 +5,7 @@ using System;
 
 public class CsvReader : MonoBehaviour
 {
-    public TextAsset textAssetDta;
+    public TextAsset textAssetData;
 
     [System.Serializable]
     public class Weapon
@@ -35,20 +35,20 @@ public class CsvReader : MonoBehaviour
 
     void ReadCSV()
     {
-        string[] data = textAssetDta.text.Split(new string[] { ",", "\n" }, StringSplitOptions.None);
+        string[] data = textAssetData.text.Split(new string[] { ",", "\n" }, StringSplitOptions.None);
         int tableSize = data.Length / 7 - 1;
 
         myweaponlist.weapon = new Weapon[tableSize];
         for(int i = 0; i < tableSize; i++)
         {
             myweaponlist.weapon[i] = new Weapon();
-            myweaponlist.weapon[i].id = int.Parse(data[7 * (i + 1) + 1]);
+            myweaponlist.weapon[i].id = int.Parse(data[7 * (i + 1) + 0]);
             myweaponlist.weapon[i].name = data[7 * (i + 1) + 1];
-            myweaponlist.weapon[i].atk = int.Parse(data[7 * (i + 1) + 1]);
-            myweaponlist.weapon[i].def = int.Parse(data[7 * (i + 1) + 1]);
-            myweaponlist.weapon[i].distance = int.Parse(data[7 * (i + 1) + 1]);
-            myweaponlist.weapon[i].hand = data[7 * (i + 1) + 1];
-            myweaponlist.weapon[i].description = data[7 * (i + 1) + 1];
+            myweaponlist.weapon[i].atk = int.Parse(data[7 * (i + 1) + 2]);
+            myweaponlist.weapon[i].def = int.Parse(data[7 * (i + 1) + 3]);
+            myweaponlist.weapon[i].distance = int.Parse(data[7 * (i + 1) + 4]);
+            myweaponlist.weapon[i].hand = data[7 * (i + 1) + 5];
+            myweaponlist.weapon[i].description = data[7 * (i + 1) + 6];
 
         }
     }

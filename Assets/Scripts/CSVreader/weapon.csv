@@ -1,6 +1,6 @@
-id,name,atk,def,distance,hand,description
+id,name,atk,def,distance,,description
 0,sword,4,1,0,main,劍，最基礎的劍類武器
-1,shield,0,4,0,vice,小圓盾
-2,bow,5,0,2,main,弓
-3,fan,3,0,0,main,機關扇
-4,oil lamp,2,0,0,vice,油燈
+1,bow,5,0,2,main,弓
+2,fan,3,0,0,main,機關扇
+3,shield,0,4,0,,小圓盾
+4,oil lamp,2,0,0,,油燈

@@ -167,7 +167,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23cafe4446c373940bf08f5955ba7df6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textAssetDta: {fileID: 4900000, guid: dab351e182de2ef43a831612a0a00876, type: 3}
+  textAssetData: {fileID: 4900000, guid: dab351e182de2ef43a831612a0a00876, type: 3}
   myweaponlist:
     weapon: []
 --- !u!1 &378199854
