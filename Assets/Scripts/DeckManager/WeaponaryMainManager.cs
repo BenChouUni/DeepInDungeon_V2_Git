@@ -12,7 +12,7 @@ public class WeaponaryMainManager : MonoSingleton<WeaponaryMainManager>
     public WeaponDropZone supportWeaponDropZone;
     public WeaponDropZone weaponList;
     public Transform weaponListPanel;//drop地方跟回去parent不一樣
-    private WeaponDropZone DropZoneFrom;
+    private DropZoneType DropZoneFrom;
     //drag
     private GameObject OnDragGO;
     public bool isDrag; //是否正有東西被拖拽
@@ -34,7 +34,7 @@ public class WeaponaryMainManager : MonoSingleton<WeaponaryMainManager>
     /// <summary>
     /// 通知管理器現在什麼物件被拖動
     /// </summary>
-    public void StartDrag(GameObject gameObject,WeaponDropZone dropZone)
+    public void StartDrag(GameObject gameObject,DropZoneType dropZone)
     {
         isDrag = true;
         this.OnDragGO = gameObject;
@@ -49,35 +49,51 @@ public class WeaponaryMainManager : MonoSingleton<WeaponaryMainManager>
         isDrag = false;
         
     }
-    //drop相關管理
+    /// <summary>
+    /// drop 武器進入時 呼叫
+    /// </summary>
+    /// <param name="dropZone"></param>
     public void WeaponDropRequest(WeaponDropZone dropZone)
     {
-        //check if weapon
+        //dropzone的類型
+        DropZoneType type = dropZone.dropZoneType;
+
+        //check if weapon確認是否是武器
         if (OnDragGO.TryGetComponent(out WeaponDisplay weaponDisplay) == false)
         {
             return;
         }
-
+        //放入武器物件事的基本資料跟類型，由Ondrag來決定
         WeaponData data = OnDragGO.GetComponent<WeaponDisplay>().WeaponData;
-        DropZoneType type = dropZone.dropZoneType;
 
+        //新來武器原先所在的dropzone
+        DropZoneType typeFrom = OnDragGO.GetComponent<DragCard>().currentDropZoneType;
 
+        //如果放入武器庫
         if (type == DropZoneType.WeaponList)
         {
             dropZone.PutInWeapon(OnDragGO,weaponListPanel);
-            DropZoneType typeFrom = OnDragGO.GetComponent<DragCard>().currentDropZone.dropZoneType;
+            //移除原先武器所在位置的資料
+            
+            if (typeFrom == DropZoneType.WeaponList)
+            {
+                return;
+            }
             PlayerDataManager.instance.RemoveWeapon(typeFrom);
+            DeckManager.instance.RemoveCardsByType(typeFrom);
         }
-        else //主武器輔助武器區域
+        else //如果放入主武器輔助武器區域
         {
+            //如果區域上面是滿的
             if (dropZone.isFull)
             {
                 //將上面武器卡牌物件跟新來卡牌的dropzone區域交換
-                WeaponDropZone ExchangeZone = OnDragGO.GetComponent<DragCard>().currentDropZone;//交換要去的dropzone
-                DropZoneType typeFrom =ExchangeZone.dropZoneType; 
+                WeaponDropZone ExchangeZone = GetDropZoneByType(typeFrom);//交換要去的dropzone
+
                 //原本在此dropzone上的物件
                 GameObject weaponOn = dropZone.weaponOn[0];
                 dropZone.weaponOn.RemoveAt(0);
+                DeckManager.instance.RemoveCardsByType(type);
 
                 if (typeFrom == DropZoneType.WeaponList)
                 {
@@ -88,6 +104,7 @@ public class WeaponaryMainManager : MonoSingleton<WeaponaryMainManager>
                 {
                     WeaponData weaponData = weaponOn.GetComponent<WeaponDisplay>().WeaponData;
                     ExchangeZone.PutInWeapon(weaponOn);
+                    CreateDeckByWeapon(data.id, type);
                     PlayerDataManager.instance.SetWeapon(typeFrom,weaponData);
                 }
                 
@@ -113,5 +130,20 @@ public class WeaponaryMainManager : MonoSingleton<WeaponaryMainManager>
             DeckManager.instance.CreateCardOnPanel(data, type);
         }
         
+    }
+    //根據dropzonetype 給出 dropZone
+    private WeaponDropZone GetDropZoneByType(DropZoneType type)
+    {
+        switch (type)
+        {
+            case DropZoneType.WeaponList:
+                return weaponList;
+            case DropZoneType.MainWeapon:
+                return mainWeaponDropZone;
+            case DropZoneType.SupportWeapon:
+                return supportWeaponDropZone;
+            default:
+                return null;
+        }
     }
 }

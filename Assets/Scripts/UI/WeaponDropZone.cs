@@ -27,7 +27,7 @@ public class WeaponDropZone : MonoBehaviour, IDropHandler
         dragCard = GO.GetComponent<DragCard>();
         GO.transform.SetParent(this.transform);
         dragCard.parentReturnTo = this.transform;
-        dragCard.currentDropZone = this;
+        dragCard.currentDropZoneType = this.dropZoneType;
         this.weaponOn.Add(GO);
         isFull = true;
         /*
@@ -46,7 +46,7 @@ public class WeaponDropZone : MonoBehaviour, IDropHandler
         dragCard = GO.GetComponent<DragCard>();
         GO.transform.SetParent(panel);
         dragCard.parentReturnTo = panel;
-        dragCard.currentDropZone = this;
+        dragCard.currentDropZoneType = this.dropZoneType;
         this.weaponOn.Add(GO);
         isFull = true;
     }

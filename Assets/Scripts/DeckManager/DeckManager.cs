@@ -12,6 +12,7 @@ public class DeckManager : MonoSingleton<DeckManager>
     public GameObject deckCardPrefab;
     public Transform InicialCardListPanel;
 
+    [SerializeField]
     private List<GameObject> mainWeaponCards;
     private List<GameObject> supWeaponCards;
 
@@ -36,7 +37,7 @@ public class DeckManager : MonoSingleton<DeckManager>
 
         new_inicialcard = Instantiate(deckCardPrefab, InicialCardListPanel, false);
         new_inicialcard.GetComponent<CardDisplay>().CardData = cardData;
-        /*
+        
         if (type == DropZoneType.MainWeapon)
         {
             mainWeaponCards.Add(new_inicialcard);
@@ -44,7 +45,7 @@ public class DeckManager : MonoSingleton<DeckManager>
         else if (type == DropZoneType.SupportWeapon)
         {
             supWeaponCards.Add(new_inicialcard);
-        }*/
+        }
     }
     /// <summary>
     /// 給定類型，直接把對應類型刪掉
@@ -52,6 +53,7 @@ public class DeckManager : MonoSingleton<DeckManager>
     /// <param name="type"></param>
     public void RemoveCardsByType(DropZoneType type)
     {
+        Debug.LogFormat("Remove Cards By {0}",type);
         if (type == DropZoneType.MainWeapon)
         {
             foreach (GameObject item in mainWeaponCards)

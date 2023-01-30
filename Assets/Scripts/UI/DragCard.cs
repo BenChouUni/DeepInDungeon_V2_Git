@@ -14,7 +14,7 @@ public class DragCard : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDrag
     [HideInInspector]
     public Transform parentReturnTo = null;//要返回的位置的parent
 
-    public WeaponDropZone currentDropZone;//被抓取之前在哪個dropzone
+    public DropZoneType currentDropZoneType;//被抓取之前在哪個dropzone
 
     public void OnBeginDrag(PointerEventData eventData)//開始拖動執行一次
     {
@@ -24,7 +24,7 @@ public class DragCard : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDrag
             return;
         }
         //通知管理器
-        WeaponaryMainManager.instance.StartDrag(this.gameObject,this.currentDropZone);
+        WeaponaryMainManager.instance.StartDrag(this.gameObject,this.currentDropZoneType);
         /*
         if (StartParent == null)                 //初始化StartParent，且不再更改，否則會疊在手上
         {
@@ -65,6 +65,11 @@ public class DragCard : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDrag
     private void TurnRaycastBlock(bool value)
     {
         this.GetComponent<CanvasGroup>().blocksRaycasts = value;
+    }
+
+    public void SetDropZone(DropZoneType dropZone)
+    {
+        this.currentDropZoneType = dropZone;
     }
 }
 
