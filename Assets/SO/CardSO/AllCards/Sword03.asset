@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e41fd07fb5a6b4bec82093d9be64cec5, type: 3}
-  m_Name: Fan06
+  m_Name: Sword03
   m_EditorClassIdentifier: 
   cardData:
-    id: 27
-    cardName: "\u5145\u80FD"
+    id: 3
+    cardName: "\u5165\u9798"
     cost: 1
