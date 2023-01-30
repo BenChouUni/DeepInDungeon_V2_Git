@@ -29,6 +29,7 @@ public class WeaponaryMainManager : MonoSingleton<WeaponaryMainManager>
         hasMainWeapon = hasSupportWeapon = isDrag = false;
         PlayerDataManager.instance.ShowPlayerData();
         Debug.Log("ShowPlayerData");
+        //WeaponToCardConverter.instance.WeaponIdToCardId(0);
     }
     /// <summary>
     /// 通知管理器現在什麼物件被拖動
@@ -93,7 +94,7 @@ public class WeaponaryMainManager : MonoSingleton<WeaponaryMainManager>
                 
             }
             dropZone.PutInWeapon(OnDragGO);
-            CreateDeckByWeapon(data.id);
+            CreateDeckByWeapon(data.id,type);
             PlayerDataManager.instance.SetWeapon(type, data);
             dropZone.isFull = true;
         }
@@ -102,8 +103,15 @@ public class WeaponaryMainManager : MonoSingleton<WeaponaryMainManager>
     /// 根據放入武器創建卡牌
     /// </summary>
     /// <param name="weaponId"></param>
-    private void CreateDeckByWeapon(int weaponId)
+    private void CreateDeckByWeapon(int weaponId,DropZoneType type)
     {
+        List<int> cardIDs = WeaponToCardConverter.instance.WeaponIdToCardId(weaponId);
 
+        foreach (int cardId in cardIDs)
+        {
+            CardData data = DeckManager.instance.GetCardDataByID(cardId);
+            DeckManager.instance.CreateCardOnPanel(data, type);
+        }
+        
     }
 }

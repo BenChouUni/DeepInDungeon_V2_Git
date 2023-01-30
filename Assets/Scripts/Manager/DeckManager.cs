@@ -3,14 +3,30 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 
-public class InitialCardManager : MonoBehaviour
+public class DeckManager : MonoSingleton<DeckManager>
 {
-    public List<CardSO> InicialCardList;
-    public GameObject InicialCardPrefab;
+    [Header("卡牌庫")]
+    public CardDataBase cardDataBase;
+
+    //public List<CardSO> InicialCardList;
+    public GameObject deckCardPrefab;
     public Transform InicialCardListPanel;
 
     private List<GameObject> mainWeaponCards;
     private List<GameObject> supWeaponCards;
+
+    public CardData GetCardDataByID(int cardID)
+    {
+        foreach (CardSO data in cardDataBase.cardList)
+        {
+            CardData cardData = data.cardData;
+            if (cardData.id == cardID)
+            {
+                return cardData;
+            }
+        }
+        return null;
+    }
 
     public void CreateCardOnPanel(CardData cardData,DropZoneType type)
     {
@@ -18,9 +34,9 @@ public class InitialCardManager : MonoBehaviour
         GameObject new_inicialcard;
 
 
-        new_inicialcard = Instantiate(InicialCardPrefab, InicialCardListPanel, false);
+        new_inicialcard = Instantiate(deckCardPrefab, InicialCardListPanel, false);
         new_inicialcard.GetComponent<CardDisplay>().CardData = cardData;
-
+        /*
         if (type == DropZoneType.MainWeapon)
         {
             mainWeaponCards.Add(new_inicialcard);
@@ -28,7 +44,7 @@ public class InitialCardManager : MonoBehaviour
         else if (type == DropZoneType.SupportWeapon)
         {
             supWeaponCards.Add(new_inicialcard);
-        }
+        }*/
     }
     /// <summary>
     /// 給定類型，直接把對應類型刪掉
