@@ -4,16 +4,16 @@ using UnityEngine;
 
 public class CardDeckManager : MonoBehaviour
 {
-    public List<CardSO> CardList;
+    public CardDataBase CardList;
     public GameObject CardPrefab;
     public Transform CardShowListPanel;
     public RectTransform Panel;
 
     void Start()
     {
-        for(int i = 0; i < 20; i++)
+        foreach (CardSO item in CardList.cardList)
         {
-            CreateCardOnPanel(0);
+            CreateCardOnPanel(item.cardData.id);
         }
     }
     public void CreateCardOnPanel(int id)
@@ -29,7 +29,7 @@ public class CardDeckManager : MonoBehaviour
     }
     public CardData GetCardData(int id)
     {
-        foreach (CardSO item in CardList)
+        foreach (CardSO item in CardList.cardList)
         {
             if (item.cardData.id == id)
             {
