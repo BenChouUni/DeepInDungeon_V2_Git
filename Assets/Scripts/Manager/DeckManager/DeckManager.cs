@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 
-public class DeckManager : MonoSingleton<DeckManager>
+public class DeckManager : MonoSingleton<DeckManager>,IDataPersistence
 {
     [Header("卡牌庫")]
     public CardDataBase cardDataBase;
@@ -14,7 +14,12 @@ public class DeckManager : MonoSingleton<DeckManager>
 
     [SerializeField]
     private List<GameObject> mainWeaponCards;
+    [SerializeField]
     private List<GameObject> supWeaponCards;
+
+    public List<CardData> mainWeaponDeck;
+    public List<CardData> supWeaponDeck;
+
 
     public CardData GetCardDataByID(int cardID)
     {
@@ -41,10 +46,12 @@ public class DeckManager : MonoSingleton<DeckManager>
         if (type == DropZoneType.MainWeapon)
         {
             mainWeaponCards.Add(new_inicialcard);
+            mainWeaponDeck.Add(cardData);
         }
         else if (type == DropZoneType.SupportWeapon)
         {
             supWeaponCards.Add(new_inicialcard);
+            supWeaponDeck.Add(cardData);
         }
     }
     /// <summary>
@@ -61,6 +68,8 @@ public class DeckManager : MonoSingleton<DeckManager>
                 Destroy(item);
             }
             mainWeaponCards.Clear();
+
+            mainWeaponDeck.Clear();
         }
         else if (type == DropZoneType.SupportWeapon)
         {
@@ -69,7 +78,20 @@ public class DeckManager : MonoSingleton<DeckManager>
                 Destroy(item);
             }
             supWeaponCards.Clear();
+
+            supWeaponDeck.Clear();
         }
     }
 
+    public void LoadData(GameData data)
+    {
+        this.mainWeaponDeck = data.mainWeaponDeck;
+        this.supWeaponDeck = data.supWeaponDeck;
+    }
+
+    public void SaveData(ref GameData data)
+    {
+        data.mainWeaponDeck = this.mainWeaponDeck;
+        data.supWeaponDeck = this.supWeaponDeck;
+    }
 }

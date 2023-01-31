@@ -6,7 +6,7 @@ using System.Linq;
 public class DataPersistenceManager : MonoSingleton<DataPersistenceManager>
 {
     [Header("File Storage Config")]
-    [SerializeField] private string fileName = "GameData";
+    [SerializeField] private string fileName ;
     [Header("Dir Path")]
     [SerializeField] private string dirPath;
     private GameData gameData;
@@ -24,6 +24,7 @@ public class DataPersistenceManager : MonoSingleton<DataPersistenceManager>
     /// </summary>
     private void Start()
     {
+        fileName = "GameData";
         dirPath = Application.persistentDataPath;
         this.dataHandler = new FileDataHandler(dirPath, fileName);
         LoadGame();

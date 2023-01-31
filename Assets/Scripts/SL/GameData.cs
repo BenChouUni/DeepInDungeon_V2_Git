@@ -7,12 +7,14 @@ public class GameData {
 
     public List<WeaponData> weaponary;
     public PlayerData playerData;
-    public List<CardData> deck;
+    public List<CardData> mainWeaponDeck;
+    public List<CardData> supWeaponDeck;
 
     public GameData()
     {
         weaponary = null;
         playerData = new PlayerData();
-        deck = null;
+        mainWeaponDeck = null;
+        supWeaponDeck = null;
     }
 }

@@ -340,7 +340,7 @@ GameObject:
   - component: {fileID: 326382936}
   - component: {fileID: 326382937}
   m_Layer: 0
-  m_Name: InitialCardManager
+  m_Name: DeckManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -373,6 +373,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 387773db90fc91143858a99475d97b13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cardDataBase: {fileID: 11400000, guid: d7854b914e8254adda35b640b298a739, type: 2}
+  deckCardPrefab: {fileID: 5801621023337570092, guid: 8f3df50b0d7af6c4694debd0708e7af8, type: 3}
+  InicialCardListPanel: {fileID: 1521140751}
+  mainWeaponCards: []
 --- !u!1 &336855590
 GameObject:
   m_ObjectHideFlags: 0
@@ -532,6 +536,7 @@ Transform:
   - {fileID: 1003743581}
   - {fileID: 723711545}
   - {fileID: 1644654396}
+  - {fileID: 1805352044}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1900,6 +1905,51 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a5639d6b93d8274f8b023310ec417ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1805352043
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1805352044}
+  - component: {fileID: 1805352045}
+  m_Layer: 0
+  m_Name: WeaponToCardConverter
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1805352044
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1805352043}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 670674852}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1805352045
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1805352043}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0012045dca70b41aaaddda2a9e0e47f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponToCardTable: {fileID: 4900000, guid: 4e41dd52e359f4f64a9164c39f09253c, type: 3}
 --- !u!1 &1914455218
 GameObject:
   m_ObjectHideFlags: 0

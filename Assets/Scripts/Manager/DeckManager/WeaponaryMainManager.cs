@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class WeaponaryMainManager : MonoSingleton<WeaponaryMainManager>
 {
@@ -30,6 +31,12 @@ public class WeaponaryMainManager : MonoSingleton<WeaponaryMainManager>
         PlayerDataManager.instance.ShowPlayerData();
         Debug.Log("ShowPlayerData");
         //WeaponToCardConverter.instance.WeaponIdToCardId(0);
+    }
+
+    public void StartBattle()
+    {
+        SceneManager.LoadScene(1);
+        DataPersistenceManager.instance.SaveGame();
     }
     /// <summary>
     /// 通知管理器現在什麼物件被拖動
