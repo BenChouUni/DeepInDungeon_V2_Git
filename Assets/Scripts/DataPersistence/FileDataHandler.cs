@@ -49,22 +49,10 @@ public class FileDataHandler
     {
         //結合位址跟檔名創建完整路徑
         string fullPath = Path.Combine(dataDirPath, dataFileName);
-        Debug.Log("Save to" + fullPath);
 
-        Directory.CreateDirectory(Path.GetDirectoryName(fullPath));
-
-        string dataToStore = JsonUtility.ToJson(data, true);
-
-        using (FileStream stream = new FileStream(fullPath, FileMode.Create))
-        {
-            using (StreamWriter writer = new StreamWriter(stream))
-            {
-                writer.Write(dataToStore);
-            }
-        }
         try
         {
-            /*
+            
             Directory.CreateDirectory(Path.GetDirectoryName(fullPath));
 
             string dataToStore = JsonUtility.ToJson(data, true);
@@ -76,7 +64,7 @@ public class FileDataHandler
                     writer.Write(dataToStore);
                 }
             }
-            */
+            
         }
         catch (Exception ex)
         {
