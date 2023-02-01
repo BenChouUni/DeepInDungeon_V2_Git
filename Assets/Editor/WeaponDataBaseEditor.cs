@@ -44,8 +44,20 @@ public class WeaponDataBaseEditor : Editor
             foreach (WeaponSO item in weaponDataBase.weaponDataList)
             {
                 SaveName(item);
+                EditorUtility.SetDirty(item);
+                
             }
+            AssetDatabase.SaveAssets();
 
+        }
+        if (GUILayout.Button("Save"))
+        {
+            foreach (WeaponSO item in weaponDataBase.weaponDataList)
+            {
+                EditorUtility.SetDirty(item);
+                
+            }
+            AssetDatabase.SaveAssets();
         }
     }
 
@@ -67,7 +79,7 @@ public class WeaponDataBaseEditor : Editor
         WeaponSO newSO = AssetDatabase.LoadAssetAtPath<WeaponSO>(assetPath);
         newSO.weaponData = NewData;
 
-        AssetDatabase.SaveAssets();
+        
     }
 
     private static void CreateWeaponDataRow(List<WeaponData> list, int i)

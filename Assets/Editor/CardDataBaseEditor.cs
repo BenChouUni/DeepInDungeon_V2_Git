@@ -40,7 +40,9 @@ public class CardDataBaseEditor : Editor
             foreach (CardSO item in cardDataBase.cardList)
             {
                 SaveName(item);
+                EditorUtility.SetDirty(item);
             }
+            AssetDatabase.SaveAssets();
         }
     }
 

@@ -377,6 +377,9 @@ MonoBehaviour:
   deckCardPrefab: {fileID: 5801621023337570092, guid: 8f3df50b0d7af6c4694debd0708e7af8, type: 3}
   InicialCardListPanel: {fileID: 1521140751}
   mainWeaponCards: []
+  supWeaponCards: []
+  mainWeaponDeck: []
+  supWeaponDeck: []
 --- !u!1 &336855590
 GameObject:
   m_ObjectHideFlags: 0
@@ -1343,9 +1346,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1644654397}
-        m_TargetAssemblyTypeName: StartGameManager, Assembly-CSharp
-        m_MethodName: Click
+      - m_Target: {fileID: 1003743582}
+        m_TargetAssemblyTypeName: WeaponaryMainManager, Assembly-CSharp
+        m_MethodName: StartBattle
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

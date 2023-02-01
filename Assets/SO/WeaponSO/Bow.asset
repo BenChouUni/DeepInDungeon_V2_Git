@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Bow
   m_EditorClassIdentifier: 
   weaponData:
-    id: 0
-    weaponName: 
-    atk: 0
+    id: 1
+    weaponName: Bow
+    atk: 5
     def: 0
-    distance: 0
+    distance: 3

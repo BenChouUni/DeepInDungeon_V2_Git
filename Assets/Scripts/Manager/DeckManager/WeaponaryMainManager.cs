@@ -163,6 +163,7 @@ public class WeaponaryMainManager : MonoSingleton<WeaponaryMainManager>
             dropZone.isFull = true;
         }
     }
+    //將dropzone當中的fulle改成false
     private void ReleaseDropZone(DropZoneType type)
     {
         switch (type)

@@ -22,10 +22,11 @@ public class WeaponToCardConverter : MonoSingleton<WeaponToCardConverter>
             {
                 for (int i = 2; i < col.Length; i++)
                 {
-                    if (col[i]!=null)
+                    if (int.TryParse(col[i],out int num))
                     {
-                        result.Add(int.Parse(col[i]));
-                        //Debug.Log(col[0] + ":" + col[i]);
+                        Debug.Log(col[0] + ":" + col[i]);
+                        result.Add(num);
+                        
                     }
                 }
             }
