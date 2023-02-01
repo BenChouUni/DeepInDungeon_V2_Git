@@ -60,7 +60,7 @@ public class DeckManager : MonoSingleton<DeckManager>,IDataPersistence
     /// <param name="type"></param>
     public void RemoveCardsByType(DropZoneType type)
     {
-        Debug.LogFormat("Remove Cards By {0}",type);
+        Debug.LogFormat("Remove Cards in {0}",type);
         if (type == DropZoneType.MainWeapon)
         {
             foreach (GameObject item in mainWeaponCards)
@@ -85,8 +85,7 @@ public class DeckManager : MonoSingleton<DeckManager>,IDataPersistence
 
     public void LoadData(GameData data)
     {
-        this.mainWeaponDeck = data.mainWeaponDeck;
-        this.supWeaponDeck = data.supWeaponDeck;
+        
     }
 
     public void SaveData(ref GameData data)

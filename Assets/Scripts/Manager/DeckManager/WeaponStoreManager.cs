@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WeaponStoreManager : MonoBehaviour
+public class WeaponStoreManager : MonoSingleton<WeaponStoreManager>
 {
     public WeaponDataBase weaponDataBase;
 
@@ -11,13 +11,13 @@ public class WeaponStoreManager : MonoBehaviour
     public Transform WeaponListPanel;
     
 
-    private void Start()
+    public void InitialWeaponStore()
     {
         foreach (WeaponSO item in weaponDataBase.weaponDataList)
         {
             CreateWeaponOnPanel(item.weaponData.id);
         }
-            //CreateWeaponOnPanel(1);
+            
     }
 
     public void CreateWeaponOnPanel(int id)
