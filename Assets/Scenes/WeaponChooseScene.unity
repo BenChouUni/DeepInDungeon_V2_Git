@@ -332,7 +332,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 387773db90fc91143858a99475d97b13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardDataBase: {fileID: 11400000, guid: d7854b914e8254adda35b640b298a739, type: 2}
+  cardDataBase: {fileID: 11400000, guid: 22a764cdd78c57649a8531f2e11d0cd5, type: 2}
   deckCardPrefab: {fileID: 5801621023337570092, guid: 8f3df50b0d7af6c4694debd0708e7af8, type: 3}
   InicialCardListPanel: {fileID: 1521140751}
   mainWeaponCards: []
