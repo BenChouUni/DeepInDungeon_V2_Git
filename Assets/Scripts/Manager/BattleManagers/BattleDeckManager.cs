@@ -8,6 +8,9 @@ using UnityEngine;
 /// </summary>
 public class BattleDeckManager : MonoSingleton<BattleDeckManager>,IDataPersistence
 {
+    //數值
+    [Header("手牌上限數量")]
+    public int maxHandCards;
     //Prefab
     public GameObject CardPrefab;
     //Panel
@@ -24,10 +27,17 @@ public class BattleDeckManager : MonoSingleton<BattleDeckManager>,IDataPersisten
 
     //判斷
     private bool canDraw;
+    
+
+    public int HandCardCount
+    {
+        get;
+    }
 
     private void Start()
     {
         canDraw = true;
+        ShowCardZoneCount();
     }
     /// <summary>
     /// 牌組洗牌
@@ -52,9 +62,11 @@ public class BattleDeckManager : MonoSingleton<BattleDeckManager>,IDataPersisten
 
     public void LoadData(GameData data)
     {
+
         //將兩武器的牌組合併成完整牌組
         battleDeck = new List<CardData>();
-        battleDeck = (List<CardData>)data.mainWeaponDeck.Concat(data.supWeaponDeck);
+        battleDeck = data.mainWeaponDeck;
+        battleDeck.AddRange(data.supWeaponDeck);
     }
 
     public void SaveData(ref GameData data)
@@ -62,7 +74,7 @@ public class BattleDeckManager : MonoSingleton<BattleDeckManager>,IDataPersisten
         //戰鬥過程中應該無法存擋
     }
 
-    public void ShowCardZoneCOunt()
+    public void ShowCardZoneCount()
     {
         int battleDeckCount = battleDeck.Count;
         drawCardZoneDisplay.ShowCounter(battleDeckCount);
@@ -81,24 +93,66 @@ public class BattleDeckManager : MonoSingleton<BattleDeckManager>,IDataPersisten
             Debug.Log("無法抽牌");
             return;
         }
-        if (num > battleDeck.Count)
-        {
-            Debug.Log("卡組數量不夠抽牌，重新把棄牌堆放回");
 
-        }
         GameObject new_card;
         for (int i = 0; i < num; i++)
         {
+            if (num > battleDeck.Count)
+            {
+                Debug.Log("卡組數量不夠抽牌，重新把棄牌堆放回");
+                RefreshDeck();
+
+            }
+
             CardData cardData = battleDeck[0];//永遠取第一張，然後將其刪掉
 
+            if (handCards.Count >= maxHandCards)
+            {
+                Debug.Log("抽牌超過手牌上限");
+                //可能要把牌抽上來給玩家看一下
+                //把牌一到棄排堆
+                DisCard(cardData);
+                battleDeck.Remove(cardData);
+                continue;
+
+            }
+             
+            
             new_card = Instantiate(CardPrefab, HandCardPanel, false);
             new_card.GetComponent<CardDisplay>().CardData = cardData;
+            handCards.Add(cardData);
             handCardsObj.Add(new_card);
 
+            //counter
+
+
+
             battleDeck.RemoveAt(0);
+
+            CardsLayoutManager.instance.AddHandCard(new_card.transform);
+            
             
         }
 
+        ShowCardZoneCount();
     }
 
+    public void DisCard(CardData cardData)
+    {
+        discardCards.Add(cardData);
+        ShowCardZoneCount();
+    }
+    /// <summary>
+    /// 把棄牌堆重新洗回抽排堆
+    /// </summary>
+    private void RefreshDeck()
+    {
+        foreach (CardData item in discardCards)
+        {
+            battleDeck.Add(item);
+            
+        }
+        discardCards.Clear();
+        ShuffleDeck();
+    }
 }

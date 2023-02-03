@@ -9,7 +9,8 @@ public enum GamePhase
 
 public class TurnPhaseManager : MonoSingleton<TurnPhaseManager>
 {
-    public static GamePhase gamePhase;
+    
+    public GamePhase gamePhase;
 
     public void StartGame()
     {
