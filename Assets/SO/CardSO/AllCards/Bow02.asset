@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Bow02
   m_EditorClassIdentifier: 
   cardData:
-    id: 14
+    id: 102
     cardName: "\u767E\u6B65\u7A7F\u694A"
     cost: 0
+    cardAction: []

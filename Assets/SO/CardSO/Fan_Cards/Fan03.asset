@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Fan03
   m_EditorClassIdentifier: 
   cardData:
-    id: 24
+    id: 203
     cardName: "\u6536\u6247"
     cost: 1
+    cardAction: []

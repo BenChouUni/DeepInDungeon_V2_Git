@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: BowCards
   m_EditorClassIdentifier: 
   cardList:
-  - {fileID: 11400000, guid: 7a126382681a409448059ed915bde5fd, type: 2}
-  - {fileID: 11400000, guid: 5c164f23e7540a04a8acf95ad6be0e64, type: 2}
-  - {fileID: 11400000, guid: f8598fed91fbb5b4f8997ad970bbd4b3, type: 2}
-  - {fileID: 11400000, guid: 59f3dce03a197fc4eb2200b1c0bfc8c2, type: 2}
-  - {fileID: 11400000, guid: 060318bfc6fef9348a2c1a3c8ea1b166, type: 2}
-  - {fileID: 11400000, guid: d082f5a37381ee5469bdf8858ebede6a, type: 2}
-  - {fileID: 11400000, guid: e76f470c4e2c82a4cb6b20db84917658, type: 2}
-  - {fileID: 11400000, guid: 6811a95c45646f14aa5b871ba6805daf, type: 2}
-  - {fileID: 11400000, guid: ea0a5f671f1d68341bf844917cd83657, type: 2}
+  - {fileID: 11400000, guid: 2b4eba9cbd0151b4fa39424d773fc221, type: 2}
+  - {fileID: 11400000, guid: df932935d03b0f349a36386ce5d5f048, type: 2}
+  - {fileID: 11400000, guid: e050b8d10a002ab41a4838d4cef2f5fb, type: 2}
+  - {fileID: 11400000, guid: e481846c27b31a94480362cecc138bea, type: 2}
+  - {fileID: 11400000, guid: fb3a8a87e5e0f6546855687db231ab57, type: 2}
+  - {fileID: 11400000, guid: 72353364a595d184b8f9001906cf17da, type: 2}
+  - {fileID: 11400000, guid: d84f4ed16f826cc4888a6184587250a9, type: 2}
+  - {fileID: 11400000, guid: 39070b45376f3454c8a0143109e556ba, type: 2}
+  - {fileID: 11400000, guid: aacc90e3aa98ca84b8f3e74cd3b5d529, type: 2}
