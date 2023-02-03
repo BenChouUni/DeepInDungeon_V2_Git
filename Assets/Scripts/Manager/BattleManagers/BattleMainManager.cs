@@ -18,6 +18,8 @@ public class BattleMainManager : MonoSingleton<BattleMainManager>
         TurnPhaseManager.instance.StartGame();
         BattleDeckManager.instance.ShuffleDeck();
         BattleDeckManager.instance.DrawCard(initialDrawCard);
+
+        BattlePlayerDataManager.instance.ShowPlayerStatus();
     }
 
 }

@@ -12,9 +12,9 @@ public class HealthBar : MonoBehaviour
     public void SetMaxHealth(int maxHp)
     {
         this.maxHp = maxHp;
-        this.currentHp = maxHp;
         this.slider.maxValue = maxHp;
-        this.slider.value = maxHp;
+
+        SetHealth(maxHp);
         SetText();
     }
 

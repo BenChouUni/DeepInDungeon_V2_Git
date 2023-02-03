@@ -32,14 +32,15 @@ public class WeaponaryMainManager : MonoSingleton<WeaponaryMainManager>
         PlayerData playerData = PlayerDataManager.instance.playerData;
         PlayerDataManager.instance.ShowPlayerData();
         WeaponStoreManager.instance.InitialWeaponStore();
-        if (playerData.MainWeaponData != null)
+        //用weaponName判斷，避免全空
+        if (playerData.MainWeaponData.weaponName != "")
         {
             WeaponData data = playerData.MainWeaponData;
             GameObject weaponObj = FindWeaponOnList(data.id);
             PutInDropZone(mainWeaponDropZone, DropZoneType.MainWeapon, data, DropZoneType.WeaponList, weaponObj);
         }
 
-        if (playerData.SupportWeaponData != null)
+        if (playerData.SupportWeaponData.weaponName != "")
         {
             WeaponData data = playerData.SupportWeaponData;
             GameObject weaponObj = FindWeaponOnList(data.id);
@@ -127,6 +128,7 @@ public class WeaponaryMainManager : MonoSingleton<WeaponaryMainManager>
             //如果區域上面是滿的
             if (dropZone.isFull)
             {
+                Debug.Log("上面是滿的");
                 //將上面武器卡牌物件跟新來卡牌的dropzone區域交換
                 WeaponDropZone ExchangeZone = GetDropZoneByType(typeFrom);//交換要去的dropzone
 
@@ -135,17 +137,22 @@ public class WeaponaryMainManager : MonoSingleton<WeaponaryMainManager>
                 dropZone.weaponOn.RemoveAt(0);
                 DeckManager.instance.RemoveCardsByType(type);
 
+                //跟上方的武器庫交換
                 if (typeFrom == DropZoneType.WeaponList)
                 {
-                    ExchangeZone.PutInWeapon(weaponOn, weaponListPanel);
+                    
+                    ExchangeZone.PutInWeapon(weaponOn, weaponListPanel);//
 
                 }
-                else
+                else //左右交換
                 {
+                    Debug.Log("左右交換");
                     WeaponData weaponData = weaponOn.GetComponent<WeaponDisplay>().WeaponData;
                     ExchangeZone.PutInWeapon(weaponOn);
-                    CreateDeckByWeapon(data.id, type);
+                    
                     PlayerDataManager.instance.SetWeapon(typeFrom, weaponData);
+                    CreateDeckByWeapon(weaponData.id, typeFrom);
+
                 }
 
 
@@ -196,6 +203,10 @@ public class WeaponaryMainManager : MonoSingleton<WeaponaryMainManager>
     /// <param name="weaponId"></param>
     private void CreateDeckByWeapon(int weaponId,DropZoneType type)
     {
+        if (! DeckManager.instance.CheckEmpty(type))
+        {
+            DeckManager.instance.RemoveCardsByType(type);
+        }
         List<int> cardIDs = WeaponToCardConverter.instance.WeaponIdToCardId(weaponId);
 
         foreach (int cardId in cardIDs)

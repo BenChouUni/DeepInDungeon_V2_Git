@@ -93,4 +93,18 @@ public class DeckManager : MonoSingleton<DeckManager>,IDataPersistence
         data.mainWeaponDeck = this.mainWeaponDeck;
         data.supWeaponDeck = this.supWeaponDeck;
     }
+
+    public bool CheckEmpty(DropZoneType type)
+    {
+        if (type == DropZoneType.MainWeapon)
+        {
+            return (mainWeaponDeck.Count == 0);
+        }
+        else if (type == DropZoneType.SupportWeapon)
+        {
+            return (supWeaponDeck.Count == 0);
+        }
+        Debug.LogError("CheckEmpty error");
+        return false;
+    }
 }

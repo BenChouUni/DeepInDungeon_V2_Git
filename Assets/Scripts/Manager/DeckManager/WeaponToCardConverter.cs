@@ -24,7 +24,7 @@ public class WeaponToCardConverter : MonoSingleton<WeaponToCardConverter>
                 {
                     if (int.TryParse(col[i],out int num))
                     {
-                        Debug.Log(col[0] + ":" + col[i]);
+                        //Debug.Log(col[0] + ":" + col[i]);
                         result.Add(num);
                         
                     }
