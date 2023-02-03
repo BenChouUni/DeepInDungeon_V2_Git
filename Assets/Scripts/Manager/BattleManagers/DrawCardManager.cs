@@ -17,6 +17,7 @@ namespace DrawCardManager
         public void Click()
         {
             Draw_Card_On_Hand(0);
+            Debug.Log("Draw");
             Debug.Log(HandCardList.Count);
         }
 
