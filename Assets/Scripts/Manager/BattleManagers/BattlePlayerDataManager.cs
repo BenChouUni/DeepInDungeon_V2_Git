@@ -5,11 +5,17 @@ using UnityEngine.UI;
 
 public class BattlePlayerDataManager : MonoSingleton<BattlePlayerDataManager>,IDataPersistence
 {
+    //存讀data
     public PlayerData playerData;
+    //戰鬥中data
+    public PlayerData battleplayerData;
+    
+
+
 
     public Text playerName;
     public HealthBar playerHealthBar;
-
+    public Text playerEnergy;
 
 
     public void LoadData(GameData data)
@@ -21,11 +27,15 @@ public class BattlePlayerDataManager : MonoSingleton<BattlePlayerDataManager>,ID
     {
         
     }
-
-    public void ShowPlayerStatus()
+    public void InitialPlayerStatus()
     {
-        playerName.text = playerData.Name;
-        playerHealthBar.SetMaxHealth(playerData.MaxHp);
-        playerHealthBar.SetHealth(playerData.CurrentHp);
+        ShowPlayerStatus(playerData);
+    }
+    public void ShowPlayerStatus(PlayerData _playerData)
+    {
+        playerName.text = _playerData.Name;
+        playerHealthBar.SetMaxHealth(_playerData.MaxHp);
+        playerHealthBar.SetHealth(_playerData.CurrentHp);
+        playerEnergy.text = _playerData.Energy.ToString();
     }
 }

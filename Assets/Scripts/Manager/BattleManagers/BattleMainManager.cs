@@ -4,22 +4,37 @@ using UnityEngine;
 
 public class BattleMainManager : MonoSingleton<BattleMainManager>
 {
+    //managers
+    [HideInInspector]
+    public TurnPhaseManager turnPhaseManager;
+    [HideInInspector]
+    public BattleDeckManager battleDeckManager;
+    [HideInInspector]
+    public BattlePlayerDataManager battlePlayerDataManager;
     [Header("開場抽幾張卡")]
     public int initialDrawCard;
 
     void Start()
     {
+        Initialmanagers();
         BattleStart();
+    }
+    //省呼叫資源
+    private void Initialmanagers()
+    {
+        turnPhaseManager = TurnPhaseManager.instance;
+        battlePlayerDataManager = BattlePlayerDataManager.instance;
+        battleDeckManager = BattleDeckManager.instance;
     }
 
     public void BattleStart()
     {
         
-        TurnPhaseManager.instance.StartGame();
-        BattleDeckManager.instance.ShuffleDeck();
-        BattleDeckManager.instance.DrawCard(initialDrawCard);
+        turnPhaseManager.StartGame();
+        battleDeckManager.ShuffleDeck();
+        battleDeckManager.DrawCard(initialDrawCard);
 
-        BattlePlayerDataManager.instance.ShowPlayerStatus();
+        battlePlayerDataManager.InitialPlayerStatus();
     }
 
 }

@@ -25,6 +25,12 @@ public class PlayerData : Character
     {
         get { return coin; }
     }
+    [SerializeField]
+    private int energy;
+    public int Energy
+    {
+        get { return energy; }
+    }
     /// <summary>
     /// 預設初始化 "no name", 50, 0
     /// </summary>
@@ -33,12 +39,14 @@ public class PlayerData : Character
         coin = 0;
         mainWeaponData = null;
         supportWeaponData = null;
+        this.energy = 3;
     }
-    public PlayerData(string _name, int _maxHp, int _shield) :base(_name,_maxHp,_shield)
+    public PlayerData(string _name, int _maxHp, int _shield,int _energy) :base(_name,_maxHp,_shield)
     {
         coin = 0;
         mainWeaponData = null;
         supportWeaponData = null;
+        this.energy = _energy;
     }
 
     public void CoinAdd(int num)
