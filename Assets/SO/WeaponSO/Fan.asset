@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Fan
   m_EditorClassIdentifier: 
   weaponData:
-    id: 0
-    weaponName: 
-    atk: 0
+    id: 2
+    weaponName: Fan
+    atk: 3
     def: 0
     distance: 0

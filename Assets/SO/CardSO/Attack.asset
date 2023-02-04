@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Attack
   m_EditorClassIdentifier: 
   cardData:
-    id: 1
+    id: 0
     cardName: "\u6253\u64CA"
     cost: 1
+    cardAction: []
