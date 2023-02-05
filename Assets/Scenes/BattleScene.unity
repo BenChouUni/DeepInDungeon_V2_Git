@@ -1492,8 +1492,30 @@ MonoBehaviour:
       def: 0
       distance: 0
     coin: 0
+    energy: 3
+  battleplayerData:
+    characterName: no name
+    isDeath: 0
+    maxHp: 50
+    currentHp: 50
+    shield: 0
+    mainWeaponData:
+      id: 0
+      weaponName: 
+      atk: 0
+      def: 0
+      distance: 0
+    supportWeaponData:
+      id: 0
+      weaponName: 
+      atk: 0
+      def: 0
+      distance: 0
+    coin: 0
+    energy: 3
   playerName: {fileID: 820084601}
   playerHealthBar: {fileID: 774873979}
+  playerEnergy: {fileID: 850091300}
 --- !u!1 &1125357547
 GameObject:
   m_ObjectHideFlags: 0
@@ -1665,7 +1687,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3502614577630345366, guid: fe420bb18f8b44ff886aa1f62ed6a403, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 3502614577630345366, guid: fe420bb18f8b44ff886aa1f62ed6a403, type: 3}
       propertyPath: m_AnchorMax.x
@@ -2416,4 +2438,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c31e1107eb1454b95bfba656f8eaf585, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  turnPhaseManager: {fileID: 0}
+  battleDeckManager: {fileID: 0}
+  battlePlayerDataManager: {fileID: 0}
   initialDrawCard: 5
