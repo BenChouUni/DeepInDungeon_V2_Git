@@ -65,6 +65,8 @@ public class CardDataBaseEditor : Editor
         EditorGUILayout.LabelField("Cost", GUILayout.MaxWidth(30));
         list[i].cost = EditorGUILayout.IntField(list[i].cost);
 
+        EditorGUILayout.LabelField("InitailNum", GUILayout.MaxWidth(20));
+        list[i].initialnum = EditorGUILayout.IntField(list[i].initialnum);
 
         EditorGUILayout.EndHorizontal();
 
@@ -89,7 +91,7 @@ public class CardDataBaseEditor : Editor
         string assetPath = AssetDatabase.GetAssetPath(item.GetInstanceID());
         CardData cardData = item.cardData;
 
-        CardData newData = new CardData(cardData.id,cardData.cardName,cardData.cost);
+        CardData newData = new CardData(cardData.id,cardData.cardName,cardData.cost,cardData.initialnum);
 
         
         AssetDatabase.RenameAsset(assetPath, cardData.cardName);

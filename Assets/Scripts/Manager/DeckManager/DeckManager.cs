@@ -10,7 +10,7 @@ public class DeckManager : MonoSingleton<DeckManager>,IDataPersistence
 
     //public List<CardSO> InicialCardList;
     public GameObject deckCardPrefab;
-    public Transform InicialCardListPanel;
+    public Transform InitialCardListPanel;
 
     [SerializeField]
     private List<GameObject> mainWeaponCards;
@@ -37,20 +37,20 @@ public class DeckManager : MonoSingleton<DeckManager>,IDataPersistence
     public void CreateCardOnPanel(CardData cardData,DropZoneType type)
     {
    
-        GameObject new_inicialcard;
+        GameObject new_initialcard;
 
 
-        new_inicialcard = Instantiate(deckCardPrefab, InicialCardListPanel, false);
-        new_inicialcard.GetComponent<CardDisplay>().CardData = cardData;
+        new_initialcard = Instantiate(deckCardPrefab, InitialCardListPanel, false);
+        new_initialcard.GetComponent<CardDisplay>().CardData = cardData;
         
         if (type == DropZoneType.MainWeapon)
         {
-            mainWeaponCards.Add(new_inicialcard);
+            mainWeaponCards.Add(new_initialcard);
             mainWeaponDeck.Add(cardData);
         }
         else if (type == DropZoneType.SupportWeapon)
         {
-            supWeaponCards.Add(new_inicialcard);
+            supWeaponCards.Add(new_initialcard);
             supWeaponDeck.Add(cardData);
         }
     }

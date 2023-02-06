@@ -26,12 +26,14 @@ public class CardDisplay : MonoBehaviour
     //prefab上要有的基本物件
     public Text cardName_text;
     public Text cost_text;
+    public Text initialnum_text;
     public Text description_text;
 
     private void Show()
     {
         cardName_text.text = cardData.cardName;
         cost_text.text = cardData.cost.ToString();
+        initialnum_text.text = cardData.initialnum.ToString();
         if (description_text != null)
         {
             description_text.text = "";

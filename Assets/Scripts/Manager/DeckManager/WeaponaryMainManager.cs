@@ -212,7 +212,10 @@ public class WeaponaryMainManager : MonoSingleton<WeaponaryMainManager>
         foreach (int cardId in cardIDs)
         {
             CardData data = DeckManager.instance.GetCardDataByID(cardId);
-            DeckManager.instance.CreateCardOnPanel(data, type);
+            if(data.initialnum != 0)
+            {
+                DeckManager.instance.CreateCardOnPanel(data, type);
+            }
         }
         
     }
