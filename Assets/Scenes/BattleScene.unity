@@ -168,37 +168,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gamePhase: 0
---- !u!1 &109587340
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 109587341}
-  m_Layer: 0
-  m_Name: CardHand
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &109587341
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 109587340}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -87, y: -19, z: 2.4115746}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1411623469}
-  m_RootOrder: 8
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &196164649
 GameObject:
   m_ObjectHideFlags: 0
@@ -453,7 +422,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1423768432}
   m_Father: {fileID: 1411623469}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -602,6 +572,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ceab9a5d2d79794459bd9470b9d5ce0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Angle: 3
   HandCardList: []
   TargetPosition: []
   TargetRotation: []
@@ -1059,7 +1030,7 @@ RectTransform:
   m_Children:
   - {fileID: 933528972}
   m_Father: {fileID: 1411623469}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1309,7 +1280,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8778942204298097157, guid: a6aea09202a16dc4bbd3d7d12caf3afc, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8778942204298097157, guid: a6aea09202a16dc4bbd3d7d12caf3afc, type: 3}
       propertyPath: m_AnchorMax.x
@@ -1365,11 +1336,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8778942204298097157, guid: a6aea09202a16dc4bbd3d7d12caf3afc, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -790
+      value: -834
       objectReference: {fileID: 0}
     - target: {fileID: 8778942204298097157, guid: a6aea09202a16dc4bbd3d7d12caf3afc, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -366
+      value: -251
       objectReference: {fileID: 0}
     - target: {fileID: 8778942204298097157, guid: a6aea09202a16dc4bbd3d7d12caf3afc, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1764,14 +1735,12 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 651165665}
-  - {fileID: 1423768432}
   - {fileID: 941544957}
-  - {fileID: 1125357548}
   - {fileID: 1661347450}
+  - {fileID: 1125357548}
   - {fileID: 2044081213}
   - {fileID: 428932314}
   - {fileID: 835289501}
-  - {fileID: 109587341}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1792,7 +1761,7 @@ GameObject:
   - component: {fileID: 1423768434}
   - component: {fileID: 1423768433}
   m_Layer: 5
-  m_Name: CardPanel
+  m_Name: CardHand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1805,13 +1774,13 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1423768431}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1411623469}
-  m_RootOrder: 1
+  m_Father: {fileID: 651165665}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1887,7 +1856,7 @@ RectTransform:
   - {fileID: 774873978}
   - {fileID: 820084600}
   m_Father: {fileID: 1411623469}
-  m_RootOrder: 4
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2040,7 +2009,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8778942204298097157, guid: a6aea09202a16dc4bbd3d7d12caf3afc, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8778942204298097157, guid: a6aea09202a16dc4bbd3d7d12caf3afc, type: 3}
       propertyPath: m_AnchorMax.x
@@ -2096,11 +2065,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8778942204298097157, guid: a6aea09202a16dc4bbd3d7d12caf3afc, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 744
+      value: 807
       objectReference: {fileID: 0}
     - target: {fileID: 8778942204298097157, guid: a6aea09202a16dc4bbd3d7d12caf3afc, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -376
+      value: -256
       objectReference: {fileID: 0}
     - target: {fileID: 8778942204298097157, guid: a6aea09202a16dc4bbd3d7d12caf3afc, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -2246,7 +2215,7 @@ RectTransform:
   m_Children:
   - {fileID: 850091299}
   m_Father: {fileID: 1411623469}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 450}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}

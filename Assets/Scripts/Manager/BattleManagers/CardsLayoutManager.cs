@@ -5,7 +5,8 @@ using UnityEngine;
 
 public class CardsLayoutManager : MonoSingleton<CardsLayoutManager>
 {
-
+    [Range(1f, 10f)]
+    public float Angle;
     //public List<CardSO> CardDeck;
     //public GameObject CardPrefab;
     //private Transform HandCardPanel;
@@ -74,9 +75,9 @@ public class CardsLayoutManager : MonoSingleton<CardsLayoutManager>
         float endAngle;
         if (HandCardList.Count <= 10)
         {
-            startAngle = Mathf.PI * (90f / 180f + (3f * (HandCardList.Count) / 180f));
+            startAngle = Mathf.PI * (90f / 180f + (Angle * (HandCardList.Count) / 180f));
             //Debug.Log(startAngle);
-            endAngle = Mathf.PI * (90f / 180f - (3f * (HandCardList.Count) / 180f));
+            endAngle = Mathf.PI * (90f / 180f - (Angle * (HandCardList.Count) / 180f));
             //Debug.Log(endAngle);
         }
         else
@@ -86,17 +87,19 @@ public class CardsLayoutManager : MonoSingleton<CardsLayoutManager>
             endAngle = Mathf.PI * (60f / 180f);
             //Debug.Log(endAngle);
         }
-        float radius = 800f;
+        float radius = 1500f;
+
+
             
         for(int i = 0 ; i < HandCardList.Count; i++)
         {
             float angle = Mathf.Lerp(startAngle, endAngle, i / (HandCardList.Count - 1f));
             //Debug.Log(angle);
-            TargetPosition.Add(new Vector3(Mathf.Cos(angle) * radius + 960f, Mathf.Sin(angle) * radius - radius + 250f, 1f));
+            TargetPosition.Add(new Vector3(Mathf.Cos(angle) * radius + 960f, Mathf.Sin(angle) * radius - radius + 150f, 1f));
             //Debug.Log(TargetPosition[i]);
             //TargetRotation.Add(Quaternion.Euler(0f, Mathf.Lerp(15f, -15f, i / (HandCardList.Count - 1f)), 0f));
             //TargetRotation.Add(Quaternion.Euler(0f, 0f, 90f));
-            TargetRotation.Add(Quaternion.Euler(0f, 0f, Mathf.Lerp(15f, -15f, i / (HandCardList.Count - 1f))));
+            TargetRotation.Add(Quaternion.Euler(0f, 0f, Mathf.Lerp(8f, -8f, i / (HandCardList.Count - 1f))));
             HandCardList[i].position = TargetPosition[i];
             HandCardList[i].rotation = TargetRotation[i];
             //Debug.Log(HandCardList[i].position);
