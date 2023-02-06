@@ -88,6 +88,7 @@ public class BattleDeckManager : MonoSingleton<BattleDeckManager>,IDataPersisten
     /// <param name="num">數量</param>
     public void DrawCard(int num)
     {
+        
         if (!canDraw)
         {
             Debug.Log("無法抽牌");
