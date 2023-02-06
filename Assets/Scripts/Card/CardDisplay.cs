@@ -33,7 +33,10 @@ public class CardDisplay : MonoBehaviour
     {
         cardName_text.text = cardData.cardName;
         cost_text.text = cardData.cost.ToString();
-        initialnum_text.text = cardData.initialnum.ToString();
+        if (initialnum_text != null)
+        {
+            initialnum_text.text = cardData.initialnum.ToString();
+        }
         if (description_text != null)
         {
             description_text.text = "";
