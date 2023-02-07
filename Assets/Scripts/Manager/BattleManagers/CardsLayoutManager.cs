@@ -102,6 +102,7 @@ public class CardsLayoutManager : MonoSingleton<CardsLayoutManager>
             TargetRotation.Add(Quaternion.Euler(0f, 0f, Mathf.Lerp(8f, -8f, i / (HandCardList.Count - 1f))));
             HandCardList[i].position = TargetPosition[i];
             HandCardList[i].rotation = TargetRotation[i];
+
             //Debug.Log(HandCardList[i].position);
         }
 
@@ -116,7 +117,7 @@ public class CardsLayoutManager : MonoSingleton<CardsLayoutManager>
         float positionX = (1f - HandCardList.Count) * 100f / 2f;
         if(HandCardList.Count == 1)
         {
-            TargetPosition.Add(new Vector3(960f, 250f, 1f));
+            TargetPosition.Add(new Vector3(960f, 150f, 1f));
             TargetRotation.Add(Quaternion.Euler(Vector3.zero));
             //HandCardList[0].position = TargetPosition[0];
             HandCardList[0].position = TargetRotation[0] * TargetPosition[0];
@@ -126,12 +127,65 @@ public class CardsLayoutManager : MonoSingleton<CardsLayoutManager>
         {
             for(int i = 0; i < HandCardList.Count; i++)
             {
-                TargetPosition.Add(new Vector3(Mathf.Lerp(positionX, -positionX, i / (HandCardList.Count - 1f)) + 960f, 250f, 1f));
+                TargetPosition.Add(new Vector3(Mathf.Lerp(positionX, -positionX, i / (HandCardList.Count - 1f)) + 960f, 150f, 1f));
                 TargetRotation.Add(Quaternion.Euler(Vector3.zero));
                 //HandCardList[i].position = TargetPosition[i];
                 HandCardList[i].position = TargetRotation[i] * TargetPosition[i];
                 //Debug.Log(HandCardList[i].position);
             }
+        }
+    }
+
+    public void Disperse(Vector3 move)   //手牌散開
+    {
+        int pos = 0;
+        //先尋找位置
+        if (HandCardList.Count >= 3)                 
+        {
+            for (int i = 0; i < HandCardList.Count; i++)
+            {
+                if (TargetPosition[i].x == move.x)
+                {
+                    pos = i;
+                    break;
+                }
+            }
+            //移動左右各兩張卡片
+            for (int i = pos - 2 ; i <= pos + 2; i++)
+            {
+                if(i >= 0 && i <HandCardList.Count && i != pos)
+                {
+                    HandCardList[i].position = new Vector3(TargetPosition[i].x - 100f*(1f/(pos-i)), TargetPosition[i].y, TargetPosition[i].z);
+                }
+            }
+
+        }
+
+    }
+
+    public void Gather(Vector3 move)  //手牌聚攏
+    {
+        int pos = 0;
+        //先尋找位置
+        if (HandCardList.Count >= 3)
+        {
+            for (int i = 0; i < HandCardList.Count; i++)
+            {
+                if (TargetPosition[i].x == move.x)
+                {
+                    pos = i;
+                    break;
+                }
+            }
+            //移動左右各兩張卡片
+            for (int i = pos - 2; i <= pos + 2; i++)
+            {
+                if (i >= 0 && i < HandCardList.Count && i != pos)
+                {
+                    HandCardList[i].position = TargetPosition[i];
+                }
+            }
+
         }
     }
 }

@@ -520,7 +520,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHandCards: 10
-  CardPrefab: {fileID: 6232508073499098107, guid: 6e89a30a7165ca648a25045790e82531, type: 3}
+  CardPrefab: {fileID: 6232508073499098107, guid: 488edf00368eecd40a94126cb7022ce0, type: 3}
   HandCardPanel: {fileID: 1423768432}
   battleDeck: []
   handCards: []
