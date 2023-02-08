@@ -5,8 +5,14 @@ using UnityEngine;
 
 public class CardsLayoutManager : MonoSingleton<CardsLayoutManager>
 {
-    [Range(1f, 10f)]
+    [Range(1f, 5f)]
     public float Angle;
+
+    [Range(1000f, 2500f)]
+    public float radius;
+
+    [Range(50f, 200f)]
+    public float DisperseRadius;
     //public List<CardSO> CardDeck;
     //public GameObject CardPrefab;
     //private Transform HandCardPanel;
@@ -42,6 +48,13 @@ public class CardsLayoutManager : MonoSingleton<CardsLayoutManager>
         return null;
     }*/
 
+    /*
+    public void Update()
+    {
+        SetLayout();
+    }
+    */
+
     public void AddHandCard(Transform handCard)
     {
         HandCardList.Add(handCard);
@@ -68,7 +81,6 @@ public class CardsLayoutManager : MonoSingleton<CardsLayoutManager>
 
     private void SetCircleLayout()
     {
-        Debug.Log("SetCircleLayout");
         TargetPosition.Clear();
         TargetRotation.Clear();
         float startAngle;
@@ -76,34 +88,24 @@ public class CardsLayoutManager : MonoSingleton<CardsLayoutManager>
         if (HandCardList.Count <= 10)
         {
             startAngle = Mathf.PI * (90f / 180f + (Angle * (HandCardList.Count) / 180f));
-            //Debug.Log(startAngle);
             endAngle = Mathf.PI * (90f / 180f - (Angle * (HandCardList.Count) / 180f));
-            //Debug.Log(endAngle);
         }
         else
         {
             startAngle = Mathf.PI * (120f / 180f);
-            // Debug.Log(startAngle);
             endAngle = Mathf.PI * (60f / 180f);
-            //Debug.Log(endAngle);
         }
-        float radius = 1500f;
 
 
             
         for(int i = 0 ; i < HandCardList.Count; i++)
         {
             float angle = Mathf.Lerp(startAngle, endAngle, i / (HandCardList.Count - 1f));
-            //Debug.Log(angle);
             TargetPosition.Add(new Vector3(Mathf.Cos(angle) * radius + 960f, Mathf.Sin(angle) * radius - radius + 150f, 1f));
-            //Debug.Log(TargetPosition[i]);
-            //TargetRotation.Add(Quaternion.Euler(0f, Mathf.Lerp(15f, -15f, i / (HandCardList.Count - 1f)), 0f));
-            //TargetRotation.Add(Quaternion.Euler(0f, 0f, 90f));
+
             TargetRotation.Add(Quaternion.Euler(0f, 0f, Mathf.Lerp(8f, -8f, i / (HandCardList.Count - 1f))));
             HandCardList[i].position = TargetPosition[i];
             HandCardList[i].rotation = TargetRotation[i];
-
-            //Debug.Log(HandCardList[i].position);
         }
 
 
@@ -111,7 +113,6 @@ public class CardsLayoutManager : MonoSingleton<CardsLayoutManager>
 
     private void SetLineLayout()
     {
-        //Debug.Log("SetLineLayout");
         TargetPosition.Clear();
         TargetRotation.Clear();
         float positionX = (1f - HandCardList.Count) * 100f / 2f;
@@ -131,12 +132,16 @@ public class CardsLayoutManager : MonoSingleton<CardsLayoutManager>
                 TargetRotation.Add(Quaternion.Euler(Vector3.zero));
                 //HandCardList[i].position = TargetPosition[i];
                 HandCardList[i].position = TargetRotation[i] * TargetPosition[i];
-                //Debug.Log(HandCardList[i].position);
+
             }
         }
     }
 
-    public void Disperse(Vector3 move)   //手牌散開
+    /// <summary>
+    /// 手牌散開
+    /// </summary>
+    /// <param name="move">當前卡牌位置</param>
+    public void Disperse(Vector3 move)   
     {
         int pos = 0;
         //先尋找位置
@@ -155,7 +160,14 @@ public class CardsLayoutManager : MonoSingleton<CardsLayoutManager>
             {
                 if(i >= 0 && i <HandCardList.Count && i != pos)
                 {
-                    HandCardList[i].position = new Vector3(TargetPosition[i].x - 100f*(1f/(pos-i)), TargetPosition[i].y, TargetPosition[i].z);
+                    HandCardList[i].position = new Vector3(TargetPosition[i].x - DisperseRadius * (1f/(pos-i)), TargetPosition[i].y, TargetPosition[i].z);
+                }
+                else if(i == pos)
+                {
+                    
+                    HandCardList[i].position = new Vector3(move.x, 250f, 1f);
+                    HandCardList[i].rotation = (Quaternion.Euler(0f, 0f, 0f));
+
                 }
             }
 
@@ -163,7 +175,11 @@ public class CardsLayoutManager : MonoSingleton<CardsLayoutManager>
 
     }
 
-    public void Gather(Vector3 move)  //手牌聚攏
+    /// <summary>
+    /// 手牌聚攏
+    /// </summary>
+    /// <param name="move"></param>
+    public void Gather(Vector3 move)
     {
         int pos = 0;
         //先尋找位置
@@ -183,6 +199,11 @@ public class CardsLayoutManager : MonoSingleton<CardsLayoutManager>
                 if (i >= 0 && i < HandCardList.Count && i != pos)
                 {
                     HandCardList[i].position = TargetPosition[i];
+                }
+                else if (i == pos)
+                {
+                    HandCardList[i].position = TargetPosition[i];
+                    HandCardList[i].rotation = TargetRotation[i];
                 }
             }
 

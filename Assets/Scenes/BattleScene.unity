@@ -521,7 +521,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHandCards: 10
   CardPrefab: {fileID: 6232508073499098107, guid: 488edf00368eecd40a94126cb7022ce0, type: 3}
-  HandCardPanel: {fileID: 1423768432}
+  HandCardPanel: {fileID: 916356348}
   battleDeck: []
   handCards: []
   discardCards: []
@@ -573,6 +573,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Angle: 3
+  radius: 1397
+  DisperseRadius: 149
   HandCardList: []
   TargetPosition: []
   TargetRotation: []
@@ -862,6 +864,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 850091298}
   m_CullTransparentMesh: 1
+--- !u!1 &916356347
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 916356348}
+  m_Layer: 0
+  m_Name: CardHand
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &916356348
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 916356347}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.005214, y: -328.69, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1411623469}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &933528971
 GameObject:
   m_ObjectHideFlags: 0
@@ -1224,7 +1257,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1064224868542719793, guid: a6aea09202a16dc4bbd3d7d12caf3afc, type: 3}
       propertyPath: m_Name
-      value: Carddeck
+      value: LeftCarddeck
       objectReference: {fileID: 0}
     - target: {fileID: 5427510525503335808, guid: a6aea09202a16dc4bbd3d7d12caf3afc, type: 3}
       propertyPath: m_Sprite
@@ -1741,6 +1774,7 @@ RectTransform:
   - {fileID: 2044081213}
   - {fileID: 428932314}
   - {fileID: 835289501}
+  - {fileID: 916356348}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1761,7 +1795,7 @@ GameObject:
   - component: {fileID: 1423768434}
   - component: {fileID: 1423768433}
   m_Layer: 5
-  m_Name: CardHand
+  m_Name: BattlePanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1949,7 +1983,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1064224868542719793, guid: a6aea09202a16dc4bbd3d7d12caf3afc, type: 3}
       propertyPath: m_Name
-      value: carddeck
+      value: RightCarddeck
       objectReference: {fileID: 0}
     - target: {fileID: 5427510525503335808, guid: a6aea09202a16dc4bbd3d7d12caf3afc, type: 3}
       propertyPath: m_Sprite
@@ -2529,8 +2563,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6012063204041419909, guid: 98bbf2652755fea44ac9c43564b28d58, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6012063204041419909, guid: 98bbf2652755fea44ac9c43564b28d58, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 735222766}
+    - target: {fileID: 6012063204041419909, guid: 98bbf2652755fea44ac9c43564b28d58, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ShuffleDeck
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 98bbf2652755fea44ac9c43564b28d58, type: 3}
