@@ -13,47 +13,10 @@ public class CardsLayoutManager : MonoSingleton<CardsLayoutManager>
 
     [Range(50f, 200f)]
     public float DisperseRadius;
-    //public List<CardSO> CardDeck;
-    //public GameObject CardPrefab;
-    //private Transform HandCardPanel;
+
     public  List<Transform> HandCardList;
     public List<Vector3> TargetPosition;
     public List<Quaternion> TargetRotation;
-
-
-    /*
-    public void Draw_Card_On_Hand(int id)
-    {
-        CardData cardData = GetCardData(id);
-        GameObject new_card;
-
-        if (cardData != null)
-        {
-            new_card = Instantiate(CardPrefab, HandCardPanel, false);
-            new_card.GetComponent<CardDisplay>().CardData = cardData;
-            HandCardList.Add(new_card.transform);
-            SetLayout();
-        }
-    }
-
-    public CardData GetCardData(int id)
-    {
-        foreach (CardSO item in CardDeck)
-        {
-            if (item.cardData.id == id)
-            {
-                return item.cardData;
-            }
-        }
-        return null;
-    }*/
-
-    /*
-    public void Update()
-    {
-        SetLayout();
-    }
-    */
 
     public void AddHandCard(Transform handCard)
     {
@@ -92,12 +55,10 @@ public class CardsLayoutManager : MonoSingleton<CardsLayoutManager>
         }
         else
         {
-            startAngle = Mathf.PI * (120f / 180f);
-            endAngle = Mathf.PI * (60f / 180f);
+            startAngle = Mathf.PI * (90f / 180f + (Angle * 10 / 180f));
+            endAngle = Mathf.PI * (90f / 180f - (Angle * 10 / 180f));
         }
 
-
-            
         for(int i = 0 ; i < HandCardList.Count; i++)
         {
             float angle = Mathf.Lerp(startAngle, endAngle, i / (HandCardList.Count - 1f));
@@ -107,8 +68,6 @@ public class CardsLayoutManager : MonoSingleton<CardsLayoutManager>
             HandCardList[i].position = TargetPosition[i];
             HandCardList[i].rotation = TargetRotation[i];
         }
-
-
     }
 
     private void SetLineLayout()
@@ -120,9 +79,7 @@ public class CardsLayoutManager : MonoSingleton<CardsLayoutManager>
         {
             TargetPosition.Add(new Vector3(960f, 150f, 1f));
             TargetRotation.Add(Quaternion.Euler(Vector3.zero));
-            //HandCardList[0].position = TargetPosition[0];
             HandCardList[0].position = TargetRotation[0] * TargetPosition[0];
-            //Debug.Log(HandCardList[0].position);
         }
         else
         {
@@ -130,7 +87,6 @@ public class CardsLayoutManager : MonoSingleton<CardsLayoutManager>
             {
                 TargetPosition.Add(new Vector3(Mathf.Lerp(positionX, -positionX, i / (HandCardList.Count - 1f)) + 960f, 150f, 1f));
                 TargetRotation.Add(Quaternion.Euler(Vector3.zero));
-                //HandCardList[i].position = TargetPosition[i];
                 HandCardList[i].position = TargetRotation[i] * TargetPosition[i];
 
             }
