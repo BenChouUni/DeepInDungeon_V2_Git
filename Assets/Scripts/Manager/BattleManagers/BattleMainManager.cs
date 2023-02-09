@@ -63,13 +63,23 @@ public class BattleMainManager : MonoSingleton<BattleMainManager>
     {
         if (draggingCard.TryGetComponent<BattleCardDrag>(out BattleCardDrag dragCard))
         {
-            CardData cardData = draggingCard.GetComponent<CardDisplay>().CardData;
-            Debug.LogFormat("使用{0}", cardData.cardName);
-            battleDeckManager.DisCard(cardData);
-            Destroy(draggingCard);
-            draggingCard = null;
+            UseCard();
             cardsLayoutManager.SetLayout();
         }
     }
 
+    private void UseCard()
+    {
+        CardData cardData = draggingCard.GetComponent<CardDisplay>().CardData;
+        if (cardData.cost > battlePlayerDataManager.CurrentEnergy)
+        {
+            Debug.Log("費用不夠");
+            return;
+        }
+        Debug.LogFormat("使用{0}", cardData.cardName);
+        battlePlayerDataManager.ConsumeEnergy(cardData.cost);
+        battleDeckManager.DisCard(cardData);
+        Destroy(draggingCard);
+        draggingCard = null;
+    }
 }

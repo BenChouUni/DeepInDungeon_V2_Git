@@ -516,6 +516,7 @@ GameObject:
   - component: {fileID: 480391708}
   - component: {fileID: 480391710}
   - component: {fileID: 480391709}
+  - component: {fileID: 480391711}
   m_Layer: 5
   m_Name: Text (Legacy)
   m_TagString: Untagged
@@ -585,6 +586,26 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 480391707}
   m_CullTransparentMesh: 1
+--- !u!114 &480391711
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 480391707}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8181a069563049ac8c26bab2df2de90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyData:
+    characterName: 
+    isDeath: 0
+    maxHp: 0
+    currentHp: 0
+    shield: 0
+    id: 0
+    atk: 0
 --- !u!1 &651165664
 GameObject:
   m_ObjectHideFlags: 0
@@ -1593,6 +1614,7 @@ MonoBehaviour:
       distance: 0
     coin: 0
     energy: 3
+  maxenergy: 0
   playerName: {fileID: 820084601}
   playerHealthBar: {fileID: 774873979}
   playerEnergy: {fileID: 850091300}
@@ -2757,4 +2779,5 @@ MonoBehaviour:
   turnPhaseManager: {fileID: 0}
   battleDeckManager: {fileID: 0}
   battlePlayerDataManager: {fileID: 0}
+  cardsLayoutManager: {fileID: 0}
   initialDrawCard: 5
