@@ -15,6 +15,7 @@ public class CardsLayoutManager : MonoSingleton<CardsLayoutManager>
     public float DisperseRadius;
 
     public  List<Transform> HandCardList;
+
     public List<Vector3> TargetPosition;
     public List<Quaternion> TargetRotation;
 
@@ -27,12 +28,13 @@ public class CardsLayoutManager : MonoSingleton<CardsLayoutManager>
     public void RemoveHandCard(Transform handCard)
     {
         HandCardList.Remove(handCard);
+        //Debug.Log("Remove");
         SetLayout();
     }
 
     public void SetLayout()
     {
-        if(HandCardList.Count > 1)
+        if (HandCardList.Count > 1)
         {
             SetCircleLayout();
         }
@@ -79,7 +81,8 @@ public class CardsLayoutManager : MonoSingleton<CardsLayoutManager>
         {
             TargetPosition.Add(new Vector3(960f, 150f, 1f));
             TargetRotation.Add(Quaternion.Euler(Vector3.zero));
-            HandCardList[0].position = TargetRotation[0] * TargetPosition[0];
+            HandCardList[0].position = TargetPosition[0];
+            HandCardList[0].rotation = TargetRotation[0];
         }
         else
         {
@@ -101,32 +104,27 @@ public class CardsLayoutManager : MonoSingleton<CardsLayoutManager>
     {
         int pos = 0;
         //先尋找位置
-        if (HandCardList.Count >= 3)                 
+        for (int i = 0; i < HandCardList.Count; i++)
         {
-            for (int i = 0; i < HandCardList.Count; i++)
+            if (TargetPosition[i].x == move.x)
             {
-                if (TargetPosition[i].x == move.x)
-                {
-                    pos = i;
-                    break;
-                }
+                pos = i;
+                break;
             }
-            //移動左右各兩張卡片
-            for (int i = pos - 2 ; i <= pos + 2; i++)
+        }
+        for (int i = pos - 2; i <= pos + 2; i++)
+        {
+            if (i >= 0 && i < HandCardList.Count && i != pos)
             {
-                if(i >= 0 && i <HandCardList.Count && i != pos)
-                {
-                    HandCardList[i].position = new Vector3(TargetPosition[i].x - DisperseRadius * (1f/(pos-i)), TargetPosition[i].y, TargetPosition[i].z);
-                }
-                else if(i == pos)
-                {
-                    
-                    HandCardList[i].position = new Vector3(move.x, 250f, 1f);
-                    HandCardList[i].rotation = (Quaternion.Euler(0f, 0f, 0f));
-
-                }
+                HandCardList[i].position = new Vector3(TargetPosition[i].x - DisperseRadius * (1f / (pos - i)), TargetPosition[i].y, TargetPosition[i].z);
             }
+            else if (i == pos)
+            {
 
+                HandCardList[i].position = new Vector3(move.x, 250f, 1f);
+                HandCardList[i].rotation = (Quaternion.Euler(0f, 0f, 0f));
+
+            }
         }
 
     }
@@ -139,30 +137,26 @@ public class CardsLayoutManager : MonoSingleton<CardsLayoutManager>
     {
         int pos = 0;
         //先尋找位置
-        if (HandCardList.Count >= 3)
+        for (int i = 0; i < HandCardList.Count; i++)
         {
-            for (int i = 0; i < HandCardList.Count; i++)
+            if (TargetPosition[i].x == move.x)
             {
-                if (TargetPosition[i].x == move.x)
-                {
-                    pos = i;
-                    break;
-                }
+                pos = i;
+                break;
             }
-            //移動左右各兩張卡片
-            for (int i = pos - 2; i <= pos + 2; i++)
+        }
+        //移動左右各兩張卡片
+        for (int i = pos - 2; i <= pos + 2; i++)
+        {
+            if (i >= 0 && i < HandCardList.Count && i != pos)
             {
-                if (i >= 0 && i < HandCardList.Count && i != pos)
-                {
-                    HandCardList[i].position = TargetPosition[i];
-                }
-                else if (i == pos)
-                {
-                    HandCardList[i].position = TargetPosition[i];
-                    HandCardList[i].rotation = TargetRotation[i];
-                }
+                HandCardList[i].position = TargetPosition[i];
             }
-
+            else if (i == pos)
+            {
+                HandCardList[i].position = TargetPosition[i];
+                HandCardList[i].rotation = TargetRotation[i];
+            }
         }
     }
 }
