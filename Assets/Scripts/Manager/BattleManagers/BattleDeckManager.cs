@@ -100,6 +100,11 @@ public class BattleDeckManager : MonoSingleton<BattleDeckManager>,IDataPersisten
         {
             if (num > battleDeck.Count)
             {
+                if (discardCards.Count == 0)
+                {
+                    Debug.Log("無牌可抽");
+                    return;
+                }
                 Debug.Log("卡組數量不夠抽牌，重新把棄牌堆放回");
                 RefreshDeck();
 

@@ -560,7 +560,6 @@ GameObject:
   - component: {fileID: 3949088203074387228}
   - component: {fileID: -8333242134526907258}
   - component: {fileID: -5100928942870913585}
-  - component: {fileID: 5627432378355578651}
   m_Layer: 5
   m_Name: Card
   m_TagString: Untagged
@@ -656,19 +655,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ZoomSize: 1.2
---- !u!114 &5627432378355578651
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6232508073499098107}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: edf4965b62b294fa38401f90b71eb6af, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  parentReturnTo: {fileID: 0}
 --- !u!1 &7658860974663442191
 GameObject:
   m_ObjectHideFlags: 0
