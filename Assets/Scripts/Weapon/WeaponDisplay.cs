@@ -30,10 +30,22 @@ public class WeaponDisplay : MonoBehaviour
 
     private void Show()
     {
-        weaponName_text.text = weaponData.weaponName;
-        atk_text.text = weaponData.atk.ToString();
-        def_text.text = weaponData.def.ToString();
-        distance_text.text = weaponData.distance.ToString();
+        if (weaponName_text != null)
+        {
+            weaponName_text.text = weaponData.weaponName;
+        }
+        if (atk_text != null)
+        {
+            atk_text.text = weaponData.atk.ToString();
+        }
+        if (def_text != null)
+        {
+            def_text.text = weaponData.def.ToString();
+        }
+        if (distance_text != null)
+        {
+            distance_text.text = weaponData.distance.ToString();
+        }
         /*
         if (distance_text != null)
         {

@@ -736,6 +736,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: HealthBar
       objectReference: {fileID: 0}
+    - target: {fileID: 5530055373716547425, guid: a94653aee16634bcd91959aaf9ff8d49, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5530055373716547425, guid: a94653aee16634bcd91959aaf9ff8d49, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5530055373716547425, guid: a94653aee16634bcd91959aaf9ff8d49, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5530055373716547425, guid: a94653aee16634bcd91959aaf9ff8d49, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5530055373716547425, guid: a94653aee16634bcd91959aaf9ff8d49, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5530055373716547425, guid: a94653aee16634bcd91959aaf9ff8d49, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6736520397406590470, guid: a94653aee16634bcd91959aaf9ff8d49, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1265,6 +1289,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1060979143}
+        m_TargetAssemblyTypeName: BattlePlayerDataManager, Assembly-CSharp
+        m_MethodName: ShowWeaponInformation
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 0
 --- !u!114 &941544959
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1612,6 +1648,8 @@ MonoBehaviour:
       distance: 0
     coin: 0
     energy: 3
+  PlayerStatus: {fileID: 1661347450}
+  SmallWeaponPrefab: {fileID: 4714965924568598201, guid: 35acd61bf70fa02418754fa2a23d682f, type: 3}
   maxenergy: 0
   playerName: {fileID: 820084601}
   playerHealthBar: {fileID: 774873979}
@@ -2597,7 +2635,7 @@ MonoBehaviour:
   battleDeckManager: {fileID: 0}
   battlePlayerDataManager: {fileID: 0}
   cardsLayoutManager: {fileID: 0}
-  initialDrawCard: 1
+  initialDrawCard: 0
 --- !u!1001 &6012063203016997736
 PrefabInstance:
   m_ObjectHideFlags: 0

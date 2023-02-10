@@ -10,6 +10,11 @@ public class BattlePlayerDataManager : MonoSingleton<BattlePlayerDataManager>,ID
     //戰鬥中data
     public PlayerData battleplayerData;
 
+
+    //生成角色資訊
+    public Transform PlayerStatus;
+    public GameObject SmallWeaponPrefab;
+
     private int currentEnergy;
     public int CurrentEnergy
     {
@@ -44,6 +49,28 @@ public class BattlePlayerDataManager : MonoSingleton<BattlePlayerDataManager>,ID
         playerHealthBar.SetMaxHealth(_playerData.MaxHp);
         playerHealthBar.SetHealth(_playerData.CurrentHp);
         
+    }
+
+
+    /// <summary>
+    /// 顯示主副手武器
+    /// </summary>
+    public void ShowWeaponInformation()
+    {
+        /*
+        Debug.Log(playerData.MainWeaponData.id);
+        Debug.Log(playerData.SupportWeaponData.id);
+        */
+        GameObject SmallMainWeapon;
+        SmallMainWeapon = Instantiate(SmallWeaponPrefab, PlayerStatus, false);
+        SmallMainWeapon.GetComponent<WeaponDisplay>().WeaponData = playerData.MainWeaponData;
+        SmallMainWeapon.transform.position = new Vector3(PlayerStatus.position.x - 20, PlayerStatus.position.y-125, 0);
+        //Debug.Log(SmallMainWeapon.transform.position);
+
+        GameObject SmallSupportWeapon;
+        SmallSupportWeapon = Instantiate(SmallWeaponPrefab, PlayerStatus, false);
+        SmallSupportWeapon.GetComponent<WeaponDisplay>().WeaponData = playerData.SupportWeaponData;
+        SmallSupportWeapon.transform.position = new Vector3(PlayerStatus.position.x - 260, PlayerStatus.position.y - 125, 0);
     }
 
 
