@@ -63,7 +63,7 @@ public class BattleMainManager : MonoSingleton<BattleMainManager>
     {
         if (draggingCard.TryGetComponent<BattleCardDrag>(out BattleCardDrag dragCard))
         {
-            cardsLayoutManager.RemoveHandCard(draggingCard.transform);
+            
             UseCard();
             cardsLayoutManager.SetLayout();
         }
@@ -80,6 +80,8 @@ public class BattleMainManager : MonoSingleton<BattleMainManager>
         Debug.LogFormat("使用{0}", cardData.cardName);
         battlePlayerDataManager.ConsumeEnergy(cardData.cost);
         battleDeckManager.DisCard(cardData);
+        
+        cardsLayoutManager.RemoveHandCard(draggingCard.transform);
         Destroy(draggingCard);
         draggingCard = null;
 
