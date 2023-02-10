@@ -45,13 +45,19 @@ public class DeckManager : MonoSingleton<DeckManager>,IDataPersistence
         
         if (type == DropZoneType.MainWeapon)
         {
-            mainWeaponCards.Add(new_initialcard);
-            mainWeaponDeck.Add(cardData);
+            for(int i = 0; i < cardData.initialnum; i++)
+            {
+                mainWeaponCards.Add(new_initialcard);
+                mainWeaponDeck.Add(cardData);
+            }
         }
         else if (type == DropZoneType.SupportWeapon)
         {
-            supWeaponCards.Add(new_initialcard);
-            supWeaponDeck.Add(cardData);
+            for (int i = 0; i < cardData.initialnum; i++)
+            {
+                supWeaponCards.Add(new_initialcard);
+                supWeaponDeck.Add(cardData);
+            }
         }
     }
     /// <summary>
