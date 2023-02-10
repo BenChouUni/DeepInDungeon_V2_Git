@@ -21,6 +21,7 @@ public class BattleCardDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
         
 
         battleMainManager.StartDrag(this.gameObject);
+        TurnRaycastBlock(false);
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -30,10 +31,16 @@ public class BattleCardDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
 
     public void OnEndDrag(PointerEventData eventData)
     {
+        battleMainManager.EndDrag();
         this.transform.SetParent(parentReturnTo);
         
 
-        battleMainManager.EndDrag();
+        TurnRaycastBlock(true);
 
+    }
+
+    private void TurnRaycastBlock(bool value)
+    {
+        this.GetComponent<CanvasGroup>().blocksRaycasts = value;
     }
 }
