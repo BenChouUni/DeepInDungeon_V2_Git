@@ -69,6 +69,9 @@ public class BattleMainManager : MonoSingleton<BattleMainManager>
         }
     }
 
+    /// <summary>
+    /// 玩家使用卡牌
+    /// </summary>
     private void UseCard()
     {
         CardData cardData = draggingCard.GetComponent<CardDisplay>().CardData;

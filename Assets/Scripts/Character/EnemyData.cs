@@ -18,7 +18,8 @@ public class EnemyData : Character
         get { return atk; }
     }
 
-    
+    //可能用做AI的實現
+    public List<Action> actionList;
 
     public EnemyData(int _id,string _name, int _maxHp, int _shield,int _atk) : base(_name, _maxHp, _shield)
     {
