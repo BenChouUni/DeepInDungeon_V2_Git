@@ -515,7 +515,7 @@ RectTransform:
   - {fileID: 834725234}
   - {fileID: 2016194623}
   m_Father: {fileID: 1411623469}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1168,7 +1168,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1411623469}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &933528971
 GameObject:
@@ -1600,7 +1600,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8778942204298097157, guid: a6aea09202a16dc4bbd3d7d12caf3afc, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8778942204298097157, guid: a6aea09202a16dc4bbd3d7d12caf3afc, type: 3}
       propertyPath: m_AnchorMax.x
@@ -1760,8 +1760,10 @@ MonoBehaviour:
       distance: 0
     coin: 0
     energy: 3
-  PlayerStatus: {fileID: 1661347450}
+  Status: {fileID: 1661347450}
   SmallWeaponPrefab: {fileID: 4714965924568598201, guid: 35acd61bf70fa02418754fa2a23d682f, type: 3}
+  Canvas: {fileID: 1411623469}
+  WeaponInformationPrefab: {fileID: 3500494093462828073, guid: 960eba0b2ed7b4044b7da8167faeae1e, type: 3}
   maxenergy: 0
   playerName: {fileID: 820084601}
   playerHealthBar: {fileID: 774873979}
@@ -2059,13 +2061,13 @@ RectTransform:
   m_Children:
   - {fileID: 651165665}
   - {fileID: 941544957}
-  - {fileID: 1661347450}
   - {fileID: 1125357548}
   - {fileID: 1794101150}
   - {fileID: 607435807}
   - {fileID: 428932314}
   - {fileID: 835289501}
   - {fileID: 916356348}
+  - {fileID: 1661347450}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2181,12 +2183,12 @@ RectTransform:
   - {fileID: 774873978}
   - {fileID: 820084600}
   m_Father: {fileID: 1411623469}
-  m_RootOrder: 2
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -595, y: 453}
-  m_SizeDelta: {x: 681.3324, y: 133.8969}
+  m_AnchoredPosition: {x: -595, y: 456.42065}
+  m_SizeDelta: {x: 681.3324, y: 127.0556}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1794101149
 GameObject:
@@ -2218,7 +2220,7 @@ RectTransform:
   m_Children:
   - {fileID: 2044081213}
   m_Father: {fileID: 1411623469}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2371,7 +2373,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8778942204298097157, guid: a6aea09202a16dc4bbd3d7d12caf3afc, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8778942204298097157, guid: a6aea09202a16dc4bbd3d7d12caf3afc, type: 3}
       propertyPath: m_AnchorMax.x
@@ -2827,7 +2829,7 @@ MonoBehaviour:
   battleDeckManager: {fileID: 0}
   battlePlayerDataManager: {fileID: 0}
   cardsLayoutManager: {fileID: 0}
-  initialDrawCard: 0
+  initialDrawCard: 5
 --- !u!1001 &6012063203016997736
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2897,7 +2899,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6012063204041419908, guid: 98bbf2652755fea44ac9c43564b28d58, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6012063204041419908, guid: 98bbf2652755fea44ac9c43564b28d58, type: 3}
       propertyPath: m_AnchorMax.x

@@ -329,6 +329,7 @@ GameObject:
   - component: {fileID: 2344101389229499643}
   - component: {fileID: 3172312182940761482}
   - component: {fileID: 8292704062432594189}
+  - component: {fileID: 2681344341296265040}
   m_Layer: 5
   m_Name: WeaponInformation
   m_TagString: Untagged
@@ -401,6 +402,23 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &2681344341296265040
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3500494093462828073}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c48612b12c88407bbd266484acc0e63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponName_text: {fileID: 4287902950066746104}
+  atk_text: {fileID: 7425046540912937774}
+  def_text: {fileID: 5349897782447724443}
+  distance_text: {fileID: 9117307423145409458}
+  discription_text: {fileID: 1801005990453965924}
 --- !u!1 &3538943774866822129
 GameObject:
   m_ObjectHideFlags: 0
