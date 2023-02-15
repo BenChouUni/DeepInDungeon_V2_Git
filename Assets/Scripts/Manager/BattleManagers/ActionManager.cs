@@ -2,8 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ActiobManager : MonoBehaviour
+public class ActionManager : MonoSingleton<ActionManager>
 {
+    public EnemyData enemyData;
+
     public void UseAction(Action action,Character character)
     {
         int id = action.id;
@@ -22,5 +24,13 @@ public class ActiobManager : MonoBehaviour
     {
         character.GetDamage(damage);
        
+    }
+
+    public void TestDamage(int dmg)
+    {
+        enemyData = EnemyManager.instance.enemyData;
+        Action action = new Action(0, dmg);
+        UseAction(action, enemyData);
+        EnemyManager.instance.ShowEnemy();
     }
 }
