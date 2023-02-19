@@ -27,6 +27,7 @@ public class BattlePlayerDataManager : MonoSingleton<BattlePlayerDataManager>,ID
     public Text playerName;
     public HealthBar playerHealthBar;
     public Text playerEnergy;
+    public Text playerShield;
 
     /// <summary>
     /// 在開始時顯示主副手武器
@@ -41,7 +42,6 @@ public class BattlePlayerDataManager : MonoSingleton<BattlePlayerDataManager>,ID
         this.playerData = data.playerData;
         
     }
-
     public void SaveData(ref GameData data)
     {
         
@@ -82,7 +82,6 @@ public class BattlePlayerDataManager : MonoSingleton<BattlePlayerDataManager>,ID
         SmallSupportWeapon.GetComponent<WeaponDisplay>().WeaponData = playerData.SupportWeaponData;
         SmallSupportWeapon.transform.position = new Vector3(Canvas.position.x - 850, Canvas.position.y + 330, 0);
     }
-
     public GameObject CallWeaponInformation(WeaponData data) 
     {
         
@@ -92,12 +91,10 @@ public class BattlePlayerDataManager : MonoSingleton<BattlePlayerDataManager>,ID
         WeaponInformation.transform.position = new Vector3(Canvas.position.x, Canvas.position.y, 0);
         return WeaponInformation;
     }
-
     public void RemoveWeaponInformation(GameObject weaponInformation)
     {
         Destroy(weaponInformation);
     }
-
 
 
     //Energy相關
@@ -140,4 +137,14 @@ public class BattlePlayerDataManager : MonoSingleton<BattlePlayerDataManager>,ID
         ShowEnergy();
     }
     #endregion
+
+    //Shield相關
+    public void ShowShield()
+    {
+        playerShield.text = (battleplayerData.Shield).ToString();
+    }
 }
+
+
+
+    
