@@ -6,12 +6,19 @@ using UnityEditor;
 [CustomEditor(typeof(CardDataBase))]
 public class CardDataBaseEditor : Editor
 {
+    static bool showInitialNum = false;
+    static bool showActionList = false;
+    private SerializedProperty cardDatasSerializedProperty;
+    
+    
     public override void OnInspectorGUI()
     {
         base.OnInspectorGUI();
 
         CardDataBase cardDataBase = (CardDataBase)target;
         List<CardData> cardDatas = new List<CardData>();
+
+        cardDatasSerializedProperty = this.serializedObject.FindProperty("cardList");
 
         foreach (CardSO item in cardDataBase.cardList)
         {
@@ -25,6 +32,30 @@ public class CardDataBaseEditor : Editor
         for (int i = 0; i < cardDatas.Count; i++)
         {
             CreateCardDataRow(cardDatas, i);
+            /*
+            var cardDataProperty = cardDatasSerializedProperty.GetArrayElementAtIndex(i);
+
+            var actionListProperty = cardDataProperty.FindPropertyRelative("cardAction");
+            if (actionListProperty != null)
+            {
+                Debug.LogFormat("find card action{0}", i);
+
+                // Update the serialize object
+                this.serializedObject.Update();
+
+                // Display properties
+                EditorGUILayout.PropertyField(actionListProperty, true);
+
+                // Apply modif
+                serializedObject.ApplyModifiedProperties();
+            }
+            else
+            {
+                Debug.LogFormat("cannot find card action{0}", i);
+            }
+            
+            */
+            
         }
         EditorGUILayout.Space();
 
@@ -44,6 +75,8 @@ public class CardDataBaseEditor : Editor
             }
             AssetDatabase.SaveAssets();
         }
+
+
     }
 
     private static void CreateCardDataRow(List<CardData> list,int i)
@@ -65,12 +98,21 @@ public class CardDataBaseEditor : Editor
         EditorGUILayout.LabelField("Cost", GUILayout.MaxWidth(30));
         list[i].cost = EditorGUILayout.IntField(list[i].cost);
 
-        EditorGUILayout.LabelField("InitailNum", GUILayout.MaxWidth(20));
-        list[i].initialnum = EditorGUILayout.IntField(list[i].initialnum);
-
         EditorGUILayout.EndHorizontal();
+        
+        showInitialNum = EditorGUILayout.Foldout(showInitialNum, "Show Initial Num",true);
+        if (showInitialNum)
+        {
+            EditorGUILayout.BeginHorizontal();
+            EditorGUILayout.LabelField("InitailNum", GUILayout.MaxWidth(20));
+            list[i].initialnum = EditorGUILayout.IntField(list[i].initialnum);
+            EditorGUILayout.EndHorizontal();
+        }
+
+      
 
     }
+
 
     private static CardSO CreateCardSOAsset()
     {
