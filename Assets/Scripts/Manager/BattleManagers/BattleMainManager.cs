@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BattleMainManager : MonoSingleton<BattleMainManager>
 {
@@ -18,29 +19,49 @@ public class BattleMainManager : MonoSingleton<BattleMainManager>
     //drag drop
     private bool isDragging;
     private GameObject draggingCard;
+    //UI
+    //public Button EndTurnButton;
+   
+
+    private void Awake()
+    {
+        //開場預設沒有拖拽東西
+        isDragging = false;
+        //button無法互動
+        //EndTurnButton.interactable = false;
+    }
     void Start()
     {
         Initialmanagers();
+        
+        
         BattleStart();
+        //開始準備階段結束
+        //玩家回合先開始
+        turnPhaseManager.InitialTurn();
+        
     }
     //省呼叫資源
     private void Initialmanagers()
     {
+        //透過monosingleton找到每個管理器
         turnPhaseManager = TurnPhaseManager.instance;
         battlePlayerDataManager = BattlePlayerDataManager.instance;
         battleDeckManager = BattleDeckManager.instance;
         cardsLayoutManager = CardsLayoutManager.instance;
-
-        isDragging = false;
+        
+        
     }
 
     public void BattleStart()
     {
-        
+        //回合開始
         turnPhaseManager.StartGame();
+        //洗牌
         battleDeckManager.ShuffleDeck();
+        //抽牌
         battleDeckManager.DrawCard(initialDrawCard);
-
+        //初始化玩家資料
         battlePlayerDataManager.InitialPlayerStatus();
     }
     /// <summary>
@@ -80,8 +101,9 @@ public class BattleMainManager : MonoSingleton<BattleMainManager>
             Debug.Log("費用不夠");
             return;
         }
-        Debug.LogFormat("使用{0}", cardData.cardName);
+        
         battlePlayerDataManager.ConsumeEnergy(cardData.cost);
+        Debug.LogFormat("使用{0}", cardData.cardName);
         battleDeckManager.DisCard(cardData);
         
         cardsLayoutManager.RemoveHandCard(draggingCard.transform);
@@ -91,4 +113,6 @@ public class BattleMainManager : MonoSingleton<BattleMainManager>
         
 
     }
+  
+
 }

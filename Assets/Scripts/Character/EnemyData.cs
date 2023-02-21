@@ -18,6 +18,7 @@ public class EnemyData : Character
         get { return atk; }
     }
 
+    
     //可能用做AI的實現
     public List<Action> actionList;
 
