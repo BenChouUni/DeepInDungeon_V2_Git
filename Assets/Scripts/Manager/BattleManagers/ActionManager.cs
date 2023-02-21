@@ -6,6 +6,7 @@ public class ActionManager : MonoSingleton<ActionManager>
 {
     public EnemyData enemyData;
     public PlayerData battleplayerData;
+    
 
     public void UseAction(Action action, Character character)
     {
@@ -18,6 +19,9 @@ public class ActionManager : MonoSingleton<ActionManager>
                 break;
             case 1:
                 DefendAction(character, parameter);
+                break;
+            case 2:
+                DrawCardAction(parameter);
                 break;
             default:
                 break;
@@ -50,5 +54,10 @@ public class ActionManager : MonoSingleton<ActionManager>
         UseAction(action, battleplayerData);
         //Debug.Log(battleplayerData.Shield);
         BattlePlayerDataManager.instance.ShowShield();
+    }
+
+    public void DrawCardAction(int num)
+    {
+        BattleDeckManager.instance.DrawCard(num);
     }
 }
