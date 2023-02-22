@@ -33,8 +33,8 @@ public class BattleMainManager : MonoSingleton<BattleMainManager>
     void Start()
     {
         Initialmanagers();
-        
-        
+
+       
         BattleStart();
         //開始準備階段結束
         //玩家回合先開始
@@ -82,6 +82,12 @@ public class BattleMainManager : MonoSingleton<BattleMainManager>
     }
     public void DropRequest()
     {
+        // 判定現在回合階段
+        if (turnPhaseManager.GamePhase != GamePhase.PlayerAction)
+        {
+            Debug.Log("不是玩家回合無法使用卡牌");
+            return;
+        }
         if (draggingCard.TryGetComponent<BattleCardDrag>(out BattleCardDrag dragCard))
         {
             
@@ -113,6 +119,21 @@ public class BattleMainManager : MonoSingleton<BattleMainManager>
         
 
     }
-  
+
+    /// <summary>
+    /// 每個回合開始呼叫，執行回合開始所需的初始動作
+    /// </summary>
+    public void TurnStart()
+    {
+        
+        if (turnPhaseManager.GamePhase == GamePhase.PlayerAction)
+        {
+            Debug.Log("執行玩家回合開始準備");
+        }
+        else if (turnPhaseManager.GamePhase == GamePhase.EnemyAction)
+        {
+            Debug.Log("執行敵人回合開始準備");
+        }
+    }
 
 }

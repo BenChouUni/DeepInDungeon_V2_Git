@@ -9,8 +9,12 @@ public class CardDataBaseEditor : Editor
     static bool showInitialNum = false;
     static bool showActionList = false;
     private SerializedProperty cardDatasSerializedProperty;
-    
-    
+
+    private void OnEnable()
+    {
+        cardDatasSerializedProperty = this.serializedObject.FindProperty("cardList");
+    }
+
     public override void OnInspectorGUI()
     {
         base.OnInspectorGUI();
@@ -18,7 +22,7 @@ public class CardDataBaseEditor : Editor
         CardDataBase cardDataBase = (CardDataBase)target;
         List<CardData> cardDatas = new List<CardData>();
 
-        cardDatasSerializedProperty = this.serializedObject.FindProperty("cardList");
+        
 
         foreach (CardSO item in cardDataBase.cardList)
         {
@@ -32,7 +36,7 @@ public class CardDataBaseEditor : Editor
         for (int i = 0; i < cardDatas.Count; i++)
         {
             CreateCardDataRow(cardDatas, i);
-            /*
+            
             var cardDataProperty = cardDatasSerializedProperty.GetArrayElementAtIndex(i);
 
             var actionListProperty = cardDataProperty.FindPropertyRelative("cardAction");
@@ -54,7 +58,7 @@ public class CardDataBaseEditor : Editor
                 Debug.LogFormat("cannot find card action{0}", i);
             }
             
-            */
+            
             
         }
         EditorGUILayout.Space();
