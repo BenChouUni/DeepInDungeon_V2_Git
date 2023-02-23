@@ -14,7 +14,6 @@ namespace DocumentBuilder
         public static void ShowWindow()
         {
             Data.Save();
-            Data.BookRoot = (SODocInformation)AssetDatabase.LoadAssetAtPath(DocumentBuilderData.Path.DocumentBuilderRoot + "/Editor/DocAsset/DocumentBuilderDocs.asset", typeof(SODocInformation));
             if(Instance != null)
                 Instance.titleContent = new GUIContent("Document Window");
             GetWindow<DocumentBuilderWindow>("Document Window");
@@ -398,16 +397,18 @@ namespace DocumentBuilder
 
             public static void Load()
             {
-                if (!File.Exists(Path.Combine( Application.temporaryCachePath , "DocumentWindowData.txt")))
+                if (!File.Exists(Application.temporaryCachePath + "\\DocumentWindowData.txt"))
                     Save();
-                Debug.Log("L:" + Path.Combine(Application.temporaryCachePath, "DocumentWindowData.txt"));
-                string[] datas = File.ReadAllText(Path.Combine( Application.temporaryCachePath , "DocumentWindowData.txt")).Split("%DATA%");
+
+                string[] datas = File.ReadAllText(Application.temporaryCachePath + "\\DocumentWindowData.txt").Split("%DATA%");
                 MenuWidth = float.Parse(datas[0]);
                 MenuUnitHeight = float.Parse(datas[1]);
                 BookRoot = AssetDatabase.LoadAssetAtPath<SODocInformation>(datas[2]);
                 if (BookRoot == null) // if root not found us NaiveAPI Document as Default
-                    BookRoot = (SODocInformation)AssetDatabase.LoadAssetAtPath(DocumentBuilderData.Path.DocumentBuilderRoot + "/Editor/DocAsset/NaiveAPI_Document.asset", typeof(SODocInformation));
+                    BookRoot = (SODocInformation)AssetDatabase.LoadAssetAtPath(DocumentBuilderData.Path.DocumentBuilderRoot + "\\Editor\\DocAsset\\NaiveAPI_Document.asset", typeof(SODocInformation));
                 SelectingDocInfo = AssetDatabase.LoadAssetAtPath<SODocInformation>(datas[3]);
+                if (SelectingDocInfo == null)
+                    SelectingDocInfo = BookRoot;
                 MenuDisplaySettings.Clear();
                 foreach (var data in datas[4].Split("%SETTING%"))
                 {
@@ -421,8 +422,6 @@ namespace DocumentBuilder
             public static void Save()
             {
                 StringBuilder data = new StringBuilder();
-                if (Data.BookRoot == null) Data.BookRoot = (SODocInformation)AssetDatabase.LoadAssetAtPath(DocumentBuilderData.Path.DocumentBuilderRoot + "/Editor/DocAsset/NaiveAPI_Document.asset", typeof(SODocInformation));
-                if (Data.SelectingDocInfo == null) Data.SelectingDocInfo = Data.BookRoot;
                 data.Append($"{MenuWidth}%DATA%");
                 data.Append($"{MenuUnitHeight}%DATA%");
                 data.Append($"{AssetDatabase.GetAssetPath(BookRoot)}%DATA%");
@@ -436,8 +435,8 @@ namespace DocumentBuilder
                     if (count < size)
                         data.Append("%SETTING%");
                 }
-                Debug.Log(Application.temporaryCachePath + "/DocumentWindowData.txt");
-                File.WriteAllText(Application.temporaryCachePath + "/DocumentWindowData.txt", data.ToString());
+
+                File.WriteAllText(Application.temporaryCachePath + "\\DocumentWindowData.txt", data.ToString());
             }
         }
         [System.Serializable]
