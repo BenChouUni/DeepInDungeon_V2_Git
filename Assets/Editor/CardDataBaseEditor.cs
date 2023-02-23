@@ -17,6 +17,13 @@ public class CardDataBaseEditor : Editor
 
     public override void OnInspectorGUI()
     {
+        if (GUILayout.Button("Reflush刷新"))
+        {
+            //把所有CardSo放到此cardList
+            ((CardDataBase)target).cardList = Resources.LoadAll<CardSO>("");
+            EditorUtility.SetDirty(target);
+        }
+
         base.OnInspectorGUI();
         /*
         CardDataBase cardDataBase = (CardDataBase)target;

@@ -5,6 +5,6 @@ using UnityEngine;
 [CreateAssetMenu(fileName ="NewCardDatabase", menuName = "Create SO/DataBase/Card")]
 public class CardDataBase : ScriptableObject
 {
-    public List<CardSO> cardList;
+    public CardSO[] cardList;
 
 }
