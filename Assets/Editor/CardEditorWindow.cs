@@ -34,12 +34,13 @@ public class CardEditorWindow : EditorWindow
         HorizontalGroup(() =>
         {
             //左邊欄位
-            menuScrollViewPos = EditorGUILayout.BeginScrollView(menuScrollViewPos, GUILayout.Width(divineWidth - 10));
+            menuScrollViewPos = EditorGUILayout.BeginScrollView(menuScrollViewPos, GUILayout.Width(divineWidth));
             VerticalGroup(() =>
             {
-                EditorGUILayout.LabelField("Card List: ");
+                
+                EditorGUILayout.LabelField("Card List: ",GUILayout.Width(divineWidth-20));
                
-                edittingCardSO = (CardSO)EditorGUILayout.ObjectField(edittingCardSO, typeof(CardSO), false,GUILayout.Width(divineWidth - 10));
+                edittingCardSO = (CardSO)EditorGUILayout.ObjectField(edittingCardSO, typeof(CardSO), false,GUILayout.Width(divineWidth - 25));
                
                 //Folder放置
                 //EditorGUILayout.LabelField("Card So Folder");
@@ -61,10 +62,10 @@ public class CardEditorWindow : EditorWindow
                         CardSOEditor = Editor.CreateEditor(edittingCardSO);
                     }
                 }
-            },GUILayout.Width(divineWidth));
+            },GUILayout.Width(divineWidth-30));
             EditorGUILayout.EndScrollView();
 
-
+            divineWidth += 10;
             //右邊欄位
             VerticalGroup(() =>
             {
