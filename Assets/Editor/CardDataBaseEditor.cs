@@ -18,7 +18,7 @@ public class CardDataBaseEditor : Editor
     public override void OnInspectorGUI()
     {
         base.OnInspectorGUI();
-
+        /*
         CardDataBase cardDataBase = (CardDataBase)target;
         List<CardData> cardDatas = new List<CardData>();
 
@@ -36,8 +36,9 @@ public class CardDataBaseEditor : Editor
         for (int i = 0; i < cardDatas.Count; i++)
         {
             CreateCardDataRow(cardDatas, i);
-            
-            var cardDataProperty = cardDatasSerializedProperty.GetArrayElementAtIndex(i);
+
+            var cardDataProperty = cardDatasSerializedProperty.GetArrayElementAtIndex(i).FindPropertyRelative("cardData");
+            Debug.Log(cardDataProperty.name);
 
             var actionListProperty = cardDataProperty.FindPropertyRelative("cardAction");
             if (actionListProperty != null)
@@ -57,9 +58,9 @@ public class CardDataBaseEditor : Editor
             {
                 Debug.LogFormat("cannot find card action{0}", i);
             }
-            
-            
-            
+
+        
+
         }
         EditorGUILayout.Space();
 
@@ -80,7 +81,7 @@ public class CardDataBaseEditor : Editor
             AssetDatabase.SaveAssets();
         }
 
-
+        */
     }
 
     private static void CreateCardDataRow(List<CardData> list,int i)

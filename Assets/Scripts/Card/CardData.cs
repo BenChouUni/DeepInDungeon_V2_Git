@@ -11,7 +11,7 @@ public class CardData
     public int initialnum;
 
     //效果
-    public List<Action> cardAction;
+    public List<CardAction> cardAction = new List<CardAction>();
 
     public CardData()
     {

@@ -8,7 +8,7 @@ public class ActionManager : MonoSingleton<ActionManager>
     public PlayerData battleplayerData;
     
 
-    public void UseAction(Action action, Character character)
+    public void UseAction(CardAction action, Character character)
     {
         int id = action.id;
         int parameter = action.parameter;
@@ -37,7 +37,7 @@ public class ActionManager : MonoSingleton<ActionManager>
     public void TestDamage(int dmg)
     {
         enemyData = EnemyManager.instance.enemyData;
-        Action action = new Action(0, dmg);
+        CardAction action = new CardAction(0, dmg);
         UseAction(action, enemyData);
         EnemyManager.instance.ShowEnemy();
     }
@@ -50,7 +50,7 @@ public class ActionManager : MonoSingleton<ActionManager>
     public void TestDefend(int def)
     {
         battleplayerData = BattlePlayerDataManager.instance.battleplayerData;
-        Action action = new Action(1, def);
+        CardAction action = new CardAction(1, def);
         UseAction(action, battleplayerData);
         //Debug.Log(battleplayerData.Shield);
         BattlePlayerDataManager.instance.ShowShield();

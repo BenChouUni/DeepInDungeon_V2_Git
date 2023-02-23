@@ -2,12 +2,12 @@ using System;
 using UnityEngine;
 
 [Serializable]
-public class Action 
+public class CardAction 
 {
     public int id;
     public int parameter;
 
-    public Action(int _id,int _param)
+    public CardAction(int _id,int _param)
     {
         this.id = _id;
         this.parameter = _param;
