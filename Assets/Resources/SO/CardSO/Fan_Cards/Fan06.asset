@@ -16,4 +16,5 @@ MonoBehaviour:
     id: 206
     cardName: "\u5145\u80FD"
     cost: 1
+    initialnum: 0
     cardAction: []
