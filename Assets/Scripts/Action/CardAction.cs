@@ -1,15 +1,22 @@
 using System;
 using UnityEngine;
 
+
+public enum ActionType
+{
+    Attack,
+    Defend,
+    DrawCard,
+}
 [Serializable]
 public class CardAction 
 {
-    public int id;
+    public ActionType type;
     public int parameter;
 
-    public CardAction(int _id,int _param)
+    public CardAction(ActionType _type, int _param)
     {
-        this.id = _id;
+        this.type = _type;
         this.parameter = _param;
     }
 }

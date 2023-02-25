@@ -10,17 +10,17 @@ public class ActionManager : MonoSingleton<ActionManager>
 
     public void UseAction(CardAction action, Character character)
     {
-        int id = action.id;
+        ActionType type = action.type;
         int parameter = action.parameter;
-        switch (id)
+        switch (type)
         {
-            case 0:
+            case ActionType.Attack:
                 AttackAction(character, parameter);
                 break;
-            case 1:
+            case ActionType.Defend:
                 DefendAction(character, parameter);
                 break;
-            case 2:
+            case ActionType.DrawCard:
                 DrawCardAction(parameter);
                 break;
             default:
@@ -37,7 +37,7 @@ public class ActionManager : MonoSingleton<ActionManager>
     public void TestDamage(int dmg)
     {
         enemyData = EnemyManager.instance.enemyData;
-        CardAction action = new CardAction(0, dmg);
+        CardAction action = new CardAction(ActionType.Attack, dmg);
         UseAction(action, enemyData);
         EnemyManager.instance.ShowEnemy();
     }
@@ -50,7 +50,7 @@ public class ActionManager : MonoSingleton<ActionManager>
     public void TestDefend(int def)
     {
         battleplayerData = BattlePlayerDataManager.instance.battleplayerData;
-        CardAction action = new CardAction(1, def);
+        CardAction action = new CardAction(ActionType.Defend, def);
         UseAction(action, battleplayerData);
         //Debug.Log(battleplayerData.Shield);
         BattlePlayerDataManager.instance.ShowShield();
