@@ -11,6 +11,7 @@ public class CardDeckManager : MonoBehaviour
 
     void Start()
     {
+
         foreach (CardSO item in CardList.cardList)
         {
             CreateCardOnPanel(item.cardData.id);

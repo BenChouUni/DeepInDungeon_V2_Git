@@ -34,6 +34,7 @@ public class BattlePlayerDataManager : MonoSingleton<BattlePlayerDataManager>,ID
     /// </summary>
     void Start()
     {
+        
         ShowWeaponInformation();
     }
 
@@ -143,6 +144,7 @@ public class BattlePlayerDataManager : MonoSingleton<BattlePlayerDataManager>,ID
     {
         playerShield.text = (battleplayerData.Shield).ToString();
     }
+
 }
 
 
