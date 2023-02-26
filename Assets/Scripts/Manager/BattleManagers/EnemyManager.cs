@@ -20,11 +20,15 @@ public class EnemyManager : MonoSingleton<EnemyManager>
     {
         ShowEnemy();
     }
-    public void ShowEnemy()
+    private void ShowEnemy()
     {
         enemyName.text = enemyData.Name;
         enemyHealthBar.SetMaxHealth(enemyData.MaxHp);
         enemyHealthBar.SetHealth(enemyData.CurrentHp);
+    }
+    public void UpdateEnemyStatus()
+    {
+        ShowEnemy();
     }
 
 }

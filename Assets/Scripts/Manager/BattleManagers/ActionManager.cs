@@ -1,24 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.TextCore.Text;
 
 public class ActionManager : MonoSingleton<ActionManager>
 {
     public EnemyData enemyData;
     public PlayerData battleplayerData;
-    
+    private Character player;
 
-    public void UseAction(CardAction action, Character character)
+    public void UseAction(CardAction action)
     {
         ActionType type = action.type;
         int parameter = action.parameter;
+        TargetType target = action.target;
         switch (type)
         {
             case ActionType.Attack:
-                AttackAction(character, parameter);
+                AttackAction(GetCharacter(target), parameter);
                 break;
             case ActionType.Defend:
-                DefendAction(character, parameter);
+                DefendAction(GetCharacter(target), parameter);
                 break;
             case ActionType.DrawCard:
                 DrawCardAction(parameter);
@@ -30,34 +32,53 @@ public class ActionManager : MonoSingleton<ActionManager>
 
     private void AttackAction(Character character, int damage)
     {
+        Debug.LogFormat("對{0}造成{1}傷害", character.Name ,damage);
         character.GetDamage(damage);
 
     }
 
     public void TestDamage(int dmg)
     {
-        enemyData = EnemyManager.instance.enemyData;
-        CardAction action = new CardAction(ActionType.Attack, dmg);
-        UseAction(action, enemyData);
-        EnemyManager.instance.ShowEnemy();
+        
+        CardAction action = new CardAction(ActionType.Attack, dmg,TargetType.Enemy);
+        UseAction(action);
+        EnemyManager.instance.UpdateEnemyStatus();
     }
 
     private void DefendAction(Character character, int shield)
     {
+        Debug.LogFormat("{0}獲得{1}護盾", character.Name, shield);
         character.AddShield(shield);
     }
 
     public void TestDefend(int def)
     {
-        battleplayerData = BattlePlayerDataManager.instance.battleplayerData;
-        CardAction action = new CardAction(ActionType.Defend, def);
-        UseAction(action, battleplayerData);
+        
+        CardAction action = new CardAction(ActionType.Defend, def,TargetType.Player);
+        UseAction(action);
         //Debug.Log(battleplayerData.Shield);
-        BattlePlayerDataManager.instance.ShowShield();
+        BattlePlayerDataManager.instance.UpdatePlayerStatus();
     }
 
     public void DrawCardAction(int num)
     {
+        Debug.LogFormat("抽{0}張牌", num);
         BattleDeckManager.instance.DrawCard(num);
+    }
+
+    private Character GetCharacter(TargetType type)
+    {
+        if (type == TargetType.Player)
+        {
+            return BattlePlayerDataManager.instance.battleplayerData;
+        }
+        else if (type == TargetType.Enemy)
+        {
+            return EnemyManager.instance.enemyData;
+        }
+        else
+        {
+            return null;
+        }
     }
 }

@@ -14,6 +14,10 @@ public class BattleMainManager : MonoSingleton<BattleMainManager>
     public BattlePlayerDataManager battlePlayerDataManager;
     [HideInInspector]
     public CardsLayoutManager cardsLayoutManager;
+    [HideInInspector]
+    public ActionManager actionManager;
+    [HideInInspector]
+    public EnemyManager enemyManager;
     [Header("開場抽幾張卡")]
     public int initialDrawCard;
     //drag drop
@@ -49,6 +53,8 @@ public class BattleMainManager : MonoSingleton<BattleMainManager>
         battlePlayerDataManager = BattlePlayerDataManager.instance;
         battleDeckManager = BattleDeckManager.instance;
         cardsLayoutManager = CardsLayoutManager.instance;
+        actionManager = ActionManager.instance;
+        enemyManager = EnemyManager.instance;
         
         
     }
@@ -107,11 +113,17 @@ public class BattleMainManager : MonoSingleton<BattleMainManager>
             Debug.Log("費用不夠");
             return;
         }
-        
+        //消耗費用
         battlePlayerDataManager.ConsumeEnergy(cardData.cost);
+        //使用牌
         Debug.LogFormat("使用{0}", cardData.cardName);
+        foreach (CardAction action in cardData.cardAction)
+        {
+            actionManager.UseAction(action);
+        }
+        UpdateUI();
+        //將牌刪除
         battleDeckManager.DisCard(cardData);
-        
         cardsLayoutManager.RemoveHandCard(draggingCard.transform);
         Destroy(draggingCard);
         draggingCard = null;
@@ -119,7 +131,14 @@ public class BattleMainManager : MonoSingleton<BattleMainManager>
         
 
     }
-
+    /// <summary>
+    /// 更新我方與敵人的狀態顯示
+    /// </summary>
+    private void UpdateUI()
+    {
+        battlePlayerDataManager.UpdatePlayerStatus();
+        enemyManager.UpdateEnemyStatus();
+    }
     /// <summary>
     /// 每個回合開始呼叫，執行回合開始所需的初始動作
     /// </summary>

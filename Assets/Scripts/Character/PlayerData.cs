@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 [Serializable]
-public class PlayerData : Character
+public class PlayerData : Character,ICloneable
 {
     [SerializeField]
     private WeaponData mainWeaponData;
@@ -49,8 +49,14 @@ public class PlayerData : Character
         this.energy = _energy;
     }
 
+
     public void CoinAdd(int num)
     {
         coin += num;
+    }
+
+    public object Clone()
+    {
+        return this.MemberwiseClone();
     }
 }

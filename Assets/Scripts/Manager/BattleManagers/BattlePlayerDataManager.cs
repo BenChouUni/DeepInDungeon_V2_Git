@@ -6,9 +6,9 @@ using UnityEngine.UI;
 public class BattlePlayerDataManager : MonoSingleton<BattlePlayerDataManager>,IDataPersistence
 {
     //存讀data
-    public PlayerData playerData;
+    private PlayerData playerData = new PlayerData();
     //戰鬥中data
-    public PlayerData battleplayerData;
+    public PlayerData battleplayerData = new PlayerData();
 
 
     //生成角色資訊
@@ -36,6 +36,7 @@ public class BattlePlayerDataManager : MonoSingleton<BattlePlayerDataManager>,ID
     {
         
         ShowWeaponInformation();
+        battleplayerData = (PlayerData)this.playerData.Clone();
     }
 
     public void LoadData(GameData data)
@@ -53,14 +54,19 @@ public class BattlePlayerDataManager : MonoSingleton<BattlePlayerDataManager>,ID
         ShowPlayerStatus(playerData);
         ShowEnergy();
     }
-    public void ShowPlayerStatus(PlayerData _playerData)
+    private void ShowPlayerStatus(PlayerData _playerData)
     {
         playerName.text = _playerData.Name;
         playerHealthBar.SetMaxHealth(_playerData.MaxHp);
         playerHealthBar.SetHealth(_playerData.CurrentHp);
         
     }
-
+    public void UpdatePlayerStatus()
+    {
+        ShowPlayerStatus(this.battleplayerData);
+        ShowEnergy();
+        ShowShield();
+    }
 
     /// <summary>
     /// 顯示主副手武器
@@ -100,7 +106,7 @@ public class BattlePlayerDataManager : MonoSingleton<BattlePlayerDataManager>,ID
 
     //Energy相關
     #region
-    public void ShowEnergy()
+    private void ShowEnergy()
     {
         playerEnergy.text = string.Format("{0}/{1}", currentEnergy, maxenergy);
     }
@@ -140,7 +146,7 @@ public class BattlePlayerDataManager : MonoSingleton<BattlePlayerDataManager>,ID
     #endregion
 
     //Shield相關
-    public void ShowShield()
+    private void ShowShield()
     {
         playerShield.text = (battleplayerData.Shield).ToString();
     }
