@@ -7,7 +7,7 @@ public enum TargetType
 }
 public enum ActionType
 {
-    Attack,
+    DealDamage,
     Defend,
     DrawCard,
 }

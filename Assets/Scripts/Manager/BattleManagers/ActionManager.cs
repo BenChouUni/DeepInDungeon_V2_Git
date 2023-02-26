@@ -16,8 +16,8 @@ public class ActionManager : MonoSingleton<ActionManager>
         TargetType target = action.target;
         switch (type)
         {
-            case ActionType.Attack:
-                AttackAction(GetCharacter(target), parameter);
+            case ActionType.DealDamage:
+                DealDamageAction(GetCharacter(target), parameter);
                 break;
             case ActionType.Defend:
                 DefendAction(GetCharacter(target), parameter);
@@ -30,7 +30,7 @@ public class ActionManager : MonoSingleton<ActionManager>
         }
     }
 
-    private void AttackAction(Character character, int damage)
+    private void DealDamageAction(Character character, int damage)
     {
         Debug.LogFormat("對{0}造成{1}傷害", character.Name ,damage);
         character.GetDamage(damage);
@@ -40,7 +40,7 @@ public class ActionManager : MonoSingleton<ActionManager>
     public void TestDamage(int dmg)
     {
         
-        CardAction action = new CardAction(ActionType.Attack, dmg,TargetType.Enemy);
+        CardAction action = new CardAction(ActionType.DealDamage, dmg,TargetType.Enemy);
         UseAction(action);
         EnemyManager.instance.UpdateEnemyStatus();
     }
