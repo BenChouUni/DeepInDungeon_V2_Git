@@ -66,6 +66,7 @@ public class BattlePlayerDataManager : MonoSingleton<BattlePlayerDataManager>,ID
         ShowPlayerStatus(this.battleplayerData);
         ShowEnergy();
         ShowShield();
+
     }
 
     /// <summary>

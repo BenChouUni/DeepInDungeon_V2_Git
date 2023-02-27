@@ -1816,32 +1816,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73c70f434c77a42b8a362b69bada91c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerData:
-    characterName: no name
-    isDeath: 0
-    maxHp: 50
-    currentHp: 50
-    shield: 0
-    mainWeaponData:
-      id: 0
-      weaponName: 
-      atk: 0
-      def: 0
-      distance: 0
-    supportWeaponData:
-      id: 0
-      weaponName: 
-      atk: 0
-      def: 0
-      distance: 0
-    coin: 0
-    energy: 3
   battleplayerData:
     characterName: no name
-    isDeath: 0
     maxHp: 50
     currentHp: 50
     shield: 0
+    isDeath: 0
     mainWeaponData:
       id: 0
       weaponName: 
@@ -2679,10 +2659,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyData:
     characterName: 
-    isDeath: 0
     maxHp: 0
     currentHp: 0
     shield: 0
+    isDeath: 0
     id: 0
     atk: 0
     actionList: []
@@ -3225,6 +3205,8 @@ MonoBehaviour:
   battleDeckManager: {fileID: 0}
   battlePlayerDataManager: {fileID: 0}
   cardsLayoutManager: {fileID: 0}
+  actionManager: {fileID: 0}
+  enemyManager: {fileID: 0}
   initialDrawCard: 5
 --- !u!114 &2090945750
 MonoBehaviour:
@@ -3240,19 +3222,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyData:
     characterName: 
-    isDeath: 0
     maxHp: 0
     currentHp: 0
     shield: 0
+    isDeath: 0
     id: 0
     atk: 0
     actionList: []
   battleplayerData:
     characterName: no name
-    isDeath: 0
     maxHp: 50
     currentHp: 50
     shield: 0
+    isDeath: 0
     mainWeaponData:
       id: 0
       weaponName: 

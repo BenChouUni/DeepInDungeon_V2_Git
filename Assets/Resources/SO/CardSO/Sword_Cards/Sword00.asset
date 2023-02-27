@@ -17,4 +17,7 @@ MonoBehaviour:
     cardName: "\u63EE\u780D"
     cost: 1
     initialnum: 2
-    cardAction: []
+    cardAction:
+    - type: 0
+      parameter: 5
+      target: 1

@@ -29,6 +29,7 @@ public class EnemyManager : MonoSingleton<EnemyManager>
     public void UpdateEnemyStatus()
     {
         ShowEnemy();
+
     }
 
 }

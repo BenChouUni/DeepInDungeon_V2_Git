@@ -39,6 +39,7 @@ public class TurnPhaseManager : MonoSingleton<TurnPhaseManager>
         if (gamePhase == GamePhase.PlayerAction)
         {
             gamePhase = GamePhase.EnemyAction;
+            BattleMainManager.instance.TurnStart();
         }
         else
         {
@@ -54,6 +55,7 @@ public class TurnPhaseManager : MonoSingleton<TurnPhaseManager>
         {
             gamePhase = GamePhase.PlayerAction;
             TurnCount++;
+            BattleMainManager.instance.TurnStart();
         }
         else
         {

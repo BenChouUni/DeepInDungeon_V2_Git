@@ -18,6 +18,8 @@ public class BattleMainManager : MonoSingleton<BattleMainManager>
     public ActionManager actionManager;
     [HideInInspector]
     public EnemyManager enemyManager;
+   
+
     [Header("開場抽幾張卡")]
     public int initialDrawCard;
     //drag drop
@@ -39,7 +41,7 @@ public class BattleMainManager : MonoSingleton<BattleMainManager>
         Initialmanagers();
 
        
-        BattleStart();
+        StartBattle();
         //開始準備階段結束
         //玩家回合先開始
         turnPhaseManager.InitialTurn();
@@ -58,8 +60,8 @@ public class BattleMainManager : MonoSingleton<BattleMainManager>
         
         
     }
-
-    public void BattleStart()
+    //開始戰鬥
+    public void StartBattle()
     {
         //回合開始
         turnPhaseManager.StartGame();
@@ -70,6 +72,16 @@ public class BattleMainManager : MonoSingleton<BattleMainManager>
         //初始化玩家資料
         battlePlayerDataManager.InitialPlayerStatus();
     }
+    //戰鬥結束
+    public IEnumerator EndBattle()
+    {
+        Debug.Log("戰鬥結束");
+        turnPhaseManager.EndBattle();
+        yield return new WaitForSeconds(2);
+        //執行下一步
+    }
+
+
     /// <summary>
     /// 卡牌拖拽時追蹤
     /// </summary>
@@ -115,13 +127,16 @@ public class BattleMainManager : MonoSingleton<BattleMainManager>
         }
         //消耗費用
         battlePlayerDataManager.ConsumeEnergy(cardData.cost);
+
         //使用牌
         Debug.LogFormat("使用{0}", cardData.cardName);
         foreach (CardAction action in cardData.cardAction)
         {
             actionManager.UseAction(action);
+            UpdateStatus();
         }
-        UpdateUI();
+        
+
         //將牌刪除
         battleDeckManager.DisCard(cardData);
         cardsLayoutManager.RemoveHandCard(draggingCard.transform);
@@ -131,13 +146,27 @@ public class BattleMainManager : MonoSingleton<BattleMainManager>
         
 
     }
+    private IEnumerator EnemyBehave()
+    {
+        //behave
+
+        //更新狀態
+        UpdateStatus();
+        yield return new WaitForSeconds(2);
+        //turn end
+        turnPhaseManager.EndEnemyTurn();
+    }
     /// <summary>
-    /// 更新我方與敵人的狀態顯示
+    /// 檢視死亡與否以及更新我方與敵人的狀態顯示，死亡則直接進入結束遊戲
     /// </summary>
-    private void UpdateUI()
+    private void UpdateStatus()
     {
         battlePlayerDataManager.UpdatePlayerStatus();
         enemyManager.UpdateEnemyStatus();
+        if (battlePlayerDataManager.battleplayerData.isDeath || enemyManager.enemyData.isDeath)
+        {
+            StartCoroutine(EndBattle());
+        }
     }
     /// <summary>
     /// 每個回合開始呼叫，執行回合開始所需的初始動作
@@ -148,11 +177,14 @@ public class BattleMainManager : MonoSingleton<BattleMainManager>
         if (turnPhaseManager.GamePhase == GamePhase.PlayerAction)
         {
             Debug.Log("執行玩家回合開始準備");
+            battlePlayerDataManager.ResetEnergy();
         }
         else if (turnPhaseManager.GamePhase == GamePhase.EnemyAction)
         {
             Debug.Log("執行敵人回合開始準備");
+            StartCoroutine(EnemyBehave());
         }
     }
+
 
 }

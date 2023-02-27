@@ -65,8 +65,15 @@ public class BattleDeckManager : MonoSingleton<BattleDeckManager>,IDataPersisten
 
         //將兩武器的牌組合併成完整牌組
         battleDeck = new List<CardData>();
-        battleDeck = data.mainWeaponDeck;
-        battleDeck.AddRange(data.supWeaponDeck);
+        //用迴圈避免用同一個ref而非複製
+        foreach (CardData item in data.mainWeaponDeck)
+        {
+            battleDeck.Add(item);
+        }
+        foreach (CardData item in data.supWeaponDeck)
+        {
+            battleDeck.Add(item);
+        }
     }
 
     public void SaveData(ref GameData data)
@@ -145,6 +152,11 @@ public class BattleDeckManager : MonoSingleton<BattleDeckManager>,IDataPersisten
 
     public void DisCard(CardData cardData)
     {
+        //牌原本應該在手牌上，所以從手牌刪除，之後可能會有直接從牌庫刪除，需要修正
+        handCards.Remove(cardData);
+
+
+
         discardCards.Add(cardData);
         ShowCardZoneCount();
     }

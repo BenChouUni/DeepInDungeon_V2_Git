@@ -14,7 +14,7 @@ public abstract class Character
     {
         get { return characterName; }
     }
-    public bool isDeath;
+
     //hpstatus
     [SerializeField]
     private int maxHp;
@@ -35,11 +35,15 @@ public abstract class Character
     {
         get { return shield; }
     }
+
+
+    public bool isDeath;
     //state list
 
     //
     public Character(string _name,int _maxHp,int _shield)
     {
+        isDeath = false;
         this.characterName = _name;
         this.maxHp = _maxHp;
         ResetHp();
@@ -55,8 +59,10 @@ public abstract class Character
         }
 
         currentHp -= ShieldBlock(dmg);
+        
         if (currentHp<=0)
         {
+            Debug.LogFormat("{0}死亡", this.characterName);
             isDeath = true;
             currentHp = 0;
         }
@@ -68,7 +74,7 @@ public abstract class Character
     /// </summary>
     /// <param name="dmg"></param>
     /// <returns></returns>
-    public int ShieldBlock(int dmg)
+    private int ShieldBlock(int dmg)
     {
         if (shield != 0)
         {

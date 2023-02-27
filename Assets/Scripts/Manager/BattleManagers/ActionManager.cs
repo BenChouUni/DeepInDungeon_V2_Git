@@ -11,6 +11,10 @@ public class ActionManager : MonoSingleton<ActionManager>
 
     public void UseAction(CardAction action)
     {
+        if (TurnPhaseManager.instance.GamePhase == GamePhase.GameEnd)
+        {
+            return;
+        }
         ActionType type = action.type;
         int parameter = action.parameter;
         TargetType target = action.target;
