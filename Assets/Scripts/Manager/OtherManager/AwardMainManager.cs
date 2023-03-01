@@ -27,6 +27,7 @@ public class AwardMainManager : MonoBehaviour, IDataPersistence
     {
 
     }
+    
     void Start()
     {
         SupportCardNum = CardNum - MainCardNum;
