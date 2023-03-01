@@ -18,16 +18,20 @@ public class ActionManager : MonoSingleton<ActionManager>
         ActionType type = action.type;
         int parameter = action.parameter;
         TargetType target = action.target;
+        Character character = GetCharacter(target);
         switch (type)
         {
             case ActionType.DealDamage:
-                DealDamageAction(GetCharacter(target), parameter);
+                DealDamageAction(character, parameter);
                 break;
             case ActionType.Defend:
-                DefendAction(GetCharacter(target), parameter);
+                DefendAction(character, parameter);
                 break;
             case ActionType.DrawCard:
                 DrawCardAction(parameter);
+                break;
+            case ActionType.Heal:
+                HealAction(character, parameter);
                 break;
             default:
                 break;
@@ -70,6 +74,11 @@ public class ActionManager : MonoSingleton<ActionManager>
         BattleDeckManager.instance.DrawCard(num);
     }
 
+    private void HealAction(Character character, int num)
+    {
+        Debug.LogFormat("{1}回{0}血", num,character.Name);
+        character.RestoreHealth(num);
+    }
     private Character GetCharacter(TargetType type)
     {
         if (type == TargetType.Player)

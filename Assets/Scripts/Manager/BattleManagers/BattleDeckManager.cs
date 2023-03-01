@@ -16,7 +16,8 @@ public class BattleDeckManager : MonoSingleton<BattleDeckManager>,IDataPersisten
     //Panel
     public Transform HandCardPanel;
     //cards
-    public List<CardData> battleDeck;
+    //public List<CardData> battleDeck;
+    public Dictionary<int,CardData> battleDeck = new Dictionary<int, CardData>();
     public List<CardData> handCards;
     public List<CardData> discardCards;
     public List<GameObject> handCardsObj;
@@ -64,15 +65,16 @@ public class BattleDeckManager : MonoSingleton<BattleDeckManager>,IDataPersisten
     {
 
         //將兩武器的牌組合併成完整牌組
-        battleDeck = new List<CardData>();
+
         //用迴圈避免用同一個ref而非複製
-        foreach (CardData item in data.mainWeaponDeck)
+        int i = 0;
+        for (; i < data.mainWeaponDeck.Count; i++)
         {
-            battleDeck.Add(item);
+            battleDeck.Add(i, data.mainWeaponDeck[i]);
         }
-        foreach (CardData item in data.supWeaponDeck)
+        for (int k = 0; k < data.supWeaponDeck.Count; k++)
         {
-            battleDeck.Add(item);
+            battleDeck.Add(i++, data.mainWeaponDeck[k]);
         }
     }
 
@@ -125,7 +127,8 @@ public class BattleDeckManager : MonoSingleton<BattleDeckManager>,IDataPersisten
                 //可能要把牌抽上來給玩家看一下
                 //把牌一到棄排堆
                 DisCard(cardData);
-                battleDeck.Remove(cardData);
+                //棄掉第一張
+                battleDeck.Remove(0);
                 continue;
 
             }
@@ -140,7 +143,7 @@ public class BattleDeckManager : MonoSingleton<BattleDeckManager>,IDataPersisten
 
 
 
-            battleDeck.RemoveAt(0);
+            battleDeck.Remove(0);
 
             CardsLayoutManager.instance.AddHandCard(new_card.transform);
             
