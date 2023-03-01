@@ -14,6 +14,7 @@ public class EnemyManager : MonoSingleton<EnemyManager>
     {
         //暫時使用
         enemyData = new EnemyData(0, "木樁", 50, 0, 3);
+        
     }
 
     private void Start()

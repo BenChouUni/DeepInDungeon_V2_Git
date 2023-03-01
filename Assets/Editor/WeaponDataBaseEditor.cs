@@ -2,8 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
-using System.IO;
-using UnityEditor.VersionControl;
+//using System.IO;
+//using UnityEditor.VersionControl;
 
 [CustomEditor(typeof(WeaponDataBase))]
 public class WeaponDataBaseEditor : Editor
@@ -16,6 +16,7 @@ public class WeaponDataBaseEditor : Editor
 
         foreach (WeaponSO item in weaponDataBase.weaponDataList)
         {
+            
             if (item == null)
             {
                 continue;
@@ -122,7 +123,7 @@ public class WeaponDataBaseEditor : Editor
             return;
         }*/
 
-        string path = "Assets/SO/WeaponSO/NewWeaponSO.asset";
+        string path = "Assets/Resources/SO/WeaponSO/NewWeaponSO.asset";
 
         AssetDatabase.CreateAsset(asset, path);
         AssetDatabase.SaveAssets();

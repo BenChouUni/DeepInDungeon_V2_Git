@@ -91,7 +91,7 @@ public class DeckManager : MonoSingleton<DeckManager>,IDataPersistence
 
     public void LoadData(GameData data)
     {
-        
+        //只讀武器資料，武器資料自己會生成
     }
 
     public void SaveData(ref GameData data)
