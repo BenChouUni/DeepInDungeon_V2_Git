@@ -17,6 +17,7 @@ public class BattleDeckManager : MonoSingleton<BattleDeckManager>,IDataPersisten
     public Transform HandCardPanel;
     //cards
     public List<CardData> battleDeck;
+    //public Dictionary<int,CardData>(;
     public List<CardData> handCards;
     public List<CardData> discardCards;
     public List<GameObject> handCardsObj;

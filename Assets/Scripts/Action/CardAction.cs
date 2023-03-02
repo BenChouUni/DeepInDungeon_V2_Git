@@ -10,6 +10,7 @@ public enum ActionType
     DealDamage,
     Defend,
     DrawCard,
+    Heal,
 }
 [Serializable]
 public class CardAction 
