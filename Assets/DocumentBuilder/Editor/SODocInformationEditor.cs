@@ -5,19 +5,21 @@ using UnityEngine;
 using static DocumentBuilder.EditorGUITool;
 namespace DocumentBuilder
 {
-
     [CustomEditor(typeof(SODocInformation))]
     public class SODocInformationEditor : Editor
     {
+        #region var and onEnable
         SODocInformation m_target;
         private bool isSaveTemplate = false;
         private bool isLoadTemplate = false;
         private bool isEditTemplate = false;
         private bool doubleCheck = false;
+        private bool hotkeyState = false;
         private int isAutoCreateSubpage = -1;
         private string autoCreateSubpageName = "";
         private string templateName = "";
         private string[] allTemplate;
+        private DocComponent backup = null;
         private void OnEnable()
         {
             isSaveTemplate = false;
@@ -25,17 +27,62 @@ namespace DocumentBuilder
             isEditTemplate = false;
             doubleCheck = false;
         }
-        Vector2 scrollPosition = Vector2.zero;
         SODocInformation.DocumentType lastType;
+        private int selectingComponent = -1;
+        private int lastSelectingComponent = -1;
+        Rect selectingRect = new Rect();
+        #endregion
+
         public override void OnInspectorGUI()
         {
+
             if (m_target == null)
                 m_target = target as SODocInformation;
+            #region Hotkey
+            if (Event.current.control && !hotkeyState)
+            {
+                EditorGUIUtility.editingTextField = false;
+                if (Event.current.keyCode == KeyCode.S)
+                {
+                    selectingComponent = -1;
+                    hotkeyState = true;
+                }
+                if (Event.current.keyCode == KeyCode.Q)
+                    if (lastSelectingComponent != -1)
+                    {
+                        var temp = new DocComponent(backup);
+                        backup = new DocComponent(m_target.Components[lastSelectingComponent]);
+                        m_target.Components[lastSelectingComponent] = temp;
+                        hotkeyState = true;
+                    }
+                if(Event.current.keyCode == KeyCode.UpArrow)
+                    if(selectingComponent > 0)
+                    {
+                        var temp = m_target.Components[selectingComponent];
+                        m_target.Components[selectingComponent] = m_target.Components[selectingComponent - 1];
+                        m_target.Components[selectingComponent - 1] = temp;
+                        selectingComponent--;
+                        hotkeyState = true;
+                    }
+                if(Event.current.keyCode == KeyCode.DownArrow)
+                    if (selectingComponent < m_target.Components.Count-1)
+                    {
+                        var temp = m_target.Components[selectingComponent];
+                        m_target.Components[selectingComponent] = m_target.Components[selectingComponent + 1];
+                        m_target.Components[selectingComponent + 1] = temp;
+                        selectingComponent++;
+                        hotkeyState = true;
+                    }
+            }
 
+            if (Event.current.type == EventType.KeyUp)
+                hotkeyState = false;
             m_target.Name = EditorGUILayout.TextField("Name", m_target.Name);
             m_target.DocType = (SODocInformation.DocumentType)EditorGUILayout.EnumPopup("Document Icon Type", m_target.DocType);
-            EditorGUILayout.LabelField("Sub Pages");
 
+            #endregion
+
+            #region load menu icon
             if (lastType != m_target.DocType)
             {
                 switch (m_target.DocType)
@@ -75,7 +122,11 @@ namespace DocumentBuilder
             }
             if (m_target.DocType == SODocInformation.DocumentType.Custom)
                 m_target.MenuIcon = (Texture2D)EditorGUILayout.ObjectField("Menu Icon", m_target.MenuIcon, typeof(Texture2D), false);
+            #endregion
 
+            #region SubPage
+
+            EditorGUILayout.LabelField("Sub Pages");
             for (int i = 0; i < m_target.SubPages.Count; i++)
             {
                 HorizontalGroup(() =>
@@ -155,15 +206,14 @@ namespace DocumentBuilder
                             isAutoCreateSubpage = -1;
                         }
                     }
-
-                    ColorRegion(false, () =>
+                    GUILayout.Space(10);
+                    Rect btnRect = GUILayoutUtility.GetRect(20, 20,GUILayout.Width(20));
+                    btnRect.width = 20;
+                    if (TextureButton(btnRect, Icon.Delete))
                     {
-                        if (GUILayout.Button("Remove", GUILayout.Width(60)))
-                        {
-                            m_target.SubPages.RemoveAt(i);
-                            i--;
-                        }
-                    });
+                        m_target.SubPages.RemoveAt(i);
+                        i--;
+                    }
                 });
             }
             ColorRegion(true, () =>
@@ -174,6 +224,9 @@ namespace DocumentBuilder
                 }
             });
 
+            #endregion
+
+            #region template
             EditorGUILayout.Space(10);
             if (isSaveTemplate)
             {
@@ -289,7 +342,7 @@ namespace DocumentBuilder
             {
                 HorizontalGroup(() =>
                 {
-                    EditorGUILayout.LabelField("DocComponent Template");
+                    EditorGUILayout.LabelField("DocComponent Template",GUILayout.Width(150));
                     if (GUILayout.Button("Save as new"))
                     {
                         isSaveTemplate = true;
@@ -323,67 +376,124 @@ namespace DocumentBuilder
                     }
                 });
             }
-            GUILayout.Space(15);
+            #endregion
 
-            scrollPosition = EditorGUILayout.BeginScrollView(scrollPosition);
+            #region component edit
+            GUILayout.Space(15);
             if (m_target.Components.Count != 0)
             {
                 for (int i = 0; i < m_target.Components.Count; i++)
                 {
-                    HorizontalGroup(() =>
+                    Rect rect = new Rect();
+                    rect = GUILayoutUtility.GetLastRect();
+                    DisableGroup(selectingComponent != i, () =>
                     {
-                        if (i != 0)
-                        {
-                            if (GUILayout.Button("▲", GUILayout.Width(20), GUILayout.Height(20)))
+                        // Allow Edit
+                        if (selectingComponent == i)
+                            HorizontalGroup(() =>
                             {
-                                var temp = m_target.Components[i];
-                                m_target.Components[i] = m_target.Components[i - 1];
-                                m_target.Components[i - 1] = temp;
-                            }
-                        }
-                        else
+                                if (i != 0)
+                                {
+                                    if (GUILayout.Button("▲", GUILayout.Width(20), GUILayout.Height(20)))
+                                    {
+                                        var temp = m_target.Components[i];
+                                        m_target.Components[i] = m_target.Components[i - 1];
+                                        m_target.Components[i - 1] = temp;
+                                        selectingComponent--;
+                                    }
+                                }
+                                else
+                                    GUILayoutUtility.GetRect(0,0, GUILayout.Width(20), GUILayout.Height(20));
+                                if (i != m_target.Components.Count - 1)
+                                {
+                                    if (GUILayout.Button("▼", GUILayout.Width(20), GUILayout.Height(20)))
+                                    {
+                                        var temp = m_target.Components[i];
+                                        m_target.Components[i] = m_target.Components[i + 1];
+                                        m_target.Components[i + 1] = temp;
+                                        selectingComponent++;
+                                    }
+                                }
+                                else
+                                    GUILayoutUtility.GetRect(0, 0, GUILayout.Width(20), GUILayout.Height(20));
+                                Rect btnRect = GUILayoutUtility.GetRect(0,0,GUILayout.Width(25),GUILayout.Height(25));
+                                btnRect.y -= 3;
+                                btnRect.x -= 5;
+
+                                btnRect.x = btnRect.xMax;
+                                if (TextureButton(btnRect,Icon.Copy))
+                                {
+                                    GUIUtility.systemCopyBuffer = m_target.Components[i].ToString();
+                                }
+
+                                btnRect.x = btnRect.xMax + 5;
+                                if (TextureButton(btnRect, Icon.Paste))
+                                {
+                                    if (!m_target.Components[i].FromString(GUIUtility.systemCopyBuffer))
+                                        Debug.LogWarning("You are not Pasting a DocComponent !");
+                                }
+
+                                btnRect.x = btnRect.xMax + 5;
+                                if (TextureButton(btnRect, Icon.Duplicate))
+                                {
+                                    DocComponent newComponent = new DocComponent();
+                                    newComponent.FromString(m_target.Components[i].ToString());
+                                    m_target.Components.Insert(i, newComponent);
+                                    selectingComponent++;
+                                }
+
+
+                                GUILayout.Label("");
+                                btnRect = GUILayoutUtility.GetRect(0, 0, GUILayout.Width(25), GUILayout.Height(25));
+                                btnRect.y -= 3;
+                                btnRect.x -= 5;
+                                if (TextureButton(btnRect, Icon.Delete))
+                                {
+                                    m_target.Components.RemoveAt(i);
+                                    i--;
+                                    selectingComponent = -1;
+                                    lastSelectingComponent = -1;
+                                }
+                            });
+                        if (i < m_target.Components.Count && i >= 0)
+                            m_target.Components[i] = DocComponentLayout.DocComponentField(m_target.Components[i], selectingComponent == i);
+
+                        if(selectingComponent == i)
+                            EditorGUILayout.Space(15);
+                        
+                    });
+                    rect.y = rect.yMax;
+                    rect.width = EditorGUIUtility.currentViewWidth-40;
+                    rect.height = GUILayoutUtility.GetRect(0,15).y - rect.y;
+                    if (selectingComponent != i)
+                    {
+                        // check if click component
+                        if (GUI.Button(rect, "", new GUIStyle()))
                         {
-                            GUILayout.Label("", GUILayout.Width(20), GUILayout.Height(20));
+                            selectingComponent = i;
+                            selectingRect = rect;
+                            backup = new DocComponent(m_target.Components[selectingComponent]);
+                            EditorGUIUtility.editingTextField = false;
                         }
-                        if (i != m_target.Components.Count - 1)
-                        {
-                            if (GUILayout.Button("▼", GUILayout.Width(20), GUILayout.Height(20)))
-                            {
-                                var temp = m_target.Components[i];
-                                m_target.Components[i] = m_target.Components[i + 1];
-                                m_target.Components[i + 1] = temp;
-                            }
-                        }
-                        DividerLine(m_target.Components[i].ComponentType.ToString(), EditorGUITool.ColorSet.Default, 1);
-                        if (GUILayout.Button("Copy", GUILayout.Width(60)))
-                        {
-                            GUIUtility.systemCopyBuffer = m_target.Components[i].ToString();
-                        }
-                        if (GUILayout.Button("Paste", GUILayout.Width(60)))
-                        {
-                            if (!m_target.Components[i].FromString(GUIUtility.systemCopyBuffer))
-                                Debug.LogWarning("You are not Pasting a DocComponent !");
-                        }
-                        if (GUILayout.Button("Dup", GUILayout.Width(60)))
+                        EditorGUI.DrawRect(new Rect(rect.x - 12, rect.y - 3, 6, rect.height + 6), new Color(.8f,.8f,1f,0.25f));
+                    }
+                    else
+                    {
+                        EditorGUI.DrawRect(new Rect(rect.x - 12, rect.y - 3, 6, rect.height + 6), new Color(.8f, 1f, .8f, 0.25f));
+                        EditorGUILayout.Space(5);
+                        Rect btnRect = GUILayoutUtility.GetLastRect();
+                        btnRect.x -= 8;
+                        btnRect.y -= 13;
+                        btnRect.height = 16;
+                        btnRect.width = 60;
+                        if(GUI.Button(btnRect,"Insert ->"))
                         {
                             DocComponent newComponent = new DocComponent();
-                            newComponent.FromString(m_target.Components[i].ToString());
-                            m_target.Components.Insert(i, newComponent);
+                            m_target.Components.Insert(i+1, newComponent);
+                            selectingComponent++;
+                            EditorGUIUtility.editingTextField = false;
                         }
-                        ColorRegion(false, () =>
-                        {
-                            if (GUILayout.Button("Remove", GUILayout.Width(60)))
-                            {
-                                m_target.Components.RemoveAt(i);
-                                i--;
-                            }
-                        });
-                    });
-                    m_target.Components[i] = m_target.Components[i];
-                    if (i < m_target.Components.Count && i >= 0)
-                        m_target.Components[i] = DocComponentLayout.DocComponentField(m_target.Components[i], true);
-
-                    EditorGUILayout.Space(25);
+                    }
                 }
             }
             HorizontalGroup(() =>
@@ -392,15 +502,20 @@ namespace DocumentBuilder
                 {
                     m_target.Components.Add(new DocComponent());
                 }
-                if (GUILayout.Button("Paset component", GUILayout.Width(200)))
+                if (GUILayout.Button("Paste component", GUILayout.Width(200)))
                 {
                     DocComponent doc = new DocComponent();
                     doc.FromString(GUIUtility.systemCopyBuffer);
                     m_target.Components.Add(doc);
                 }
             });
-            EditorGUILayout.EndScrollView();
-            EditorUtility.SetDirty(target); // if you need to save serialize object
+            #endregion
+
+
+            if (selectingComponent != -1)
+                lastSelectingComponent = selectingComponent;
+
+            EditorUtility.SetDirty(target);
         }
     }
 }

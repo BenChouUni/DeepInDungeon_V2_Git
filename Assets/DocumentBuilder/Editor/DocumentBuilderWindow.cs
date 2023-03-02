@@ -34,13 +34,15 @@ namespace DocumentBuilder
         private SODocInformation searchDocument; // use to display search result
         private bool isEditMode = false;
         private bool isOpenMenu = true;
+        private bool hotkeyState = false;
         private Editor editingDocument;
+        private Color littleTitleColor = ColorSet.Information;
         private void OnEnable()
         {
             menuStyle.normal.textColor = ColorSet.Default;
             minSize = new Vector2(500, 100);
             Instance = this;
-
+            littleTitleColor.a = .65f;
             Data.Load();
             selectBookIcon = AssetDatabase.LoadAssetAtPath<Texture2D>(DocumentBuilderData.Path.DocumentBuilderRoot + "/Editor/DocAsset/DefaultMenuIcon/Gear.png");
             searchIcon = AssetDatabase.LoadAssetAtPath<Texture2D>(DocumentBuilderData.Path.DocumentBuilderRoot + "/Editor/DocAsset/DefaultMenuIcon/Search.png");
@@ -78,13 +80,17 @@ namespace DocumentBuilder
             #endregion
 
             #region Edit Mode
-            if (GUI.Button(new Rect(position.width - 60, 5, 45, 20), isEditMode ? "Edit" : "View"))
+            if (GUI.Button(new Rect(position.width - 60, 5, 45, 20), isEditMode ? "Edit" : "View") ||
+                (Event.current.control && Event.current.keyCode == KeyCode.E && !hotkeyState))
             {
                 isEditMode = !isEditMode;
                 if (isEditMode)
                     editingDocument = Editor.CreateEditor(Data.SelectingDocInfo);
+                hotkeyState = true;
+                return;
             }
-
+            if (Event.current.type == EventType.KeyUp)
+                hotkeyState = false;
             #endregion
 
             #region Menu and Information Layout
@@ -92,6 +98,7 @@ namespace DocumentBuilder
             // Draw Menu and Document
             HorizontalGroup(() =>
             {
+                #region Menu
                 if (isOpenMenu)
                 {
                     VerticalGroup(() =>
@@ -131,20 +138,13 @@ namespace DocumentBuilder
                         isOpenMenu = true;
                     }
                 }
+                #endregion
 
+                #region DocComponents
                 VerticalGroup(() =>
                 {
-                    infoViewPosition = EditorGUILayout.BeginScrollView(infoViewPosition);
-                    drawDocInformation();
-                    GUILayoutUtility.GetRect(0, 120);
-                    EditorGUILayout.EndScrollView();
-                });
-
-                if (isEditMode)
-                {
-                    VerticalGroup(() =>
+                    if( isEditMode)
                     {
-                        EditorGUILayout.LabelField("", GUILayout.Height(5));
                         HorizontalGroup(() =>
                         {
                             EditorGUILayout.LabelField("- Editing Target ", GUILayout.Width(105));
@@ -152,9 +152,32 @@ namespace DocumentBuilder
                             EditorGUILayout.ObjectField(Data.SelectingDocInfo, typeof(SODocInformation), false, GUILayout.Width(350));
                             EditorGUI.EndDisabledGroup();
                         });
-                        editingDocument.OnInspectorGUI();
-                    }, GUILayout.Width(600));
-                }
+                        infoViewPosition = EditorGUILayout.BeginScrollView(infoViewPosition);
+                        HorizontalGroup(() =>
+                        {
+                            GUILayout.Space(5);
+                            VerticalGroup(() =>
+                            {
+                                editingDocument.OnInspectorGUI();
+                            });
+                        });
+                        EditorGUILayout.EndScrollView();
+                    }
+                    else
+                    {
+                        ColorRegion(littleTitleColor, () =>
+                        {
+                            EditorGUI.indentLevel = 0;
+                            EditorGUILayout.LabelField(Data.SelectingDocInfo.Name);
+                        });
+
+                        infoViewPosition = EditorGUILayout.BeginScrollView(infoViewPosition);
+                        drawDocInformation();
+                        GUILayoutUtility.GetRect(0, 120);
+                        EditorGUILayout.EndScrollView();
+                    }
+                });
+                #endregion
             });
 
             // Draw Select Menu          
@@ -196,7 +219,7 @@ namespace DocumentBuilder
             }
 
             #endregion
-
+            Repaint();
             // Save data if isDirty
             if (isDirty)
             {
@@ -354,14 +377,6 @@ namespace DocumentBuilder
         /// </summary>
         private void drawDocInformation()
         {
-            Color color = ColorSet.Information;
-            color.a = .65f;
-            ColorRegion(color, () =>
-            {
-                EditorGUI.indentLevel = 0;
-                EditorGUILayout.LabelField(Data.SelectingDocInfo.Name);
-            });
-
             EditorGUI.indentLevel++;
             EditorGUILayout.Space(5);
             foreach (var doc in Data.SelectingDocInfo.Components)
@@ -398,7 +413,9 @@ namespace DocumentBuilder
             public static void Load()
             {
                 if (!File.Exists(Application.temporaryCachePath + "\\DocumentWindowData.txt"))
+                {
                     Save();
+                }
 
                 string[] datas = File.ReadAllText(Application.temporaryCachePath + "\\DocumentWindowData.txt").Split("%DATA%");
                 MenuWidth = float.Parse(datas[0]);
@@ -418,6 +435,11 @@ namespace DocumentBuilder
                     string[] temp = data.Split("$KEY$");
                     MenuDisplaySettings.Add((SODocInformation)AssetDatabase.LoadAssetAtPath(temp[0], typeof(SODocInformation)), JsonUtility.FromJson<MenuDisplaySetting>(temp[1]));
                 }
+
+                if(BookRoot == null)
+                    BookRoot = AssetDatabase.LoadAssetAtPath<SODocInformation>(DocumentBuilderData.Path.DocumentBuilderRoot + "/Editor/DocAsset/DocumentBuilder Docs.asset");
+                if(SelectingDocInfo == null)
+                    SelectingDocInfo = BookRoot;
             }
             public static void Save()
             {
