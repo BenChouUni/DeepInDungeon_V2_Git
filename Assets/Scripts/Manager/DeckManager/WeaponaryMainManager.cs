@@ -13,16 +13,16 @@ public class WeaponaryMainManager : MonoSingleton<WeaponaryMainManager>
     public WeaponDropZone supportWeaponDropZone;
     public WeaponDropZone weaponList;
     public Transform weaponListPanel;//drop地方跟回去parent不一樣
-    private WeaponType DropZoneFrom;
+    private WeaponDropZoneType DropZoneFrom;
     //drag
     private GameObject OnDragGO;
     public bool isDrag; //是否正有東西被拖拽
 
     private void Awake()
     {
-        weaponList.SetZoneType(WeaponType.InList);
-        mainWeaponDropZone.SetZoneType(WeaponType.MainWeapon);
-        supportWeaponDropZone.SetZoneType(WeaponType.SupportWeapon);
+        weaponList.SetZoneType(WeaponDropZoneType.InList);
+        mainWeaponDropZone.SetZoneType(WeaponDropZoneType.MainWeapon);
+        supportWeaponDropZone.SetZoneType(WeaponDropZoneType.SupportWeapon);
         
     }
     void Start()
@@ -37,14 +37,14 @@ public class WeaponaryMainManager : MonoSingleton<WeaponaryMainManager>
         {
             WeaponData data = playerData.MainWeaponData;
             GameObject weaponObj = FindWeaponOnList(data.id);
-            PutInDropZone(mainWeaponDropZone, WeaponType.MainWeapon, data, WeaponType.InList, weaponObj);
+            PutInDropZone(mainWeaponDropZone, WeaponDropZoneType.MainWeapon, data, WeaponDropZoneType.InList, weaponObj);
         }
 
         if (playerData.SupportWeaponData.weaponName != "")
         {
             WeaponData data = playerData.SupportWeaponData;
             GameObject weaponObj = FindWeaponOnList(data.id);
-            PutInDropZone(supportWeaponDropZone, WeaponType.SupportWeapon, data, WeaponType.InList, weaponObj);
+            PutInDropZone(supportWeaponDropZone, WeaponDropZoneType.SupportWeapon, data, WeaponDropZoneType.InList, weaponObj);
         }
         
         Debug.Log("ShowPlayerData");
@@ -60,7 +60,7 @@ public class WeaponaryMainManager : MonoSingleton<WeaponaryMainManager>
     /// <summary>
     /// 通知管理器現在什麼物件被拖動
     /// </summary>
-    public void StartDrag(GameObject gameObject,WeaponType dropZone)
+    public void StartDrag(GameObject gameObject,WeaponDropZoneType dropZone)
     {
         isDrag = true;
         this.OnDragGO = gameObject;
@@ -82,7 +82,7 @@ public class WeaponaryMainManager : MonoSingleton<WeaponaryMainManager>
     public void WeaponDropRequest(WeaponDropZone dropZone)
     {
         //dropzone的類型
-        WeaponType type = dropZone.dropZoneType;
+        WeaponDropZoneType type = dropZone.dropZoneType;
 
         //check if weapon確認是否是武器
         if (OnDragGO.TryGetComponent(out WeaponDisplay weaponDisplay) == false)
@@ -93,7 +93,7 @@ public class WeaponaryMainManager : MonoSingleton<WeaponaryMainManager>
         WeaponData data = OnDragGO.GetComponent<WeaponDisplay>().WeaponData;
 
         //新來武器原先所在的dropzone
-        WeaponType typeFrom = OnDragGO.GetComponent<DragCard>().currentDropZoneType;
+        WeaponDropZoneType typeFrom = OnDragGO.GetComponent<DragCard>().currentDropZoneType;
         //要放入的GO
         GameObject putInWeapon = OnDragGO;
         PutInDropZone(dropZone, type, data, typeFrom, putInWeapon);
@@ -101,7 +101,7 @@ public class WeaponaryMainManager : MonoSingleton<WeaponaryMainManager>
 
     
 
-    private void PutInDropZone(WeaponDropZone dropZone, WeaponType type, WeaponData data, WeaponType typeFrom, GameObject putInWeapon)
+    private void PutInDropZone(WeaponDropZone dropZone, WeaponDropZoneType type, WeaponData data, WeaponDropZoneType typeFrom, GameObject putInWeapon)
     {
         //如果同處放下則不致行
         if (typeFrom == type)
@@ -111,7 +111,7 @@ public class WeaponaryMainManager : MonoSingleton<WeaponaryMainManager>
         }
 
         //如果放入武器庫
-        if (type == WeaponType.InList)
+        if (type == WeaponDropZoneType.InList)
         {
             Debug.Log("放入武器庫");
             dropZone.PutInWeapon(putInWeapon, weaponListPanel);
@@ -138,7 +138,7 @@ public class WeaponaryMainManager : MonoSingleton<WeaponaryMainManager>
                 DeckManager.instance.RemoveCardsByType(type);
 
                 //跟上方的武器庫交換
-                if (typeFrom == WeaponType.InList)
+                if (typeFrom == WeaponDropZoneType.InList)
                 {
                     
                     ExchangeZone.PutInWeapon(weaponOn, weaponListPanel);//
@@ -157,7 +157,7 @@ public class WeaponaryMainManager : MonoSingleton<WeaponaryMainManager>
 
 
             }
-            else if (typeFrom != WeaponType.InList)//若從主副武器區地方放入但上面是空的
+            else if (typeFrom != WeaponDropZoneType.InList)//若從主副武器區地方放入但上面是空的
             {
                 Debug.Log("從主副武器區地方放入但上面是空的");
                 PlayerDataManager.instance.RemoveWeapon(typeFrom);
@@ -171,16 +171,16 @@ public class WeaponaryMainManager : MonoSingleton<WeaponaryMainManager>
         }
     }
     //將dropzone當中的fulle改成false
-    private void ReleaseDropZone(WeaponType type)
+    private void ReleaseDropZone(WeaponDropZoneType type)
     {
         switch (type)
         {
-            case WeaponType.InList:
+            case WeaponDropZoneType.InList:
                 return;
-            case WeaponType.MainWeapon:
+            case WeaponDropZoneType.MainWeapon:
                 mainWeaponDropZone.isFull = false;
                 return;
-            case WeaponType.SupportWeapon:
+            case WeaponDropZoneType.SupportWeapon:
                 supportWeaponDropZone.isFull = false;
                 return;
         }
@@ -201,7 +201,7 @@ public class WeaponaryMainManager : MonoSingleton<WeaponaryMainManager>
     /// 根據放入武器創建卡牌
     /// </summary>
     /// <param name="weaponId"></param>
-    private void CreateDeckByWeapon(int weaponId,WeaponType type)
+    private void CreateDeckByWeapon(int weaponId,WeaponDropZoneType type)
     {
         if (! DeckManager.instance.CheckEmpty(type))
         {
@@ -227,15 +227,15 @@ public class WeaponaryMainManager : MonoSingleton<WeaponaryMainManager>
         
     }
     //根據dropzonetype 給出 dropZone
-    private WeaponDropZone GetDropZoneByType(WeaponType type)
+    private WeaponDropZone GetDropZoneByType(WeaponDropZoneType type)
     {
         switch (type)
         {
-            case WeaponType.InList:
+            case WeaponDropZoneType.InList:
                 return weaponList;
-            case WeaponType.MainWeapon:
+            case WeaponDropZoneType.MainWeapon:
                 return mainWeaponDropZone;
-            case WeaponType.SupportWeapon:
+            case WeaponDropZoneType.SupportWeapon:
                 return supportWeaponDropZone;
             default:
                 return null;

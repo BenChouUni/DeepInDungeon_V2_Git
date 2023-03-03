@@ -14,7 +14,7 @@ public class DragCard : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDrag
     [HideInInspector]
     public Transform parentReturnTo = null;//要返回的位置的parent
 
-    public WeaponType currentDropZoneType;//被抓取之前在哪個dropzone
+    public WeaponDropZoneType currentDropZoneType;//被抓取之前在哪個dropzone
 
     public void OnBeginDrag(PointerEventData eventData)//開始拖動執行一次
     {
@@ -67,7 +67,7 @@ public class DragCard : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDrag
         this.GetComponent<CanvasGroup>().blocksRaycasts = value;
     }
 
-    public void SetDropZone(WeaponType dropZone)
+    public void SetDropZone(WeaponDropZoneType dropZone)
     {
         this.currentDropZoneType = dropZone;
     }

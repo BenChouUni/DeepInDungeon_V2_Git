@@ -26,27 +26,27 @@ public class PlayerDataManager : MonoSingleton<PlayerDataManager>, IDataPersiste
     /// 給drop相關使用
     /// </summary>
     /// <param name="type">0 is mainWeapon,1 is supportWeapon</param>
-    public void SetWeapon(WeaponType type,WeaponData weaponData)
+    public void SetWeapon(WeaponDropZoneType type,WeaponData weaponData)
     {
 
         Debug.LogFormat("{0} is set as {1}", type.ToString(), weaponData.weaponName);
-        if (type == WeaponType.MainWeapon)
+        if (type == WeaponDropZoneType.MainWeapon)
         {
             playerData.MainWeaponData = weaponData;
         }
-        else if (type == WeaponType.SupportWeapon)
+        else if (type == WeaponDropZoneType.SupportWeapon)
         {
             playerData.SupportWeaponData = weaponData;
         }
     }
-    public void RemoveWeapon(WeaponType type)
+    public void RemoveWeapon(WeaponDropZoneType type)
     {
         Debug.LogFormat("{0} is removed ", type.ToString());
-        if (type == WeaponType.MainWeapon)
+        if (type == WeaponDropZoneType.MainWeapon)
         {
             playerData.MainWeaponData = null;
         }
-        else if (type == WeaponType.SupportWeapon)
+        else if (type == WeaponDropZoneType.SupportWeapon)
         {
             playerData.SupportWeaponData = null;
         }
