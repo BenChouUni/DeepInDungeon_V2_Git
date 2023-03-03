@@ -34,7 +34,7 @@ public class DeckManager : MonoSingleton<DeckManager>,IDataPersistence
         return null;
     }
 
-    public void CreateCardOnPanel(CardData cardData,DropZoneType type)
+    public void CreateCardOnPanel(CardData cardData,WeaponType type)
     {
    
         GameObject new_initialcard;
@@ -43,7 +43,7 @@ public class DeckManager : MonoSingleton<DeckManager>,IDataPersistence
         new_initialcard = Instantiate(deckCardPrefab, InitialCardListPanel, false);
         new_initialcard.GetComponent<CardDisplay>().CardData = cardData;
         
-        if (type == DropZoneType.MainWeapon)
+        if (type == WeaponType.MainWeapon)
         {
             for(int i = 0; i < cardData.initialnum; i++)
             {
@@ -51,7 +51,7 @@ public class DeckManager : MonoSingleton<DeckManager>,IDataPersistence
                 mainWeaponDeck.Add(cardData);
             }
         }
-        else if (type == DropZoneType.SupportWeapon)
+        else if (type == WeaponType.SupportWeapon)
         {
             for (int i = 0; i < cardData.initialnum; i++)
             {
@@ -64,10 +64,10 @@ public class DeckManager : MonoSingleton<DeckManager>,IDataPersistence
     /// 給定類型，直接把對應類型刪掉
     /// </summary>
     /// <param name="type"></param>
-    public void RemoveCardsByType(DropZoneType type)
+    public void RemoveCardsByType(WeaponType type)
     {
         Debug.LogFormat("Remove Cards in {0}",type);
-        if (type == DropZoneType.MainWeapon)
+        if (type == WeaponType.MainWeapon)
         {
             foreach (GameObject item in mainWeaponCards)
             {
@@ -77,7 +77,7 @@ public class DeckManager : MonoSingleton<DeckManager>,IDataPersistence
 
             mainWeaponDeck.Clear();
         }
-        else if (type == DropZoneType.SupportWeapon)
+        else if (type == WeaponType.SupportWeapon)
         {
             foreach (GameObject item in supWeaponCards)
             {
@@ -100,13 +100,13 @@ public class DeckManager : MonoSingleton<DeckManager>,IDataPersistence
         data.supWeaponDeck = this.supWeaponDeck;
     }
 
-    public bool CheckEmpty(DropZoneType type)
+    public bool CheckEmpty(WeaponType type)
     {
-        if (type == DropZoneType.MainWeapon)
+        if (type == WeaponType.MainWeapon)
         {
             return (mainWeaponDeck.Count == 0);
         }
-        else if (type == DropZoneType.SupportWeapon)
+        else if (type == WeaponType.SupportWeapon)
         {
             return (supWeaponDeck.Count == 0);
         }

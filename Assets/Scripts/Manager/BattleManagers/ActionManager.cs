@@ -38,9 +38,13 @@ public class ActionManager : MonoSingleton<ActionManager>
         }
     }
 
-    private void DealDamageAction(Character character, int damage)
+    private void DealDamageAction(Character character, int parameter)
     {
+        int damage = parameter + BattleWeaponManager.instance.WeaponAttack();
+
+
         Debug.LogFormat("對{0}造成{1}傷害", character.Name ,damage);
+
         character.GetDamage(damage);
 
     }
@@ -53,8 +57,11 @@ public class ActionManager : MonoSingleton<ActionManager>
         EnemyManager.instance.UpdateEnemyStatus();
     }
 
-    private void DefendAction(Character character, int shield)
+    private void DefendAction(Character character, int parameter)
     {
+
+        int shield = parameter + BattleWeaponManager.instance.WeaponDefnd();
+
         Debug.LogFormat("{0}獲得{1}護盾", character.Name, shield);
         character.AddShield(shield);
     }

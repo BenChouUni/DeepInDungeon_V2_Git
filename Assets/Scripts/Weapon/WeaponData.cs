@@ -11,6 +11,7 @@ public class WeaponData
     public int def;
     public int distance;
     
+    
     public WeaponData()
     {
         weaponName = "";
