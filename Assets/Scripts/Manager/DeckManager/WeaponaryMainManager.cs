@@ -83,6 +83,11 @@ public class WeaponaryMainManager : MonoSingleton<WeaponaryMainManager>
     /// <param name="dropZone"></param>
     public void WeaponDropRequest(WeaponDropZone dropZone)
     {
+        if (OnDragGO == null)
+        {
+            Debug.Log("現在並沒有拖拽物品，可能是搖桿觸發的判定");
+            return;
+        }
         
         //check if weapon確認是否是武器
         if (OnDragGO.TryGetComponent(out WeaponDisplay weaponDisplay) == false)
