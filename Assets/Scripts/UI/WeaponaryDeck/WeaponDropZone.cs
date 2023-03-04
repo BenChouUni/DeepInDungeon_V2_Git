@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
-public enum DropZoneType
+public enum WeaponDropZoneType
 {
-    WeaponList,MainWeapon,SupportWeapon
+    InList,MainWeapon,SupportWeapon
 }
 public class WeaponDropZone : MonoBehaviour, IDropHandler
 {
     public List<GameObject> weaponOn; //在此dropzone的武器
     public bool isFull;
     [SerializeField]
-    public DropZoneType dropZoneType;
+    public WeaponDropZoneType dropZoneType;
 
     public void OnDrop(PointerEventData eventData)
     {
@@ -63,7 +63,7 @@ public class WeaponDropZone : MonoBehaviour, IDropHandler
         isFull = false;
     }
     */
-    public void SetZoneType(DropZoneType type)
+    public void SetZoneType(WeaponDropZoneType type)
     {
         dropZoneType = type;
     }

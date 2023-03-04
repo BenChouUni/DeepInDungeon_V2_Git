@@ -67,7 +67,7 @@ public class WeaponDataBaseEditor : Editor
         string assetPath = AssetDatabase.GetAssetPath(item.GetInstanceID());
         WeaponData weaponData = item.weaponData;
         Debug.Log(weaponData.weaponName);
-        WeaponData NewData = new WeaponData(weaponData.id, weaponData.weaponName, weaponData.atk, weaponData.def, weaponData.distance);
+        WeaponData NewData = new WeaponData(weaponData.id, weaponData.weaponName, weaponData.atk, weaponData.def, weaponData.distance,weaponData.weaponType);
 
         Debug.Log(NewData.weaponName);
         AssetDatabase.RenameAsset(assetPath, item.weaponData.weaponName);
