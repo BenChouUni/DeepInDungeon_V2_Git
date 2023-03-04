@@ -3,16 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
 using UnityEngine;
+using UnityEngine.UI;
+using static System.Net.Mime.MediaTypeNames;
 
 public class AwardMainManager : MonoSingleton<AwardMainManager>, IDataPersistence
 {
     public CardDataBase CardList;
     public GameObject CardPrefab;
     public int CardNum;
+    public int AwardNum;
     public Transform Panel;
     public int MainID;
     public int SupportID;
     public GameData Data;
+    public UnityEngine.UI.Text Text;
 
     public int MainCardNum;
     public int SupportCardNum;
@@ -28,15 +32,15 @@ public class AwardMainManager : MonoSingleton<AwardMainManager>, IDataPersistenc
     }
     public void SaveData(ref GameData data)
     {
-
     }
     
     void Start()
     {
+        Text.GetComponent<UnityEngine.UI.Text>().text = "請選擇" + AwardNum + "張牌作為獎勵";
         SupportCardNum = CardNum - MainCardNum;
         MainID = Data.playerData.MainWeaponData.id;
         SupportID = Data.playerData.SupportWeaponData.id;
-        Panel.GetComponent<RectTransform>().sizeDelta = new Vector2((CardNum * 300) + (CardNum + 1) * 50f, 500f);
+        ChangePanel();
         int[] IDList = new int[CardNum];
         IDList = RandomWeapon(CardNum);
         for(int i = 0; i < CardNum; i++)
@@ -53,6 +57,11 @@ public class AwardMainManager : MonoSingleton<AwardMainManager>, IDataPersistenc
 
     }
 
+
+    private void ChangePanel()
+    {
+        Panel.GetComponent<RectTransform>().sizeDelta = new Vector2((CardNum * 300) + (CardNum + 1) * 50f, 500f);
+    }
 
     /// <summary>
     /// 隨機武器id
@@ -177,7 +186,17 @@ public class AwardMainManager : MonoSingleton<AwardMainManager>, IDataPersistenc
         {
             Data.supWeaponDeck.Add(_carddata);
         }
-        Choosen = true;
-
+        AwardNum--;
+        if(AwardNum <= 0)
+        {
+            Text.GetComponent<UnityEngine.UI.Text>().text = "已選擇獎勵，請繼續前進!";
+            Choosen = true;
+        }
+        else
+        {
+            Text.GetComponent<UnityEngine.UI.Text>().text = "請選擇" + AwardNum + "張牌作為獎勵";
+        }
+        CardNum -= 1;
+        ChangePanel();
     }
 }

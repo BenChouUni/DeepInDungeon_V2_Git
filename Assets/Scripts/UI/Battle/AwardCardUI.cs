@@ -18,20 +18,18 @@ public class AwardCardUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
             {
                 Debug.Log(this.GetComponent<CardDisplay>().CardData.id);
                 AwardMainManager.instance.AddCardToDeck(this.GetComponent<CardDisplay>().CardData);
+                this.gameObject.SetActive(false);
             }
         }
-        /*
-        if (AwardMainManager.instance.Choosen)
-        {
-            Destroy(this, 0);
-        }
-        */
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        this.transform.localScale = Vector2.one * ZoomSize;
-        isOn = true;
+        if(AwardMainManager.instance.Choosen == false)
+        {
+            this.transform.localScale = Vector2.one * ZoomSize;
+            isOn = true;
+        }
     }
 
     public void OnPointerExit(PointerEventData eventData)
