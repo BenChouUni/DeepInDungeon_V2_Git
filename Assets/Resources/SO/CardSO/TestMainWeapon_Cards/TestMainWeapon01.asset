@@ -21,3 +21,4 @@ MonoBehaviour:
     - type: 1
       parameter: 4
       target: 0
+      statusType: 0

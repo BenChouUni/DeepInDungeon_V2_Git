@@ -11,7 +11,7 @@ public class AwardMainManager : MonoBehaviour, IDataPersistence
     public Transform Panel;
     public int MainID;
     public int SupportID;
-    public PlayerData Data;
+    public GameData Data;
 
     public int MainCardNum;
     public int SupportCardNum;
@@ -20,7 +20,7 @@ public class AwardMainManager : MonoBehaviour, IDataPersistence
 
     public void LoadData(GameData data)
     {
-        Data = data.playerData;
+        Data = data;
 
     }
     public void SaveData(ref GameData data)
@@ -31,18 +31,16 @@ public class AwardMainManager : MonoBehaviour, IDataPersistence
     void Start()
     {
         SupportCardNum = CardNum - MainCardNum;
-        MainID = Data.MainWeaponData.id;
-        SupportID = Data.SupportWeaponData.id;
+        MainID = Data.playerData.MainWeaponData.id;
+        SupportID = Data.playerData.SupportWeaponData.id;
         Panel.GetComponent<RectTransform>().sizeDelta = new Vector2((CardNum * 300) + (CardNum + 1) * 50f, 500f);
         int[] IDList = new int[CardNum];
         IDList = RandomWeapon(CardNum);
         for(int i = 0; i < CardNum; i++)
         {
-            //Debug.Log(IDList[i]);
             if (IDList[i] == 0)
             {
                 CreateCardOnPanel(RandomCardID(MainID));
-                //RandomCardID(MainID);
             }
             else
             {
@@ -109,23 +107,36 @@ public class AwardMainManager : MonoBehaviour, IDataPersistence
                 break;
             }
         }
-        int randomid = Random.Range(0, weaponcardnum);
-        int ID = id * 100 + randomid;
-        if (GetCardData(ID).initialnum == 0)    //¹LÂoªì©lµP
+        int flag = 1;
+        int randomid;
+        int ID = 0;
+        while (flag == 1)
         {
-            foreach (int item in AwardCardList)    //Á×§K­«½ÆµP
+            randomid = Random.Range(0, weaponcardnum);
+            ID = id * 100 + randomid;
+            if (GetCardData(ID).initialnum == 0)    //¹LÂoªì©lµP
             {
-                if (ID == item)
+                foreach (int item in AwardCardList)    //Á×§K­«½ÆµP
                 {
-                    ID = RandomCardID(id);
+                    if (ID == item)
+                    {
+                        flag = 0;
+                        break;
+                    }
                 }
+
+
             }
-            AwardCardList.Add(ID);
+            if(flag == 1)
+            {
+                break;
+            }
+            else
+            {
+                flag = 1;
+            }
         }
-        else
-        {
-            ID = RandomCardID(id);
-        }
+        AwardCardList.Add(ID);
         return ID;
     }
 

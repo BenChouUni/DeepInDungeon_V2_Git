@@ -1828,12 +1828,14 @@ MonoBehaviour:
       atk: 0
       def: 0
       distance: 0
+      weaponType: 2
     supportWeaponData:
       id: 0
       weaponName: 
       atk: 0
       def: 0
       distance: 0
+      weaponType: 2
     coin: 0
     energy: 3
   Status: {fileID: 1661347450}
@@ -3241,12 +3243,14 @@ MonoBehaviour:
       atk: 0
       def: 0
       distance: 0
+      weaponType: 2
     supportWeaponData:
       id: 0
       weaponName: 
       atk: 0
       def: 0
       distance: 0
+      weaponType: 2
     coin: 0
     energy: 3
 --- !u!1001 &3036414188497874498

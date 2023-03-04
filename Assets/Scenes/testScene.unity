@@ -168,33 +168,40 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CardList: {fileID: 11400000, guid: 22a764cdd78c57649a8531f2e11d0cd5, type: 2}
-  CardPrefab: {fileID: 6232508073499098107, guid: 6e89a30a7165ca648a25045790e82531, type: 3}
+  CardPrefab: {fileID: 1430666258983961823, guid: d7b87551184ba8546bedbdd5682a57f9, type: 3}
   CardNum: 3
   Panel: {fileID: 1491724329}
   MainID: 0
   SupportID: 0
   Data:
-    characterName: no name
-    isDeath: 0
-    maxHp: 50
-    currentHp: 50
-    shield: 0
-    mainWeaponData:
-      id: 0
-      weaponName: 
-      atk: 0
-      def: 0
-      distance: 0
-    supportWeaponData:
-      id: 0
-      weaponName: 
-      atk: 0
-      def: 0
-      distance: 0
-    coin: 0
-    energy: 3
+    weaponary: []
+    playerData:
+      characterName: no name
+      maxHp: 50
+      currentHp: 50
+      shield: 0
+      isDeath: 0
+      mainWeaponData:
+        id: 0
+        weaponName: 
+        atk: 0
+        def: 0
+        distance: 0
+        weaponType: 2
+      supportWeaponData:
+        id: 0
+        weaponName: 
+        atk: 0
+        def: 0
+        distance: 0
+        weaponType: 2
+      coin: 0
+      energy: 3
+    mainWeaponDeck: []
+    supWeaponDeck: []
   MainCardNum: 2
   SupportCardNum: 1
+  AwardCardList: 
 --- !u!1 &378199854
 GameObject:
   m_ObjectHideFlags: 0
