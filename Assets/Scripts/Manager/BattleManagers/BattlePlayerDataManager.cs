@@ -14,8 +14,9 @@ public class BattlePlayerDataManager : MonoSingleton<BattlePlayerDataManager>,ID
     //生成角色資訊
     public Transform Status;
     public GameObject SmallWeaponPrefab;
-    public Transform Canvas;
+    public Transform Panel;
     public GameObject WeaponInformationPrefab;
+    public GameObject Shieldinformation;
 
     private int currentEnergy;
     public int CurrentEnergy
@@ -37,6 +38,18 @@ public class BattlePlayerDataManager : MonoSingleton<BattlePlayerDataManager>,ID
         
         ShowWeaponInformation();
         battleplayerData = (PlayerData)this.playerData.Clone();
+    }
+
+    void Update()
+    {
+        if(battleplayerData.Shield <= 0)
+        {
+            Shieldinformation.SetActive(false);
+        }
+        else
+        {
+            Shieldinformation.SetActive(true);
+        }
     }
 
     public void LoadData(GameData data)
@@ -79,16 +92,16 @@ public class BattlePlayerDataManager : MonoSingleton<BattlePlayerDataManager>,ID
         Debug.Log(playerData.SupportWeaponData.id);
         */
         GameObject SmallMainWeapon;
-        SmallMainWeapon = Instantiate(SmallWeaponPrefab, Canvas, false);
+        SmallMainWeapon = Instantiate(SmallWeaponPrefab, Panel, false);
         SmallMainWeapon.GetComponent<WeaponDisplay>().WeaponData = playerData.MainWeaponData;
         //SmallMainWeapon.transform.position = new Vector3(PlayerStatus.position.x, PlayerStatus.position.y, 0);
-        SmallMainWeapon.transform.position = new Vector3(Canvas.position.x - 620, Canvas.position.y + 330, 0);
+        SmallMainWeapon.transform.position = new Vector3(Panel.position.x - 620, Panel.position.y + 330, 0);
         //Debug.Log(SmallMainWeapon.GetComponent<WeaponDisplay>().WeaponData.id);
 
         GameObject SmallSupportWeapon;
-        SmallSupportWeapon = Instantiate(SmallWeaponPrefab, Canvas, false);
+        SmallSupportWeapon = Instantiate(SmallWeaponPrefab, Panel, false);
         SmallSupportWeapon.GetComponent<WeaponDisplay>().WeaponData = playerData.SupportWeaponData;
-        SmallSupportWeapon.transform.position = new Vector3(Canvas.position.x - 850, Canvas.position.y + 330, 0);
+        SmallSupportWeapon.transform.position = new Vector3(Panel.position.x - 850, Panel.position.y + 330, 0);
     }
     public GameObject CallWeaponInformation(WeaponData data) 
     {
@@ -96,7 +109,7 @@ public class BattlePlayerDataManager : MonoSingleton<BattlePlayerDataManager>,ID
         GameObject WeaponInformation;
         WeaponInformation = Instantiate(WeaponInformationPrefab, Status, false);
         WeaponInformation.GetComponent<WeaponDisplay>().WeaponData = data;
-        WeaponInformation.transform.position = new Vector3(Canvas.position.x, Canvas.position.y, 0);
+        WeaponInformation.transform.position = new Vector3(Panel.position.x, Panel.position.y, 0);
         return WeaponInformation;
     }
     public void RemoveWeaponInformation(GameObject weaponInformation)

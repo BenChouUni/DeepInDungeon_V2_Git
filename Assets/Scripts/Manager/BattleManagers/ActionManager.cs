@@ -33,6 +33,9 @@ public class ActionManager : MonoSingleton<ActionManager>
             case ActionType.Heal:
                 HealAction(character, parameter);
                 break;
+            case ActionType.RealDefend:
+                RealDefendAction(character, parameter);
+                break;
             default:
                 break;
         }
@@ -41,7 +44,6 @@ public class ActionManager : MonoSingleton<ActionManager>
     private void DealDamageAction(Character character, int parameter)
     {
         int damage = parameter + BattleWeaponManager.instance.WeaponAttack();
-
 
         Debug.LogFormat("對{0}造成{1}傷害", character.Name ,damage);
 
@@ -71,7 +73,6 @@ public class ActionManager : MonoSingleton<ActionManager>
         
         CardAction action = new CardAction(ActionType.Defend, def,TargetType.Player);
         UseAction(action);
-        //Debug.Log(battleplayerData.Shield);
         BattlePlayerDataManager.instance.UpdatePlayerStatus();
     }
 
@@ -86,6 +87,23 @@ public class ActionManager : MonoSingleton<ActionManager>
         Debug.LogFormat("{1}回{0}血", num,character.Name);
         character.RestoreHealth(num);
     }
+
+    private void RealDefendAction(Character character, int parameter)
+    {
+
+        int shield = parameter;
+
+        Debug.LogFormat("{0}獲得{1}護盾", character.Name, shield);
+        character.AddShield(shield);
+    }
+    public void TestRealDefend(int def)
+    {
+
+        CardAction action = new CardAction(ActionType.RealDefend, def, TargetType.Enemy);
+        UseAction(action);
+        EnemyManager.instance.UpdateEnemyStatus();
+    }
+
     private Character GetCharacter(TargetType type)
     {
         if (type == TargetType.Player)

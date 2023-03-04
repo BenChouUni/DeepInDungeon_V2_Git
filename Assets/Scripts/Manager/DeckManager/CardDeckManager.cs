@@ -2,24 +2,45 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CardDeckManager : MonoBehaviour
+public class CardDeckManager : MonoBehaviour, IDataPersistence
 {
+    public List<CardData> mainDeck;
+    public List<CardData> supDeck;
     public CardDataBase CardList;
     public GameObject CardPrefab;
     public Transform CardShowListPanel;
-    public RectTransform Panel;
+    //public RectTransform Panel;
+    public GameObject DeckDisplay;
+
+    public void LoadData(GameData data)
+    {
+        this.mainDeck = data.mainWeaponDeck;
+        this.supDeck = data.supWeaponDeck;
+
+    }
+    public void SaveData(ref GameData data)
+    {
+
+    }
 
     void Start()
     {
-
-        foreach (CardSO item in CardList.cardList)
+        foreach (CardData item in mainDeck)
         {
-            CreateCardOnPanel(item.cardData.id);
+            Debug.Log("start");
+            Debug.Log(item.id);
+            CreateCardOnPanel(item);
+        }
+
+        foreach (CardData item in supDeck)
+        {
+            Debug.Log(item.id);
+            CreateCardOnPanel(item);
         }
     }
-    public void CreateCardOnPanel(int id)
+    public void CreateCardOnPanel(CardData cardData)
     {
-        CardData cardData = GetCardData(id);
+        Debug.Log("haha");
         GameObject new_card;
 
         if (cardData != null)
@@ -40,4 +61,13 @@ public class CardDeckManager : MonoBehaviour
         return null;
     }
 
+    public void ShowDeck()
+    {
+        DeckDisplay.SetActive(true);
+    }
+
+    public void CloseDeck()
+    {
+        DeckDisplay.SetActive(false);
+    }
 }

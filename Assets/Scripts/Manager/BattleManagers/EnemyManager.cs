@@ -9,6 +9,8 @@ public class EnemyManager : MonoSingleton<EnemyManager>
     //UIShow
     public Text enemyName;
     public HealthBar enemyHealthBar;
+    public Text enemyShield;
+    public GameObject Shieldinformation;
 
     private void Awake()
     {
@@ -21,16 +23,30 @@ public class EnemyManager : MonoSingleton<EnemyManager>
     {
         ShowEnemy();
     }
+
+    
+    void Update()
+    {
+        if (enemyData.Shield <= 0)
+        {
+            Shieldinformation.SetActive(false);
+        }
+        else
+        {
+            Shieldinformation.SetActive(true);
+        }
+    }
     private void ShowEnemy()
     {
         enemyName.text = enemyData.Name;
         enemyHealthBar.SetMaxHealth(enemyData.MaxHp);
         enemyHealthBar.SetHealth(enemyData.CurrentHp);
+        enemyShield.text = (enemyData.Shield).ToString();
     }
     public void UpdateEnemyStatus()
     {
         ShowEnemy();
-
     }
+
 
 }

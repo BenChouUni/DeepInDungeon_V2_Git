@@ -12,6 +12,7 @@ public enum ActionType
     DrawCard,
     Heal,
     Give,
+    RealDefend,
 }
 [Serializable]
 public class CardAction 
