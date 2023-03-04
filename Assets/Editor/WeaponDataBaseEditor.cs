@@ -2,64 +2,75 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
-//using System.IO;
-//using UnityEditor.VersionControl;
+using System.IO;
+using UnityEditor.VersionControl;
 
 [CustomEditor(typeof(WeaponDataBase))]
 public class WeaponDataBaseEditor : Editor
 {
     public override void OnInspectorGUI()
     {
-        base.OnInspectorGUI();
-        WeaponDataBase weaponDataBase = (WeaponDataBase)target;
-        List<WeaponData> list = new List<WeaponData>();
 
-        foreach (WeaponSO item in weaponDataBase.weaponDataList)
+        if (GUILayout.Button("ReFlush"))
         {
-            
-            if (item == null)
+            foreach (WeaponSO item in Resources.LoadAll<WeaponSO>(""))
             {
-                continue;
+                ((WeaponDataBase)target).weaponDataList.Add(item);
             }
-            list.Add(item.weaponData);
+            
+            EditorUtility.SetDirty(target);
         }
+        base.OnInspectorGUI();
+
+
+        //WeaponDataBase weaponDataBase = (WeaponDataBase)target;
+        //List<WeaponData> list = new List<WeaponData>();
+
+        //foreach (WeaponSO item in weaponDataBase.weaponDataList)
+        //{
+        //    if (item == null)
+        //    {
+        //        continue;
+        //    }
+        //    list.Add(item.weaponData);
+        //}
 
         
 
-        for (int i = 0; i < list.Count; i++)
-        {
-            CreateWeaponDataRow(list, i);
-        }
+        //for (int i = 0; i < list.Count; i++)
+        //{
+        //    CreateWeaponDataRow(list, i);
+        //}
 
-        EditorGUILayout.Space();
+        //EditorGUILayout.Space();
 
-        if (GUILayout.Button("Add New WeaponSO"))
-        {
-            WeaponSO so = CreateWeaponSOAsset();
-            weaponDataBase.weaponDataList.Add(so);
-            Repaint();
-        }
+        //if (GUILayout.Button("Add New WeaponSO"))
+        //{
+        //    WeaponSO so = CreateWeaponSOAsset();
+        //    weaponDataBase.weaponDataList.Add(so);
+        //    Repaint();
+        //}
 
-        if (GUILayout.Button("Save Name"))
-        {
-            foreach (WeaponSO item in weaponDataBase.weaponDataList)
-            {
-                SaveName(item);
-                EditorUtility.SetDirty(item);
+        //if (GUILayout.Button("Save Name"))
+        //{
+        //    foreach (WeaponSO item in weaponDataBase.weaponDataList)
+        //    {
+        //        SaveName(item);
+        //        EditorUtility.SetDirty(item);
                 
-            }
-            AssetDatabase.SaveAssets();
+        //    }
+        //    AssetDatabase.SaveAssets();
 
-        }
-        if (GUILayout.Button("Save"))
-        {
-            foreach (WeaponSO item in weaponDataBase.weaponDataList)
-            {
-                EditorUtility.SetDirty(item);
+        //}
+        //if (GUILayout.Button("Save"))
+        //{
+        //    foreach (WeaponSO item in weaponDataBase.weaponDataList)
+        //    {
+        //        EditorUtility.SetDirty(item);
                 
-            }
-            AssetDatabase.SaveAssets();
-        }
+        //    }
+        //    AssetDatabase.SaveAssets();
+        //}
     }
 
     private static void SaveName(WeaponSO item)
@@ -123,7 +134,7 @@ public class WeaponDataBaseEditor : Editor
             return;
         }*/
 
-        string path = "Assets/Resources/SO/WeaponSO/NewWeaponSO.asset";
+        string path = "Assets/SO/WeaponSO/NewWeaponSO.asset";
 
         AssetDatabase.CreateAsset(asset, path);
         AssetDatabase.SaveAssets();
