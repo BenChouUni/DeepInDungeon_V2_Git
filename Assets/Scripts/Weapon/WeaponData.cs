@@ -5,7 +5,7 @@ using UnityEngine;
 [System.Serializable]
 public enum WeaponType
 {
-    Main,Support,Both,TwoHand
+    Main,Support,Both,//TwoHand
 }
 
 [System.Serializable]

@@ -15,6 +15,7 @@ public class WeaponaryMainManager : MonoSingleton<WeaponaryMainManager>
     public Transform weaponListPanel;//drop地方跟回去parent不一樣
     private WeaponDropZoneType DropZoneFrom;
     //drag
+    [SerializeField]
     private GameObject OnDragGO;
     public bool isDrag; //是否正有東西被拖拽
 
@@ -37,14 +38,14 @@ public class WeaponaryMainManager : MonoSingleton<WeaponaryMainManager>
         {
             WeaponData data = playerData.MainWeaponData;
             GameObject weaponObj = FindWeaponOnList(data.id);
-            PutInDropZone(mainWeaponDropZone, WeaponDropZoneType.MainWeapon, data, WeaponDropZoneType.InList, weaponObj);
+            PutInDropZone(mainWeaponDropZone, data, WeaponDropZoneType.InList, weaponObj);
         }
 
         if (playerData.SupportWeaponData.weaponName != "")
         {
             WeaponData data = playerData.SupportWeaponData;
             GameObject weaponObj = FindWeaponOnList(data.id);
-            PutInDropZone(supportWeaponDropZone, WeaponDropZoneType.SupportWeapon, data, WeaponDropZoneType.InList, weaponObj);
+            PutInDropZone(supportWeaponDropZone, data, WeaponDropZoneType.InList, weaponObj);
         }
         
         Debug.Log("ShowPlayerData");
@@ -73,6 +74,7 @@ public class WeaponaryMainManager : MonoSingleton<WeaponaryMainManager>
     public void EndDrag()
     {
         isDrag = false;
+        this.OnDragGO = null;
         
     }
     /// <summary>
@@ -81,9 +83,7 @@ public class WeaponaryMainManager : MonoSingleton<WeaponaryMainManager>
     /// <param name="dropZone"></param>
     public void WeaponDropRequest(WeaponDropZone dropZone)
     {
-        //dropzone的類型
-        WeaponDropZoneType type = dropZone.dropZoneType;
-
+        
         //check if weapon確認是否是武器
         if (OnDragGO.TryGetComponent(out WeaponDisplay weaponDisplay) == false)
         {
@@ -91,100 +91,163 @@ public class WeaponaryMainManager : MonoSingleton<WeaponaryMainManager>
         }
         //放入武器物件事的基本資料跟類型，由Ondrag來決定
         WeaponData data = OnDragGO.GetComponent<WeaponDisplay>().WeaponData;
-
         //新來武器原先所在的dropzone
         WeaponDropZoneType typeFrom = OnDragGO.GetComponent<DragCard>().currentDropZoneType;
+
         //要放入的GO
         GameObject putInWeapon = OnDragGO;
-        PutInDropZone(dropZone, type, data, typeFrom, putInWeapon);
+        //放入
+        PutInDropZone(dropZone, data, typeFrom, putInWeapon);
     }
 
     
-
-    private void PutInDropZone(WeaponDropZone dropZone, WeaponDropZoneType type, WeaponData data, WeaponDropZoneType typeFrom, GameObject putInWeapon)
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="dropZone">放置區域本身</param>
+    /// <param name="data">武器資料</param>
+    /// <param name="typeFrom">從哪塊區域來</param>
+    /// <param name="putInWeapon">武器物件</param>
+    private void PutInDropZone(WeaponDropZone dropZone, WeaponData data, WeaponDropZoneType typeFrom, GameObject putInWeapon)
     {
+        //dropzone的類型
+        WeaponDropZoneType zoneType = dropZone.dropZoneType;
+        //武器類型
+        WeaponType weaponType = data.weaponType;
+
         //如果同處放下則不致行
-        if (typeFrom == type)
+        if (typeFrom == zoneType)
         {
             Debug.Log("原地放下");
             return;
         }
 
+        //判斷武器類型跟放置區域的關係
+        if (!IsWeaponFitZone(weaponType,zoneType))
+        {
+            Debug.Log("武器不能放置在此區域");
+            return;
+        }
+
         //如果放入武器庫
-        if (type == WeaponDropZoneType.InList)
+        if (zoneType == WeaponDropZoneType.InList)
         {
             Debug.Log("放入武器庫");
             dropZone.PutInWeapon(putInWeapon, weaponListPanel);
             //移除原先武器所在位置的資料
 
 
-            PlayerDataManager.instance.RemoveWeapon(typeFrom);
-            DeckManager.instance.RemoveCardsByType(typeFrom);
+            //PlayerDataManager.instance.RemoveWeapon(typeFrom);
+            //DeckManager.instance.RemoveCardsByType(typeFrom);
             ReleaseDropZone(typeFrom);
 
         }
         else //如果放入主武器輔助武器區域
         {
-            //如果區域上面是滿的
-            if (dropZone.isFull)
+            PutInHands(dropZone, zoneType, data, typeFrom, putInWeapon);
+        }
+    }
+
+    /// <summary>
+    /// 放入手中
+    /// </summary>
+    /// <param name="dropZone"></param>
+    /// <param name="type"></param>
+    /// <param name="data"></param>
+    /// <param name="typeFrom"></param>
+    /// <param name="putInWeapon"></param>
+    private void PutInHands(WeaponDropZone dropZone, WeaponDropZoneType type, WeaponData data, WeaponDropZoneType typeFrom, GameObject putInWeapon)
+    {
+        //如果區域上面是滿的
+        if (dropZone.isFull)
+        {
+            
+            //將上面武器卡牌物件跟新來卡牌的dropzone區域交換
+            WeaponDropZone ExchangeZone = GetDropZoneByType(typeFrom);//交換要去的dropzone
+
+            //原本在此dropzone上的物件
+            GameObject weaponOn = dropZone.GetWeaponOn();
+            //要被交換的武器資料
+             WeaponData exchangeWeaponData = weaponOn.GetComponent<WeaponDisplay>().WeaponData;
+            //一定會先移除佔位的武器，看要放哪
+            ReleaseDropZone(typeFrom);
+            //DeckManager.instance.RemoveCardsByType(type);
+
+            Debug.LogFormat("上面是滿的有{0}", exchangeWeaponData.weaponName);
+
+            //跟上方的武器庫交換
+            if (typeFrom == WeaponDropZoneType.InList)
             {
-                Debug.Log("上面是滿的");
-                //將上面武器卡牌物件跟新來卡牌的dropzone區域交換
-                WeaponDropZone ExchangeZone = GetDropZoneByType(typeFrom);//交換要去的dropzone
+                Debug.LogFormat("把{0}送回list",exchangeWeaponData.weaponName);
+                ExchangeZone.PutInWeapon(weaponOn, weaponListPanel);//
 
-                //原本在此dropzone上的物件
-                GameObject weaponOn = dropZone.weaponOn[0];
-                dropZone.weaponOn.RemoveAt(0);
-                DeckManager.instance.RemoveCardsByType(type);
-
-                //跟上方的武器庫交換
-                if (typeFrom == WeaponDropZoneType.InList)
-                {
-                    
-                    ExchangeZone.PutInWeapon(weaponOn, weaponListPanel);//
-
-                }
-                else //左右交換
+            }
+            else //左右交換
+            {
+                
+                
+                //檢測能否交換
+                if (IsWeaponFitZone(exchangeWeaponData.weaponType, typeFrom))
                 {
                     Debug.Log("左右交換");
-                    WeaponData weaponData = weaponOn.GetComponent<WeaponDisplay>().WeaponData;
                     ExchangeZone.PutInWeapon(weaponOn);
-                    
-                    PlayerDataManager.instance.SetWeapon(typeFrom, weaponData);
-                    CreateDeckByWeapon(weaponData.id, typeFrom);
+
+                    PlayerDataManager.instance.SetWeapon(typeFrom, exchangeWeaponData);
+                    CreateDeckByWeapon(exchangeWeaponData.id, typeFrom);
 
                 }
-
+                else
+                {
+                    Debug.Log("不能左右交換");
+                    //原本武器回去list
+                    weaponList.PutInWeapon(weaponOn, weaponListPanel);
+                }
 
             }
-            else if (typeFrom != WeaponDropZoneType.InList)//若從主副武器區地方放入但上面是空的
-            {
-                Debug.Log("從主副武器區地方放入但上面是空的");
-                PlayerDataManager.instance.RemoveWeapon(typeFrom);
-                DeckManager.instance.RemoveCardsByType(typeFrom);
-                ReleaseDropZone(typeFrom);
-            }
-            dropZone.PutInWeapon(putInWeapon);
-            CreateDeckByWeapon(data.id, type);
-            PlayerDataManager.instance.SetWeapon(type, data);
-            dropZone.isFull = true;
+
+
         }
+        else if (typeFrom != WeaponDropZoneType.InList)//若從主副武器區地方放入但上面是空的
+        {
+            Debug.Log("從主副武器區地方放入但上面是空的");
+            PlayerDataManager.instance.RemoveWeapon(typeFrom);
+            DeckManager.instance.RemoveCardsByType(typeFrom);
+            ReleaseDropZone(typeFrom);
+        }
+        dropZone.PutInWeapon(putInWeapon);
+        CreateDeckByWeapon(data.id, type);
+        PlayerDataManager.instance.SetWeapon(type, data);
+        //dropZone.isFull = true;
     }
-    //將dropzone當中的fulle改成false
+
+
+    
     private void ReleaseDropZone(WeaponDropZoneType type)
     {
-        switch (type)
+        
+        if (type != WeaponDropZoneType.InList)
         {
-            case WeaponDropZoneType.InList:
-                return;
-            case WeaponDropZoneType.MainWeapon:
+            if (type == WeaponDropZoneType.MainWeapon)
+            {
+                mainWeaponDropZone.RemoveWeaponOn();
                 mainWeaponDropZone.isFull = false;
-                return;
-            case WeaponDropZoneType.SupportWeapon:
+            }
+            else if (type == WeaponDropZoneType.SupportWeapon)
+            {
+                supportWeaponDropZone.RemoveWeaponOn();
                 supportWeaponDropZone.isFull = false;
-                return;
+            }
+
+            PlayerDataManager.instance.RemoveWeapon(type);
+            DeckManager.instance.RemoveCardsByType(type);
+        }
+        else
+        {
+            Debug.Log("武器庫被釋放，可能有問題");
+            
         }
     }
+
     private GameObject FindWeaponOnList(int weaponID)
     {
         foreach (Transform item in weaponListPanel)
@@ -239,6 +302,31 @@ public class WeaponaryMainManager : MonoSingleton<WeaponaryMainManager>
                 return supportWeaponDropZone;
             default:
                 return null;
+        }
+    }
+
+    //判斷武器類型跟放置區域的關係
+    private bool IsWeaponFitZone(WeaponType weaponType,WeaponDropZoneType zoneType)
+    {
+        if (weaponType == WeaponType.Both || zoneType == WeaponDropZoneType.InList)
+        {
+            return true;
+        }
+        else if (weaponType == WeaponType.Main)
+        {
+            if (zoneType == WeaponDropZoneType.SupportWeapon)
+            {
+                return false;
+            }
+            else return true;
+        }
+        else 
+        {
+            if (zoneType == WeaponDropZoneType.MainWeapon)
+            {
+                return false;
+            }
+            else return true;
         }
     }
 }

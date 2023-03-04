@@ -9,7 +9,11 @@ public enum WeaponDropZoneType
 }
 public class WeaponDropZone : MonoBehaviour, IDropHandler
 {
-    public List<GameObject> weaponOn; //在此dropzone的武器
+    //在此dropzone的武器 之所以用list是因為包含上面的全武器庫
+    [SerializeField]
+    private List<GameObject> weaponOn;
+   
+    
     public bool isFull;
     [SerializeField]
     public WeaponDropZoneType dropZoneType;
@@ -17,6 +21,7 @@ public class WeaponDropZone : MonoBehaviour, IDropHandler
     public void OnDrop(PointerEventData eventData)
     {
         //Debug.Log("DropNow");
+        //拖拽scroll bar 也會觸發
         WeaponaryMainManager.instance.WeaponDropRequest(this);
     }
 
@@ -28,11 +33,17 @@ public class WeaponDropZone : MonoBehaviour, IDropHandler
         GO.transform.SetParent(this.transform);
         dragCard.parentReturnTo = this.transform;
         dragCard.currentDropZoneType = this.dropZoneType;
+        //如果是武器區則最多有一個weaponOn
+        if (this.dropZoneType!=WeaponDropZoneType.InList)
+        {
+            if (weaponOn.Count != 0)
+            {
+                this.weaponOn.Clear();
+            }
+        }
         this.weaponOn.Add(GO);
         isFull = true;
-        /*
-        WeaponData data = OnDragGO.GetComponent<WeaponDisplay>().WeaponData;
-        PlayerDataManager.instance.SetWeapon(type, data);*/
+       
 
     }
     /// <summary>
@@ -66,5 +77,22 @@ public class WeaponDropZone : MonoBehaviour, IDropHandler
     public void SetZoneType(WeaponDropZoneType type)
     {
         dropZoneType = type;
+    }
+    /// <summary>
+    /// 取第一個
+    /// </summary>
+    /// <returns></returns>
+    public GameObject GetWeaponOn()
+    {
+        return weaponOn[0];
+    }
+    public GameObject GetWeaponOn(int index)
+    {
+        return weaponOn[index];
+    }
+
+    public void RemoveWeaponOn()
+    {
+        weaponOn.RemoveAt(0);
     }
 }
