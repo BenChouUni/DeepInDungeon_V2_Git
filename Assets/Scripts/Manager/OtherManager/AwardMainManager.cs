@@ -1,9 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using UnityEngine;
 
-public class AwardMainManager : MonoBehaviour, IDataPersistence
+public class AwardMainManager : MonoSingleton<AwardMainManager>, IDataPersistence
 {
     public CardDataBase CardList;
     public GameObject CardPrefab;
@@ -17,6 +18,8 @@ public class AwardMainManager : MonoBehaviour, IDataPersistence
     public int SupportCardNum;
 
     public List<int> AwardCardList= new List<int>();
+
+    public bool Choosen = false;
 
     public void LoadData(GameData data)
     {
@@ -124,16 +127,14 @@ public class AwardMainManager : MonoBehaviour, IDataPersistence
                         break;
                     }
                 }
-
-
-            }
-            if(flag == 1)
-            {
-                break;
-            }
-            else
-            {
-                flag = 1;
+                if (flag == 1)
+                {
+                    break;
+                }
+                else
+                {
+                    flag = 1;
+                }
             }
         }
         AwardCardList.Add(ID);
@@ -162,5 +163,21 @@ public class AwardMainManager : MonoBehaviour, IDataPersistence
             }
         }
         return null;
+    }
+
+
+    public void AddCardToDeck(CardData _carddata)
+    {
+        if (Data.playerData.MainWeaponData.id == (_carddata.id / 100))
+        {
+
+            Data.mainWeaponDeck.Add(_carddata);
+        }
+        else
+        {
+            Data.supWeaponDeck.Add(_carddata);
+        }
+        Choosen = true;
+
     }
 }

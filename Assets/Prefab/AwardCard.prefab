@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2160994914795986096}
   - component: {fileID: 3424631294776497421}
   - component: {fileID: 9146497926081747215}
+  - component: {fileID: 1174554652167393900}
   m_Layer: 5
   m_Name: AwardCard
   m_TagString: Untagged
@@ -94,6 +95,19 @@ MonoBehaviour:
   cost_text: {fileID: 6514911184673365179}
   initialnum_text: {fileID: 0}
   description_text: {fileID: 293945219571359688}
+--- !u!114 &1174554652167393900
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1430666258983961823}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ced5c36a28e84b42b67497fbf5ebbd0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ZoomSize: 1.2
 --- !u!1 &1958890021122064611
 GameObject:
   m_ObjectHideFlags: 0
