@@ -27,20 +27,16 @@ public class CardDeckManager : MonoBehaviour, IDataPersistence
     {
         foreach (CardData item in mainDeck)
         {
-            Debug.Log("start");
-            Debug.Log(item.id);
             CreateCardOnPanel(item);
         }
 
         foreach (CardData item in supDeck)
         {
-            Debug.Log(item.id);
             CreateCardOnPanel(item);
         }
     }
     public void CreateCardOnPanel(CardData cardData)
     {
-        Debug.Log("haha");
         GameObject new_card;
 
         if (cardData != null)

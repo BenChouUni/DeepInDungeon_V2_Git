@@ -18,7 +18,7 @@ MonoBehaviour:
     cost: 1
     initialnum: 0
     cardAction:
-    - type: 1
+    - type: 5
       parameter: 4
       target: 0
       statusType: 0
