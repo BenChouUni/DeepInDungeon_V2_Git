@@ -16,21 +16,11 @@ public class HandCardUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     public void OnPointerEnter(PointerEventData eventData)
     {
         //Debug.Log("OnPointer");
-        /*
-        Vector3 move = this.transform.position;
-        move = new Vector3(move.x, move.y + UP, move.z);
-        this.transform.position = move;
-        */
         CardsLayoutManager.instance.Disperse(this.transform.position);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        /*
-        Vector3 move = this.transform.position;
-        move = new Vector3(move.x, move.y - UP, move.z);
-        this.transform.position = move;
-        */
         CardsLayoutManager.instance.Gather(this.transform.position);
     }
 }

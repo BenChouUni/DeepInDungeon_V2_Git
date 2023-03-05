@@ -18,7 +18,6 @@ public class BattleCardDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
     public void OnBeginDrag(PointerEventData eventData)
     {
         parentReturnTo = this.transform.parent;
-        
 
         battleMainManager.StartDrag(this.gameObject);
         TurnRaycastBlock(false);
@@ -27,6 +26,7 @@ public class BattleCardDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
     public void OnDrag(PointerEventData eventData)
     {
         this.transform.position = eventData.position;
+        this.transform.rotation = (Quaternion.Euler(0f, 0f, 0f));
     }
 
     public void OnEndDrag(PointerEventData eventData)
