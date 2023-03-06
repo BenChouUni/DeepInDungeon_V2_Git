@@ -28,6 +28,7 @@ public class CardsLayoutManager : MonoSingleton<CardsLayoutManager>
     public bool Dispersenow = false;
     public bool Gathernow = false;
     public int Nowpointer;
+    public int CardGoBack = 0;
 
     void Update()
     {
@@ -37,9 +38,10 @@ public class CardsLayoutManager : MonoSingleton<CardsLayoutManager>
             if (HandCardList[i].GetComponent<CardMoveUI>().moving)
             {
                 stillmoving = true;
+                break;
             }
         }
-        if (stillmoving)
+        if (stillmoving && CardGoBack == 0)
         {
             CanInPointer = false;
         }
