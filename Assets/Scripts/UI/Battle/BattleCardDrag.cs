@@ -19,36 +19,48 @@ public class BattleCardDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        parentReturnTo = this.transform.parent;
+        if (!DropGoBack)
+        {
+            parentReturnTo = this.transform.parent;
 
-        battleMainManager.StartDrag(this.gameObject);
-        TurnRaycastBlock(false);
+            battleMainManager.StartDrag(this.gameObject);
+            TurnRaycastBlock(false);
 
-        CardsLayoutManager.instance.CanInPointer = false;
-        this.GetComponent<CardMoveUI>().bedragging = false;
+            CardsLayoutManager.instance.CanInPointer = false;
+            CardsLayoutManager.instance.Nowdragging = true;
+            this.GetComponent<CardMoveUI>().bedragging = false;
+        }
     }
 
     public void OnDrag(PointerEventData eventData)
     {
-        this.transform.position = eventData.position;
-        this.transform.rotation = (Quaternion.Euler(0f, 0f, 0f));
+        if (!DropGoBack)
+        {
+            this.transform.position = eventData.position;
+            this.transform.rotation = (Quaternion.Euler(0f, 0f, 0f));
 
-        CardsLayoutManager.instance.CanInPointer = false;
-        this.GetComponent<CardMoveUI>().bedragging= true;
+            CardsLayoutManager.instance.CanInPointer = false;
+            CardsLayoutManager.instance.Nowdragging = true;
+            this.GetComponent<CardMoveUI>().bedragging = true;
+        }
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        battleMainManager.EndDrag();
-        this.transform.SetParent(parentReturnTo);
-        
+        if (!DropGoBack)
+        {
+            battleMainManager.EndDrag();
+            this.transform.SetParent(parentReturnTo);
 
-        TurnRaycastBlock(true);
 
-        CardsLayoutManager.instance.CanInPointer = true;
-        this.GetComponent<CardMoveUI>().bedragging = false;
-        CardsLayoutManager.instance.CardGoBack ++;
-        DropGoBack = true;
+            TurnRaycastBlock(true);
+
+            CardsLayoutManager.instance.CanInPointer = true;
+            this.GetComponent<CardMoveUI>().bedragging = false;
+            CardsLayoutManager.instance.CardGoBack++;
+            CardsLayoutManager.instance.Nowdragging = false;
+            DropGoBack = true;
+        }
     }
 
     private void TurnRaycastBlock(bool value)

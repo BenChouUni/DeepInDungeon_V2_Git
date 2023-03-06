@@ -110,6 +110,7 @@ public class BattleMainManager : MonoSingleton<BattleMainManager>
         {
             
             UseCard();
+            CardsLayoutManager.instance.Nowdragging = false;
             cardsLayoutManager.SetLayout();
         }
     }

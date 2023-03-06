@@ -16,7 +16,7 @@ public class HandCardUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     public void OnPointerEnter(PointerEventData eventData)
     {
         //Debug.Log("OnPointer");
-        if (!this.GetComponent<BattleCardDrag>().DropGoBack)
+        if (!this.GetComponent<BattleCardDrag>().DropGoBack && !CardsLayoutManager.instance.Nowdragging)
         {
             if (CardsLayoutManager.instance.CanInPointer)
             {
@@ -32,7 +32,7 @@ public class HandCardUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     public void OnPointerExit(PointerEventData eventData)
     {
         //Debug.Log("Exit");
-        if (!this.GetComponent<BattleCardDrag>().DropGoBack)
+        if (!this.GetComponent<BattleCardDrag>().DropGoBack && !CardsLayoutManager.instance.Nowdragging)
         {
             if (CardsLayoutManager.instance.CanInPointer || CardsLayoutManager.instance.Dispersenow )
             {

@@ -29,6 +29,7 @@ public class CardsLayoutManager : MonoSingleton<CardsLayoutManager>
     public bool Gathernow = false;
     public int Nowpointer;
     public int CardGoBack = 0;
+    public bool Nowdragging = false;
 
     void Update()
     {
