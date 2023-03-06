@@ -24,17 +24,31 @@ public class CardsLayoutManager : MonoSingleton<CardsLayoutManager>
     public bool moving = false;
     public float timer = 0f;
     public float alltimer = 0f;
+    public bool CanInPointer = true;
+    public bool Dispersenow = false;
+    public bool Gathernow = false;
+    public int Nowpointer;
 
     void Update()
     {
-        /*
-        if (moving)
+        bool stillmoving = false;
+        for(int i = 0; i < HandCardList.Count; i++)
         {
-            alltimer += Time.deltaTime;
-            timer += Time.deltaTime;
-            Debug.Log("update");
+            if (HandCardList[i].GetComponent<CardMoveUI>().moving)
+            {
+                stillmoving = true;
+            }
         }
-        */
+        if (stillmoving)
+        {
+            CanInPointer = false;
+        }
+        else
+        {
+            CanInPointer = true;
+            Dispersenow = false;
+            Gathernow = false;
+        }
     }
 
     public void AddHandCard(Transform handCard)
@@ -56,6 +70,7 @@ public class CardsLayoutManager : MonoSingleton<CardsLayoutManager>
 
     public void SetLayout()
     {
+        //Debug.Log("SetLayout");
         if (HandCardList.Count > 1)
         {
             SetCircleLayout();
@@ -89,47 +104,11 @@ public class CardsLayoutManager : MonoSingleton<CardsLayoutManager>
             TargetPosition.Add(new Vector3(Mathf.Cos(angle) * radius + 960f, Mathf.Sin(angle) * radius - radius + 150f, 1f));
 
             TargetRotation.Add(Quaternion.Euler(0f, 0f, Mathf.Lerp(8f, -8f, i / (HandCardList.Count - 1f))));
+
             HandCardList[i].GetComponent<CardMoveUI>().moving = true;
             HandCardList[i].GetComponent<CardMoveUI>().Destination = TargetPosition[i];
-
-            /*
-            for(float t = 0f ; t < 1f ; t += Time.deltaTime)
-            {
-                HandCardList[i].position = new Vector3(Mathf.Lerp(HandCardList[i].position.x, TargetPosition[i].x, Speed * Time.deltaTime), Mathf.Lerp(HandCardList[i].position.y, TargetPosition[i].y, Speed * Time.deltaTime), 0);
-                Debug.Log(Time.deltaTime);
-            }
-            */
-
-            while (moving)
-            {
-                timer = 0f;
-                moving = false;
-                /*
-                if (alltimer >= 0.001f)
-                {
-                    HandCardList[i].position = TargetPosition[i];
-                    moving = false;
-                    alltimer = 0f;
-                }
-                */
-                /*
-                else
-                {
-                    if (timer != 0)
-                    {
-                        HandCardList[i].position = new Vector3(Mathf.Lerp(HandCardList[i].position.x, TargetPosition[i].x, Speed * Time.deltaTime), Mathf.Lerp(HandCardList[i].position.y, TargetPosition[i].y, Speed * Time.deltaTime), 0);
-                        timer = 0;
-                    }
-                    if (HandCardList[i].position.x - TargetPosition[i].x <= 100f)
-                    {
-                        HandCardList[i].position = TargetPosition[i];
-                        moving = false;
-                    }
-                }
-                */
-
-            }
             
+
             //HandCardList[i].position = TargetPosition[i];
             HandCardList[i].rotation = TargetRotation[i];
         }
@@ -165,18 +144,55 @@ public class CardsLayoutManager : MonoSingleton<CardsLayoutManager>
     /// 手牌散開
     /// </summary>
     /// <param name="move">當前卡牌位置</param>
+    
+    
     public void Disperse(Vector3 move)   
     {
+        //Debug.Log("Disperse");
+        Dispersenow = true;
         int pos = 0;
         //先尋找位置
-        for (int i = 0; i < HandCardList.Count; i++)
+        //若是牌在執行Gather時，會找不到位置
+        if (Gathernow)
         {
-            if (TargetPosition[i].x == move.x)
+            //判斷鼠標示向左還是向右
+            if (move.x - HandCardList[Nowpointer].position.x >= 0)
             {
-                pos = i;
-                break;
+                for (int i = Nowpointer; i < HandCardList.Count; i++)
+                {
+                    if (Mathf.Abs(TargetPosition[i].x - move.x) <= DisperseRadius)
+                    {
+                        pos = i;
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                for (int i = Nowpointer; i >= 0; i--)
+                {
+                    if (Mathf.Abs(TargetPosition[i].x - move.x) <= DisperseRadius)
+                    {
+                        pos = i;
+                        break;
+                    }
+                }
+            }
+            Gathernow = false;
+        }
+        else
+        {
+            for (int i = 0; i < HandCardList.Count; i++)
+            {
+                if (TargetPosition[i].x == move.x)
+                {
+                    pos = i;
+                    break;
+                }
             }
         }
+        Nowpointer = pos;
+        //Debug.Log(pos);
         for (int i = pos - 2; i <= pos + 2; i++)
         {
             if (i >= 0 && i < HandCardList.Count && i != pos)
@@ -189,8 +205,11 @@ public class CardsLayoutManager : MonoSingleton<CardsLayoutManager>
             }
             else if (i == pos)
             {
+                
                 HandCardList[i].GetComponent<CardMoveUI>().moving = true;
-                HandCardList[i].GetComponent<CardMoveUI>().Destination = new Vector3(move.x, 250f, 1f);
+                HandCardList[i].GetComponent<CardMoveUI>().Destination = new Vector3(TargetPosition[i].x, 250f, 1f);
+                
+                //HandCardList[i].position= new Vector3(TargetPosition[i].x, 250f, 1f);
                 HandCardList[i].rotation = (Quaternion.Euler(0f, 0f, 0f));
 
             }
@@ -204,30 +223,32 @@ public class CardsLayoutManager : MonoSingleton<CardsLayoutManager>
     /// <param name="move"></param>
     public void Gather(Vector3 move)
     {
+        //Debug.Log("Gather");
+        Gathernow = true;
+        Dispersenow = false;
         int pos = 0;
         //先尋找位置
-        for (int i = 0; i < HandCardList.Count; i++)
-        {
-            if (TargetPosition[i].x == move.x)
-            {
-                pos = i;
-                break;
-            }
-        }
+        pos = Nowpointer;    //最後離開的位置即為收攏的中間那張牌
+        //Debug.Log(pos);
+
         //移動左右各兩張卡片
         for (int i = pos - 2; i <= pos + 2; i++)
         {
             if (i >= 0 && i < HandCardList.Count && i != pos)
             {
-                HandCardList[i].GetComponent<CardMoveUI>().moving = false;
+                
+                HandCardList[i].GetComponent<CardMoveUI>().moving = true;
                 HandCardList[i].GetComponent<CardMoveUI>().Destination = TargetPosition[i];
-                HandCardList[i].position = TargetPosition[i];
+                
+                //HandCardList[i].position = TargetPosition[i];
             }
             else if (i == pos)
             {
-                HandCardList[i].GetComponent<CardMoveUI>().moving = false;
+                
+                HandCardList[i].GetComponent<CardMoveUI>().moving = true;
                 HandCardList[i].GetComponent<CardMoveUI>().Destination = TargetPosition[i];
-                HandCardList[i].position = TargetPosition[i];
+                
+                //HandCardList[i].position = TargetPosition[i];
                 HandCardList[i].rotation = TargetRotation[i];
             }
         }

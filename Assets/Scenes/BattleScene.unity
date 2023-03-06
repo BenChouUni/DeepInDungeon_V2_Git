@@ -1200,6 +1200,10 @@ MonoBehaviour:
   HandCardList: []
   TargetPosition: []
   TargetRotation: []
+  Speed: 10
+  moving: 0
+  timer: 0
+  alltimer: 0
 --- !u!1001 &774873977
 PrefabInstance:
   m_ObjectHideFlags: 0
