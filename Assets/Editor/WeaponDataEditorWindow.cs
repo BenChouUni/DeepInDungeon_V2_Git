@@ -44,7 +44,7 @@ public class WeaponDataEditorWindow : EditorWindow
                 //Debug.Log("");
                 for (int i = 0; i < weaponSOs.Length; i++)
                 {
-                    Debug.Log(weaponSOs[i].GetType());
+                    //Debug.Log(weaponSOs[i].GetType());
                     //if (weaponSOs[i].GetType() != typeof(WeaponSO)) continue;
                     WeaponSO weaponSO = (WeaponSO)weaponSOs[i];
                     if (GUILayout.Button(weaponSO.name, GUILayout.Width(divineWidth - 30)))

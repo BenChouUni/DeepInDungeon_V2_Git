@@ -130,11 +130,9 @@ public class BattleMainManager : MonoSingleton<BattleMainManager>
 
         //使用牌
         Debug.LogFormat("使用{0}", cardData.cardName);
-        foreach (CardAction action in cardData.cardAction)
-        {
-            actionManager.UseAction(action);
-            UpdateStatus();
-        }
+        actionManager.UseCardAllAction(cardData);
+        UpdateStatus();
+        
         
 
         //將牌刪除

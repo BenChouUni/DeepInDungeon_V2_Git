@@ -26,20 +26,30 @@ public class BattleWeaponManager : MonoSingleton<BattleWeaponManager>,IDataPersi
     {
         
     }
+    /*
     /// <summary>
     /// 暫時先回傳主武器的攻擊力
     /// </summary>
     /// <returns></returns>
-    public int WeaponAttack()
+    public int WeaponAttack(WeaponType type)
     {
-        return mainWeapon.atk;
+        if (type == WeaponType.Main)
+        {
+            return mainWeapon.atk;
+        }
+        else if(type == WeaponType.Support)
+        {
+
+        }
+        
     }
     /// <summary>
     /// 暫時回傳主武器防禦
     /// </summary>
     /// <returns></returns>
-    public int WeaponDefnd()
+    public int WeaponDefend()
     {
         return mainWeapon.def;
     }
+    */
 }

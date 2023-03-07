@@ -271,6 +271,7 @@ public class WeaponaryMainManager : MonoSingleton<WeaponaryMainManager>
     /// <param name="weaponId"></param>
     private void CreateDeckByWeapon(int weaponId,WeaponDropZoneType type)
     {
+        //如果要創建的卡牌已經有了，則移除
         if (! DeckManager.instance.CheckEmpty(type))
         {
             DeckManager.instance.RemoveCardsByType(type);
@@ -280,12 +281,15 @@ public class WeaponaryMainManager : MonoSingleton<WeaponaryMainManager>
         foreach (int cardId in cardIDs)
         {
             CardData data = DeckManager.instance.GetCardDataByID(cardId);
-            /*
-            if(data.initialnum != 0)
+
+            if (type == WeaponDropZoneType.MainWeapon)
             {
-                DeckManager.instance.CreateCardOnPanel(data, type);
+                data.SetWeaponData(PlayerDataManager.instance.playerData.MainWeaponData);
             }
-            */
+            else if (type == WeaponDropZoneType.SupportWeapon)
+            {
+                data.SetWeaponData(PlayerDataManager.instance.playerData.SupportWeaponData);
+            }
             
             if(data.initialnum != 0)
             {
