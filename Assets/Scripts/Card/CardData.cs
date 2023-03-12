@@ -10,6 +10,12 @@ public class CardData
     public int cost;
     public int initialnum;
 
+    public WeaponData WeaponData
+    {
+        get { return weaponData; }
+    }
+    [SerializeField]
+    private WeaponData weaponData;
     //效果
     public List<CardAction> cardAction = new List<CardAction>();
 
@@ -20,6 +26,7 @@ public class CardData
         this.cost = 0;
         initialnum = 0;
         cardAction = null;
+        weaponData = null;
     }
     public CardData(int _id, string _cardName, int _cost, int _initialnum) : this()
     {
@@ -29,6 +36,10 @@ public class CardData
         initialnum = _initialnum;
     }
 
+    public void SetWeaponData(WeaponData data)
+    {
+        this.weaponData = data;
+    }
 
 }
 

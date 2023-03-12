@@ -7,8 +7,10 @@ public enum TargetType
 }
 public enum ActionType
 {
-    DealDamage,
-    Defend,
+    WeaponAttack,
+    WeaponDefend,
+    PureDamage,
+    PureDefend,
     DrawCard,
     Heal,
     Give,
@@ -21,7 +23,7 @@ public class CardAction
     public int parameter;
     public TargetType target;
 
-    public StatusType statusType;
+    public StatusEffect StatusEffect;
 
     /// <summary>
     /// 沒有賦予狀態
@@ -34,14 +36,14 @@ public class CardAction
         this.type = _type;
         this.parameter = _param;
         this.target = _target;
-        statusType = StatusType.None;
+        StatusEffect = null;
     }
 
-    public CardAction(ActionType _type, int _param, TargetType _target,StatusType _statusType)
+    public CardAction(ActionType _type, int _param, TargetType _target,StatusEffect _StatusEffect)
     {
         this.type = _type;
         this.parameter = _param;
         this.target = _target;
-        statusType = _statusType;
+        StatusEffect = _StatusEffect;
     }
 }

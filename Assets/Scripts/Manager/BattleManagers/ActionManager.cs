@@ -9,23 +9,43 @@ public class ActionManager : MonoSingleton<ActionManager>
     public PlayerData battleplayerData;
     private Character player;
 
-    public void UseAction(CardAction action)
+
+    //現在打出卡牌的武器
+    [SerializeField]
+    private WeaponData actioningWeapon;
+    /// <summary>
+    /// 使用卡牌當中所有效果
+    /// </summary>
+    /// <param name="cardData"></param>
+    public void UseCardAllAction(CardData cardData)
     {
         if (TurnPhaseManager.instance.GamePhase == GamePhase.GameEnd)
         {
             return;
         }
+        List<CardAction> actions = cardData.cardAction;
+        actioningWeapon = cardData.WeaponData;
+
+        foreach (CardAction action in actions)
+        {
+            DoAction(action);
+        }
+        
+    }
+
+    private void DoAction(CardAction action)
+    {
         ActionType type = action.type;
         int parameter = action.parameter;
         TargetType target = action.target;
         Character character = GetCharacter(target);
         switch (type)
         {
-            case ActionType.DealDamage:
-                DealDamageAction(character, parameter);
+            case ActionType.WeaponAttack:
+                WeaponAttackAction(character);
                 break;
-            case ActionType.Defend:
-                DefendAction(character, parameter);
+            case ActionType.WeaponDefend:
+                WeaponDefendAction(character);
                 break;
             case ActionType.DrawCard:
                 DrawCardAction(parameter);
@@ -36,45 +56,40 @@ public class ActionManager : MonoSingleton<ActionManager>
             case ActionType.RealDefend:
                 RealDefendAction(character, parameter);
                 break;
+            case ActionType.PureDamage:
+                PureDamageAction(character, parameter);
+                break;
+            case ActionType.PureDefend:
+                PureDefendAction(character, parameter);
+                break;
             default:
                 break;
         }
     }
 
-    private void DealDamageAction(Character character, int parameter)
+    /// <summary>
+    /// 造成武器傷害
+    /// </summary>
+    /// <param name="character"></param>
+    private void WeaponAttackAction(Character character)
     {
-        int damage = parameter + BattleWeaponManager.instance.WeaponAttack();
+        int damage =actioningWeapon.atk;
 
-        Debug.LogFormat("對{0}造成{1}傷害", character.Name ,damage);
+        Debug.LogFormat("使用{0}攻擊，造成{1}傷害", actioningWeapon.weaponName,damage);
 
         character.GetDamage(damage);
 
     }
 
-    public void TestDamage(int dmg)
-    {
-        
-        CardAction action = new CardAction(ActionType.DealDamage, dmg,TargetType.Enemy);
-        UseAction(action);
-        EnemyManager.instance.UpdateEnemyStatus();
-    }
-
-    private void DefendAction(Character character, int parameter)
+    private void WeaponDefendAction(Character character)
     {
 
-        int shield = parameter + BattleWeaponManager.instance.WeaponDefnd();
+        int shield = actioningWeapon.def;
 
-        Debug.LogFormat("{0}獲得{1}護盾", character.Name, shield);
+        Debug.LogFormat("使用{0}獲得{1}護盾", actioningWeapon.weaponName, shield);
         character.AddShield(shield);
     }
 
-    public void TestDefend(int def)
-    {
-        
-        CardAction action = new CardAction(ActionType.Defend, def,TargetType.Player);
-        UseAction(action);
-        BattlePlayerDataManager.instance.UpdatePlayerStatus();
-    }
 
     public void DrawCardAction(int num)
     {
@@ -96,14 +111,24 @@ public class ActionManager : MonoSingleton<ActionManager>
         Debug.LogFormat("{0}獲得{1}護盾", character.Name, shield);
         character.AddShield(shield);
     }
-    public void TestRealDefend(int def)
-    {
 
-        CardAction action = new CardAction(ActionType.RealDefend, def, TargetType.Enemy);
-        UseAction(action);
-        EnemyManager.instance.UpdateEnemyStatus();
+    private void PureDamageAction(Character character,int parameter)
+    {
+        int damage = parameter;
+
+        Debug.LogFormat("造成{0}傷害", damage);
+
+        character.GetDamage(damage);
     }
 
+    private void PureDefendAction(Character character,int parameter)
+    {
+
+        int shield = parameter;
+
+        Debug.LogFormat("獲得{0}護盾", shield);
+        character.AddShield(shield);
+    }
     private Character GetCharacter(TargetType type)
     {
         if (type == TargetType.Player)
@@ -119,4 +144,27 @@ public class ActionManager : MonoSingleton<ActionManager>
             return null;
         }
     }
+    #region
+    public void TestDamage(int dmg)
+    {
+
+        CardAction action = new CardAction(ActionType.WeaponAttack, dmg, TargetType.Enemy);
+        DoAction(action);
+        EnemyManager.instance.UpdateEnemyStatus();
+    }
+    public void TestDefend(int def)
+    {
+
+        CardAction action = new CardAction(ActionType.WeaponDefend, def, TargetType.Player);
+        DoAction(action);
+        BattlePlayerDataManager.instance.UpdatePlayerStatus();
+    }
+    public void TestRealDefend(int def)
+    {
+
+        CardAction action = new CardAction(ActionType.RealDefend, def, TargetType.Enemy);
+        DoAction(action);
+        EnemyManager.instance.UpdateEnemyStatus();
+    }
+    #endregion
 }

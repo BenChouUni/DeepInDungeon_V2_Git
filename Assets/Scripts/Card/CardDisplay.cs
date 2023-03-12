@@ -8,6 +8,7 @@ using UnityEngine.UI;
 /// </summary>
 public class CardDisplay : MonoBehaviour
 {
+    [SerializeField]
     private CardData cardData;
     /// <summary>
     /// 傳入資料後自動顯示
