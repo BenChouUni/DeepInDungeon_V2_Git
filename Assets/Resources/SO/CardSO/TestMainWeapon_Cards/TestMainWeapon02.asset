@@ -17,6 +17,13 @@ MonoBehaviour:
     cardName: "\u76F4\u63A5\u6253\u64CA"
     cost: 1
     initialnum: 0
+    weaponData:
+      id: 99
+      weaponName: "\u6E2C\u8A66\u7528\u4E3B\u624B"
+      atk: 5
+      def: 1
+      distance: 0
+      weaponType: 0
     cardAction:
     - type: 0
       parameter: 8

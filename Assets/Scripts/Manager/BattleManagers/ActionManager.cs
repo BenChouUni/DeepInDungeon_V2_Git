@@ -41,11 +41,11 @@ public class ActionManager : MonoSingleton<ActionManager>
         Character character = GetCharacter(target);
         switch (type)
         {
-            case ActionType.DealDamage:
-                DealDamageAction(character, parameter);
+            case ActionType.WeaponAttack:
+                WeaponAttackAction(character);
                 break;
-            case ActionType.Defend:
-                DefendAction(character, parameter);
+            case ActionType.WeaponDefend:
+                WeaponDefendAction(character);
                 break;
             case ActionType.DrawCard:
                 DrawCardAction(parameter);
@@ -56,27 +56,37 @@ public class ActionManager : MonoSingleton<ActionManager>
             case ActionType.RealDefend:
                 RealDefendAction(character, parameter);
                 break;
+            case ActionType.PureDamage:
+                PureDamageAction(character, parameter);
+                break;
+            case ActionType.PureDefend:
+                PureDefendAction(character, parameter);
+                break;
             default:
                 break;
         }
     }
 
-    private void DealDamageAction(Character character, int parameter)
+    /// <summary>
+    /// 造成武器傷害
+    /// </summary>
+    /// <param name="character"></param>
+    private void WeaponAttackAction(Character character)
     {
-        int damage = parameter + actioningWeapon.atk;
+        int damage =actioningWeapon.atk;
 
-        Debug.LogFormat("對{0}造成{1}傷害", character.Name ,damage);
+        Debug.LogFormat("使用{0}攻擊，造成{1}傷害", actioningWeapon.weaponName,damage);
 
         character.GetDamage(damage);
 
     }
 
-    private void DefendAction(Character character, int parameter)
+    private void WeaponDefendAction(Character character)
     {
 
-        int shield = parameter + actioningWeapon.def;
+        int shield = actioningWeapon.def;
 
-        Debug.LogFormat("{0}獲得{1}護盾", character.Name, shield);
+        Debug.LogFormat("使用{0}獲得{1}護盾", actioningWeapon.weaponName, shield);
         character.AddShield(shield);
     }
 
@@ -102,7 +112,23 @@ public class ActionManager : MonoSingleton<ActionManager>
         character.AddShield(shield);
     }
 
+    private void PureDamageAction(Character character,int parameter)
+    {
+        int damage = parameter;
 
+        Debug.LogFormat("造成{0}傷害", damage);
+
+        character.GetDamage(damage);
+    }
+
+    private void PureDefendAction(Character character,int parameter)
+    {
+
+        int shield = parameter;
+
+        Debug.LogFormat("獲得{0}護盾", shield);
+        character.AddShield(shield);
+    }
     private Character GetCharacter(TargetType type)
     {
         if (type == TargetType.Player)
@@ -122,14 +148,14 @@ public class ActionManager : MonoSingleton<ActionManager>
     public void TestDamage(int dmg)
     {
 
-        CardAction action = new CardAction(ActionType.DealDamage, dmg, TargetType.Enemy);
+        CardAction action = new CardAction(ActionType.WeaponAttack, dmg, TargetType.Enemy);
         DoAction(action);
         EnemyManager.instance.UpdateEnemyStatus();
     }
     public void TestDefend(int def)
     {
 
-        CardAction action = new CardAction(ActionType.Defend, def, TargetType.Player);
+        CardAction action = new CardAction(ActionType.WeaponDefend, def, TargetType.Player);
         DoAction(action);
         BattlePlayerDataManager.instance.UpdatePlayerStatus();
     }
