@@ -6,7 +6,7 @@ using UnityEngine;
 public abstract class StatusEffect:ScriptableObject
 {
     public string effectName;
-    public int layer;
+   
     //0代表 debuff 1代表buff
     public bool isBuff;
 
@@ -15,13 +15,13 @@ public abstract class StatusEffect:ScriptableObject
     {
         this.effectName = "";       
         this.isBuff = true;
-        this.layer = 0;
+        
     }
     public StatusEffect(string _name,bool _isBuff,int _layer)
     {
         this.effectName = _name;
         this.isBuff = _isBuff;
-        this.layer = _layer;
+        
     }
 
     #region

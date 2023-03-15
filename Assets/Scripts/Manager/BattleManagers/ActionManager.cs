@@ -50,7 +50,9 @@ public class ActionManager : MonoSingleton<ActionManager>
         ActionType type = action.type;
         int parameter = action.parameter;
         TargetType target = action.target;
+        StatusEffect statusEffect = action.StatusEffect;
         Character character = GetCharacter(target);
+
         switch (type)
         {
             case ActionType.WeaponAttack:
@@ -74,11 +76,19 @@ public class ActionManager : MonoSingleton<ActionManager>
             case ActionType.PureDefend:
                 PureDefendAction(character, parameter);
                 break;
+            case ActionType.Give:
+                GiveAction(character, parameter, statusEffect);
+                break;
             default:
                 break;
         }
     }
 
+    //給予狀態
+    private void GiveAction(Character character, int parameter,StatusEffect statusEffect)
+    {
+
+    }
     /// <summary>
     /// 造成武器+n傷害
     /// </summary>
