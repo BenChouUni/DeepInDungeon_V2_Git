@@ -5,7 +5,7 @@ using UnityEngine;
 /// <summary>
 /// 管理狀態
 /// </summary>
-public class StatusEffectManager : MonoBehaviour
+public class StatusEffectManager : MonoSingleton<StatusEffectManager>
 {
     public List<StatusEffect> playerEffects = new List<StatusEffect>();
 
