@@ -671,6 +671,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parentReturnTo: {fileID: 0}
+  DropGoBack: 0
 --- !u!225 &-7531115170505630576
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -697,6 +698,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Speed: 5
   moving: 0
+  bedragging: 0
   Destination: {x: 0, y: 0, z: 0}
 --- !u!1 &7658860974663442191
 GameObject:
