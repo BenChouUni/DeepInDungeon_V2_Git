@@ -49,10 +49,10 @@ public class CardEditorWindow : EditorWindow
                 //調用對應資料夾CardSO asset
                 //一定要在Resources下
                
-                Debug.Log("");
+                //Debug.Log("");
                 for (int i = 0; i < cardSOs.Length; i++)
                 {
-                    Debug.Log(cardSOs[i].GetType());
+                   // Debug.Log(cardSOs[i].GetType());
                     if (cardSOs[i].GetType() != typeof(CardSO)) continue;
                     CardSO cardSO = (CardSO)cardSOs[i];
                     if (GUILayout.Button(cardSO.name,GUILayout.Width(divineWidth - 30)))

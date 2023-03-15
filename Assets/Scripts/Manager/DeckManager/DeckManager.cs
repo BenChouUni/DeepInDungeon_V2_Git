@@ -45,6 +45,8 @@ public class DeckManager : MonoSingleton<DeckManager>,IDataPersistence
         
         if (type == WeaponDropZoneType.MainWeapon)
         {
+
+            
             for(int i = 0; i < cardData.initialnum; i++)
             {
                 mainWeaponCards.Add(new_initialcard);
