@@ -3,6 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.TextCore.Text;
 
+public enum ActionType
+{
+    WeaponAttack,
+    WeaponDefend,
+    PureDamage,
+    PureDefend,
+    DrawCard,
+    Heal,
+    Give,
+    RealDefend,
+}
+
 public class ActionManager : MonoSingleton<ActionManager>
 {
     public EnemyData enemyData;
@@ -42,10 +54,10 @@ public class ActionManager : MonoSingleton<ActionManager>
         switch (type)
         {
             case ActionType.WeaponAttack:
-                WeaponAttackAction(character);
+                WeaponAttackAction(character, parameter);
                 break;
             case ActionType.WeaponDefend:
-                WeaponDefendAction(character);
+                WeaponDefendAction(character, parameter);
                 break;
             case ActionType.DrawCard:
                 DrawCardAction(parameter);
@@ -68,12 +80,12 @@ public class ActionManager : MonoSingleton<ActionManager>
     }
 
     /// <summary>
-    /// 造成武器傷害
+    /// 造成武器+n傷害
     /// </summary>
     /// <param name="character"></param>
-    private void WeaponAttackAction(Character character)
+    private void WeaponAttackAction(Character character,int parameter)
     {
-        int damage =actioningWeapon.atk;
+        int damage =actioningWeapon.atk + parameter;
 
         Debug.LogFormat("使用{0}攻擊，造成{1}傷害", actioningWeapon.weaponName,damage);
 
@@ -81,10 +93,10 @@ public class ActionManager : MonoSingleton<ActionManager>
 
     }
 
-    private void WeaponDefendAction(Character character)
+    private void WeaponDefendAction(Character character,int parameter)
     {
 
-        int shield = actioningWeapon.def;
+        int shield = actioningWeapon.def + parameter;
 
         Debug.LogFormat("使用{0}獲得{1}護盾", actioningWeapon.weaponName, shield);
         character.AddShield(shield);

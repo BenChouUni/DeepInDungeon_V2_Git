@@ -5,17 +5,7 @@ public enum TargetType
 {
     Player,Enemy
 }
-public enum ActionType
-{
-    WeaponAttack,
-    WeaponDefend,
-    PureDamage,
-    PureDefend,
-    DrawCard,
-    Heal,
-    Give,
-    RealDefend,
-}
+
 [Serializable]
 public class CardAction 
 {
