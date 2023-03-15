@@ -19,17 +19,13 @@ MonoBehaviour:
     initialnum: 2
     weaponData:
       id: 0
-      weaponName: 
-      atk: 0
-      def: 0
-      distance: 0
+      weaponName: Sword
+      atk: 4
+      def: 1
+      distance: 1
       weaponType: 2
     cardAction:
     - type: 0
-      parameter: 5
-      target: 1
-      StatusEffect: {fileID: 0}
-    - type: 2
       parameter: 5
       target: 1
       StatusEffect: {fileID: 0}
