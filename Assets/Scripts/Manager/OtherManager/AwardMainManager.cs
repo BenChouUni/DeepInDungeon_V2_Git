@@ -8,6 +8,8 @@ using static System.Net.Mime.MediaTypeNames;
 
 public class AwardMainManager : MonoSingleton<AwardMainManager>, IDataPersistence
 {
+    public GameObject AwardScene;
+
     public CardDataBase CardList;
     public GameObject CardPrefab;
     public int CardNum;
@@ -198,5 +200,10 @@ public class AwardMainManager : MonoSingleton<AwardMainManager>, IDataPersistenc
         }
         CardNum -= 1;
         ChangePanel();
+    }
+
+    public void ShowAwardScene()
+    {
+        AwardScene.SetActive(true);
     }
 }

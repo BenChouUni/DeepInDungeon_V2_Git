@@ -166,6 +166,10 @@ public class BattleMainManager : MonoSingleton<BattleMainManager>
         {
             StartCoroutine(EndBattle());
         }
+        if (enemyManager.enemyData.isDeath)
+        {
+            AwardMainManager.instance.ShowAwardScene();
+        }
     }
     /// <summary>
     /// 每個回合開始呼叫，執行回合開始所需的初始動作
