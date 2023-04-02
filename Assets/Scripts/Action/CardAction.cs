@@ -13,7 +13,7 @@ public class CardAction
     public int parameter;
     public TargetType target;
 
-    public StatusEffect StatusEffect;
+    public EffectEnum StatusEffect;
 
     /// <summary>
     /// 沒有賦予狀態
@@ -26,14 +26,14 @@ public class CardAction
         this.type = _type;
         this.parameter = _param;
         this.target = _target;
-        StatusEffect = null;
+        StatusEffect = EffectEnum.NULL;
     }
 
-    public CardAction(ActionType _type, int _param, TargetType _target,StatusEffect _StatusEffect)
+    public CardAction(ActionType _type, int _param, TargetType _target,EffectEnum _effect)
     {
         this.type = _type;
         this.parameter = _param;
         this.target = _target;
-        StatusEffect = _StatusEffect;
+        StatusEffect = _effect;
     }
 }

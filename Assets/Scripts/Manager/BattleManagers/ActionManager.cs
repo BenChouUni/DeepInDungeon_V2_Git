@@ -50,7 +50,7 @@ public class ActionManager : MonoSingleton<ActionManager>
         ActionType type = action.type;
         int parameter = action.parameter;
         TargetType target = action.target;
-        StatusEffect statusEffect = action.StatusEffect;
+        StatusEffect statusEffect = EffectFactory.GetStatusEffect(action.StatusEffect);
         Character character = GetCharacter(target);
 
         switch (type)
@@ -77,7 +77,7 @@ public class ActionManager : MonoSingleton<ActionManager>
                 PureDefendAction(character, parameter);
                 break;
             case ActionType.Give:
-                GiveAction(character, parameter, statusEffect);
+                GiveAction(target, parameter, statusEffect);
                 break;
             default:
                 break;
@@ -85,9 +85,12 @@ public class ActionManager : MonoSingleton<ActionManager>
     }
 
     //給予狀態
-    private void GiveAction(Character character, int parameter,StatusEffect statusEffect)
+    private void GiveAction(TargetType targetType, int parameter,StatusEffect statusEffect)
     {
-
+        Debug.LogFormat("給予{0}狀態{1}", targetType,statusEffect.effectName);
+        StatusEffectManager statusEffectManager = StatusEffectManager.instance;
+        statusEffectManager.AddEffect(targetType, statusEffect, parameter);
+        statusEffectManager.ShowEffect();
     }
     /// <summary>
     /// 造成武器+n傷害
