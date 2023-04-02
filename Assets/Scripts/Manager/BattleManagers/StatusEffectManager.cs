@@ -7,9 +7,13 @@ using UnityEngine;
 /// </summary>
 public class StatusEffectManager : MonoSingleton<StatusEffectManager>
 {
-    public List<StatusEffect> playerEffects = new List<StatusEffect>();
+    public EffectList playrEffectList;
+    public EffectList enemyEffectList;
 
-    public List<StatusEffect> enemyEffects = new List<StatusEffect>();
+    //從場景拖入
+    public GameObject effectPerfab;
+    public Transform playerEffectPanel;
+    public Transform enemyEffectPanel;
 
     /// <summary>
     /// 
@@ -18,16 +22,12 @@ public class StatusEffectManager : MonoSingleton<StatusEffectManager>
     /// <param name="effect"></param>
     public void AddEffect(bool isPlayer,StatusEffect effect)
     {
-        if (isPlayer)
-        {
-            playerEffects.Add(effect);
-        }
-        else
-        {
-            enemyEffects.Add(effect);
-        }
+        
     }
-    public void ShowEffect() { }
+    public void ShowEffect() {
+        
+
+    }
 
 
     
