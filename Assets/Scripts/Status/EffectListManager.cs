@@ -8,7 +8,7 @@ using static UnityEditor.Experimental.GraphView.GraphView;
 /// <summary>
 /// 加入以及管理狀態列，並管理層數等資料，同時管理顯示資料，管理ICON顯示
 /// </summary>
-public class EffectList : MonoBehaviour
+public class EffectListManager : MonoBehaviour
 {
     private List<StatusEffect> statusEffectList;
     public List<StatusEffect> StatusEffectList
@@ -21,7 +21,7 @@ public class EffectList : MonoBehaviour
     //prefab
     public GameObject IconObj;
     
-    public EffectList() {
+    public EffectListManager() {
         statusEffectList = new List<StatusEffect>();
     }
     /// <summary>

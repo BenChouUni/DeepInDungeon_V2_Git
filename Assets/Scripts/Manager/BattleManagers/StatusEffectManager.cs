@@ -7,8 +7,8 @@ using UnityEngine;
 /// </summary>
 public class StatusEffectManager : MonoSingleton<StatusEffectManager>
 {
-    public EffectList playerEffectList;
-    public EffectList enemyEffectList;
+    public EffectListManager playerEffectList;
+    public EffectListManager enemyEffectList;
 
     //public GameObject effectPerfab;
     //public Transform playerEffectPanel;
@@ -36,6 +36,16 @@ public class StatusEffectManager : MonoSingleton<StatusEffectManager>
 
     }
 
+    public List<StatusEffect> GetTargetEffectList(TargetType target) {
+        if (target == TargetType.Player)
+        {
+            return playerEffectList.StatusEffectList;
+        }
+        else
+        {
+            return enemyEffectList.StatusEffectList;
+        }
+    }
 
     
 }

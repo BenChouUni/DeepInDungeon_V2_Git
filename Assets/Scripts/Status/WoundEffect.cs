@@ -6,7 +6,7 @@ using UnityEngine;
 public class WoundEffect : StatusEffect
 {
     //初始化
-    public WoundEffect():base("Wound",false,0)
+    public WoundEffect():base("Wound",false,EffectEnum.Wound,LayerConsumeType.TurnEnd)
     {
         
     }
@@ -17,6 +17,7 @@ public class WoundEffect : StatusEffect
     /// <returns></returns>
     public override float AtReceiveDamage()
     {
+        Debug.Log("判定到Wound");
         return 1.5f;
     }
 }

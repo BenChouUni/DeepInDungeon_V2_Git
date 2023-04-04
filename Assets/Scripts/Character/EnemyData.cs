@@ -26,5 +26,6 @@ public class EnemyData : Character
     {
         this.id = _id;
         this.atk = _atk;
+        this.targetType = TargetType.Enemy;
     }
 }

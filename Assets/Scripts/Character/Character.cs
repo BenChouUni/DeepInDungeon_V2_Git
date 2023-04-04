@@ -54,6 +54,7 @@ public abstract class Character
        
     }
 
+    public TargetType targetType;
 
     public void GetDamage(int dmg)
     {
