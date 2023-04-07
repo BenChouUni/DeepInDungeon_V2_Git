@@ -3,6 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.TextCore.Text;
 
+public enum ActionType
+{
+    WeaponAttack,
+    WeaponDefend,
+    PureDamage,
+    PureDefend,
+    DrawCard,
+    Heal,
+    Give,
+    RealDefend,
+}
+
 public class ActionManager : MonoSingleton<ActionManager>
 {
     public EnemyData enemyData;
@@ -38,14 +50,16 @@ public class ActionManager : MonoSingleton<ActionManager>
         ActionType type = action.type;
         int parameter = action.parameter;
         TargetType target = action.target;
+        StatusEffect statusEffect = EffectFactory.GetStatusEffect(action.StatusEffect);
         Character character = GetCharacter(target);
+
         switch (type)
         {
             case ActionType.WeaponAttack:
-                WeaponAttackAction(character);
+                WeaponAttackAction(character, parameter);
                 break;
             case ActionType.WeaponDefend:
-                WeaponDefendAction(character);
+                WeaponDefendAction(character, parameter);
                 break;
             case ActionType.DrawCard:
                 DrawCardAction(parameter);
@@ -62,18 +76,29 @@ public class ActionManager : MonoSingleton<ActionManager>
             case ActionType.PureDefend:
                 PureDefendAction(character, parameter);
                 break;
+            case ActionType.Give:
+                GiveAction(target, parameter, statusEffect);
+                break;
             default:
                 break;
         }
     }
 
+    //給予狀態
+    private void GiveAction(TargetType targetType, int parameter,StatusEffect statusEffect)
+    {
+        Debug.LogFormat("給予{0}狀態{1}", targetType,statusEffect.effectName);
+        StatusEffectManager statusEffectManager = StatusEffectManager.instance;
+        statusEffectManager.AddEffect(targetType, statusEffect, parameter);
+        statusEffectManager.ShowEffect();
+    }
     /// <summary>
-    /// 造成武器傷害
+    /// 造成武器+n傷害
     /// </summary>
     /// <param name="character"></param>
-    private void WeaponAttackAction(Character character)
+    private void WeaponAttackAction(Character character,int parameter)
     {
-        int damage =actioningWeapon.atk;
+        int damage =actioningWeapon.atk + parameter;
 
         Debug.LogFormat("使用{0}攻擊，造成{1}傷害", actioningWeapon.weaponName,damage);
 
@@ -81,10 +106,10 @@ public class ActionManager : MonoSingleton<ActionManager>
 
     }
 
-    private void WeaponDefendAction(Character character)
+    private void WeaponDefendAction(Character character,int parameter)
     {
 
-        int shield = actioningWeapon.def;
+        int shield = actioningWeapon.def + parameter;
 
         Debug.LogFormat("使用{0}獲得{1}護盾", actioningWeapon.weaponName, shield);
         character.AddShield(shield);

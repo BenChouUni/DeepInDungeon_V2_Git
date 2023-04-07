@@ -3,31 +3,38 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// 管理狀態
+/// 管理敵人跟玩家身上的狀態列
 /// </summary>
-public class StatusEffectManager : MonoBehaviour
+public class StatusEffectManager : MonoSingleton<StatusEffectManager>
 {
-    public List<StatusEffect> playerEffects = new List<StatusEffect>();
+    public EffectList playerEffectList;
+    public EffectList enemyEffectList;
 
-    public List<StatusEffect> enemyEffects = new List<StatusEffect>();
+    //public GameObject effectPerfab;
+    //public Transform playerEffectPanel;
+    //public Transform enemyEffectPanel;
 
     /// <summary>
     /// 
     /// </summary>
     /// <param name="isPlayer">true is player and false is enemy</param>
     /// <param name="effect"></param>
-    public void AddEffect(bool isPlayer,StatusEffect effect)
+    public void AddEffect(TargetType target,StatusEffect effect,int layer)
     {
-        if (isPlayer)
+        if (target == TargetType.Player)
         {
-            playerEffects.Add(effect);
+            playerEffectList.AddStatusEffect(effect,layer);
         }
         else
         {
-            enemyEffects.Add(effect);
+            enemyEffectList.AddStatusEffect(effect, layer);
         }
     }
-    public void ShowEffect() { }
+    public void ShowEffect() {
+        playerEffectList.ShowAllIcons();
+        enemyEffectList.ShowAllIcons();
+
+    }
 
 
     

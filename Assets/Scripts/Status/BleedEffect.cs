@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName ="BleedEffect",menuName ="Asset/CreateEffect/Bleed")]
 public class BleedEffect : StatusEffect
 {
-    public BleedEffect():base("Bleed",false,0) { }
+    public BleedEffect():base("Bleed",false,EffectEnum.Bleed) { }
 
     public override void AtTurnEnd()
     {

@@ -35,7 +35,10 @@ public abstract class Character
     {
         get { return shield; }
     }
-
+    /// <summary>
+    /// 角色狀態列，先公開給外面操作
+    /// </summary>
+    //public List<StatusEffect> effectList;
 
     public bool isDeath;
     //state list
@@ -48,6 +51,7 @@ public abstract class Character
         this.maxHp = _maxHp;
         ResetHp();
         this.shield = _shield;
+       
     }
 
 

@@ -6,23 +6,32 @@ using UnityEngine;
 public abstract class StatusEffect:ScriptableObject
 {
     public string effectName;
-    public int layer;
+    public EffectEnum effectType;
     //0代表 debuff 1代表buff
     public bool isBuff;
 
+    //層數，不能被外面修改
+    private int layer;
 
-    public StatusEffect()
+    public StatusEffect(): this("", true, EffectEnum.NULL)
     {
-        this.effectName = "";       
-        this.isBuff = true;
-        this.layer = 0;
+           
     }
-    public StatusEffect(string _name,bool _isBuff,int _layer)
+    public StatusEffect(string _name,bool _isBuff,EffectEnum _type)
     {
         this.effectName = _name;
         this.isBuff = _isBuff;
-        this.layer = _layer;
+        this.effectType = _type;
+        this.layer = 0;
     }
+
+    public int getLayer() { return layer; }
+    public void setLayer(int num) { layer = num; }
+    /// <summary>
+    /// 可以輸入負數
+    /// </summary>
+    /// <param name="num"></param>
+    public void AddLayer(int num) { layer += num; } //Debug.LogFormat("Add {0}", num); }
 
     #region
     //多型函數，決定在什麼階段使用

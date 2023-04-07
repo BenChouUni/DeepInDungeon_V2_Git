@@ -28,4 +28,4 @@ MonoBehaviour:
     - type: 0
       parameter: 10
       target: 1
-      statusType: 0
+      StatusEffect: 0
