@@ -39,7 +39,10 @@ public abstract class StatusEffect:ScriptableObject
     /// </summary>
     /// <param name="num"></param>
     public void AddLayer(int num) { layer += num; } //Debug.LogFormat("Add {0}", num); }
-
+    public virtual void ConsumeLayer()
+    {
+        layer -= 1;
+    }
     #region
     //多型函數，決定在什麼階段使用
     /// <summary>
