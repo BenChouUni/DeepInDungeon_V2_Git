@@ -7,7 +7,7 @@ public enum TargetType
 }
 
 [Serializable]
-public class CardAction 
+public class CardActionBase
 {
     public ActionType type;
     public int parameter;
@@ -21,7 +21,7 @@ public class CardAction
     /// <param name="_type"></param>
     /// <param name="_param"></param>
     /// <param name="_target"></param>
-    public CardAction(ActionType _type, int _param,TargetType _target)
+    public CardActionBase(ActionType _type, int _param,TargetType _target)
     {
         this.type = _type;
         this.parameter = _param;
@@ -29,7 +29,7 @@ public class CardAction
         StatusEffect = EffectEnum.NULL;
     }
 
-    public CardAction(ActionType _type, int _param, TargetType _target,EffectEnum _effect)
+    public CardActionBase(ActionType _type, int _param, TargetType _target,EffectEnum _effect)
     {
         this.type = _type;
         this.parameter = _param;

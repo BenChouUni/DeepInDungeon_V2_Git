@@ -17,7 +17,7 @@ public class CardData
     [SerializeField]
     private WeaponData weaponData;
     //效果
-    public List<CardAction> cardAction = new List<CardAction>();
+    public List<CardActionBase> cardAction = new List<CardActionBase>();
 
     public CardData()
     {

@@ -3,18 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.TextCore.Text;
 
-public enum ActionType
-{
-    WeaponAttack,
-    WeaponDefend,
-    PureDamage,
-    PureDefend,
-    DrawCard,
-    Heal,
-    Give,
-    RealDefend,
-}
-
 public class ActionManager : MonoSingleton<ActionManager>
 {
     public EnemyData enemyData;
@@ -35,17 +23,17 @@ public class ActionManager : MonoSingleton<ActionManager>
         {
             return;
         }
-        List<CardAction> actions = cardData.cardAction;
+        List<CardActionBase> actions = cardData.cardAction;
         actioningWeapon = cardData.WeaponData;
 
-        foreach (CardAction action in actions)
+        foreach (CardActionBase action in actions)
         {
             DoAction(action);
         }
         
     }
 
-    public void DoAction(CardAction action)
+    public void DoAction(CardActionBase action)
     {
         ActionType type = action.type;
         int parameter = action.parameter;
@@ -182,21 +170,21 @@ public class ActionManager : MonoSingleton<ActionManager>
     public void TestDamage(int dmg)
     {
 
-        CardAction action = new CardAction(ActionType.WeaponAttack, dmg, TargetType.Enemy);
+        CardActionBase action = new CardActionBase(ActionType.WeaponAttack, dmg, TargetType.Enemy);
         DoAction(action);
         EnemyManager.instance.UpdateEnemyStatus();
     }
     public void TestDefend(int def)
     {
 
-        CardAction action = new CardAction(ActionType.WeaponDefend, def, TargetType.Player);
+        CardActionBase action = new CardActionBase(ActionType.WeaponDefend, def, TargetType.Player);
         DoAction(action);
         BattlePlayerDataManager.instance.UpdatePlayerStatus();
     }
     public void TestRealDefend(int def)
     {
 
-        CardAction action = new CardAction(ActionType.RealDefend, def, TargetType.Enemy);
+        CardActionBase action = new CardActionBase(ActionType.RealDefend, def, TargetType.Enemy);
         DoAction(action);
         EnemyManager.instance.UpdateEnemyStatus();
     }
