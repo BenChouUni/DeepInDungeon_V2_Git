@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardData:
     id: 9901
-    cardName: Give2Bleed
+    cardName: GiveWound
     cost: 1
     initialnum: 5
     weaponData:
@@ -26,6 +26,6 @@ MonoBehaviour:
       weaponType: 0
     cardAction:
     - type: 6
-      parameter: 2
+      parameter: 1
       target: 1
-      StatusEffect: 2
+      StatusEffect: 1

@@ -45,7 +45,7 @@ public class ActionManager : MonoSingleton<ActionManager>
         
     }
 
-    private void DoAction(CardAction action)
+    public void DoAction(CardAction action)
     {
         ActionType type = action.type;
         int parameter = action.parameter;
@@ -92,6 +92,31 @@ public class ActionManager : MonoSingleton<ActionManager>
         statusEffectManager.AddEffect(targetType, statusEffect, parameter);
         statusEffectManager.ShowEffect();
     }
+
+    //純粹傷害，基本傷害計算透過這裡
+    private void PureDamageAction(Character character, int parameter)
+    {
+        float damage = parameter;
+        List<StatusEffect> effects = StatusEffectManager.instance.GetTargetEffectList(character.targetType);
+        //根據效果執行傷害增幅
+        foreach (StatusEffect item in effects)
+        {
+           damage *= item.AtReceiveDamage();
+        }
+
+        Debug.LogFormat("造成{0}傷害", damage);
+
+        character.GetDamage((int)damage);
+    }
+
+    private void PureDefendAction(Character character, int parameter)
+    {
+
+        int shield = parameter;
+
+        Debug.LogFormat("獲得{0}護盾", shield);
+        character.AddShield(shield);
+    }
     /// <summary>
     /// 造成武器+n傷害
     /// </summary>
@@ -100,9 +125,9 @@ public class ActionManager : MonoSingleton<ActionManager>
     {
         int damage =actioningWeapon.atk + parameter;
 
-        Debug.LogFormat("使用{0}攻擊，造成{1}傷害", actioningWeapon.weaponName,damage);
-
-        character.GetDamage(damage);
+        Debug.LogFormat("使用{0}攻擊", actioningWeapon.weaponName);
+        this.PureDamageAction(character, damage);
+        //character.GetDamage(damage);
 
     }
 
@@ -111,8 +136,9 @@ public class ActionManager : MonoSingleton<ActionManager>
 
         int shield = actioningWeapon.def + parameter;
 
-        Debug.LogFormat("使用{0}獲得{1}護盾", actioningWeapon.weaponName, shield);
-        character.AddShield(shield);
+        Debug.LogFormat("使用{0}", actioningWeapon.weaponName);
+        this.PureDefendAction(character, shield);
+        //character.AddShield(shield);
     }
 
 
@@ -137,23 +163,6 @@ public class ActionManager : MonoSingleton<ActionManager>
         character.AddShield(shield);
     }
 
-    private void PureDamageAction(Character character,int parameter)
-    {
-        int damage = parameter;
-
-        Debug.LogFormat("造成{0}傷害", damage);
-
-        character.GetDamage(damage);
-    }
-
-    private void PureDefendAction(Character character,int parameter)
-    {
-
-        int shield = parameter;
-
-        Debug.LogFormat("獲得{0}護盾", shield);
-        character.AddShield(shield);
-    }
     private Character GetCharacter(TargetType type)
     {
         if (type == TargetType.Player)

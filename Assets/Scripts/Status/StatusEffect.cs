@@ -2,6 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum LayerConsumeType
+{
+    AfterUse,TurnEnd
+}
 [System.Serializable]
 public abstract class StatusEffect:ScriptableObject
 {
@@ -9,20 +13,23 @@ public abstract class StatusEffect:ScriptableObject
     public EffectEnum effectType;
     //0代表 debuff 1代表buff
     public bool isBuff;
+    //消耗層數的邏輯
+    public LayerConsumeType consumeType;
 
     //層數，不能被外面修改
     private int layer;
 
-    public StatusEffect(): this("", true, EffectEnum.NULL)
+    private StatusEffect(): this("", true, EffectEnum.NULL,LayerConsumeType.AfterUse)
     {
            
     }
-    public StatusEffect(string _name,bool _isBuff,EffectEnum _type)
+    public StatusEffect(string _name,bool _isBuff,EffectEnum _type, LayerConsumeType _coneumType)
     {
         this.effectName = _name;
         this.isBuff = _isBuff;
         this.effectType = _type;
         this.layer = 0;
+        this.consumeType = _coneumType;
     }
 
     public int getLayer() { return layer; }
@@ -32,7 +39,10 @@ public abstract class StatusEffect:ScriptableObject
     /// </summary>
     /// <param name="num"></param>
     public void AddLayer(int num) { layer += num; } //Debug.LogFormat("Add {0}", num); }
-
+    public virtual void ConsumeLayer()
+    {
+        layer -= 1;
+    }
     #region
     //多型函數，決定在什麼階段使用
     /// <summary>
