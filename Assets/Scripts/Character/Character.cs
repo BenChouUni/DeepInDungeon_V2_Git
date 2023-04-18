@@ -3,30 +3,27 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 /// <summary>
-/// 玩家及敵人的基礎
+/// 玩家及敵人的基礎 名字 血量 護盾 死亡 狀態列
 /// </summary>
 [Serializable]
 public abstract class Character
 {
     [SerializeField]
+    public CharaterType targetType;
+
+    [SerializeField]
     private string characterName;
-    public string Name
+    public string CharacterName
     {
         get { return characterName; }
     }
 
-    //hpstatus
+    //hpstate
     [SerializeField]
-    private int maxHp;
-    public int MaxHp
+    private HpState hpState;
+    public HpState HpState
     {
-        get { return maxHp; }
-    }
-    [SerializeField]
-    private int currentHp;
-    public int CurrentHp
-    {
-        get { return currentHp; }
+        get { return hpState; }
     }
     //shield
     [SerializeField]
@@ -40,21 +37,48 @@ public abstract class Character
     /// </summary>
     //public List<StatusEffect> effectList;
 
+    //bool狀態相關
     public bool isDeath;
-    //state list
 
+    //顯示相關委託 更新角色顯示
+    public Action<Character> updateDisplay;
+    public Action<HpState> hpDisplay;
+    public Action<List<StateEffect>> statesDisplay;
+
+    //state list
+    /// <summary>
+    /// 層數為零不會刪除，不要顯示
+    /// </summary>
+    public readonly Dictionary<StateEffectType, StateEffect> stateDic = new Dictionary<StateEffectType, StateEffect>();
+    public readonly List<StateEffect> StateList = new List<StateEffect>();
     //
     public Character(string _name,int _maxHp,int _shield)
     {
         isDeath = false;
         this.characterName = _name;
-        this.maxHp = _maxHp;
-        ResetHp();
+        this.hpState = new HpState(_maxHp);
+        
         this.shield = _shield;
        
+       
     }
-
-    public TargetType targetType;
+    /// <summary>
+    /// 設定委派函數
+    /// </summary>
+    /// <param name="_displayAction"></param>
+    /// <param name="_hpDisplay"></param>
+    public void setDisplayAction(Action<Character> _displayAction, Action<HpState> _hpDisplay,Action<List<StateEffect>> statesDisplayAction)
+    {
+        this.updateDisplay += _displayAction;
+        this.hpDisplay += _hpDisplay;
+        this.statesDisplay = statesDisplayAction;
+    }
+    public void setCharaterName(string name)
+    {
+        this.characterName = name;
+        updateDisplay?.Invoke(this);
+    }
+    
 
     public void GetDamage(int dmg)
     {
@@ -63,16 +87,16 @@ public abstract class Character
             return;
         }
 
-        currentHp -= ShieldBlock(dmg);
+        hpState.LostHp(ShieldBlock(dmg));
         
-        if (currentHp<=0)
+        if (hpState.CurrentHp==0)
         {
             Debug.LogFormat("{0}死亡", this.characterName);
             isDeath = true;
-            currentHp = 0;
+            
         }
 
-
+        updateDisplay?.Invoke(this);
     }
     /// <summary>
     /// 輸入傷害 輸出剩下的傷害
@@ -105,27 +129,69 @@ public abstract class Character
         }
 
         shield += num;
+        updateDisplay?.Invoke(this);
+    }
+
+    /*stateEffect*/
+
+    /// <summary>
+    /// 加入狀態
+    /// </summary>
+    /// <param name="stateEffect"></param>
+    public void AddStateEffect(StateEffect stateEffect)
+    {
+        StateEffectType type = stateEffect.effectType;
+
+        stateEffect.SetRemoveAction(RemoveState);
+
+        if (stateDic.ContainsKey(type))
+        {
+            int addLayer = stateEffect.Layer;
+            stateDic[type].AddLayer(addLayer);
+            foreach (StateEffect item in StateList)
+            {
+                if (item.effectType == type)
+                {
+                    item.AddLayer(addLayer);
+                }
+            }
+        }
+        else
+        {
+            stateDic.Add(type, stateEffect);
+            StateList.Add(stateEffect);
+        }
+
+        updateDisplay?.Invoke(this);
+        statesDisplay?.Invoke(this.StateList);
     }
     /// <summary>
-    /// hp設置到最大值
+    /// 回傳不為零（可互動的）stateEffect
     /// </summary>
-    public void ResetHp()
+    /// <returns></returns>
+    public List<StateEffect> GetStateList()
     {
-        currentHp = maxHp;
+        List<StateEffect> stateList = new List<StateEffect>();
+        foreach (KeyValuePair<StateEffectType,StateEffect> kvp in stateDic)
+        {
+            //如果層數大於零
+            if (kvp.Value.Layer > 0)
+            {
+                stateList.Add(kvp.Value);
+            }
+        }
+       
+        return stateList;
     }
-    public void RestoreHealth(int num)
+    /// <summary>
+    /// 刪除StateEffect 由StateEffect自主刪除
+    /// </summary>
+    /// <param name="stateEffect"></param>
+    public void RemoveState(StateEffect stateEffect)
     {
-        if (num <= 0)
-        {
-            return;
-        }
-
-        currentHp += num;
-        if (currentHp > maxHp)
-        {
-            ResetHp();
-        }
+        StateList.Remove(stateEffect);
+        updateDisplay?.Invoke(this);
+        statesDisplay?.Invoke(this.StateList);
     }
-
-
+    
 }

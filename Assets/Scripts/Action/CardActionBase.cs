@@ -1,39 +1,22 @@
 using System;
 using UnityEngine;
 
-public enum TargetType
-{
-    Player,Enemy
-}
 
+/// <summary>
+/// 用來繼承給予其他Action子類
+/// </summary>
 [Serializable]
-public class CardActionBase
+public abstract class CardActionBase
 {
-    public ActionType type;
-    public int parameter;
-    public TargetType target;
+    public abstract ActionType type { get; }
+    //CardActionParameter cardActionParameter;
 
-    public EffectEnum StatusEffect;
 
-    /// <summary>
-    /// 沒有賦予狀態
-    /// </summary>
-    /// <param name="_type"></param>
-    /// <param name="_param"></param>
-    /// <param name="_target"></param>
-    public CardActionBase(ActionType _type, int _param,TargetType _target)
-    {
-        this.type = _type;
-        this.parameter = _param;
-        this.target = _target;
-        StatusEffect = EffectEnum.NULL;
-    }
+    protected CardActionBase() {  }
 
-    public CardActionBase(ActionType _type, int _param, TargetType _target,EffectEnum _effect)
-    {
-        this.type = _type;
-        this.parameter = _param;
-        this.target = _target;
-        StatusEffect = _effect;
-    }
+    public abstract void DoAction(CardActionParameter parameter);
+
+    public abstract string ActionDescribe(CardActionParameter parameter);
+
+
 }

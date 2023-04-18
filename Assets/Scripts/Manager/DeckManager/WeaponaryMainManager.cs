@@ -31,7 +31,7 @@ public class WeaponaryMainManager : MonoSingleton<WeaponaryMainManager>
         hasMainWeapon = hasSupportWeapon = isDrag = false;
 
         PlayerData playerData = PlayerDataManager.instance.playerData;
-        PlayerDataManager.instance.ShowPlayerData();
+        //PlayerDataManager.instance.ShowPlayerData();
         WeaponStoreManager.instance.InitialWeaponStore();
         //用weaponName判斷，避免全空
         if (playerData.MainWeaponData.weaponName != "")

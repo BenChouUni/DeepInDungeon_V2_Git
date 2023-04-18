@@ -17,7 +17,7 @@ public class CardData
     [SerializeField]
     private WeaponData weaponData;
     //效果
-    public List<CardActionBase> cardAction = new List<CardActionBase>();
+    public List<CardActionSet> cardActions;
 
     public CardData()
     {
@@ -25,7 +25,7 @@ public class CardData
         this.cardName = "";
         this.cost = 0;
         initialnum = 0;
-        cardAction = null;
+        cardActions = new List<CardActionSet>();
         weaponData = null;
     }
     public CardData(int _id, string _cardName, int _cost, int _initialnum) : this()
