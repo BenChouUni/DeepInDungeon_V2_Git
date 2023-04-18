@@ -5,22 +5,73 @@ using UnityEngine;
 /// <summary>
 /// 傳入CardAction使用的參數組合
 /// </summary>
-public class CardActionParameter : MonoBehaviour
+[System.Serializable]
+public class CardActionParameter 
 {
-    public readonly int value;
-    public readonly Character target;
-    public readonly Character self;
-    public readonly WeaponData weaponData;
-    public readonly CardData cardData;
-    public readonly StateEffect effect;
-
-    public CardActionParameter(int _value,Character _target,Character _self,CardData _cardData,StateEffect _effect)
+    [Header("數值")]
+    public int value;
+    [Header("接受對象")]
+    public CharaterType targetType;
+    [Header("施放者")]
+    public CharaterType selfType;
+    [Header("狀態類型，不一定會使用")]
+    public StateEffectType stateEffectType;
+    //由工廠產生
+    private Character target = null;
+    public Character Target
     {
-        this.value = _value;
-        this.target = _target;
-        this.self = _self;
-        this.weaponData = _cardData.WeaponData;
-        this.cardData = _cardData;
-        this.effect = _effect;
+        get
+        {
+            if (target == null)
+            {
+                target= BattleMainManager.instance.GetCharacterByType(targetType);
+            }
+            return target;
+        }
+    }
+    private Character self = null;
+    public Character Self
+    {
+        get
+        {
+            if (self == null)
+            {
+                self = BattleMainManager.instance.GetCharacterByType(selfType);
+            }
+            return self;
+        }
+    }
+    private WeaponData weaponData = null;
+    [HideInInspector]
+    public WeaponData WeaponData
+    {
+        get
+        {
+            if (weaponData == null)
+            {
+                Debug.LogError("Actionparameter WeapnData has no value");
+            }
+            return weaponData;
+        }
+    }
+    
+    private StateEffect myEffect = null;
+    public StateEffect StateEffect
+    {
+        get
+        {
+            if (myEffect==null)
+            {
+                myEffect = EffectFactory.GetStatusEffect(stateEffectType);
+            }
+            return myEffect;
+        }
+    }
+
+
+
+    public void SetWeponaData(WeaponData _weaponData)
+    {
+        this.weaponData = _weaponData;
     }
 }

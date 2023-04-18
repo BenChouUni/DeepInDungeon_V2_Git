@@ -13,13 +13,14 @@ public class WeaponAttackAction : CardActionBase
 
     public override void DoAction(CardActionParameter parameter)
     {
+        Debug.Log(ActionDescribe(parameter));
         //如果沒有目標就直接跳出
-        if (parameter.target == null) return;
-        Character targetCharater = parameter.target;
+        if (parameter.Target == null) return;
+        Character targetCharater = parameter.Target;
 
         List<StateEffect> targetStateList = targetCharater.StateList;
         //這邊要計算公式
-        float damagef = (parameter.value + parameter.weaponData.atk);
+        float damagef = (parameter.value + parameter.WeaponData.atk);
         foreach (StateEffect item in targetStateList)
         {
             damagef *= item.AtReceiveDamage();

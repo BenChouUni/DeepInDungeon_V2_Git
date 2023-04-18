@@ -14,8 +14,8 @@ public class BattleMainManager : MonoSingleton<BattleMainManager>
     public BattlePlayerDataManager battlePlayerDataManager;
     [HideInInspector]
     public CardsLayoutManager cardsLayoutManager;
-    [HideInInspector]
-    public ActionManager actionManager;
+    //[HideInInspector]
+    //public ActionManager actionManager;
     [HideInInspector]
     public EnemyManager enemyManager;
    
@@ -46,6 +46,23 @@ public class BattleMainManager : MonoSingleton<BattleMainManager>
         //玩家回合先開始
         turnPhaseManager.InitialTurn();
         
+    }
+    /*特殊使用，以後可能會更改*/
+    /// <summary>
+    /// 給ActionParameter調用Character資料使用
+    /// </summary>
+    /// <param name="type"></param>
+    /// <returns></returns>
+    public Character GetCharacterByType(CharaterType type)
+    {
+        if (type == CharaterType.Enemy)
+        {
+            return enemyManager.enemyData;
+        }
+        else
+        {
+            return battlePlayerDataManager.battleplayerData;
+        }
     }
     //省呼叫資源
     private void Initialmanagers()
@@ -134,6 +151,7 @@ public class BattleMainManager : MonoSingleton<BattleMainManager>
         //actionManager.UseCardAllAction(cardData);
         foreach (CardActionSet item in cardData.cardActions)
         {
+            Debug.Log(item.actionType);
             item.DoAction();
         }
         //UpdateStatus();

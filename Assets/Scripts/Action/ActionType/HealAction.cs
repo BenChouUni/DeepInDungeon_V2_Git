@@ -13,7 +13,7 @@ public class HealAction : CardActionBase
 
     public override void DoAction(CardActionParameter parameter)
     {
-        Character self = parameter.self;
+        Character self = parameter.Self;
 
         self.HpState.RestoreHp(parameter.value);
     }

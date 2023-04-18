@@ -25,7 +25,7 @@ public class CardData
         this.cardName = "";
         this.cost = 0;
         initialnum = 0;
-        cardActions = new List<CardActionSet>();
+        
         weaponData = null;
     }
     public CardData(int _id, string _cardName, int _cost, int _initialnum) : this()
@@ -39,6 +39,10 @@ public class CardData
     public void SetWeaponData(WeaponData data)
     {
         this.weaponData = data;
+        foreach (CardActionSet item in cardActions)
+        {
+            item.actionParameter.SetWeponaData(weaponData);
+        }
     }
 
 }

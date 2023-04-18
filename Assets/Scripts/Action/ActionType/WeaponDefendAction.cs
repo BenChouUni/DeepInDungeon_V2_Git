@@ -14,10 +14,10 @@ public class WeaponDefendAction : CardActionBase
     public override void DoAction(CardActionParameter parameter)
     {
         //如果沒有目標就直接跳出
-        if (parameter.target == null) return;
-        Character targetCharater = parameter.target;
+        if (parameter.Target == null) return;
+        Character targetCharater = parameter.Target;
         //這邊要計算公式
-        int shield = parameter.value + parameter.weaponData.def;
+        int shield = parameter.value + parameter.WeaponData.def;
 
 
         targetCharater.AddShield(shield);

@@ -12,8 +12,10 @@ public class CardActionSet
     public CardActionBase CardActionBase
     {
         get {
+            Debug.Log("15");
             if (cardActionBase==null)
             {
+                
                 //通過工廠模式去建造
                 cardActionBase = CardActionFactory.GetCardAction(actionType);
             }
@@ -29,6 +31,7 @@ public class CardActionSet
     /// </summary>
     public void DoAction()
     {
+        Debug.Log("18");
         CardActionBase.DoAction(actionParameter);
     }
     

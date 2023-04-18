@@ -10,12 +10,13 @@ public class HpState
 {
     public Action<HpState> hpDisplay;
 
+    [SerializeField]
     private int maxHp;
     public int MaxHp
     {
         get { return maxHp; }
     }
-    
+    [SerializeField]
     private int currentHp;
     public int CurrentHp
     {

@@ -8,13 +8,13 @@ public class GiveStateAction : CardActionBase
 
     public override string ActionDescribe(CardActionParameter parameter)
     {
-        return string.Format("give {0}", parameter.effect);
+        return string.Format("give {0}", parameter.StateEffect);
     }
 
     public override void DoAction(CardActionParameter parameter)
     {
-        Character targetCharater = parameter.target;
-        StateEffect stateEffect = parameter.effect;
+        Character targetCharater = parameter.Target;
+        StateEffect stateEffect = parameter.StateEffect;
         stateEffect.setLayer(parameter.value);
 
         Debug.LogFormat("給予{0}狀態{1}層", stateEffect.effectType, parameter.value);
