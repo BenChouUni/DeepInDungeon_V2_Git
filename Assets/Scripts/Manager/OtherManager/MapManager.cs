@@ -1,19 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
 using UnityEngine;
 
 public class MapManager : MonoBehaviour
 {
     public GameObject StopPrefab;
     public Transform MapPanel;
+    public static int layer = 5;
+    public Vector3[][] point_positions = new Vector3[layer][];
 
     void Start()
     {
+        Debug.DrawLine(Vector3.zero, new Vector3(200, 0, 0), UnityEngine.Color.black, 50f);
         System.Console.WriteLine("Map");
         System.Console.WriteLine("-------------------------");
 
 
-        int layer = 5;
         int[] monster = new int[layer];     //每層怪物數量
         System.Random randon = new System.Random();
         int[][] pointer1 = new int[layer][];        //第一次連接到的位置，0 -> 1, 1 -> 2 ...
@@ -26,6 +29,7 @@ public class MapManager : MonoBehaviour
             pointer1[i] = new int[monster[i]];
             pointer2[i] = new int[monster[i]];
             line[i] = new int[monster[i]];
+            point_positions[i] = new Vector3[monster[i]];
 
             //若不是第0層則開始相連
             if (i > 0)
@@ -44,6 +48,15 @@ public class MapManager : MonoBehaviour
             }
         }
         DrawMap(monster, layer);
+        DrawLine(monster, layer, pointer1);
+
+        for (int i = 0; i < layer; i++)
+        {
+            for(int j = 0; j < monster[i]; j++)
+            {
+                //Debug.DrawLine(Vector3.zero, new Vector3(0, 5, 0), color);
+            }
+        }
         Show(pointer1, layer);
         Show(pointer2, layer);
         Show(line, layer);
@@ -206,7 +219,18 @@ public class MapManager : MonoBehaviour
         {
             for (int j = 0; j < nodenum[i]; j++)
             {
-                CreateStoponMap((1920 / nodenum[i]) * (j+1) - 100, 1000 - (1000 / layer) * i);
+                point_positions[i][j] = new Vector3((1920 / nodenum[i]) * (j + 1) - 100, 1000 - (1000 / layer) * i, 0);
+                CreateStoponMap(point_positions[i][j].x, point_positions[i][j].y);
+            }
+        }
+    }
+    public void DrawLine(int[] nodenum, int layer, int[][] pointer) 
+    {
+        for (int i = 0; i < layer-1; i++)
+        {
+            for (int j = 0; j < nodenum[i]; j++)
+            {
+                Debug.DrawLine(point_positions[i][j], point_positions[i+1][pointer[i][j]], UnityEngine.Color.white, 2.5f);
             }
         }
     }

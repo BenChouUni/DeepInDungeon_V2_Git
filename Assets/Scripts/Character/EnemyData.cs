@@ -20,7 +20,7 @@ public class EnemyData : Character
 
     
     //可能用做AI的實現
-    public List<CardActionBase> actionList;
+    //public List<CardActionBase> actionList;
 
     public EnemyData(int _id,string _name, int _maxHp, int _shield,int _atk) : base(_name, _maxHp, _shield)
     {
