@@ -7,7 +7,7 @@ public static class CardActionFactory
 {
     public static CardActionBase GetCardAction(ActionType type)
     {
-        Debug.Log("CardActionFactory 被使用");
+        //Debug.Log("CardActionFactory 被使用");
         CardActionBase cardActionBase = null;
         switch (type)
         {

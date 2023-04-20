@@ -2746,6 +2746,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1060979142}
   - component: {fileID: 1060979143}
+  - component: {fileID: 1060979144}
   m_Layer: 0
   m_Name: PLayerDataManager
   m_TagString: Untagged
@@ -2781,9 +2782,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   battleplayerData:
+    targetType: 0
     characterName: no name
-    maxHp: 50
-    currentHp: 50
+    hpState:
+      maxHp: 50
+      currentHp: 50
     shield: 0
     isDeath: 0
     mainWeaponData:
@@ -2802,6 +2805,7 @@ MonoBehaviour:
       weaponType: 2
     coin: 0
     energy: 3
+  effectListDisplayl: {fileID: 1060979144}
   Status: {fileID: 1661347450}
   SmallWeaponPrefab: {fileID: 4714965924568598201, guid: 35acd61bf70fa02418754fa2a23d682f, type: 3}
   Panel: {fileID: 1402240267}
@@ -2812,6 +2816,19 @@ MonoBehaviour:
   playerHealthBar: {fileID: 774873979}
   playerEnergy: {fileID: 850091300}
   playerShield: {fileID: 322849275}
+--- !u!114 &1060979144
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1060979141}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed4a1dbc8f15245378dd99fd14fe409e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IconObj: {fileID: 7320527479217366683, guid: cbcf5dbb0ac6449a4af69b6d8f9ac95e, type: 3}
 --- !u!1 &1077914573
 GameObject:
   m_ObjectHideFlags: 0
@@ -3486,9 +3503,11 @@ MonoBehaviour:
   Data:
     weaponary: []
     playerData:
+      targetType: 0
       characterName: no name
-      maxHp: 50
-      currentHp: 50
+      hpState:
+        maxHp: 50
+        currentHp: 50
       shield: 0
       isDeath: 0
       mainWeaponData:
@@ -4801,6 +4820,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1928943967}
   - component: {fileID: 1928943968}
+  - component: {fileID: 1928943969}
   m_Layer: 0
   m_Name: EnemyManager
   m_TagString: Untagged
@@ -4836,18 +4856,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyData:
+    targetType: 0
     characterName: 
-    maxHp: 0
-    currentHp: 0
+    hpState:
+      maxHp: 0
+      currentHp: 0
     shield: 0
     isDeath: 0
     id: 0
     atk: 0
-    actionList: []
+  effectListDisplay: {fileID: 1928943969}
   enemyName: {fileID: 2016194624}
   enemyHealthBar: {fileID: 2078670311}
   enemyShield: {fileID: 1078387168}
   Shieldinformation: {fileID: 1750212947}
+--- !u!114 &1928943969
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1928943966}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed4a1dbc8f15245378dd99fd14fe409e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IconObj: {fileID: 7320527479217366683, guid: cbcf5dbb0ac6449a4af69b6d8f9ac95e, type: 3}
 --- !u!1001 &1964282276
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5552,7 +5587,6 @@ MonoBehaviour:
   battleDeckManager: {fileID: 0}
   battlePlayerDataManager: {fileID: 0}
   cardsLayoutManager: {fileID: 0}
-  actionManager: {fileID: 0}
   enemyManager: {fileID: 0}
   initialDrawCard: 5
 --- !u!114 &2090945750
@@ -5568,18 +5602,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyData:
+    targetType: 0
     characterName: 
-    maxHp: 0
-    currentHp: 0
+    hpState:
+      maxHp: 0
+      currentHp: 0
     shield: 0
     isDeath: 0
     id: 0
     atk: 0
-    actionList: []
   battleplayerData:
+    targetType: 0
     characterName: no name
-    maxHp: 50
-    currentHp: 50
+    hpState:
+      maxHp: 50
+      currentHp: 50
     shield: 0
     isDeath: 0
     mainWeaponData:
@@ -5598,13 +5635,6 @@ MonoBehaviour:
       weaponType: 2
     coin: 0
     energy: 3
-  actioningWeapon:
-    id: 0
-    weaponName: 
-    atk: 0
-    def: 0
-    distance: 0
-    weaponType: 2
 --- !u!1 &2094084609
 GameObject:
   m_ObjectHideFlags: 0

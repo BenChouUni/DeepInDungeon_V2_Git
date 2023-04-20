@@ -21,6 +21,7 @@ public class HealthBar : MonoBehaviour
 
     public void Show(HpState _hpState)
     {
+//        Debug.Log("Show hp");
         if (_hpState==null)
         {
             Debug.Log("hpState沒有初始化");

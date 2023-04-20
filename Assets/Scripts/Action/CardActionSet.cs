@@ -12,7 +12,7 @@ public class CardActionSet
     public CardActionBase CardActionBase
     {
         get {
-            Debug.Log("15");
+
             if (cardActionBase==null)
             {
                 
@@ -31,7 +31,7 @@ public class CardActionSet
     /// </summary>
     public void DoAction()
     {
-        Debug.Log("18");
+       
         CardActionBase.DoAction(actionParameter);
     }
     

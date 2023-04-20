@@ -41,8 +41,9 @@ public class CardActionParameter
             return self;
         }
     }
+    [SerializeField]
     private WeaponData weaponData = null;
-    [HideInInspector]
+    //[HideInInspector]
     public WeaponData WeaponData
     {
         get

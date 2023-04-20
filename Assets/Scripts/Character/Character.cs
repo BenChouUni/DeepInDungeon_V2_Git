@@ -95,7 +95,7 @@ public abstract class Character
             isDeath = true;
             
         }
-
+        hpDisplay?.Invoke(this.HpState);
         updateDisplay?.Invoke(this);
     }
     /// <summary>

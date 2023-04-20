@@ -13,9 +13,10 @@ public class WeaponAttackAction : CardActionBase
 
     public override void DoAction(CardActionParameter parameter)
     {
-        Debug.Log(ActionDescribe(parameter));
+        
         //如果沒有目標就直接跳出
         if (parameter.Target == null) return;
+        Debug.Log(ActionDescribe(parameter));
         Character targetCharater = parameter.Target;
 
         List<StateEffect> targetStateList = targetCharater.StateList;
@@ -26,7 +27,8 @@ public class WeaponAttackAction : CardActionBase
             damagef *= item.AtReceiveDamage();
         }
         int damage = (int)damagef;
-
+        
         targetCharater.GetDamage(damage);
+        
     }
 }

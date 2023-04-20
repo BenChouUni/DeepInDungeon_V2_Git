@@ -19,7 +19,7 @@ public class EnemyManager : MonoSingleton<EnemyManager>
     {
         //暫時使用
         enemyData = new EnemyData(0, "木樁", 50, 0, 3);
-        enemyData.hpDisplay += enemyHealthBar.Show;
+        //enemyData.hpDisplay += enemyHealthBar.Show;
         enemyData.setDisplayAction(ShowEnemy, enemyHealthBar.Show,effectListDisplay.ShowStateList);
         ShowEnemy(this.enemyData);
         enemyHealthBar.Show(this.enemyData.HpState);
@@ -33,6 +33,7 @@ public class EnemyManager : MonoSingleton<EnemyManager>
     
     private void ShowEnemy(Character character)
     {
+        //Debug.Log("Show Enemy");
         enemyName.text = character.CharacterName;
         enemyShield.text = (character.Shield).ToString();
         if (character.Shield <= 0)

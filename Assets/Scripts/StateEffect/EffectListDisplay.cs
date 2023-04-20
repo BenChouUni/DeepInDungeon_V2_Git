@@ -17,6 +17,7 @@ public class EffectListDisplay :MonoBehaviour
     private List<EffectIcon> effectIcons = new List<EffectIcon>();
 
     //prefab
+    public Transform stateListPanel;
     public GameObject IconObj;
 
     public EffectListDisplay()
@@ -29,6 +30,7 @@ public class EffectListDisplay :MonoBehaviour
     /// <param name="states"></param>
     public void ShowStateList(List<StateEffect> states)
     {
+        Debug.Log("Show State List");
         RemoveAllIcon();
         foreach (StateEffect item in states)
         {
@@ -94,7 +96,7 @@ public class EffectListDisplay :MonoBehaviour
 
     private void CreateIcon(StateEffect stateEffect)
     {
-        GameObject iconObj = Instantiate(IconObj, this.transform, false);
+        GameObject iconObj = Instantiate(IconObj, stateListPanel, false);
         EffectIcon effectIcon = iconObj.GetComponent<EffectIcon>();
         effectIcon.SetStateEffect(stateEffect);
 

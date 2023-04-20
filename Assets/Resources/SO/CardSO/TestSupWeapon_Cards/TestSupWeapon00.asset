@@ -24,8 +24,10 @@ MonoBehaviour:
       def: 3
       distance: 0
       weaponType: 1
-    cardAction:
-    - type: 2
-      parameter: 1
-      target: 0
-      statusType: 0
+    cardActions:
+    - actionType: 4
+      actionParameter:
+        value: 1
+        targetType: 0
+        selfType: 0
+        stateEffectType: 0
