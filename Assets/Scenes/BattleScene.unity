@@ -2868,6 +2868,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed4a1dbc8f15245378dd99fd14fe409e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stateListPanel: {fileID: 0}
   IconObj: {fileID: 7320527479217366683, guid: cbcf5dbb0ac6449a4af69b6d8f9ac95e, type: 3}
 --- !u!1 &1077914573
 GameObject:
@@ -4922,6 +4923,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed4a1dbc8f15245378dd99fd14fe409e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stateListPanel: {fileID: 351684324}
   IconObj: {fileID: 7320527479217366683, guid: cbcf5dbb0ac6449a4af69b6d8f9ac95e, type: 3}
 --- !u!1001 &1964282276
 PrefabInstance:

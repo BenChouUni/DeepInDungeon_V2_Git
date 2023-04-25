@@ -8,7 +8,7 @@ public class HealAction : CardActionBase
 
     public override string ActionDescribe(CardActionParameter parameter)
     {
-        return "restore heal";
+        return string.Format("restore {0} health", parameter.value);
     }
 
     public override void DoAction(CardActionParameter parameter)

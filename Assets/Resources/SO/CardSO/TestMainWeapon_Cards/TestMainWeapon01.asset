@@ -31,3 +31,10 @@ MonoBehaviour:
         targetType: 1
         selfType: 0
         stateEffectType: 1
+        weaponData:
+          id: 99
+          weaponName: "\u6E2C\u8A66\u7528\u4E3B\u624B"
+          atk: 5
+          def: 1
+          distance: 0
+          weaponType: 0

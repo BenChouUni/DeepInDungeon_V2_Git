@@ -16,6 +16,11 @@ public abstract class CardActionBase
 
     public abstract void DoAction(CardActionParameter parameter);
 
+    /// <summary>
+    /// 返回動作描述
+    /// </summary>
+    /// <param name="parameter"></param>
+    /// <returns></returns>
     public abstract string ActionDescribe(CardActionParameter parameter);
 
 

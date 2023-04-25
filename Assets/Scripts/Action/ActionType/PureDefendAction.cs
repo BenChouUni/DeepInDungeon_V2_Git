@@ -10,7 +10,7 @@ public class PureDefendAction : CardActionBase
 
     public override string ActionDescribe(CardActionParameter parameter)
     {
-        return "get shield";
+        return string.Format("get {0} shield", parameter.value);
     }
 
     public override void DoAction(CardActionParameter parameter)

@@ -34,5 +34,9 @@ public class CardActionSet
        
         CardActionBase.DoAction(actionParameter);
     }
-    
+
+    public string getDescription()
+    {
+        return CardActionBase.ActionDescribe(actionParameter);
+    }
 }

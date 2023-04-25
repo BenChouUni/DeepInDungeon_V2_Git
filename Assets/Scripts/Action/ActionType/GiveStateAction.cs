@@ -8,7 +8,7 @@ public class GiveStateAction : CardActionBase
 
     public override string ActionDescribe(CardActionParameter parameter)
     {
-        return string.Format("give {0}", parameter.StateEffect);
+        return string.Format("give {0} {1} layer", parameter.StateEffect,parameter.value);
     }
 
     public override void DoAction(CardActionParameter parameter)

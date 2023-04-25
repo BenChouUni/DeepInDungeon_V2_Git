@@ -10,7 +10,7 @@ public class PureDamageAction : CardActionBase
 
     public override string ActionDescribe(CardActionParameter parameter)
     {
-        return "Deal Damage";
+        return string.Format("Deal {0} damage", parameter.value);
     }
 
     public override void DoAction(CardActionParameter parameter)

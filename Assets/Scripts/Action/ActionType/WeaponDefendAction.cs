@@ -8,7 +8,7 @@ public class WeaponDefendAction : CardActionBase
 
     public override string ActionDescribe(CardActionParameter parameter)
     {
-        return "Use Wepon to get shield";
+        return string.Format("Use {0} get {1} shield", parameter.WeaponData.weaponName, parameter.value);
     }
 
     public override void DoAction(CardActionParameter parameter)

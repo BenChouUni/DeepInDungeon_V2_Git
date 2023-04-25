@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Text;
 
 /// <summary>
 /// 掛載在卡牌模板上，傳入資料自動顯示卡牌
@@ -42,7 +43,18 @@ public class CardDisplay : MonoBehaviour
         {
             description_text.text = "";
         }
-        
+
+        description_text.text = getDescription();
     }
 
+    private string getDescription()
+    {
+        StringBuilder stb = new StringBuilder();
+        foreach (CardActionSet item in cardData.cardActions)
+        {
+            stb.Append(item.getDescription());
+            stb.Append("\n");
+        }
+        return stb.ToString();
+    }
 }

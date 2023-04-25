@@ -8,7 +8,7 @@ public class DrawCardAction : CardActionBase
 
     public override string ActionDescribe(CardActionParameter parameter)
     {
-        return "draw card";
+        return string.Format("Draw {0} card",parameter.value);
     }
 
     public override void DoAction(CardActionParameter parameter)

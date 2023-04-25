@@ -7,9 +7,13 @@ public class MapManager : MonoBehaviour
 {
     public GameObject StopPrefab;
     public Transform MapPanel;
-    public static int layer = 5;
-    public Vector3[][] point_positions = new Vector3[layer][];
+    public int layer;
+    public Vector3[][] point_positions;
 
+    private void Awake()
+    {
+        point_positions = new Vector3[layer][];
+    }
     void Start()
     {
         Debug.DrawLine(Vector3.zero, new Vector3(200, 0, 0), UnityEngine.Color.black, 50f);
@@ -17,31 +21,31 @@ public class MapManager : MonoBehaviour
         System.Console.WriteLine("-------------------------");
 
 
-        int[] monster = new int[layer];     //¨C¼h©Çª«¼Æ¶q
+        int[] monster = new int[layer];     //ï¿½Cï¿½hï¿½Çªï¿½ï¿½Æ¶q
         System.Random randon = new System.Random();
-        int[][] pointer1 = new int[layer][];        //²Ä¤@¦¸³s±µ¨ìªº¦ì¸m¡A0 -> 1, 1 -> 2 ...
-        int[][] pointer2 = new int[layer][];        //²Ä¤G¦¸³s±µ¨ìªº¦ì¸m¡A1 -> 0, 2 -> 1 ...
-        int[][] line = new int[layer][];        //·í«e¤w³Q³s¨ìªº½u¼Æ
+        int[][] pointer1 = new int[layer][];        //ï¿½Ä¤@ï¿½ï¿½ï¿½sï¿½ï¿½ï¿½ìªºï¿½ï¿½mï¿½A0 -> 1, 1 -> 2 ...
+        int[][] pointer2 = new int[layer][];        //ï¿½Ä¤Gï¿½ï¿½ï¿½sï¿½ï¿½ï¿½ìªºï¿½ï¿½mï¿½A1 -> 0, 2 -> 1 ...
+        int[][] line = new int[layer][];        //ï¿½ï¿½ï¿½eï¿½wï¿½Qï¿½sï¿½ìªºï¿½uï¿½ï¿½
 
         for (int i = 0; i < layer; i++)
         {
-            monster[i] = randon.Next(3, 6);     //³]©w¨C¼h©Çª«¼Æ¶q
+            monster[i] = randon.Next(3, 6);     //ï¿½]ï¿½wï¿½Cï¿½hï¿½Çªï¿½ï¿½Æ¶q
             pointer1[i] = new int[monster[i]];
             pointer2[i] = new int[monster[i]];
             line[i] = new int[monster[i]];
             point_positions[i] = new Vector3[monster[i]];
 
-            //­Y¤£¬O²Ä0¼h«h¶}©l¬Û³s
+            //ï¿½Yï¿½ï¿½ï¿½Oï¿½ï¿½0ï¿½hï¿½hï¿½}ï¿½lï¿½Û³s
             if (i > 0)
             {
-                //ÀY§À¬Û³s
+                //ï¿½Yï¿½ï¿½ï¿½Û³s
                 fpt_and_endpt(i, i - 1, monster, pointer1[i - 1], line[i]);
 
-                //²Ä¤@¦¸¬Û³s
+                //ï¿½Ä¤@ï¿½ï¿½ï¿½Û³s
                 first_assign(i, i - 1, monster, pointer1[i - 1], line[i]);
                 //Show(pointer1, i);
 
-                //²Ä¤G¦¸¬Û³s
+                //ï¿½Ä¤Gï¿½ï¿½ï¿½Û³s
 
                 second_assign(i, i - 1, monster, pointer1[i - 1], pointer2[i], line[i]);
                 //Show(pointer2, i);
@@ -62,7 +66,7 @@ public class MapManager : MonoBehaviour
         Show(line, layer);
     }
 
-    public static void Show(int[][] s, int layer)
+    public void Show(int[][] s, int layer)
     {
         for (int i = 0; i < layer; i++)
         {
@@ -76,7 +80,7 @@ public class MapManager : MonoBehaviour
     }
 
 
-    //ÀY§À¬Û³s
+    //ï¿½Yï¿½ï¿½ï¿½Û³s
     public static void fpt_and_endpt(int now_layer, int pre_layer, int[] monster_num, int[] pointer, int[] beassign)
     {
         pointer[0] = 0;
@@ -85,33 +89,33 @@ public class MapManager : MonoBehaviour
         beassign[monster_num[now_layer] - 1]++;
     }
 
-    //²Ä¤@¦¸¬Û³s¡A½T«O¤W¤@¼h³£¦³³s±µ¨ì·í«e¼h¡A¦ý·í«e¼h¥¼¥²³£¦³³Q³s¨ì
+    //ï¿½Ä¤@ï¿½ï¿½ï¿½Û³sï¿½Aï¿½Tï¿½Oï¿½Wï¿½@ï¿½hï¿½ï¿½ï¿½ï¿½ï¿½sï¿½ï¿½ï¿½ï¿½ï¿½ï¿½eï¿½hï¿½Aï¿½ï¿½ï¿½ï¿½ï¿½eï¿½hï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Qï¿½sï¿½ï¿½
     public static void first_assign(int now_layer, int pre_layer, int[] monster_num, int[] pointer, int[] beassign)
     {
         System.Random randon = new System.Random();
 
-        int now_pt = 0;     //·í«e¼h¥i¯à·|³s±µ¨ìªºÂI
-        int inst;       //­n³s±µ¨ì·í«eÂIÁÙ¬O²¾°Ê¨ì¤U¤@ÂIªº«ü¥O
+        int now_pt = 0;     //ï¿½ï¿½ï¿½eï¿½hï¿½iï¿½ï¿½|ï¿½sï¿½ï¿½ï¿½ìªºï¿½I
+        int inst;       //ï¿½nï¿½sï¿½ï¿½ï¿½ï¿½ï¿½ï¿½eï¿½Iï¿½Ù¬Oï¿½ï¿½ï¿½Ê¨ï¿½Uï¿½@ï¿½Iï¿½ï¿½ï¿½ï¿½ï¿½O
 
-        if (monster_num[now_layer] > monster_num[pre_layer])        //¦pªG·í«e¼hªºÂI¤j©ó¤W¤@¼hªº¸Ü
+        if (monster_num[now_layer] > monster_num[pre_layer])        //ï¿½pï¿½Gï¿½ï¿½ï¿½eï¿½hï¿½ï¿½ï¿½Iï¿½jï¿½ï¿½Wï¿½@ï¿½hï¿½ï¿½ï¿½ï¿½
         {
-            now_pt++;   //now_ptª½±µ«ü¦V¤U¤@­ÓÂI¡AÁ×§K³Ì«á¥X²{ª¬ªp
+            now_pt++;   //now_ptï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Vï¿½Uï¿½@ï¿½ï¿½ï¿½Iï¿½Aï¿½×§Kï¿½Ì«ï¿½Xï¿½{ï¿½ï¿½ï¿½p
         }
         for (int pre_pt = 1; pre_pt < monster_num[pre_layer] - 1; pre_pt++)
         {
 
 
-            if (pre_pt == monster_num[pre_layer] - 2 && monster_num[now_layer] - now_pt == 5)   //¦b 4,6 ¥i¯à·|µo¥ÍÂI¤£°÷¥Îªº±¡ªp¡A¦]¦¹¥ý´£¦­Á×§K
+            if (pre_pt == monster_num[pre_layer] - 2 && monster_num[now_layer] - now_pt == 5)   //ï¿½b 4,6 ï¿½iï¿½ï¿½|ï¿½oï¿½ï¿½ï¿½Iï¿½ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½ï¿½ï¿½pï¿½Aï¿½]ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×§K
             {
                 now_pt++;
             }
 
-            inst = randon.Next(0, 2);       //ÀH¾÷«ü¥O¡A0¬O«ü¦V·í«eÂI¡A1¬O«ü¦V¤U¤@ÂI
-            if (monster_num[pre_layer] - pre_pt == 3 && monster_num[now_layer] - now_pt == 2)        //­Ë¼Æ²Ä¤T¤£¯à±µ¨ì³Ì«á¤@­Ó
+            inst = randon.Next(0, 2);       //ï¿½Hï¿½ï¿½ï¿½ï¿½ï¿½Oï¿½A0ï¿½Oï¿½ï¿½ï¿½Vï¿½ï¿½ï¿½eï¿½Iï¿½A1ï¿½Oï¿½ï¿½ï¿½Vï¿½Uï¿½@ï¿½I
+            if (monster_num[pre_layer] - pre_pt == 3 && monster_num[now_layer] - now_pt == 2)        //ï¿½Ë¼Æ²Ä¤Tï¿½ï¿½ï¿½à±µï¿½ï¿½Ì«ï¿½@ï¿½ï¿½
             {
                 inst = 0;
             }
-            if (now_pt == monster_num[now_layer] - 1)       //­Y¥u³Ñ³Ì«á¤@ÂI¯à¿ï
+            if (now_pt == monster_num[now_layer] - 1)       //ï¿½Yï¿½uï¿½Ñ³Ì«ï¿½@ï¿½Iï¿½ï¿½ï¿½
             {
                 inst = 0;
 
@@ -126,72 +130,72 @@ public class MapManager : MonoBehaviour
                 pointer[pre_pt] = now_pt;
             }
 
-            //´ú¸Õ¥Î
+            //ï¿½ï¿½ï¿½Õ¥ï¿½
             /*
             if(now_pt == monster_num[now_layer])
             {
-                System.Console.WriteLine("¶W¹L¤F");
+                System.Console.WriteLine("ï¿½Wï¿½Lï¿½F");
                 System.Console.WriteLine("pre: " + pre_pt + " now: " + now_pt);
                 System.Console.WriteLine();
                 now_pt--;
             }
             */
-            beassign[now_pt]++;     //³Q«ü¦VªºÂI¡A½u¼Æ¶q¥[¤@
-            if (beassign[now_pt] >= 2)       //½u¼Æ¶q­Y¹F2§Y¬°¤W­­¡A¦]¦¹ª½±µ¸õ¨ì¤U¤@ÂI
+            beassign[now_pt]++;     //ï¿½Qï¿½ï¿½ï¿½Vï¿½ï¿½ï¿½Iï¿½Aï¿½uï¿½Æ¶qï¿½[ï¿½@
+            if (beassign[now_pt] >= 2)       //ï¿½uï¿½Æ¶qï¿½Yï¿½F2ï¿½Yï¿½ï¿½ï¿½Wï¿½ï¿½ï¿½Aï¿½]ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Uï¿½@ï¿½I
             {
                 now_pt++;
             }
         }
     }
 
-    //²Ä¤G¦¸¬Û³s¡AÅý·í«e¼h³£¦³³Q³s¨ì¡A¦ý­nª`·N¥æ¤e
+    //ï¿½Ä¤Gï¿½ï¿½ï¿½Û³sï¿½Aï¿½ï¿½ï¿½ï¿½ï¿½eï¿½hï¿½ï¿½ï¿½ï¿½ï¿½Qï¿½sï¿½ï¿½Aï¿½ï¿½ï¿½nï¿½`ï¿½Nï¿½ï¿½e
     public static void second_assign(int now_layer, int pre_layer, int[] monster_num, int[] pointer1, int[] pointer2, int[] beassign)
     {
 
-        //·ípre_pt³s±µ¨ìnow_pt(¥]¬A¥ªÃä)®É·|µo¥Í¥æ¤e´N±Nnow_pt²¾¦ì
-        //©Înow_ptªº³s±µ¼Æ¬°2®É¤]­n±Nnow_pt²¾¦ì
-        //³Ì«á¤@­Ópre_pt¡A¤£¯à³s¨ì­Ë¼Æ²Ä¤T­ÓÂI¡A
-        //·ípre_pt³s±µ¨ìnow_pt(¥]¬A¥kÃä)®É·|µo¥Í¥æ¤e´N±Npre_pt²¾¦ì
+        //ï¿½ï¿½pre_ptï¿½sï¿½ï¿½ï¿½ï¿½now_pt(ï¿½]ï¿½Aï¿½ï¿½ï¿½ï¿½)ï¿½É·|ï¿½oï¿½Í¥ï¿½eï¿½Nï¿½Nnow_ptï¿½ï¿½ï¿½ï¿½
+        //ï¿½ï¿½now_ptï¿½ï¿½ï¿½sï¿½ï¿½ï¿½Æ¬ï¿½2ï¿½É¤]ï¿½nï¿½Nnow_ptï¿½ï¿½ï¿½ï¿½
+        //ï¿½Ì«ï¿½@ï¿½ï¿½pre_ptï¿½Aï¿½ï¿½ï¿½ï¿½sï¿½ï¿½Ë¼Æ²Ä¤Tï¿½ï¿½ï¿½Iï¿½A
+        //ï¿½ï¿½pre_ptï¿½sï¿½ï¿½ï¿½ï¿½now_pt(ï¿½]ï¿½Aï¿½kï¿½ï¿½)ï¿½É·|ï¿½oï¿½Í¥ï¿½eï¿½Nï¿½Npre_ptï¿½ï¿½ï¿½ï¿½
 
         System.Random randon = new System.Random();
 
-        int pre_pt = 0;     //·í«e¼h¥i¯à·|³s±µ¨ìªºÂI
-        int inst;       //­n³s±µ¨ì·í«eÂIÁÙ¬O²¾°Ê¨ì¤U¤@ÂIªº«ü¥O
+        int pre_pt = 0;     //ï¿½ï¿½ï¿½eï¿½hï¿½iï¿½ï¿½|ï¿½sï¿½ï¿½ï¿½ìªºï¿½I
+        int inst;       //ï¿½nï¿½sï¿½ï¿½ï¿½ï¿½ï¿½ï¿½eï¿½Iï¿½Ù¬Oï¿½ï¿½ï¿½Ê¨ï¿½Uï¿½@ï¿½Iï¿½ï¿½ï¿½ï¿½ï¿½O
 
         for (int now_pt = 1; now_pt < monster_num[now_layer] - 1; now_pt++)
         {
-            if (beassign[now_pt] == 0)      //·í«e¼hªº³o¤@ÂI¥¼³Q³s±µ¨ì¤~°õ¦æ³s±µ
+            if (beassign[now_pt] == 0)      //ï¿½ï¿½ï¿½eï¿½hï¿½ï¿½ï¿½oï¿½@ï¿½Iï¿½ï¿½ï¿½Qï¿½sï¿½ï¿½ï¿½ï¿½~ï¿½ï¿½ï¿½ï¿½sï¿½ï¿½
             {
 
                 bool stillfind = true;
-                while (stillfind)      //´M§ä¤£·|¥æ¤e¡A¥i³s±µªºÂI
+                while (stillfind)      //ï¿½Mï¿½ä¤£ï¿½|ï¿½ï¿½eï¿½Aï¿½iï¿½sï¿½ï¿½ï¿½ï¿½ï¿½I
                 {
                     stillfind = false;
-                    int right_pre_pt = pre_pt + 1;      //¥Î¥kÃäªºÂI¨Ó§PÂ_
-                    if (right_pre_pt == monster_num[pre_layer])        //§PÂ_³Ì«á¤@ÂI
+                    int right_pre_pt = pre_pt + 1;      //ï¿½Î¥kï¿½äªºï¿½Iï¿½Ó§Pï¿½_
+                    if (right_pre_pt == monster_num[pre_layer])        //ï¿½Pï¿½_ï¿½Ì«ï¿½@ï¿½I
                     {
                         right_pre_pt = pre_pt;
                         break;
                     }
 
-                    //´ú¸Õ¥Î
+                    //ï¿½ï¿½ï¿½Õ¥ï¿½
                     /*
                     if(right_pre_pt >= monster_num[pre_layer])
                     {
-                        System.Console.WriteLine("Second¥X²{bug¤F");
+                        System.Console.WriteLine("Secondï¿½Xï¿½{bugï¿½F");
                         //System.Console.WriteLine(right_pre_pt);
                         right_pre_pt = monster_num[pre_layer] - 1;
                         
                     }
                     */
-                    if (pointer1[right_pre_pt] < now_pt)     //¬O§_·|³y¦¨¥æ¤e
+                    if (pointer1[right_pre_pt] < now_pt)     //ï¿½Oï¿½_ï¿½|ï¿½yï¿½ï¿½ï¿½ï¿½e
                     {
                         pre_pt++;
                         stillfind = true;
                     }
                 }
                 inst = randon.Next(0, 2);
-                if (monster_num[pre_layer] - pre_pt == 2 && monster_num[now_layer] - now_pt == 3)      //­Ë¼Æ²Ä¤T­Ónow_pt¡A¤£¥i³s¨ì³Ì«á¤@­Ópre_pt
+                if (monster_num[pre_layer] - pre_pt == 2 && monster_num[now_layer] - now_pt == 3)      //ï¿½Ë¼Æ²Ä¤Tï¿½ï¿½now_ptï¿½Aï¿½ï¿½ï¿½iï¿½sï¿½ï¿½Ì«ï¿½@ï¿½ï¿½pre_pt
                 {
                     inst = 0;
                 }
@@ -205,7 +209,7 @@ public class MapManager : MonoBehaviour
                     pre_pt++;
                     pointer2[now_pt] = pre_pt;
                 }
-                pre_pt++;   //³s±µ«áªºpre_pt¥²¬°2¡A©Ò¥H©T©w+1©¹¤U
+                pre_pt++;   //ï¿½sï¿½ï¿½ï¿½áªºpre_ptï¿½ï¿½ï¿½ï¿½2ï¿½Aï¿½Ò¥Hï¿½Tï¿½w+1ï¿½ï¿½ï¿½U
                 beassign[now_pt]++;
 
             }
