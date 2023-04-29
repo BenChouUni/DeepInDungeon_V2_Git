@@ -43,17 +43,20 @@ public class CardDisplay : MonoBehaviour
         {
             description_text.text = "";
         }
-
-        description_text.text = getDescription();
+        if (description_text!=null)
+        {
+            description_text.text = getDescription();
+        }
+        
     }
 
     private string getDescription()
     {
-        StringBuilder stb = new StringBuilder();
+        StringBuilder stb = new StringBuilder("");
         foreach (CardActionSet item in cardData.cardActions)
         {
             stb.Append(item.getDescription());
-            stb.Append("\n");
+            stb.AppendLine();
         }
         return stb.ToString();
     }
