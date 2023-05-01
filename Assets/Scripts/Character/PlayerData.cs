@@ -31,6 +31,9 @@ public class PlayerData : Character,ICloneable
     {
         get { return energy; }
     }
+
+    public Action<int> coinDisplay;
+    public Action<int> energyDisplay;
     /// <summary>
     /// 預設初始化 "no name", 50, 0
     /// </summary>
@@ -40,7 +43,7 @@ public class PlayerData : Character,ICloneable
         mainWeaponData = null;
         supportWeaponData = null;
         this.energy = 3;
-        this.targetType = TargetType.Player; //兩構造函數應該要整合
+        this.targetType = CharaterType.Player; //兩構造函數應該要整合
     }
     public PlayerData(string _name, int _maxHp, int _shield,int _energy) :base(_name,_maxHp,_shield)
     {
@@ -48,13 +51,16 @@ public class PlayerData : Character,ICloneable
         mainWeaponData = null;
         supportWeaponData = null;
         this.energy = _energy;
-        this.targetType = TargetType.Player;
+        this.targetType = CharaterType.Player;
     }
 
 
     public void CoinAdd(int num)
     {
+        if (num <= 0) return;
         coin += num;
+        coinDisplay?.Invoke(coin);
+
     }
 
     public object Clone()

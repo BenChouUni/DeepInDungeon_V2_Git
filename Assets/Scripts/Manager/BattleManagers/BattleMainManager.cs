@@ -14,8 +14,8 @@ public class BattleMainManager : MonoSingleton<BattleMainManager>
     public BattlePlayerDataManager battlePlayerDataManager;
     [HideInInspector]
     public CardsLayoutManager cardsLayoutManager;
-    [HideInInspector]
-    public ActionManager actionManager;
+    //[HideInInspector]
+    //public ActionManager actionManager;
     [HideInInspector]
     public EnemyManager enemyManager;
    
@@ -23,7 +23,7 @@ public class BattleMainManager : MonoSingleton<BattleMainManager>
     [Header("開場抽幾張卡")]
     public int initialDrawCard;
     //drag drop
-    private bool isDragging;
+    private bool isDragging = false;
     private GameObject draggingCard;
     //UI
     //public Button EndTurnButton;
@@ -47,6 +47,23 @@ public class BattleMainManager : MonoSingleton<BattleMainManager>
         turnPhaseManager.InitialTurn();
         
     }
+    /*特殊使用，以後可能會更改*/
+    /// <summary>
+    /// 給ActionParameter調用Character資料使用
+    /// </summary>
+    /// <param name="type"></param>
+    /// <returns></returns>
+    public Character GetCharacterByType(CharaterType type)
+    {
+        if (type == CharaterType.Enemy)
+        {
+            return enemyManager.enemyData;
+        }
+        else
+        {
+            return battlePlayerDataManager.battleplayerData;
+        }
+    }
     //省呼叫資源
     private void Initialmanagers()
     {
@@ -55,7 +72,7 @@ public class BattleMainManager : MonoSingleton<BattleMainManager>
         battlePlayerDataManager = BattlePlayerDataManager.instance;
         battleDeckManager = BattleDeckManager.instance;
         cardsLayoutManager = CardsLayoutManager.instance;
-        actionManager = ActionManager.instance;
+        //actionManager = ActionManager.instance;
         enemyManager = EnemyManager.instance;
         
         
@@ -131,8 +148,13 @@ public class BattleMainManager : MonoSingleton<BattleMainManager>
 
         //使用牌
         Debug.LogFormat("使用{0}", cardData.cardName);
-        actionManager.UseCardAllAction(cardData);
-        UpdateStatus();
+        //actionManager.UseCardAllAction(cardData);
+        foreach (CardActionSet item in cardData.cardActions)
+        {
+            Debug.Log(item.actionType);
+            item.DoAction();
+        }
+        //UpdateStatus();
         
         
 
@@ -150,7 +172,7 @@ public class BattleMainManager : MonoSingleton<BattleMainManager>
         //behave
 
         //更新狀態
-        UpdateStatus();
+        //UpdateStatus();
         yield return new WaitForSeconds(2);
         //turn end
         turnPhaseManager.EndEnemyTurn();
@@ -158,19 +180,19 @@ public class BattleMainManager : MonoSingleton<BattleMainManager>
     /// <summary>
     /// 檢視死亡與否以及更新我方與敵人的狀態顯示，死亡則直接進入結束遊戲
     /// </summary>
-    private void UpdateStatus()
-    {
-        battlePlayerDataManager.UpdatePlayerStatus();
-        enemyManager.UpdateEnemyStatus();
-        if (battlePlayerDataManager.battleplayerData.isDeath || enemyManager.enemyData.isDeath)
-        {
-            StartCoroutine(EndBattle());
-        }
-        if (enemyManager.enemyData.isDeath)
-        {
-            AwardMainManager.instance.ShowAwardScene();
-        }
-    }
+    //private void UpdateStatus()
+    //{
+    //    battlePlayerDataManager.UpdatePlayerStatus();
+    //    enemyManager.UpdateEnemyStatus();
+    //    if (battlePlayerDataManager.battleplayerData.isDeath || enemyManager.enemyData.isDeath)
+    //    {
+    //        StartCoroutine(EndBattle());
+    //    }
+    //    if (enemyManager.enemyData.isDeath)
+    //    {
+    //        AwardMainManager.instance.ShowAwardScene();
+    //    }
+    //}
     /// <summary>
     /// 每個回合開始呼叫，執行回合開始所需的初始動作
     /// </summary>

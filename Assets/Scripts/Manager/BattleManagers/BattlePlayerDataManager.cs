@@ -9,7 +9,7 @@ public class BattlePlayerDataManager : MonoSingleton<BattlePlayerDataManager>,ID
     private PlayerData playerData = new PlayerData();
     //戰鬥中data
     public PlayerData battleplayerData = new PlayerData();
-
+    public EffectListDisplay effectListDisplayl;
 
     //生成角色資訊
     public Transform Status;
@@ -40,22 +40,15 @@ public class BattlePlayerDataManager : MonoSingleton<BattlePlayerDataManager>,ID
         battleplayerData = (PlayerData)this.playerData.Clone();
     }
 
-    void Update()
-    {
-        if(battleplayerData.Shield <= 0)
-        {
-            Shieldinformation.SetActive(false);
-        }
-        else
-        {
-            Shieldinformation.SetActive(true);
-        }
-    }
+    
 
     public void LoadData(GameData data)
     {
         this.playerData = data.playerData;
-        
+        this.playerData.setDisplayAction(ShowPlayerCharacter, playerHealthBar.Show,effectListDisplayl.ShowStateList);
+        ShowPlayerCharacter(this.playerData);
+        playerHealthBar.Show(this.playerData.HpState);
+
     }
     public void SaveData(ref GameData data)
     {
@@ -64,19 +57,25 @@ public class BattlePlayerDataManager : MonoSingleton<BattlePlayerDataManager>,ID
     public void InitialPlayerStatus()
     {
         this.maxenergy = this.currentEnergy = playerData.Energy;
-        ShowPlayerStatus(playerData);
+        ShowPlayerCharacter(playerData);
         ShowEnergy();
     }
-    private void ShowPlayerStatus(PlayerData _playerData)
+    private void ShowPlayerCharacter(Character character)
     {
-        playerName.text = _playerData.Name;
-        playerHealthBar.SetMaxHealth(_playerData.MaxHp);
-        playerHealthBar.SetHealth(_playerData.CurrentHp);
-        
+        playerName.text = character.CharacterName;
+        if (character.Shield <= 0)
+        {
+            Shieldinformation.SetActive(false);
+        }
+        else
+        {
+            Shieldinformation.SetActive(true);
+        }
+
     }
     public void UpdatePlayerStatus()
     {
-        ShowPlayerStatus(this.battleplayerData);
+        ShowPlayerCharacter(this.battleplayerData);
         ShowEnergy();
         ShowShield();
 
@@ -118,7 +117,7 @@ public class BattlePlayerDataManager : MonoSingleton<BattlePlayerDataManager>,ID
     }
 
 
-    //Energy相關
+    //Energy相關 之後要放到playerData
     #region
     private void ShowEnergy()
     {

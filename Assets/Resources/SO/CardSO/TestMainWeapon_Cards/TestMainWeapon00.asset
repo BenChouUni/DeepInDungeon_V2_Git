@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardData:
     id: 9900
-    cardName: "\u6B66\u5668\u6253\u64CA"
+    cardName: "\u6B66\u5668\u6253\u64CA5"
     cost: 1
     initialnum: 5
     weaponData:
@@ -24,8 +24,17 @@ MonoBehaviour:
       def: 1
       distance: 0
       weaponType: 0
-    cardAction:
-    - type: 0
-      parameter: 10
-      target: 1
-      StatusEffect: 0
+    cardActions:
+    - actionType: 0
+      actionParameter:
+        value: 5
+        targetType: 1
+        selfType: 0
+        stateEffectType: 0
+        weaponData:
+          id: 99
+          weaponName: "\u6E2C\u8A66\u7528\u4E3B\u624B"
+          atk: 5
+          def: 1
+          distance: 0
+          weaponType: 0

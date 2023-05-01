@@ -2,10 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+/// <summary>
+/// enemy顯示與管理
+/// </summary>
 public class EnemyManager : MonoSingleton<EnemyManager>
 {
     public EnemyData enemyData;
+    public EffectListDisplay effectListDisplay;
     //UIShow
     public Text enemyName;
     public HealthBar enemyHealthBar;
@@ -16,18 +19,24 @@ public class EnemyManager : MonoSingleton<EnemyManager>
     {
         //暫時使用
         enemyData = new EnemyData(0, "木樁", 50, 0, 3);
-        
+        //enemyData.hpDisplay += enemyHealthBar.Show;
+        enemyData.setDisplayAction(ShowEnemy, enemyHealthBar.Show,effectListDisplay.ShowStateList);
+        ShowEnemy(this.enemyData);
+        enemyHealthBar.Show(this.enemyData.HpState);
     }
 
     private void Start()
     {
-        ShowEnemy();
+        ShowEnemy(enemyData);
     }
 
     
-    void Update()
+    private void ShowEnemy(Character character)
     {
-        if (enemyData.Shield <= 0)
+        //Debug.Log("Show Enemy");
+        enemyName.text = character.CharacterName;
+        enemyShield.text = (character.Shield).ToString();
+        if (character.Shield <= 0)
         {
             Shieldinformation.SetActive(false);
         }
@@ -36,17 +45,7 @@ public class EnemyManager : MonoSingleton<EnemyManager>
             Shieldinformation.SetActive(true);
         }
     }
-    private void ShowEnemy()
-    {
-        enemyName.text = enemyData.Name;
-        enemyHealthBar.SetMaxHealth(enemyData.MaxHp);
-        enemyHealthBar.SetHealth(enemyData.CurrentHp);
-        enemyShield.text = (enemyData.Shield).ToString();
-    }
-    public void UpdateEnemyStatus()
-    {
-        ShowEnemy();
-    }
+
 
 
 }

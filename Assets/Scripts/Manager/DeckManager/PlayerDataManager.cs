@@ -1,9 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.TextCore.Text;
 using UnityEngine.UI;
 /// <summary>
-/// 在武器庫管理角色資料更動
+/// 在武器庫管理角色資料更動以及顯示
 /// </summary>
 public class PlayerDataManager : MonoSingleton<PlayerDataManager>, IDataPersistence
 {
@@ -16,12 +17,16 @@ public class PlayerDataManager : MonoSingleton<PlayerDataManager>, IDataPersiste
     public void LoadData(GameData data)
     {
         playerData = data.playerData;
+        this.playerData.setDisplayAction(ShowPlayerDataCharacter, playerHpBar.Show,null);
+        ShowPlayerDataCharacter(this.playerData);
+        playerHpBar.Show(this.playerData.HpState);
     }
 
     public void SaveData(ref GameData data)
     {
         data.playerData = playerData;
     }
+
     /// <summary>
     /// 給drop相關使用
     /// </summary>
@@ -51,17 +56,12 @@ public class PlayerDataManager : MonoSingleton<PlayerDataManager>, IDataPersiste
             playerData.SupportWeaponData = null;
         }
     }
-    public void ShowPlayerData()
+    public void ShowPlayerDataCharacter(Character character)
     {
         if (playerName_text != null)
         {
-            playerName_text.text = playerData.Name;
+            playerName_text.text = character.CharacterName;
         }
 
-        if (playerHpBar != null)
-        {
-            playerHpBar.SetMaxHealth(playerData.MaxHp);
-        }
- 
     }
 }

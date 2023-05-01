@@ -11,29 +11,19 @@ public class EffectIcon : MonoBehaviour
     public Text number;
     public Text nameText;
 
-    private EffectEnum type;
-    private string effectName;
-    private int layer;
-
-    public void setIcon(EffectEnum _type, string _effectName, int _layer)
+    public StateEffect stateEffect;
+    public void SetStateEffect(StateEffect _stateEffect)
     {
-        this.type = _type;
-        this.effectName = _effectName;
-        this.layer = _layer;
+        this.stateEffect = _stateEffect;
+        ShowIcon();
     }
-    public EffectEnum getType()
-    {
-        return this.type;
-    }
-    public void SetLayer(int n)
-    {
-        this.layer = n;
-    }
-
     public void ShowIcon()
     {
-        number.text = layer.ToString();
-        nameText.text = effectName;
+
+
+        number.text = stateEffect.Layer.ToString();
+        nameText.text = stateEffect.effectName;
+        
     }
 
     public void SelfDesTroy()
