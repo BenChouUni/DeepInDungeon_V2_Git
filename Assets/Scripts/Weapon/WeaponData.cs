@@ -2,11 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
-public enum WeaponType
-{
-    Main,Support,Both,//TwoHand
-}
+
 
 [System.Serializable]
 public class WeaponData
