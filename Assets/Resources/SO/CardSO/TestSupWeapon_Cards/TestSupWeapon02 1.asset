@@ -10,15 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e41fd07fb5a6b4bec82093d9be64cec5, type: 3}
-  m_Name: TestSupWeapon02
+  m_Name: TestSupWeapon02 1
   m_EditorClassIdentifier: 
   cardData:
     id: 9802
     cardName: "\u6CBB\u7652"
     cost: 1
     initialnum: 0
-    cardAction:
-    - type: 3
-      parameter: 5
-      target: 0
-      statusType: 0
+    weaponData:
+      id: 98
+      weaponName: "\u6E2C\u8A66\u7528\u526F\u624B"
+      atk: 0
+      def: 3
+      distance: 0
+      weaponType: 1
+    cardActions: []

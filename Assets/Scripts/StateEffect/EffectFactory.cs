@@ -15,7 +15,9 @@ public static class EffectFactory
                 
             case StateEffectType.Bleed:
                 return new BleedEffect();
-                
+
+            case StateEffectType.Weak:
+                return new WeakEffect();
             default:
                 return null;
                 

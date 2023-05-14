@@ -6,5 +6,6 @@ public enum StateEffectType
 {
     NULL,
     Wound,
-    Bleed
+    Bleed,
+    Weak
 }

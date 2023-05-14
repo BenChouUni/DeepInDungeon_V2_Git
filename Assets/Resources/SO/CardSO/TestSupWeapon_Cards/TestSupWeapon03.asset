@@ -10,31 +10,31 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e41fd07fb5a6b4bec82093d9be64cec5, type: 3}
-  m_Name: Sword00
+  m_Name: TestSupWeapon03
   m_EditorClassIdentifier: 
   cardData:
-    id: 0
-    cardName: "\u63EE\u780D"
-    cost: 1
+    id: 9803
+    cardName: "\u81EA\u6B98"
+    cost: 0
     initialnum: 2
     weaponData:
-      id: 0
-      weaponName: Sword
-      atk: 4
-      def: 1
-      distance: 1
-      weaponType: 0
+      id: 98
+      weaponName: "\u6E2C\u8A66\u7528\u526F\u624B"
+      atk: 0
+      def: 3
+      distance: 0
+      weaponType: 1
     cardActions:
     - actionType: 0
       actionParameter:
-        value: 2
-        targetType: 1
+        value: 5
+        targetType: 0
         selfType: 0
         stateEffectType: 0
         weaponData:
-          id: 0
-          weaponName: Sword
-          atk: 4
-          def: 1
-          distance: 1
-          weaponType: 0
+          id: 98
+          weaponName: "\u6E2C\u8A66\u7528\u526F\u624B"
+          atk: 0
+          def: 3
+          distance: 0
+          weaponType: 1

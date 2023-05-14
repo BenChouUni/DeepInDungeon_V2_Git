@@ -17,4 +17,37 @@ MonoBehaviour:
     cardName: "\u6495\u88C2\u65AC"
     cost: 0
     initialnum: 0
-    cardAction: []
+    weaponData:
+      id: 0
+      weaponName: Sword
+      atk: 4
+      def: 1
+      distance: 1
+      weaponType: 2
+    cardActions:
+    - actionType: 6
+      actionParameter:
+        value: 1
+        targetType: 1
+        selfType: 0
+        stateEffectType: 1
+        weaponData:
+          id: 0
+          weaponName: Sword
+          atk: 4
+          def: 1
+          distance: 1
+          weaponType: 2
+    - actionType: 6
+      actionParameter:
+        value: 1
+        targetType: 1
+        selfType: 0
+        stateEffectType: 3
+        weaponData:
+          id: 0
+          weaponName: Sword
+          atk: 4
+          def: 1
+          distance: 1
+          weaponType: 2
