@@ -69,8 +69,8 @@ public class BattlePlayerDataManager : MonoSingleton<BattlePlayerDataManager>,ID
         }
         else
         {
-            playerShield.text = (battleplayerData.Shield).ToString();
             Shieldinformation.SetActive(true);
+            ShowShield(character.Shield);
         }
 
     }
@@ -163,8 +163,11 @@ public class BattlePlayerDataManager : MonoSingleton<BattlePlayerDataManager>,ID
     //Shield相關
     private void ShowShield()
     {
- //       Debug.Log(battleplayerData.Shield);
         playerShield.text = (battleplayerData.Shield).ToString();
+    }
+    private void ShowShield(int shield)
+    {
+        playerShield.text = shield.ToString();
     }
 
 }
