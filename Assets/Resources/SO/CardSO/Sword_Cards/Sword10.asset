@@ -16,3 +16,12 @@ MonoBehaviour:
     id: 10
     cardName: "\u53CD\u653B\u70BA\u5B88"
     cost: 1
+    initialnum: 0
+    weaponData:
+      id: 0
+      weaponName: Sword
+      atk: 4
+      def: 1
+      distance: 1
+      weaponType: 0
+    cardActions: []

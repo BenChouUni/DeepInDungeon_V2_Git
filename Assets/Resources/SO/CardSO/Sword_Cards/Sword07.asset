@@ -25,7 +25,7 @@ MonoBehaviour:
       distance: 1
       weaponType: 2
     cardActions:
-    - actionType: 7
+    - actionType: 3
       actionParameter:
         value: 20
         targetType: 0
