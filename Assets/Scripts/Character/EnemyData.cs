@@ -21,12 +21,22 @@ public class EnemyData : Character
 
     
     //可能用做AI的實現
-    public List<CardActionSet> actionList;
+    public List<EnemyActionSet> actionList;
 
     public EnemyData(int _id,string _name, int _maxHp, int _shield,int _atk) : base(_name, _maxHp, _shield)
     {
         this.id = _id;
         this.atk = _atk;
         this.targetType = CharaterType.Enemy;
+
+
+    }
+
+    public void DoAction()
+    {
+        foreach (var item in actionList)
+        {
+            item.DoAction(this);
+        }
     }
 }

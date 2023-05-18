@@ -71,7 +71,7 @@ public class BattlePlayerDataManager : MonoSingleton<BattlePlayerDataManager>,ID
         {
             Shieldinformation.SetActive(true);
         }
-
+        ShowShield();
     }
     public void UpdatePlayerStatus()
     {
@@ -164,6 +164,10 @@ public class BattlePlayerDataManager : MonoSingleton<BattlePlayerDataManager>,ID
         playerShield.text = (battleplayerData.Shield).ToString();
     }
 
+    private void ShowShield(int shield)
+    {
+        playerShield.text = shield.ToString();
+    }
 }
 
 

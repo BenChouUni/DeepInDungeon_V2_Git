@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: TestEnemy
   m_EditorClassIdentifier: 
   enemyData:
-    targetType: 0
-    characterName: 
+    targetType: 1
+    characterName: "\u6728\u4EBA\u6A01"
     hpState:
-      maxHp: 0
-      currentHp: 0
+      maxHp: 50
+      currentHp: 50
     shield: 0
     isDeath: 0
     id: 0

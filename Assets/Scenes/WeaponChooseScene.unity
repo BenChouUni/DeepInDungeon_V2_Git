@@ -627,9 +627,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerData:
+    targetType: 0
     characterName: no name
-    maxHp: 50
-    currentHp: 50
+    hpState:
+      maxHp: 50
+      currentHp: 50
     shield: 0
     isDeath: 0
     mainWeaponData:
