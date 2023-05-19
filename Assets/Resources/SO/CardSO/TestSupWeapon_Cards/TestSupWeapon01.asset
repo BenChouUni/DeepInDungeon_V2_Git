@@ -18,10 +18,10 @@ MonoBehaviour:
     cost: 0
     initialnum: 0
     weaponData:
-      id: 0
-      weaponName: 
+      id: 98
+      weaponName: "\u6E2C\u8A66\u7528\u526F\u624B"
       atk: 0
-      def: 0
+      def: 3
       distance: 0
-      weaponType: 2
+      weaponType: 1
     cardActions: []

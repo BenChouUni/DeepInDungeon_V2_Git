@@ -70,17 +70,18 @@ public class BattlePlayerDataManager : MonoSingleton<BattlePlayerDataManager>,ID
         else
         {
             Shieldinformation.SetActive(true);
+            ShowShield(character.Shield);
         }
         ShowShield();
     }
     public void UpdatePlayerStatus()
     {
+        //Debug.Log("update");
         ShowPlayerCharacter(this.battleplayerData);
         ShowEnergy();
         ShowShield();
-
     }
-
+    
     /// <summary>
     /// 顯示主副手武器
     /// </summary>
@@ -121,6 +122,7 @@ public class BattlePlayerDataManager : MonoSingleton<BattlePlayerDataManager>,ID
     #region
     private void ShowEnergy()
     {
+        //Debug.Log("energy_update");
         playerEnergy.text = string.Format("{0}/{1}", currentEnergy, maxenergy);
     }
     public void ResetEnergy()
@@ -162,6 +164,10 @@ public class BattlePlayerDataManager : MonoSingleton<BattlePlayerDataManager>,ID
     private void ShowShield()
     {
         playerShield.text = (battleplayerData.Shield).ToString();
+    }
+    private void ShowShield(int shield)
+    {
+        playerShield.text = shield.ToString();
     }
 
     private void ShowShield(int shield)

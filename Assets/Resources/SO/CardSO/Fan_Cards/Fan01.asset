@@ -17,4 +17,11 @@ MonoBehaviour:
     cardName: "\u6BD2\u91DD\u6A5F\u95DC"
     cost: 0
     initialnum: 0
-    cardAction: []
+    weaponData:
+      id: 0
+      weaponName: 
+      atk: 0
+      def: 0
+      distance: 0
+      weaponType: 2
+    cardActions: []

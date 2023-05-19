@@ -16,7 +16,6 @@ public class MapManager : MonoBehaviour
     }
     void Start()
     {
-        Debug.DrawLine(Vector3.zero, new Vector3(200, 0, 0), UnityEngine.Color.black, 50f);
         System.Console.WriteLine("Map");
         System.Console.WriteLine("-------------------------");
 
@@ -54,16 +53,11 @@ public class MapManager : MonoBehaviour
         DrawMap(monster, layer);
         DrawLine(monster, layer, pointer1);
 
-        for (int i = 0; i < layer; i++)
-        {
-            for(int j = 0; j < monster[i]; j++)
-            {
-                //Debug.DrawLine(Vector3.zero, new Vector3(0, 5, 0), color);
-            }
-        }
-        Show(pointer1, layer);
-        Show(pointer2, layer);
-        Show(line, layer);
+        DrawLineManager.Setpoint(monster);
+        DrawLineManager.Draw(point_positions[0][0], point_positions[1][pointer1[0][0]]);
+        //Show(pointer1, layer);
+        //Show(pointer2, layer);
+        //Show(line, layer);
     }
 
     public void Show(int[][] s, int layer)

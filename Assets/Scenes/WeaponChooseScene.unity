@@ -1917,7 +1917,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0012045dca70b41aaaddda2a9e0e47f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponToCardTable: {fileID: 4900000, guid: 1d4872ed1b1ad1a4aacf7e17c0ba043a, type: 3}
+  weaponToCardTable: {fileID: 4900000, guid: a9351fe8fbce2844abe6138db1532eed, type: 3}
 --- !u!1 &1914455218
 GameObject:
   m_ObjectHideFlags: 0

@@ -502,8 +502,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -2.5207062, y: -10.083099}
+  m_SizeDelta: {x: -31.9301, y: -36.9718}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1990003252800579185
 CanvasRenderer:
@@ -537,10 +537,10 @@ MonoBehaviour:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 20
     m_FontStyle: 0
-    m_BestFit: 0
-    m_MinSize: 2
+    m_BestFit: 1
+    m_MinSize: 20
     m_MaxSize: 40
-    m_Alignment: 4
+    m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -638,6 +638,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4201613166e9e48be8d6ac8d22917f87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cardData:
+    id: 0
+    cardName: 
+    cost: 0
+    initialnum: 0
+    weaponData:
+      id: 0
+      weaponName: 
+      atk: 0
+      def: 0
+      distance: 0
+      weaponType: 2
+    cardActions: []
   cardName_text: {fileID: 4199288980741488012}
   cost_text: {fileID: 2701326609538096791}
   initialnum_text: {fileID: 0}

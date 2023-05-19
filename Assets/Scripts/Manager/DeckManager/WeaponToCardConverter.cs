@@ -26,6 +26,7 @@ public class WeaponToCardConverter : MonoSingleton<WeaponToCardConverter>
                     {
                         //Debug.Log(col[0] + ":" + col[i]);
                         result.Add(num);
+                        Debug.Log(num);
                         
                     }
                 }

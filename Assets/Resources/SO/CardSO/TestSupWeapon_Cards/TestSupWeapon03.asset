@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e41fd07fb5a6b4bec82093d9be64cec5, type: 3}
+  m_Name: TestSupWeapon03
+  m_EditorClassIdentifier: 
+  cardData:
+    id: 9803
+    cardName: "\u81EA\u6B98"
+    cost: 0
+    initialnum: 2
+    weaponData:
+      id: 98
+      weaponName: "\u6E2C\u8A66\u7528\u526F\u624B"
+      atk: 0
+      def: 3
+      distance: 0
+      weaponType: 1
+    cardActions:
+    - actionType: 0
+      actionParameter:
+        value: 5
+        targetType: 0
+        selfType: 0
+        stateEffectType: 0
+        weaponData:
+          id: 98
+          weaponName: "\u6E2C\u8A66\u7528\u526F\u624B"
+          atk: 0
+          def: 3
+          distance: 0
+          weaponType: 1

@@ -34,6 +34,8 @@ public class CardsLayoutManager : MonoSingleton<CardsLayoutManager>
     void Update()
     {
         bool stillmoving = false;
+
+        //判斷是否還有手牌在移動
         for(int i = 0; i < HandCardList.Count; i++)
         {
             if (HandCardList[i].GetComponent<CardMoveUI>().moving)
@@ -42,6 +44,8 @@ public class CardsLayoutManager : MonoSingleton<CardsLayoutManager>
                 break;
             }
         }
+
+        //若有牌正在移動或是返回手牌，皆不可感應碰觸到手牌
         if (stillmoving && CardGoBack == 0)
         {
             CanInPointer = false;
