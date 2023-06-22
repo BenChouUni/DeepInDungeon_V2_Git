@@ -7,6 +7,9 @@ using UnityEngine.UI;
 /// </summary>
 public class EnemyManager : MonoSingleton<EnemyManager>
 {
+    [Header("暫時放上敵人SO來試試看效果")]
+    public EnemySO enemySO;
+    [SerializeField]
     public EnemyData enemyData;
     public EffectListDisplay effectListDisplay;
     //UIShow
@@ -18,7 +21,8 @@ public class EnemyManager : MonoSingleton<EnemyManager>
     private void Awake()
     {
         //暫時使用
-        enemyData = new EnemyData(0, "木樁", 50, 0, 3);
+        //enemyData = new EnemyData(0, "木樁", 50, 0, 3);
+        enemyData = enemySO.enemyData;
         //enemyData.hpDisplay += enemyHealthBar.Show;
         enemyData.setDisplayAction(ShowEnemy, enemyHealthBar.Show,effectListDisplay.ShowStateList);
         ShowEnemy(this.enemyData);
@@ -46,6 +50,6 @@ public class EnemyManager : MonoSingleton<EnemyManager>
         }
     }
 
-
+    
 
 }

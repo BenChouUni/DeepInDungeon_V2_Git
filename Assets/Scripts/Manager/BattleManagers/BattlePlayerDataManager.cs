@@ -170,10 +170,6 @@ public class BattlePlayerDataManager : MonoSingleton<BattlePlayerDataManager>,ID
         playerShield.text = shield.ToString();
     }
 
-    private void ShowShield(int shield)
-    {
-        playerShield.text = shield.ToString();
-    }
 }
 
 

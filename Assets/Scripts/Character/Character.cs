@@ -32,11 +32,7 @@ public abstract class Character
     {
         get { return shield; }
     }
-    /// <summary>
-    /// 角色狀態列，先公開給外面操作
-    /// </summary>
-    //public List<StatusEffect> effectList;
-
+    public StateEffect stateEffectTest;
     //bool狀態相關
     public bool isDeath;
 
@@ -50,7 +46,8 @@ public abstract class Character
     /// 層數為零不會刪除，不要顯示
     /// </summary>
     public readonly Dictionary<StateEffectType, StateEffect> stateDic = new Dictionary<StateEffectType, StateEffect>();
-    public readonly List<StateEffect> StateList = new List<StateEffect>();
+    [SerializeField]
+    public List<StateEffect> StateList = new List<StateEffect>();
     //
     public Character(string _name,int _maxHp,int _shield)
     {
@@ -59,8 +56,8 @@ public abstract class Character
         this.hpState = new HpState(_maxHp);
         
         this.shield = _shield;
-       
-       
+        StateList = new List<StateEffect>();
+
     }
     /// <summary>
     /// 設定委派函數

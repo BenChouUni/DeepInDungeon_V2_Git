@@ -6,7 +6,7 @@ public class TestTool : MonoSingleton<TestTool>
 {
     public void Click()
     {
-        BattleMainManager.instance.enemyManager.enemyData.isDeath = true;
-        Debug.Log("¼Ä¤H¦º¤`");
+        //BattleMainManager.instance.enemyManager.enemyData.isDeath = true;
+        Debug.Log("ï¿½Ä¤Hï¿½ï¿½ï¿½`");
     }
 }

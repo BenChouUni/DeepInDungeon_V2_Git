@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
-
+[SerializeField]
 public enum LayerConsumeType
 {
     AfterUse,TurnEnd
 }
 [System.Serializable]
-public abstract class StateEffect
+public class StateEffect
 {
     public string effectName;
     public StateEffectType effectType;
@@ -18,6 +18,7 @@ public abstract class StateEffect
     public LayerConsumeType consumeType;
 
     //層數，不能被外面修改
+    [SerializeField]
     private int layer;
     public int Layer { get { return layer; } }
 
