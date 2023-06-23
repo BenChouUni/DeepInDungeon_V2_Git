@@ -50,6 +50,9 @@ public class EnemyManager : MonoSingleton<EnemyManager>
         }
     }
 
-    
+    public void DoEnemyAction()
+    {
+        enemyData.DoAction();
+    }
 
 }

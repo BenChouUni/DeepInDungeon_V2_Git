@@ -169,8 +169,9 @@ public class BattleMainManager : MonoSingleton<BattleMainManager>
     }
     private IEnumerator EnemyBehave()
     {
-        //behave
-
+        //敵人行動
+        Debug.Log("敵人行動");
+        enemyManager.DoEnemyAction();
         //更新狀態
         //UpdateStatus();
         yield return new WaitForSeconds(2);

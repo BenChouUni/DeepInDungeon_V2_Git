@@ -8,6 +8,9 @@ public class EnemyAttackAtion : EnemyActionBase
 
     public override void DoAction(EnemyActionParameter parameter, EnemyData enemyData)
     {
-        
+        Debug.Log("敵人使用基本攻擊");
+        int dmg = parameter.value;
+        dmg += enemyData.ATK;
+        parameter.Target.GetDamage(dmg);
     }
 }
