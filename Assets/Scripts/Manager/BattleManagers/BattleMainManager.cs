@@ -61,7 +61,7 @@ public class BattleMainManager : MonoSingleton<BattleMainManager>
         }
         else
         {
-            return battlePlayerDataManager.battleplayerData;
+            return battlePlayerDataManager.GetPlayerData();
         }
     }
     //省呼叫資源

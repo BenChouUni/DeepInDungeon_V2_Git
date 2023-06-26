@@ -35,6 +35,7 @@ public class EnemyData : Character
 
     public void DoAction()
     {
+        //暫時
         foreach (var item in actionList)
         {
             item.DoAction(this);

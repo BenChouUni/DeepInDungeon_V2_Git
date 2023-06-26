@@ -93,6 +93,10 @@ public abstract class Character
             
         }
         hpDisplay?.Invoke(this.HpState);
+        if (hpDisplay==null)
+        {
+            Debug.Log("hp 顯示器不見");
+        }
         updateDisplay?.Invoke(this);
     }
     /// <summary>
