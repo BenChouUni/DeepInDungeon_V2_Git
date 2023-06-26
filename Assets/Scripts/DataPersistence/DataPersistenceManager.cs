@@ -28,6 +28,7 @@ public class DataPersistenceManager : MonoSingleton<DataPersistenceManager>
         dirPath = Application.persistentDataPath;
         this.dataHandler = new FileDataHandler(dirPath, fileName);
         LoadGame();
+        //ResetGame();
     }
     /// <summary>
     /// 程式跳出執行存擋
@@ -74,5 +75,11 @@ public class DataPersistenceManager : MonoSingleton<DataPersistenceManager>
         IEnumerable<IDataPersistence> dataPersistenceObjects = FindObjectsOfType<MonoBehaviour>().OfType<IDataPersistence>();
 
         return new List<IDataPersistence>(dataPersistenceObjects);
+    }
+    private void ResetGame()
+    {
+        NewGame();
+        SaveGame();
+        LoadGame();
     }
 }

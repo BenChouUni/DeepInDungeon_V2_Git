@@ -2828,7 +2828,14 @@ MonoBehaviour:
       maxHp: 50
       currentHp: 50
     shield: 0
+    stateEffectTest:
+      effectName: 
+      effectType: 0
+      isBuff: 1
+      consumeType: 0
+      layer: 0
     isDeath: 0
+    StateList: []
     mainWeaponData:
       id: 0
       weaponName: 
@@ -3550,7 +3557,14 @@ MonoBehaviour:
         maxHp: 50
         currentHp: 50
       shield: 0
+      stateEffectTest:
+        effectName: 
+        effectType: 0
+        isBuff: 1
+        consumeType: 0
+        layer: 0
       isDeath: 0
+      StateList: []
       mainWeaponData:
         id: 0
         weaponName: 
@@ -4896,6 +4910,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcc60c919f29f4c3fa8f91f8809736b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemySO: {fileID: 11400000, guid: 051a6992127394adbbe56db6240d04fc, type: 2}
   enemyData:
     targetType: 0
     characterName: 
@@ -4903,9 +4918,17 @@ MonoBehaviour:
       maxHp: 0
       currentHp: 0
     shield: 0
+    stateEffectTest:
+      effectName: 
+      effectType: 0
+      isBuff: 1
+      consumeType: 0
+      layer: 0
     isDeath: 0
+    StateList: []
     id: 0
     atk: 0
+    actionList: []
   effectListDisplay: {fileID: 1928943969}
   enemyName: {fileID: 2016194624}
   enemyHealthBar: {fileID: 2078670311}
@@ -5650,9 +5673,17 @@ MonoBehaviour:
       maxHp: 0
       currentHp: 0
     shield: 0
+    stateEffectTest:
+      effectName: 
+      effectType: 0
+      isBuff: 1
+      consumeType: 0
+      layer: 0
     isDeath: 0
+    StateList: []
     id: 0
     atk: 0
+    actionList: []
   battleplayerData:
     targetType: 0
     characterName: no name
@@ -5660,7 +5691,14 @@ MonoBehaviour:
       maxHp: 50
       currentHp: 50
     shield: 0
+    stateEffectTest:
+      effectName: 
+      effectType: 0
+      isBuff: 1
+      consumeType: 0
+      layer: 0
     isDeath: 0
+    StateList: []
     mainWeaponData:
       id: 0
       weaponName: 

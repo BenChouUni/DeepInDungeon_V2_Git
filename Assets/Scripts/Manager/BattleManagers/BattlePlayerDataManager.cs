@@ -37,15 +37,18 @@ public class BattlePlayerDataManager : MonoSingleton<BattlePlayerDataManager>,ID
     {
         
         ShowWeaponInformation();
-        battleplayerData = (PlayerData)this.playerData.Clone();
+        battleplayerData = JClone.DeepClone<PlayerData>(playerData);
     }
 
     
 
     public void LoadData(GameData data)
     {
+        //讀檔
         this.playerData = data.playerData;
-        this.playerData.setDisplayAction(ShowPlayerCharacter, playerHealthBar.Show,effectListDisplayl.ShowStateList);
+        //完全複製一份
+        battleplayerData = JClone.DeepClone<PlayerData>(playerData);
+        this.battleplayerData.setDisplayAction(ShowPlayerCharacter, playerHealthBar.Show,effectListDisplayl.ShowStateList);
         ShowPlayerCharacter(this.playerData);
         playerHealthBar.Show(this.playerData.HpState);
 

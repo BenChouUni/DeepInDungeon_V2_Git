@@ -19,7 +19,14 @@ MonoBehaviour:
       maxHp: 50
       currentHp: 50
     shield: 0
+    stateEffectTest:
+      effectName: 
+      effectType: 0
+      isBuff: 1
+      consumeType: 0
+      layer: 0
     isDeath: 0
+    StateList: []
     id: 0
     atk: 0
     actionList:
@@ -27,5 +34,11 @@ MonoBehaviour:
       enemyActionParameter:
         value: 0
         targetType: 0
+        selfType: 1
+        stateEffectType: 0
+    - actionType: 1
+      enemyActionParameter:
+        value: 5
+        targetType: 1
         selfType: 1
         stateEffectType: 0

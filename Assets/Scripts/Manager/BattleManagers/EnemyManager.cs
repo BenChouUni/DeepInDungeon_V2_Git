@@ -22,7 +22,7 @@ public class EnemyManager : MonoSingleton<EnemyManager>
     {
         //暫時使用
         //enemyData = new EnemyData(0, "木樁", 50, 0, 3);
-        enemyData = enemySO.enemyData;
+        enemyData = JClone.DeepClone<EnemyData>(enemySO.enemyData);
         //enemyData.hpDisplay += enemyHealthBar.Show;
         enemyData.setDisplayAction(ShowEnemy, enemyHealthBar.Show,effectListDisplay.ShowStateList);
         ShowEnemy(this.enemyData);
