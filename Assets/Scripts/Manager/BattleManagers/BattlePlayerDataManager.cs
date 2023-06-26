@@ -56,7 +56,8 @@ public class BattlePlayerDataManager : MonoSingleton<BattlePlayerDataManager>,ID
         //完全複製一份
         battleplayerData = JClone.DeepClone<PlayerData>(playerData);
         //委派
-        this.battleplayerData.setDisplayAction(ShowPlayerCharacter, playerHealthBar.Show,effectListDisplayl.ShowStateList);
+        this.battleplayerData.setDisplayAction(ShowPlayerCharacter,
+            playerHealthBar.Show,effectListDisplayl.ShowStateList,PlayerDie);
         ShowPlayerCharacter(this.battleplayerData);
         playerHealthBar.Show(this.battleplayerData.HpState);
 
@@ -181,6 +182,10 @@ public class BattlePlayerDataManager : MonoSingleton<BattlePlayerDataManager>,ID
         playerShield.text = shield.ToString();
     }
 
+    private void PlayerDie()
+    {
+        BattleMainManager.instance.EndBattle();
+    }
 }
 
 
