@@ -61,7 +61,7 @@ public class BattleMainManager : MonoSingleton<BattleMainManager>
         }
         else
         {
-            return battlePlayerDataManager.battleplayerData;
+            return battlePlayerDataManager.GetPlayerData();
         }
     }
     //省呼叫資源
@@ -89,13 +89,13 @@ public class BattleMainManager : MonoSingleton<BattleMainManager>
         //初始化玩家資料
         battlePlayerDataManager.InitialPlayerStatus();
     }
+
     //戰鬥結束
-    public IEnumerator EndBattle()
+    public void EndBattle()
     {
         Debug.Log("戰鬥結束");
         turnPhaseManager.EndBattle();
-        yield return new WaitForSeconds(2);
-        //執行下一步
+
     }
 
 

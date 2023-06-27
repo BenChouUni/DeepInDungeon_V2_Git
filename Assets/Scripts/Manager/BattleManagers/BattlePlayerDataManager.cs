@@ -8,7 +8,8 @@ public class BattlePlayerDataManager : MonoSingleton<BattlePlayerDataManager>,ID
     //存讀data
     private PlayerData playerData = new PlayerData();
     //戰鬥中data
-    public PlayerData battleplayerData = new PlayerData();
+    [SerializeField]
+    private PlayerData battleplayerData;
     public EffectListDisplay effectListDisplayl;
 
     //生成角色資訊
@@ -37,10 +38,16 @@ public class BattlePlayerDataManager : MonoSingleton<BattlePlayerDataManager>,ID
     {
         
         ShowWeaponInformation();
-        battleplayerData = JClone.DeepClone<PlayerData>(playerData);
+        
     }
-
-    
+    /// <summary>
+    /// 回傳戰鬥中的玩家資料
+    /// </summary>
+    /// <returns></returns>
+    public PlayerData GetPlayerData()
+    {
+        return battleplayerData;
+    }
 
     public void LoadData(GameData data)
     {
@@ -48,9 +55,11 @@ public class BattlePlayerDataManager : MonoSingleton<BattlePlayerDataManager>,ID
         this.playerData = data.playerData;
         //完全複製一份
         battleplayerData = JClone.DeepClone<PlayerData>(playerData);
-        this.battleplayerData.setDisplayAction(ShowPlayerCharacter, playerHealthBar.Show,effectListDisplayl.ShowStateList);
-        ShowPlayerCharacter(this.playerData);
-        playerHealthBar.Show(this.playerData.HpState);
+        //委派
+        this.battleplayerData.setDisplayAction(ShowPlayerCharacter,
+            playerHealthBar.Show,effectListDisplayl.ShowStateList,PlayerDie);
+        ShowPlayerCharacter(this.battleplayerData);
+        playerHealthBar.Show(this.battleplayerData.HpState);
 
     }
     public void SaveData(ref GameData data)
@@ -173,6 +182,10 @@ public class BattlePlayerDataManager : MonoSingleton<BattlePlayerDataManager>,ID
         playerShield.text = shield.ToString();
     }
 
+    private void PlayerDie()
+    {
+        BattleMainManager.instance.EndBattle();
+    }
 }
 
 

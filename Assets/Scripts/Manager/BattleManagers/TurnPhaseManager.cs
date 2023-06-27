@@ -75,4 +75,22 @@ public class TurnPhaseManager : MonoSingleton<TurnPhaseManager>
     {
         TurnDisplay.text = gamePhase.ToString();
     }
+
+    public void EndTurn()
+    {
+
+        //切換回合
+        if (gamePhase == GamePhase.PlayerAction)
+        {
+            gamePhase = GamePhase.EnemyAction;
+            BattleMainManager.instance.TurnStart();
+        }
+        else if (gamePhase == GamePhase.EnemyAction)
+        {
+            gamePhase = GamePhase.PlayerAction;
+            TurnCount++;
+            BattleMainManager.instance.TurnStart();
+        }
+        ShowTurn();
+    }
 }

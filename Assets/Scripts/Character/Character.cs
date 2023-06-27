@@ -40,6 +40,7 @@ public abstract class Character
     public Action<Character> updateDisplay;
     public Action<HpState> hpDisplay;
     public Action<List<StateEffect>> statesDisplay;
+    public Action deathBehavior;
 
     //state list
     /// <summary>
@@ -64,11 +65,12 @@ public abstract class Character
     /// </summary>
     /// <param name="_displayAction"></param>
     /// <param name="_hpDisplay"></param>
-    public void setDisplayAction(Action<Character> _displayAction, Action<HpState> _hpDisplay,Action<List<StateEffect>> statesDisplayAction)
+    public void setDisplayAction(Action<Character> _displayAction, Action<HpState> _hpDisplay,Action<List<StateEffect>> statesDisplayAction,Action deathbeh)
     {
         this.updateDisplay += _displayAction;
         this.hpDisplay += _hpDisplay;
-        this.statesDisplay = statesDisplayAction;
+        this.statesDisplay += statesDisplayAction;
+        this.deathBehavior += deathbeh;
     }
     public void setCharaterName(string name)
     {
@@ -90,9 +92,13 @@ public abstract class Character
         {
             Debug.LogFormat("{0}死亡", this.characterName);
             isDeath = true;
-            
+            deathBehavior?.Invoke();
         }
         hpDisplay?.Invoke(this.HpState);
+        if (hpDisplay==null)
+        {
+            Debug.Log("hp 顯示器不見");
+        }
         updateDisplay?.Invoke(this);
     }
     /// <summary>

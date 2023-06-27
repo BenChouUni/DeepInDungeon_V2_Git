@@ -24,7 +24,7 @@ public class EnemyManager : MonoSingleton<EnemyManager>
         //enemyData = new EnemyData(0, "木樁", 50, 0, 3);
         enemyData = JClone.DeepClone<EnemyData>(enemySO.enemyData);
         //enemyData.hpDisplay += enemyHealthBar.Show;
-        enemyData.setDisplayAction(ShowEnemy, enemyHealthBar.Show,effectListDisplay.ShowStateList);
+        enemyData.setDisplayAction(ShowEnemy, enemyHealthBar.Show,effectListDisplay.ShowStateList,EnemyDie);
         ShowEnemy(this.enemyData);
         enemyHealthBar.Show(this.enemyData.HpState);
     }
@@ -55,4 +55,8 @@ public class EnemyManager : MonoSingleton<EnemyManager>
         enemyData.DoAction();
     }
 
+    private void EnemyDie()
+    {
+        BattleMainManager.instance.EndBattle();
+    }
 }
