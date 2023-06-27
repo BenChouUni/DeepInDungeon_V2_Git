@@ -360,6 +360,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   StopPrefab: {fileID: 5598835994841074116, guid: d738ae7faee3d8945af52b035fb4f253, type: 3}
   MapPanel: {fileID: 527028166}
+  layer: 5
 --- !u!1 &1160316131
 GameObject:
   m_ObjectHideFlags: 0
