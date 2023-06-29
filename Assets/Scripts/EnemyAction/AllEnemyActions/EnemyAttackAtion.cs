@@ -12,6 +12,6 @@ public class EnemyAttackAtion : EnemyActionBase
         int dmg = parameter.value;
         dmg += enemyData.ATK;
         parameter.Target.GetDamage(dmg);
-        Debug.Log(parameter.Target.CharacterName + "受到攻擊");
+        //Debug.Log(parameter.Target.CharacterName + "受到攻擊");
     }
 }
