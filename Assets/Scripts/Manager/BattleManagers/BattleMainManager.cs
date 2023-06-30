@@ -98,6 +98,20 @@ public class BattleMainManager : MonoSingleton<BattleMainManager>
 
     }
 
+    public void WinBattle()
+    {
+        EndBattle();
+        Debug.Log("戰鬥勝利");
+        //跳轉到獎勵卡環節
+        //儲存現在血量
+    }
+
+    public void LoseBattle()
+    {
+        EndBattle();
+        Debug.Log("戰鬥失敗");
+        //跳轉回武器選擇畫面
+    }
 
     /// <summary>
     /// 卡牌拖拽時追蹤
