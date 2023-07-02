@@ -7,6 +7,7 @@ public class TitleMainManager : MonoBehaviour
 {
     public void Click()
     {
+        DataPersistenceManager.instance.NewGame();
         SceneManager.LoadScene(0);
     }
 }

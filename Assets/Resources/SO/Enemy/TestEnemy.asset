@@ -28,7 +28,7 @@ MonoBehaviour:
     isDeath: 0
     StateList: []
     id: 0
-    atk: 0
+    atk: 5
     actionList:
     - actionType: 0
       enemyActionParameter:
