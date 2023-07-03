@@ -64,14 +64,15 @@ public class BattlePlayerDataManager : MonoSingleton<BattlePlayerDataManager>,ID
     }
     public void SaveData(ref GameData data)
     {
-        
+        this.playerData.HpState.setCurrentHp(battleplayerData.HpState.CurrentHp);
+        data.playerData = this.playerData;
     }
-    public void InitialPlayerStatus()
-    {
-        this.maxenergy = this.currentEnergy = playerData.Energy;
-        ShowPlayerCharacter(playerData);
-        ShowEnergy();
-    }
+    //public void InitialPlayerStatus()
+    //{
+    //    this.maxenergy = this.currentEnergy = playerData.Energy;
+    //    ShowPlayerCharacter(playerData);
+    //    ShowEnergy();
+    //}
     private void ShowPlayerCharacter(Character character)
     {
         playerName.text = character.CharacterName;
@@ -184,8 +185,9 @@ public class BattlePlayerDataManager : MonoSingleton<BattlePlayerDataManager>,ID
 
     private void PlayerDie()
     {
-        BattleMainManager.instance.EndBattle();
+        BattleMainManager.instance.LoseBattle();
     }
+
 }
 
 

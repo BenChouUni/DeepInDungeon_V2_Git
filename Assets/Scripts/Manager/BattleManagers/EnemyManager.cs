@@ -57,6 +57,6 @@ public class EnemyManager : MonoSingleton<EnemyManager>
 
     private void EnemyDie()
     {
-        BattleMainManager.instance.EndBattle();
+        BattleMainManager.instance.WinBattle();
     }
 }

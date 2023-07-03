@@ -28,11 +28,11 @@ MonoBehaviour:
     isDeath: 0
     StateList: []
     id: 0
-    atk: 5
+    atk: 2
     actionList:
     - actionType: 0
       enemyActionParameter:
-        value: 0
+        value: 5
         targetType: 0
         selfType: 1
         stateEffectType: 0
