@@ -31,12 +31,13 @@ public class BattlePlayerDataManager : MonoSingleton<BattlePlayerDataManager>,ID
     public Text playerEnergy;
     public Text playerShield;
 
+    private bool isEndGame;
     /// <summary>
     /// 在開始時顯示主副手武器
     /// </summary>
     void Start()
     {
-        
+        isEndGame = false;
         ShowWeaponInformation();
         
     }
@@ -64,8 +65,12 @@ public class BattlePlayerDataManager : MonoSingleton<BattlePlayerDataManager>,ID
     }
     public void SaveData(ref GameData data)
     {
-        this.playerData.HpState.setCurrentHp(battleplayerData.HpState.CurrentHp);
-        data.playerData = this.playerData;
+        if (isEndGame)
+        {
+            this.playerData.HpState.setCurrentHp(battleplayerData.HpState.CurrentHp);
+            data.playerData = this.playerData;
+        }
+        
     }
     public void InitialPlayerStatus()
     {
@@ -185,6 +190,7 @@ public class BattlePlayerDataManager : MonoSingleton<BattlePlayerDataManager>,ID
 
     private void PlayerDie()
     {
+        isEndGame = true;
         BattleMainManager.instance.LoseBattle();
     }
 
