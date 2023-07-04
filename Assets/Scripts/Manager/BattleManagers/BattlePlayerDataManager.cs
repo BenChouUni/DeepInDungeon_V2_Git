@@ -67,12 +67,13 @@ public class BattlePlayerDataManager : MonoSingleton<BattlePlayerDataManager>,ID
         this.playerData.HpState.setCurrentHp(battleplayerData.HpState.CurrentHp);
         data.playerData = this.playerData;
     }
-    //public void InitialPlayerStatus()
-    //{
-    //    this.maxenergy = this.currentEnergy = playerData.Energy;
-    //    ShowPlayerCharacter(playerData);
-    //    ShowEnergy();
-    //}
+    
+    public void InitialPlayerStatus()
+    {
+        this.maxenergy = this.currentEnergy = playerData.Energy;
+        ShowPlayerCharacter(playerData);
+        ShowEnergy();
+    }
     private void ShowPlayerCharacter(Character character)
     {
         playerName.text = character.CharacterName;

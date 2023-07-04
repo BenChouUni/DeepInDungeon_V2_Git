@@ -85,4 +85,9 @@ public class HpState
         this.maxHp += num;
         hpDisplay?.Invoke(this);
     }
+
+    public void setCurrentHp(int _hp)
+    {
+        this.currentHp= _hp;
+    }
 }
