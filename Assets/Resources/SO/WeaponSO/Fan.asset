@@ -18,4 +18,4 @@ MonoBehaviour:
     atk: 3
     def: 0
     distance: 0
-    weaponType: 2
+    weaponType: 0

@@ -102,6 +102,7 @@ public class BattleMainManager : MonoSingleton<BattleMainManager>
     {
         EndBattle();
         Debug.Log("戰鬥勝利");
+        AwardMainManager.instance.ShowAwardScene();
         //跳轉到獎勵卡環節
         //儲存現在血量
     }

@@ -55,7 +55,7 @@ public class WeaponaryMainManager : MonoSingleton<WeaponaryMainManager>
 
     public void StartBattle()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(4);
         DataPersistenceManager.instance.SaveGame();
     }
     /// <summary>
