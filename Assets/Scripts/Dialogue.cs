@@ -9,6 +9,7 @@ public class Dialogue : MonoBehaviour
     public string[] lines;
     public float textSpeed;
 
+    public InputWindow inputWindow;
     int index;
     // Start is called before the first frame update
     void Start()
@@ -70,5 +71,6 @@ public class Dialogue : MonoBehaviour
     void TypeOver()
     {
         this.gameObject.SetActive(false);
+        inputWindow.Show("New Name");
     }
 }
