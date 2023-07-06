@@ -8,6 +8,7 @@ public class EnemyDefendActions : EnemyActionBase
 
     public override void DoAction(EnemyActionParameter parameter, EnemyData enemyData)
     {
+        Debug.Log("敵人使用防禦");
         int def = parameter.value;
         //這邊可能有算式
         parameter.Target.AddShield(def);

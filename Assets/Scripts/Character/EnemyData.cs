@@ -19,6 +19,7 @@ public class EnemyData : Character
         get { return atk; }
     }
 
+    int actionIndex = 0;
 
     //可能用做AI的實現
     [SerializeField]
@@ -29,16 +30,23 @@ public class EnemyData : Character
         this.id = _id;
         this.atk = _atk;
         this.targetType = CharaterType.Enemy;
-
+        actionIndex = 0;
 
     }
 
     public void DoAction()
     {
         //暫時
-        foreach (var item in actionList)
+        //foreach (var item in actionList)
+        //{
+        //    item.DoAction(this);
+        //}
+        //輪流做
+        actionList[actionIndex].DoAction(this);
+        actionIndex++;
+        if (actionIndex >= actionList.Count -1)
         {
-            item.DoAction(this);
+            actionIndex = 0;
         }
     }
 }
