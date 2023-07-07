@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class LevelManager : MonoBehaviour
@@ -22,6 +23,7 @@ public class LevelManager : MonoBehaviour
 
     public void Fight()
     {
+        SceneManager.LoadScene(1);
         //this.GetComponent<Button>().interactable = false;
         //myObjArray = GameObject.FindGameObjectsWithTag("level");
         //Debug.Log(myObjArray[0].GetComponent<Image>().color = Color.blue);

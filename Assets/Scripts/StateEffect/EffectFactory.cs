@@ -18,6 +18,8 @@ public static class EffectFactory
 
             case StateEffectType.Weak:
                 return new WeakEffect();
+            case StateEffectType.Power:
+                return new PowerEffect();
             default:
                 return null;
                 

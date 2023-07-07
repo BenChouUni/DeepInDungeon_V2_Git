@@ -5,7 +5,7 @@ using System;
 [SerializeField]
 public enum LayerConsumeType
 {
-    AfterUse,TurnEnd
+    AfterUse,TurnEnd,Never
 }
 [System.Serializable]
 public class StateEffect
@@ -104,13 +104,22 @@ public class StateEffect
     /// </summary>
     /// <returns></returns>
     public virtual float AtDealDamage() { return 1; }
+
+    /// <summary>
+    /// 增加攻擊傷害的比率，有傳入參數
+    /// </summary>
+    /// <param name="dmg"></param>
+    /// <returns></returns>
+    public virtual int AddExtraDamage() { return 0; }
+
+
     /// <summary>
     /// 增加受到收到傷害比率
     /// </summary>
     /// <returns></returns>
     public virtual float AtReceiveDamage() { return 1; }
 
-    
+
     #endregion
 
 }

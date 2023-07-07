@@ -9,7 +9,7 @@ using UnityEngine.UI;
 public class PlayerDataManager : MonoSingleton<PlayerDataManager>, IDataPersistence
 {
 
-    public PlayerData playerData;
+    public PlayerData playerData; 
     //UI
     public Text playerName_text;
     public HealthBar playerHpBar;

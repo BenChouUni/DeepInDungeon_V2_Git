@@ -24,4 +24,17 @@ MonoBehaviour:
       def: 1
       distance: 1
       weaponType: 2
-    cardActions: []
+    cardActions:
+    - actionType: 6
+      actionParameter:
+        value: 3
+        targetType: 0
+        selfType: 0
+        stateEffectType: 4
+        weaponData:
+          id: 0
+          weaponName: Sword
+          atk: 4
+          def: 1
+          distance: 1
+          weaponType: 2

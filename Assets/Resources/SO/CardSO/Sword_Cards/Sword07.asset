@@ -16,7 +16,7 @@ MonoBehaviour:
     id: 7
     cardName: "\u920D\u5316"
     cost: 2
-    initialnum: 0
+    initialnum: 5
     weaponData:
       id: 0
       weaponName: Sword

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using static System.Net.Mime.MediaTypeNames;
 
@@ -19,7 +20,7 @@ public class AwardMainManager : MonoSingleton<AwardMainManager>, IDataPersistenc
     public int SupportID;
     public GameData Data;
     public UnityEngine.UI.Text Text;
-
+    public GameObject next_level_button;
     public int MainCardNum;
     public int SupportCardNum;
 
@@ -193,6 +194,7 @@ public class AwardMainManager : MonoSingleton<AwardMainManager>, IDataPersistenc
         {
             Text.GetComponent<UnityEngine.UI.Text>().text = "已選擇獎勵，請繼續前進!";
             Choosen = true;
+            next_level_button.SetActive(true);
         }
         else
         {
@@ -205,5 +207,13 @@ public class AwardMainManager : MonoSingleton<AwardMainManager>, IDataPersistenc
     public void ShowAwardScene()
     {
         AwardScene.SetActive(true);
+    }
+
+    public void Next_Level()
+    {
+        AwardScene.SetActive(false);
+        next_level_button.SetActive(false);
+        DataPersistenceManager.instance.SaveGame();
+        SceneManager.LoadScene(4);
     }
 }

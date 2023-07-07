@@ -127,6 +127,7 @@ public class EffectListDisplay :MonoBehaviour
         {
             item.SelfDesTroy();
         }
+        effectIcons.Clear();
     }
 
 }

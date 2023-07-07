@@ -21,8 +21,18 @@ public class WeaponAttackAction : CardActionBase
         Character targetCharater = parameter.Target;
 
         List<StateEffect> targetStateList = targetCharater.StateList;
+
+        Character selCharacter = parameter.Self;
+        List<StateEffect> myStateList = selCharacter.StateList;
+
         //這邊要計算公式
         float damagef = (parameter.value + parameter.WeaponData.atk);
+
+        foreach (StateEffect item in myStateList)
+        {
+            damagef += item.AddExtraDamage();
+        }
+
         foreach (StateEffect item in targetStateList)
         {
             damagef *= item.AtReceiveDamage();
