@@ -15,7 +15,7 @@ MonoBehaviour:
   weaponData:
     id: 0
     weaponName: Sword
-    atk: 30
+    atk: 4
     def: 1
     distance: 1
     weaponType: 0

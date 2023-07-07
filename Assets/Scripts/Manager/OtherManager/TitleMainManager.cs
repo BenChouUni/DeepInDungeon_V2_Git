@@ -11,7 +11,7 @@ public class TitleMainManager : MonoBehaviour
         DataPersistenceManager.instance.NewGame();
 
         //data.playerData.setCharaterName(nameInput);
-        //DataPersistenceManager.instance.SaveGame();
+        DataPersistenceManager.instance.SaveGame();
         SceneManager.LoadScene(0);
     }
 }

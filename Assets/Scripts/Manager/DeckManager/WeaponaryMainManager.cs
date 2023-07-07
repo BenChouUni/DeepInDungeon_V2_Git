@@ -55,8 +55,9 @@ public class WeaponaryMainManager : MonoSingleton<WeaponaryMainManager>
 
     public void StartBattle()
     {
-        SceneManager.LoadScene(4);
         DataPersistenceManager.instance.SaveGame();
+        SceneManager.LoadScene(4);
+        //DataPersistenceManager.instance.SaveGame();
     }
     /// <summary>
     /// 通知管理器現在什麼物件被拖動
@@ -220,8 +221,9 @@ public class WeaponaryMainManager : MonoSingleton<WeaponaryMainManager>
             ReleaseDropZone(typeFrom);
         }
         dropZone.PutInWeapon(putInWeapon);
-        CreateDeckByWeapon(data.id, type);
+        //先設定武器，再把武器資料設置到卡牌上
         PlayerDataManager.instance.SetWeapon(type, data);
+        CreateDeckByWeapon(data.id, type);
         //dropZone.isFull = true;
     }
 
