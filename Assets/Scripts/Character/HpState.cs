@@ -85,9 +85,11 @@ public class HpState
         this.maxHp += num;
         hpDisplay?.Invoke(this);
     }
-
-    public void setCurrentHp(int _hp)
+    /// <summary>
+    /// 設定血量，戰鬥結束後使用
+    /// </summary>
+    public void setCurrentHp(int _currentHp)
     {
-        this.currentHp= _hp;
+        this.currentHp = _currentHp;
     }
 }

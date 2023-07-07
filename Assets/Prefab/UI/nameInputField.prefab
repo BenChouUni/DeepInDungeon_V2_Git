@@ -722,6 +722,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7360726152619506847}
+  - component: {fileID: 4329022535522888463}
   m_Layer: 5
   m_Name: nameInputField
   m_TagString: Untagged
@@ -755,6 +756,18 @@ RectTransform:
   m_AnchoredPosition: {x: -329.93176, y: 104.724}
   m_SizeDelta: {x: 138.1364, y: 105.4481}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &4329022535522888463
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7360726152619506846}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3a98f09cbcb4498cb8b801243c684af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7360726152661735315
 GameObject:
   m_ObjectHideFlags: 0
@@ -1034,8 +1047,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 96.308, y: 103.26}
-  m_SizeDelta: {x: 292.6169, y: 60.8961}
+  m_AnchoredPosition: {x: 146.44781, y: 106.841415}
+  m_SizeDelta: {x: 392.8966, y: 53.7333}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7360726152994637878
 CanvasRenderer:
@@ -1065,7 +1078,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Title
+  m_text: Enter your name
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1098,7 +1111,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 3
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 256
   m_textAlignment: 65535

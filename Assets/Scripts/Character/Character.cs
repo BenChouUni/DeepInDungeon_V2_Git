@@ -46,7 +46,7 @@ public abstract class Character
     /// <summary>
     /// 層數為零不會刪除，不要顯示
     /// </summary>
-    public readonly Dictionary<StateEffectType, StateEffect> stateDic = new Dictionary<StateEffectType, StateEffect>();
+    public Dictionary<StateEffectType, StateEffect> stateDic = new Dictionary<StateEffectType, StateEffect>();
     [SerializeField]
     public List<StateEffect> StateList = new List<StateEffect>();
     //
@@ -57,9 +57,12 @@ public abstract class Character
         this.hpState = new HpState(_maxHp);
         
         this.shield = _shield;
+        Debug.Log("初始化");
+        stateDic = new Dictionary<StateEffectType, StateEffect>();
         StateList = new List<StateEffect>();
 
     }
+
     /// <summary>
     /// 設定委派函數
     /// </summary>
@@ -146,7 +149,11 @@ public abstract class Character
         StateEffectType type = stateEffect.effectType;
 
         stateEffect.SetRemoveAction(RemoveState);
-
+        if (stateDic == null)
+        {
+            Debug.LogError("dictionary is null");
+            stateDic = new Dictionary<StateEffectType, StateEffect>();
+        }
         if (stateDic.ContainsKey(type))
         {
             int addLayer = stateEffect.Layer;
