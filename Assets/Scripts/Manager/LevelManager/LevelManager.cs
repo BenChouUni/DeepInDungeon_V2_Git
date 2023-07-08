@@ -14,6 +14,10 @@ public class LevelManager : MonoBehaviour
     public int Layer;
     private int now_layer;
 
+    public List<LevelData> levels;
+    [SerializeField]
+    private LevelData currentlevel;
+
     private void Start()
     {
         now_layer = 0;
