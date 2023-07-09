@@ -5,10 +5,12 @@ using UnityEngine.UI;
 /// <summary>
 /// enemy顯示與管理
 /// </summary>
-public class EnemyManager : MonoSingleton<EnemyManager>
+public class EnemyManager : MonoSingleton<EnemyManager>,IDataPersistence
 {
     [Header("暫時放上敵人SO來試試看效果")]
     public EnemySO enemySO;
+
+   
     [SerializeField]
     public EnemyData enemyData;
     public EffectListDisplay effectListDisplay;
@@ -22,16 +24,16 @@ public class EnemyManager : MonoSingleton<EnemyManager>
     {
         //暫時使用
         //enemyData = new EnemyData(0, "木樁", 50, 0, 3);
-        enemyData = JClone.DeepClone<EnemyData>(enemySO.enemyData);
+        //enemyData = JClone.DeepClone<EnemyData>(enemySO.enemyData);
         //enemyData.hpDisplay += enemyHealthBar.Show;
-        enemyData.setDisplayAction(ShowEnemy, enemyHealthBar.Show,effectListDisplay.ShowStateList,EnemyDie);
-        ShowEnemy(this.enemyData);
-        enemyHealthBar.Show(this.enemyData.HpState);
+        
     }
 
     private void Start()
     {
-        ShowEnemy(enemyData);
+        enemyData.setDisplayAction(ShowEnemy, enemyHealthBar.Show, effectListDisplay.ShowStateList, EnemyDie);
+        ShowEnemy(this.enemyData);
+        enemyHealthBar.Show(this.enemyData.HpState);
     }
 
     
@@ -58,5 +60,15 @@ public class EnemyManager : MonoSingleton<EnemyManager>
     private void EnemyDie()
     {
         BattleMainManager.instance.WinBattle();
+    }
+
+    public void LoadData(GameData data)
+    {
+        enemyData = JClone.DeepClone<EnemyData>(data.mapData.Currentlevel.enemy.enemyData);
+    }
+
+    public void SaveData(ref GameData data)
+    {
+        
     }
 }

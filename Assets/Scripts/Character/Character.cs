@@ -57,7 +57,7 @@ public abstract class Character
         this.hpState = new HpState(_maxHp);
         
         this.shield = _shield;
-        Debug.Log("初始化");
+        //Debug.Log("初始化");
         stateDic = new Dictionary<StateEffectType, StateEffect>();
         StateList = new List<StateEffect>();
 
