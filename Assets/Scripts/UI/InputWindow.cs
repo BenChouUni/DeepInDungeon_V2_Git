@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System;
+using UnityEngine.SceneManagement;
 
 public class InputWindow : MonoBehaviour,IDataPersistence
 {
@@ -37,7 +38,9 @@ public class InputWindow : MonoBehaviour,IDataPersistence
         Hide();
         nameInput = inputField.text;
         Debug.Log("輸入的名字是：" + nameInput);
-        
+        DataPersistenceManager.instance.SaveGame();
+        SceneManager.LoadScene(0);
+
     }
 
     public void OnCancel()
