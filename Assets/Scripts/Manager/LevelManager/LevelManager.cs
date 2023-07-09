@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class LevelManager : MonoBehaviour
+public class LevelManager : MonoBehaviour,IDataPersistence
 {
 
     public GameObject LevelPanel;
@@ -14,9 +14,7 @@ public class LevelManager : MonoBehaviour
     public int Layer;
     private int now_layer;
 
-    public List<LevelData> levels;
-    [SerializeField]
-    private LevelData currentlevel;
+    public MapData mapData;
 
     private void Start()
     {
@@ -59,5 +57,19 @@ public class LevelManager : MonoBehaviour
         {
             now_Level.transform.GetChild(i).GetComponent<Button>().interactable = false;
         }
+    }
+
+    public void LoadData(GameData data)
+    {
+        if (data.mapData != null)
+        {
+            this.mapData = data.mapData;
+        }
+        
+    }
+
+    public void SaveData(ref GameData data)
+    {
+        data.mapData = this.mapData;
     }
 }

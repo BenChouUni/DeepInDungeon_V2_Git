@@ -3,12 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class LevelData 
+public class MapData 
 {
-    public int Layer;
-
-    public EnemySO enemy;
-
-
-
+    public List<LevelData> allLevels;
+    public LevelData currentlevel;
 }
