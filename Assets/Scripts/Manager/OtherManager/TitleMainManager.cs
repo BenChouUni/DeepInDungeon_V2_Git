@@ -38,6 +38,12 @@ public class TitleMainManager : MonoBehaviour
     public void Exit()
     {
         Debug.Log("°h¥X¹CÀ¸");
-        Application.Quit();
+        //Application.Quit();
+        #if UNITY_STANDALONE
+            Application.Quit();
+        #endif
+        #if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+        #endif
     }
 }

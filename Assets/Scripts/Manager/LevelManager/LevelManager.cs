@@ -7,17 +7,22 @@ using UnityEngine.UI;
 
 public class LevelManager : MonoBehaviour,IDataPersistence
 {
-
+    public GameObject LevelPrefab;
+    public GameObject LayerPrefab;
     public GameObject LevelPanel;
     public GameObject now_Level;
-    GameObject[] Levels;
-    public int Layer;
-    private int now_layer;
 
+    GameObject[] Levels;
+    public int Layer = 0;
+    private int now_layer = 0;
     public MapData mapData;
 
     private void Start()
     {
+        for(int i = 0; i < Layer; i++)
+        {
+
+        }
         now_layer = 0;
         Layer = LevelPanel.transform.childCount;
         change_layer(now_layer);
@@ -65,11 +70,12 @@ public class LevelManager : MonoBehaviour,IDataPersistence
         {
             this.mapData = data.mapData;
         }
-        
+
     }
 
     public void SaveData(ref GameData data)
     {
         data.mapData = this.mapData;
     }
+
 }
