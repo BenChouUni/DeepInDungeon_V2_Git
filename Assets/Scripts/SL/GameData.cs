@@ -10,11 +10,14 @@ public class GameData {
     public List<CardData> mainWeaponDeck;
     public List<CardData> supWeaponDeck;
 
+    public MapData mapData;
+
     public GameData()
     {
         weaponary = null;
         playerData = new PlayerData();
         mainWeaponDeck = null;
         supWeaponDeck = null;
+        mapData = null;
     }
 }
