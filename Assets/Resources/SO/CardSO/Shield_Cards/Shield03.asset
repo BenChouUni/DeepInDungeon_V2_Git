@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e41fd07fb5a6b4bec82093d9be64cec5, type: 3}
+  m_Name: Shield03
+  m_EditorClassIdentifier: 
+  cardData:
+    id: 303
+    cardName: "\u6B63\u9762\u683C\u6A94"
+    cost: 1
+    initialnum: 2
+    weaponData:
+      id: 0
+      weaponName: 
+      atk: 0
+      def: 0
+      distance: 0
+      weaponType: 2
+    cardActions:
+    - actionType: 1
+      actionParameter:
+        value: 2
+        targetType: 0
+        selfType: 0
+        stateEffectType: 0
+        weaponData:
+          id: 0
+          weaponName: 
+          atk: 0
+          def: 0
+          distance: 0
+          weaponType: 0
