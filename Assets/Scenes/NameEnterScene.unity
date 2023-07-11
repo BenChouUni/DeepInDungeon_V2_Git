@@ -620,6 +620,50 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7360726152763705048, guid: 66b3245f8e5744126b8c04fab8500749, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7360726152763705048, guid: 66b3245f8e5744126b8c04fab8500749, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7360726152763705048, guid: 66b3245f8e5744126b8c04fab8500749, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 797132840}
+    - target: {fileID: 7360726152763705048, guid: 66b3245f8e5744126b8c04fab8500749, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7360726152763705048, guid: 66b3245f8e5744126b8c04fab8500749, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnOk
+      objectReference: {fileID: 0}
+    - target: {fileID: 7360726152763705048, guid: 66b3245f8e5744126b8c04fab8500749, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: InputWindow, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7360726152763705048, guid: 66b3245f8e5744126b8c04fab8500749, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 7360726152994637877, guid: 66b3245f8e5744126b8c04fab8500749, type: 3}
+      propertyPath: m_text
+      value: "\u4E2D\u6587\u6E2C\u8A66"
+      objectReference: {fileID: 0}
+    - target: {fileID: 7360726152994637877, guid: 66b3245f8e5744126b8c04fab8500749, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 2bed06a192ebe424ab495d557761180f, type: 2}
+    - target: {fileID: 7360726152994637877, guid: 66b3245f8e5744126b8c04fab8500749, type: 3}
+      propertyPath: m_fontStyle
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7360726152994637877, guid: 66b3245f8e5744126b8c04fab8500749, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 2888295658412472010, guid: 2bed06a192ebe424ab495d557761180f, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 66b3245f8e5744126b8c04fab8500749, type: 3}
 --- !u!224 &797132839 stripped
