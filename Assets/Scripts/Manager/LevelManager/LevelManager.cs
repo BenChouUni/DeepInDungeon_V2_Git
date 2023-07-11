@@ -18,7 +18,17 @@ public class LevelManager : MonoBehaviour,IDataPersistence
 
     private void Start()
     {
-        now_layer = 0;
+        if (mapData == null)
+        {
+            Debug.LogError("map data is null");
+            return;
+        }
+        mapData.NextLevel();
+        if (mapData.Currentlevel == null)
+        {
+            
+        }
+        now_layer = mapData.Currentlevel.Layer;
         Layer = LevelPanel.transform.childCount;
         change_layer(now_layer);
     }
@@ -26,19 +36,22 @@ public class LevelManager : MonoBehaviour,IDataPersistence
     public void Fight()
     {
         SceneManager.LoadScene(1);
+        Debug.Log("存檔");
+        DataPersistenceManager.instance.SaveGame();
         //this.GetComponent<Button>().interactable = false;
         //myObjArray = GameObject.FindGameObjectsWithTag("level");
         //Debug.Log(myObjArray[0].GetComponent<Image>().color = Color.blue);
     }
 
-    public void Click()
+    public void OnClick()
     {
-        now_layer++;
+        //now_layer++;
         if(now_layer < Layer)
         {
             del_layer();
             change_layer(now_layer);
         }
+        Fight();
     }
 
     public void change_layer(int _layer)
@@ -47,7 +60,7 @@ public class LevelManager : MonoBehaviour,IDataPersistence
         for (int i = 0; i < now_Level.transform.childCount; i++)
         {
             now_Level.transform.GetChild(i).GetComponent<Button>().interactable = true;
-            now_Level.transform.GetChild(i).GetComponent<Button>().onClick.AddListener(Click);
+            now_Level.transform.GetChild(i).GetComponent<Button>().onClick.AddListener(OnClick);
         }
     }
 
@@ -61,11 +74,13 @@ public class LevelManager : MonoBehaviour,IDataPersistence
 
     public void LoadData(GameData data)
     {
+        //只儲存currentLevel
         if (data.mapData != null)
         {
-            this.mapData = data.mapData;
+            this.mapData.setCurrentLevel(data.mapData.Currentlevel);
+
         }
-        
+
     }
 
     public void SaveData(ref GameData data)

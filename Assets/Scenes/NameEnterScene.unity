@@ -648,22 +648,6 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
-    - target: {fileID: 7360726152994637877, guid: 66b3245f8e5744126b8c04fab8500749, type: 3}
-      propertyPath: m_text
-      value: "\u4E2D\u6587\u6E2C\u8A66"
-      objectReference: {fileID: 0}
-    - target: {fileID: 7360726152994637877, guid: 66b3245f8e5744126b8c04fab8500749, type: 3}
-      propertyPath: m_fontAsset
-      value: 
-      objectReference: {fileID: 11400000, guid: 2bed06a192ebe424ab495d557761180f, type: 2}
-    - target: {fileID: 7360726152994637877, guid: 66b3245f8e5744126b8c04fab8500749, type: 3}
-      propertyPath: m_fontStyle
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7360726152994637877, guid: 66b3245f8e5744126b8c04fab8500749, type: 3}
-      propertyPath: m_sharedMaterial
-      value: 
-      objectReference: {fileID: 2888295658412472010, guid: 2bed06a192ebe424ab495d557761180f, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 66b3245f8e5744126b8c04fab8500749, type: 3}
 --- !u!224 &797132839 stripped
@@ -727,7 +711,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6260616258576624427, guid: ef04e9f9fbd124aa4818d2253408a8a5, type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6260616258576624427, guid: ef04e9f9fbd124aa4818d2253408a8a5, type: 3}
       propertyPath: m_LocalPosition.x

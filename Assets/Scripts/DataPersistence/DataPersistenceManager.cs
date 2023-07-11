@@ -60,6 +60,21 @@ public class DataPersistenceManager : MonoSingleton<DataPersistenceManager>
         }
     }
 
+    //確認是否有現有存檔
+    public bool Check_Has_Date()
+    {
+        this.gameData = dataHandler.Load();
+
+        if (this.gameData == null)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
+
     public void SaveGame()
     {
         foreach (IDataPersistence item in dataPersistenceObjects)

@@ -219,6 +219,8 @@ public class BattleMainManager : MonoSingleton<BattleMainManager>
         {
             Debug.Log("執行玩家回合開始準備");
             battlePlayerDataManager.ResetEnergy();
+            battleDeckManager.DrawCard(2);
+
         }
         else if (turnPhaseManager.GamePhase == GamePhase.EnemyAction)
         {
