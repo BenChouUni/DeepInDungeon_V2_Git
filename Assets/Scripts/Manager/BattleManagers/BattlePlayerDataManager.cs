@@ -41,6 +41,11 @@ public class BattlePlayerDataManager : MonoSingleton<BattlePlayerDataManager>,ID
         ShowWeaponInformation();
         
     }
+
+    void Update()
+    {
+        battleplayerData.DtecAllState();
+    }
     /// <summary>
     /// 回傳戰鬥中的玩家資料
     /// </summary>

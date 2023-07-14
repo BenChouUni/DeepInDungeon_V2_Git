@@ -62,6 +62,20 @@ public class StateEffect
     public virtual void ConsumeLayer()
     {
         layer -= 1;
+        /*
+        if (layer <= 0)
+        {
+            layer = 0;
+            removeSelf?.Invoke(this);
+            //從StateList當中刪除，還會保留在Dictionary
+        }
+        */
+    }
+    /// <summary>
+    /// 檢測層數是否為0，若是0則刪除
+    /// </summary>
+    public virtual void DtecLayer()
+    {
         if (layer <= 0)
         {
             layer = 0;
@@ -69,6 +83,7 @@ public class StateEffect
             //從StateList當中刪除，還會保留在Dictionary
         }
     }
+
     #region
     //多型函數，決定在什麼階段使用
     /// <summary>

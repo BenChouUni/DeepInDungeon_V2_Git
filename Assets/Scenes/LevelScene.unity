@@ -274,6 +274,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1856984612}
   - {fileID: 1773852238}
   - {fileID: 150305151}
   m_Father: {fileID: 0}
@@ -633,7 +634,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6260616258576624427, guid: ef04e9f9fbd124aa4818d2253408a8a5, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6260616258576624427, guid: ef04e9f9fbd124aa4818d2253408a8a5, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1712,7 +1713,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 56431066}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1773852239
 MonoBehaviour:
@@ -1728,14 +1729,63 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LevelPanel: {fileID: 220639631}
   now_Level: {fileID: 0}
-  Layer: 0
+  Layer: 5
   mapData:
     allLevels:
     - Layer: 0
+      enemy: {fileID: 11400000, guid: 051a6992127394adbbe56db6240d04fc, type: 2}
+    - Layer: 1
       enemy: {fileID: 11400000, guid: 720766f86d4fd4fc297e0e307843656e, type: 2}
     currentLevel:
       Layer: 0
       enemy: {fileID: 0}
+--- !u!1 &1856984611
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1856984612}
+  - component: {fileID: 1856984613}
+  m_Layer: 0
+  m_Name: MapManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1856984612
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1856984611}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 11.359558, y: -84.98654, z: -3.0759459}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 56431066}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1856984613
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1856984611}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1cdb844ba440d4d419903d070491562f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  StopPrefab: {fileID: 7880795326528146551, guid: 74be508dd7727d74ba79ccdfd4208c90, type: 3}
+  LayerPrefab: {fileID: 3553043889223292996, guid: 3511d0286d982da44a7ee7967d362b73, type: 3}
+  MapPanel: {fileID: 220639632}
 --- !u!1 &1958878581
 GameObject:
   m_ObjectHideFlags: 0

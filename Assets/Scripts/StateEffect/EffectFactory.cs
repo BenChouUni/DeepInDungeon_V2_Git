@@ -20,6 +20,8 @@ public static class EffectFactory
                 return new WeakEffect();
             case StateEffectType.Power:
                 return new PowerEffect();
+            case StateEffectType.Buffer:
+                return new BufferEffect();
             default:
                 return null;
                 

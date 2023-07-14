@@ -28,9 +28,11 @@ public class LevelManager : MonoBehaviour,IDataPersistence
         {
             
         }
+
         now_layer = mapData.Currentlevel.Layer;
-        Layer = LevelPanel.transform.childCount;
+        //Layer = LevelPanel.transform.childCount;
         change_layer(now_layer);
+        MapManager.instance.CreateMap(Layer);
     }
 
     public void Fight()

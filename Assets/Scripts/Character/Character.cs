@@ -208,5 +208,17 @@ public abstract class Character
         updateDisplay?.Invoke(this);
         statesDisplay?.Invoke(this.StateList);
     }
+
+    public void DtecAllState()
+    {
+        for (int i  = StateList.Count - 1; i >= 0; i--)
+        {
+            StateList[i].DtecLayer();
+        }
+        //for (StateEffect item in StateList)
+        //{
+        //    item.DtecLayer();
+        //}
+    }
     
 }

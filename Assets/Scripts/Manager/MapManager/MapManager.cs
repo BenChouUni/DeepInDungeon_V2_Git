@@ -3,58 +3,57 @@ using System.Collections.Generic;
 using System.Drawing;
 using UnityEngine;
 
-public class MapManager : MonoBehaviour
+public class MapManager : MonoSingleton<MapManager>
 {
     public GameObject StopPrefab;
+    public GameObject LayerPrefab;
     public Transform MapPanel;
-    public int layer;
+    private int layer;
     public Vector3[][] point_positions;
 
     private void Awake()
     {
         point_positions = new Vector3[layer][];
     }
-    void Start()
+    public void CreateMap(int _layer)
     {
-        System.Console.WriteLine("Map");
-        System.Console.WriteLine("-------------------------");
+        this.layer = _layer;
+        int[] monster = new int[layer]; 
+        
 
-
-        int[] monster = new int[layer];     //�C�h�Ǫ��ƶq
         System.Random randon = new System.Random();
-        int[][] pointer1 = new int[layer][];        //�Ĥ@���s���쪺��m�A0 -> 1, 1 -> 2 ...
-        int[][] pointer2 = new int[layer][];        //�ĤG���s���쪺��m�A1 -> 0, 2 -> 1 ...
-        int[][] line = new int[layer][];        //���e�w�Q�s�쪺�u��
+        int[][] pointer1 = new int[layer][];        
+        int[][] pointer2 = new int[layer][];        
+        int[][] line = new int[layer][];        
 
         for (int i = 0; i < layer; i++)
         {
-            monster[i] = randon.Next(3, 6);     //�]�w�C�h�Ǫ��ƶq
+
+            monster[i] = randon.Next(1, 1);  
+            
+
             pointer1[i] = new int[monster[i]];
             pointer2[i] = new int[monster[i]];
             line[i] = new int[monster[i]];
             point_positions[i] = new Vector3[monster[i]];
-
-            //�Y���O��0�h�h�}�l�۳s
             if (i > 0)
             {
-                //�Y���۳s
+                
                 fpt_and_endpt(i, i - 1, monster, pointer1[i - 1], line[i]);
 
-                //�Ĥ@���۳s
+                
                 first_assign(i, i - 1, monster, pointer1[i - 1], line[i]);
                 //Show(pointer1, i);
-
-                //�ĤG���۳s
 
                 second_assign(i, i - 1, monster, pointer1[i - 1], pointer2[i], line[i]);
                 //Show(pointer2, i);
             }
         }
-        DrawMap(monster, layer);
-        DrawLine(monster, layer, pointer1);
+        //DrawMap(monster, layer);
+        //DrawLine(monster, layer, pointer1);
 
-        DrawLineManager.Setpoint(monster);
-        DrawLineManager.Draw(point_positions[0][0], point_positions[1][pointer1[0][0]]);
+        //DrawLineManager.Setpoint(monster);
+        //DrawLineManager.Draw(point_positions[0][0], point_positions[1][pointer1[0][0]]);
         //Show(pointer1, layer);
         //Show(pointer2, layer);
         //Show(line, layer);
@@ -74,7 +73,6 @@ public class MapManager : MonoBehaviour
     }
 
 
-    //�Y���۳s
     public static void fpt_and_endpt(int now_layer, int pre_layer, int[] monster_num, int[] pointer, int[] beassign)
     {
         pointer[0] = 0;
@@ -83,12 +81,12 @@ public class MapManager : MonoBehaviour
         beassign[monster_num[now_layer] - 1]++;
     }
 
-    //�Ĥ@���۳s�A�T�O�W�@�h�����s������e�h�A�����e�h���������Q�s��
+    
     public static void first_assign(int now_layer, int pre_layer, int[] monster_num, int[] pointer, int[] beassign)
     {
         System.Random randon = new System.Random();
 
-        int now_pt = 0;     //���e�h�i��|�s���쪺�I
+        int now_pt = 0;     
         int inst;       //�n�s������e�I�٬O���ʨ�U�@�I�����O
 
         if (monster_num[now_layer] > monster_num[pre_layer])        //�p�G���e�h���I�j��W�@�h����
@@ -142,14 +140,9 @@ public class MapManager : MonoBehaviour
         }
     }
 
-    //�ĤG���۳s�A�����e�h�����Q�s��A���n�`�N��e
     public static void second_assign(int now_layer, int pre_layer, int[] monster_num, int[] pointer1, int[] pointer2, int[] beassign)
     {
 
-        //��pre_pt�s����now_pt(�]�A����)�ɷ|�o�ͥ�e�N�Nnow_pt����
-        //��now_pt���s���Ƭ�2�ɤ]�n�Nnow_pt����
-        //�̫�@��pre_pt�A����s��˼ƲĤT���I�A
-        //��pre_pt�s����now_pt(�]�A�k��)�ɷ|�o�ͥ�e�N�Npre_pt����
 
         System.Random randon = new System.Random();
 
@@ -236,9 +229,10 @@ public class MapManager : MonoBehaviour
     public void CreateStoponMap(float x, float y)
     {
         GameObject new_point;
-
-        new_point = Instantiate(StopPrefab, MapPanel, false);
-        new_point.GetComponent<Transform>().position = new Vector2(x, y);
+        GameObject new_layer;
+        new_layer = Instantiate(LayerPrefab, MapPanel, false);
+        new_point = Instantiate(StopPrefab, new_layer.transform, false);
+        //new_point.GetComponent<Transform>().position = new Vector2(x, y);
 
     }
 }
