@@ -38,6 +38,7 @@ public class TurnPhaseManager : MonoSingleton<TurnPhaseManager>
     {
         if (gamePhase == GamePhase.PlayerAction)
         {
+            BattleMainManager.instance.TurnEnd();
             gamePhase = GamePhase.EnemyAction;
             BattleMainManager.instance.TurnStart();
         }
@@ -78,7 +79,7 @@ public class TurnPhaseManager : MonoSingleton<TurnPhaseManager>
 
     public void EndTurn()
     {
-
+        BattleMainManager.instance.TurnEnd();
         //切換回合
         if (gamePhase == GamePhase.PlayerAction)
         {

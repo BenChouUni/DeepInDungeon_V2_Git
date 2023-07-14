@@ -184,9 +184,9 @@ public class BattleDeckManager : MonoSingleton<BattleDeckManager>,IDataPersisten
         ShuffleDeck();
     }
     /// <summary>
-    /// 重新把手牌洗掉抽新的卡上來
+    /// 重新把手牌洗掉
     /// </summary>
-    public void RefreshHandCards(int num)
+    public void RefreshHandCards()
     {
         Debug.Log("刷新手牌");
         for (int i = handCardsObj.Count -1; i >= 0; i--)
@@ -195,6 +195,6 @@ public class BattleDeckManager : MonoSingleton<BattleDeckManager>,IDataPersisten
             DisCard(handCardsObj[i]);
         }
         handCardsObj.Clear();
-        DrawCard(num);
+        //DrawCard(num);
     }
 }

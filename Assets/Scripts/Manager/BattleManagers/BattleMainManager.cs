@@ -221,7 +221,7 @@ public class BattleMainManager : MonoSingleton<BattleMainManager>
         {
             Debug.Log("執行玩家回合開始準備");
             battlePlayerDataManager.ResetEnergy();
-            battleDeckManager.RefreshHandCards(initialDrawCard);
+            battleDeckManager.DrawCard(initialDrawCard);
 
         }
         else if (turnPhaseManager.GamePhase == GamePhase.EnemyAction)
@@ -230,7 +230,21 @@ public class BattleMainManager : MonoSingleton<BattleMainManager>
             StartCoroutine(EnemyBehave());
         }
     }
+    public void TurnEnd()
+    {
+        if (turnPhaseManager.GamePhase == GamePhase.PlayerAction)
+        {
+            Debug.Log("玩家回合結束");
+            //battlePlayerDataManager.ResetEnergy();
+            battleDeckManager.RefreshHandCards();
 
+        }
+        else if (turnPhaseManager.GamePhase == GamePhase.EnemyAction)
+        {
+            Debug.Log("敵人回合結束");
+            
+        }
+    }
     public void GenerateHitNum(int num,Transform transform)
     {
         var numberObj = Instantiate(HitNumber, transform);
