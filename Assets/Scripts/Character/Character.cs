@@ -41,6 +41,7 @@ public abstract class Character
     public Action<HpState> hpDisplay;
     public Action<List<StateEffect>> statesDisplay;
     public Action deathBehavior;
+    public Action<int> ShowHitNumber;
 
     //state list
     /// <summary>
@@ -68,12 +69,13 @@ public abstract class Character
     /// </summary>
     /// <param name="_displayAction"></param>
     /// <param name="_hpDisplay"></param>
-    public void setDisplayAction(Action<Character> _displayAction, Action<HpState> _hpDisplay,Action<List<StateEffect>> statesDisplayAction,Action deathbeh)
+    public void setDisplayAction(Action<Character> _displayAction, Action<HpState> _hpDisplay,Action<List<StateEffect>> statesDisplayAction,Action deathbeh,Action<int> showHit)
     {
         this.updateDisplay += _displayAction;
         this.hpDisplay += _hpDisplay;
         this.statesDisplay += statesDisplayAction;
         this.deathBehavior += deathbeh;
+        this.ShowHitNumber += showHit;
     }
     public void setCharaterName(string name)
     {
@@ -89,7 +91,9 @@ public abstract class Character
             return;
         }
 
-        hpState.LostHp(ShieldBlock(dmg));
+        int trueDmg = ShieldBlock(dmg);
+        hpState.LostHp(trueDmg);
+        ShowHitNumber?.Invoke(trueDmg);
         
         if (hpState.CurrentHp==0)
         {

@@ -31,7 +31,7 @@ public class EnemyManager : MonoSingleton<EnemyManager>,IDataPersistence
 
     private void Start()
     {
-        enemyData.setDisplayAction(ShowEnemy, enemyHealthBar.Show, effectListDisplay.ShowStateList, EnemyDie);
+        enemyData.setDisplayAction(ShowEnemy, enemyHealthBar.Show, effectListDisplay.ShowStateList, EnemyDie,ShowHitNumber);
         ShowEnemy(this.enemyData);
         enemyHealthBar.Show(this.enemyData.HpState);
     }
@@ -60,6 +60,11 @@ public class EnemyManager : MonoSingleton<EnemyManager>,IDataPersistence
     private void EnemyDie()
     {
         BattleMainManager.instance.WinBattle();
+    }
+
+    private void ShowHitNumber(int num)
+    {
+        BattleMainManager.instance.GenerateHitNum(num, enemyHealthBar.transform);
     }
 
     public void LoadData(GameData data)

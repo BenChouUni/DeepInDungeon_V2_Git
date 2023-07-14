@@ -36,4 +36,5 @@ public class HealthBar : MonoBehaviour
     {
         numberText.text = string.Format("{0}/{1}",hpState.CurrentHp,hpState.MaxHp);
     }
+
 }

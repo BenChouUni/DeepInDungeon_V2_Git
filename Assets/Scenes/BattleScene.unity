@@ -3718,6 +3718,11 @@ MonoBehaviour:
       energy: 3
     mainWeaponDeck: []
     supWeaponDeck: []
+    mapData:
+      allLevels: []
+      currentLevel:
+        Layer: 0
+        enemy: {fileID: 0}
   Text: {fileID: 2139659791}
   next_level_button: {fileID: 6179761}
   MainCardNum: 2
@@ -5925,6 +5930,7 @@ MonoBehaviour:
   cardsLayoutManager: {fileID: 0}
   enemyManager: {fileID: 0}
   initialDrawCard: 5
+  HitNumber: {fileID: 1657651640707860410, guid: 1964a05725058407b9c946d52b4952d9, type: 3}
 --- !u!114 &2090945750
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -17,7 +17,7 @@ public class PlayerDataManager : MonoSingleton<PlayerDataManager>, IDataPersiste
     public void LoadData(GameData data)
     {
         playerData = data.playerData;
-        this.playerData.setDisplayAction(ShowPlayerDataCharacter, playerHpBar.Show,null,null);
+        this.playerData.setDisplayAction(ShowPlayerDataCharacter, playerHpBar.Show,null,null,null);
         ShowPlayerDataCharacter(this.playerData);
         playerHpBar.Show(this.playerData.HpState);
     }

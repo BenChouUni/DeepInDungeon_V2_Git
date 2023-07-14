@@ -26,7 +26,9 @@ public class BattleMainManager : MonoSingleton<BattleMainManager>
     private bool isDragging = false;
     private GameObject draggingCard;
     //UI
-    //public Button EndTurnButton;
+    [Header("傷害數字顯示")]
+    public GameObject HitNumber;
+
    
 
     private void Awake()
@@ -229,5 +231,9 @@ public class BattleMainManager : MonoSingleton<BattleMainManager>
         }
     }
 
-
+    public void GenerateHitNum(int num,Transform transform)
+    {
+        var numberObj = Instantiate(HitNumber, transform);
+        numberObj.GetComponentInChildren<Text>().text = num.ToString();
+    }
 }

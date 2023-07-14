@@ -58,7 +58,7 @@ public class BattlePlayerDataManager : MonoSingleton<BattlePlayerDataManager>,ID
         battleplayerData = JClone.DeepClone<PlayerData>(playerData);
         //委派
         this.battleplayerData.setDisplayAction(ShowPlayerCharacter,
-            playerHealthBar.Show,effectListDisplayl.ShowStateList,PlayerDie);
+            playerHealthBar.Show,effectListDisplayl.ShowStateList,PlayerDie,ShowHitNumber);
         ShowPlayerCharacter(this.battleplayerData);
         playerHealthBar.Show(this.battleplayerData.HpState);
 
@@ -99,7 +99,10 @@ public class BattlePlayerDataManager : MonoSingleton<BattlePlayerDataManager>,ID
         ShowEnergy();
         ShowShield();
     }
-    
+    public void ShowHitNumber(int num)
+    {
+        BattleMainManager.instance.GenerateHitNum(num, playerHealthBar.transform);
+    }
     /// <summary>
     /// 顯示主副手武器
     /// </summary>
