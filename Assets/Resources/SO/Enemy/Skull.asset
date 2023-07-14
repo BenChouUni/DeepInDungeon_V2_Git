@@ -29,4 +29,10 @@ MonoBehaviour:
     StateList: []
     id: 1
     atk: 2
-    actionList: []
+    actionList:
+    - actionType: 0
+      enemyActionParameter:
+        value: 4
+        targetType: 0
+        selfType: 1
+        stateEffectType: 0

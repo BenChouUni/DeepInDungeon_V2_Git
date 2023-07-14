@@ -9,5 +9,6 @@ public enum StateEffectType
     Wound,
     Bleed,
     Weak,
-    Power
+    Power,
+    Buffer
 }

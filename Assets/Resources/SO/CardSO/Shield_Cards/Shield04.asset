@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardData:
     id: 304
-    cardName: "\u6B63\u9762\u683C\u6A94"
+    cardName: "\u8209\u76FE"
     cost: 1
-    initialnum: 2
+    initialnum: 0
     weaponData:
       id: 0
       weaponName: 
