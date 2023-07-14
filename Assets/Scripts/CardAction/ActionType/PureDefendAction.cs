@@ -10,7 +10,7 @@ public class PureDefendAction : CardActionBase
 
     public override string ActionDescribe(CardActionParameter parameter)
     {
-        return string.Format("get {0} shield", parameter.value);
+        return string.Format("獲得{0}點護甲", parameter.value);
     }
 
     public override void DoAction(CardActionParameter parameter)

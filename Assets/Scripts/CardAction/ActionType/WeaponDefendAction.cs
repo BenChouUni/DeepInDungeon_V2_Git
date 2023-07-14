@@ -8,7 +8,7 @@ public class WeaponDefendAction : CardActionBase
 
     public override string ActionDescribe(CardActionParameter parameter)
     {
-        return string.Format("Use {0} get {1} shield", parameter.WeaponData.weaponName, parameter.value + parameter.WeaponData.def);
+        return string.Format("使用{0}，獲得{1}點護甲", parameter.WeaponData.weaponName, parameter.value + parameter.WeaponData.def);
     }
 
     public override void DoAction(CardActionParameter parameter)

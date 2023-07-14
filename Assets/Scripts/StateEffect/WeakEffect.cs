@@ -5,18 +5,18 @@ using UnityEngine;
 public class WeakEffect : StateEffect
 {
     // Start is called before the first frame update
-    public WeakEffect() : base("Weak", false, StateEffectType.Weak, LayerConsumeType.TurnEnd)
+    public WeakEffect() : base("è™›å¼±", false, StateEffectType.Weak, LayerConsumeType.TurnEnd)
     {
 
     }
 
     /// <summary>
-    /// ³y¦¨ªº¶Ë®`´î¤Ö50%
+    /// ï¿½yï¿½ï¿½ï¿½ï¿½ï¿½Ë®`ï¿½ï¿½ï¿½50%
     /// </summary>
     /// <returns></returns>
     public override float AtDealDamage()
     {
-        Debug.Log("§P©w¨ìWeak");
+        Debug.Log("ï¿½Pï¿½wï¿½ï¿½Weak");
         return 0.5f;
     }
 

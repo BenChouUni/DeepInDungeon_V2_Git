@@ -8,7 +8,7 @@ public class WeaponAttackAction : CardActionBase
 
     public override string ActionDescribe(CardActionParameter parameter)
     {
-        return string.Format("Use {0} deal {1} damage",parameter.WeaponData.weaponName ,parameter.value + parameter.WeaponData.atk);
+        return string.Format("使用{0}，造成{1}點傷害",parameter.WeaponData.weaponName ,parameter.value + parameter.WeaponData.atk);
         
     }
 

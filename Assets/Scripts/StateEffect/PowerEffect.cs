@@ -4,18 +4,18 @@ using UnityEngine;
 
 public class PowerEffect : StateEffect
 {
-    public  PowerEffect() : base("Power", false, StateEffectType.Power, LayerConsumeType.Never)
+    public  PowerEffect() : base("åŠ›é‡", false, StateEffectType.Power, LayerConsumeType.Never)
     {
 
     }
 
     /// <summary>
-    /// ¼W¥[³y¦¨ªº¶Ë®`
+    /// ï¿½Wï¿½[ï¿½yï¿½ï¿½ï¿½ï¿½ï¿½Ë®`
     /// </summary>
     /// <returns></returns>
     public override int AddExtraDamage()
     {
-        Debug.Log("§P©w¨ìPower" + Layer + "¼h");
+        Debug.Log("ï¿½Pï¿½wï¿½ï¿½Power" + Layer + "ï¿½h");
         return Layer;
     }
 }

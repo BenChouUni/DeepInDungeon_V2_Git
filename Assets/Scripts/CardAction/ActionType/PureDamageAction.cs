@@ -10,7 +10,7 @@ public class PureDamageAction : CardActionBase
 
     public override string ActionDescribe(CardActionParameter parameter)
     {
-        return string.Format("Deal {0} damage", parameter.value);
+        return string.Format("直接向{0}造成{1}點傷害",parameter.targetType ,parameter.value);
     }
 
     public override void DoAction(CardActionParameter parameter)

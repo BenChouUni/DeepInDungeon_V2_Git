@@ -6,7 +6,7 @@ using UnityEngine;
 public class WoundEffect : StateEffect
 {
     //初始化
-    public WoundEffect():base("Wound",false,StateEffectType.Wound,LayerConsumeType.TurnEnd)
+    public WoundEffect():base("傷口",false,StateEffectType.Wound,LayerConsumeType.TurnEnd)
     {
         
     }
