@@ -96,6 +96,7 @@ public class BattleDeckManager : MonoSingleton<BattleDeckManager>,IDataPersisten
     /// <param name="num">數量</param>
     public void DrawCard(int num)
     {
+        Debug.LogFormat("抽{0}",num);
         
         if (!canDraw)
         {
@@ -125,8 +126,10 @@ public class BattleDeckManager : MonoSingleton<BattleDeckManager>,IDataPersisten
                 Debug.Log("抽牌超過手牌上限");
                 //可能要把牌抽上來給玩家看一下
                 //把牌一到棄排堆
-                DisCard(cardData);
-                battleDeck.Remove(cardData);
+                //DisCard(cardData);
+                //handCards.Remove(cardData);
+                discardCards.Add(cardData);
+                //battleDeck.Remove(cardData);
                 continue;
 
             }
@@ -150,16 +153,22 @@ public class BattleDeckManager : MonoSingleton<BattleDeckManager>,IDataPersisten
 
         ShowCardZoneCount();
     }
-
-    public void DisCard(CardData cardData)
+    /// <summary>
+    /// 刪除hand card obj
+    /// </summary>
+    /// <param name="card"></param>
+    public void DisCard(GameObject card)
     {
+        CardData cardData = card.GetComponent<CardDisplay>().CardData;
         //牌原本應該在手牌上，所以從手牌刪除，之後可能會有直接從牌庫刪除，需要修正
         handCards.Remove(cardData);
-
-
+        CardsLayoutManager.instance.RemoveHandCard(card.transform);
+        Destroy(card);
+        handCardsObj.Remove(card);
 
         discardCards.Add(cardData);
         ShowCardZoneCount();
+        
     }
     /// <summary>
     /// 把棄牌堆重新洗回抽排堆
@@ -173,5 +182,19 @@ public class BattleDeckManager : MonoSingleton<BattleDeckManager>,IDataPersisten
         }
         discardCards.Clear();
         ShuffleDeck();
+    }
+    /// <summary>
+    /// 重新把手牌洗掉抽新的卡上來
+    /// </summary>
+    public void RefreshHandCards(int num)
+    {
+        Debug.Log("刷新手牌");
+        for (int i = handCardsObj.Count -1; i >= 0; i--)
+        {
+            Debug.Log("刪除牌");
+            DisCard(handCardsObj[i]);
+        }
+        handCardsObj.Clear();
+        DrawCard(num);
     }
 }

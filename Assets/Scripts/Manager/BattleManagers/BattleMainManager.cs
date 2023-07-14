@@ -176,9 +176,9 @@ public class BattleMainManager : MonoSingleton<BattleMainManager>
         
 
         //將牌刪除
-        battleDeckManager.DisCard(cardData);
-        cardsLayoutManager.RemoveHandCard(draggingCard.transform);
-        Destroy(draggingCard);
+        battleDeckManager.DisCard(draggingCard);
+        //cardsLayoutManager.RemoveHandCard(draggingCard.transform);
+        //Destroy(draggingCard);
         draggingCard = null;
 
         
@@ -221,7 +221,7 @@ public class BattleMainManager : MonoSingleton<BattleMainManager>
         {
             Debug.Log("執行玩家回合開始準備");
             battlePlayerDataManager.ResetEnergy();
-            battleDeckManager.DrawCard(2);
+            battleDeckManager.RefreshHandCards(initialDrawCard);
 
         }
         else if (turnPhaseManager.GamePhase == GamePhase.EnemyAction)
