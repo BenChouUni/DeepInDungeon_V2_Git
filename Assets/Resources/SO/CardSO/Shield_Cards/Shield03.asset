@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardData:
     id: 303
-    cardName: "\u6B63\u9762\u683C\u6A94"
-    cost: 1
+    cardName: "\u7DE9\u885D\u683C\u6A94"
+    cost: 2
     initialnum: 2
     weaponData:
       id: 0
@@ -25,12 +25,12 @@ MonoBehaviour:
       distance: 0
       weaponType: 2
     cardActions:
-    - actionType: 1
+    - actionType: 6
       actionParameter:
-        value: 2
+        value: 1
         targetType: 0
         selfType: 0
-        stateEffectType: 0
+        stateEffectType: 5
         weaponData:
           id: 0
           weaponName: 
