@@ -36,6 +36,10 @@ public class EnemyManager : MonoSingleton<EnemyManager>,IDataPersistence
         enemyHealthBar.Show(this.enemyData.HpState);
     }
 
+    void Update()
+    {
+        enemyData.DtecAllState();
+    }
     
     private void ShowEnemy(Character character)
     {

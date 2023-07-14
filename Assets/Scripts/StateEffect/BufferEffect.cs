@@ -16,7 +16,7 @@ public class BufferEffect : StateEffect
     public override float AtReceiveDamage()
     {
         Debug.Log("§P©w¨ìBuffer");
-        //ConsumeLayer();
+        ConsumeLayer();
         return 0f;
     }
 }
