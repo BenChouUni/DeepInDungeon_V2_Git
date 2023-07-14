@@ -42,6 +42,11 @@ public class EnemyData : Character
         //    item.DoAction(this);
         //}
         //輪流做
+        if (actionList.Count == 0)
+        {
+            Debug.Log("敵人沒有行為");
+            return;
+        }
         actionList[actionIndex].DoAction(this);
         actionIndex++;
         if (actionIndex >= actionList.Count -1)
