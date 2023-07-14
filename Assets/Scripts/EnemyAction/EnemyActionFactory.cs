@@ -20,9 +20,6 @@ public static class EnemyActionFactory
             case EnemyActionType.Defend:
                 enemyActionBase = new EnemyDefendActions();
                 break;
-            case EnemyActionType.GiveEffect:
-                enemyActionBase = new EnemyGiveEffect();
-                break;
         }
 
         return enemyActionBase;

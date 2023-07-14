@@ -52,9 +52,7 @@ public class StateEffect
     /// 可以輸入負數
     /// </summary>
     /// <param name="num"></param>
-    public void AddLayer(int num) {
-        layer += num;  Debug.LogFormat("Add {0}", num);
-    }
+    public void AddLayer(int num) { layer += num; } //Debug.LogFormat("Add {0}", num); }
 
     /// <summary>
     /// 每個狀態自己寫什麼時候會消耗掉層數，是預設的功能

@@ -4,5 +4,5 @@ using UnityEngine;
 
 public enum EnemyActionType
 {
-    Attack,Defend,GiveEffect,restore,
+    Attack,Defend
 }

@@ -249,12 +249,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '
-
-'
+  m_text: op
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 44f80039c3e5c469d94668d5392fb128, type: 2}
-  m_sharedMaterial: {fileID: 3533434953323000412, guid: 44f80039c3e5c469d94668d5392fb128, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -599,10 +597,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textComponent: {fileID: 57108586}
   lines:
-  - "\u5192\u96AA\u8005\u554A\uFF0C\u662F\u4EC0\u9EBC\u5438\u5F15\u4F60\u524D\u4F86\u5462\uFF1F"
-  - "\u9019\u5EA7\u5730\u4E0B\u57CE\u96D6\u7136\u5145\u6EFF\u8457\u5BF6\u85CF\uFF0C\u4F46\u537B\u85CF\u8457\u66F4\u591A\u7684\u5371\u96AA"
-  - "\u5982\u679C\u4F60\u4ECD\u6709\u52C7\u6C23\u6DF1\u5165\u5730\u57CE"
-  - "\u90A3\u8ACB\u544A\u8A34\u6211\u4F60\u7684\u540D\u5B57\u5427"
+  - "\u5728\u9060\u53E4\u7684\u5927\u5730\u4E0A"
+  - it is line2
+  - OMG ! line 3
   textSpeed: 0.3
   inputWindow: {fileID: 797132840}
 --- !u!1001 &797132838
