@@ -154,17 +154,18 @@ public abstract class Character
             Debug.LogError("dictionary is null");
             stateDic = new Dictionary<StateEffectType, StateEffect>();
         }
+        //如果已經有同樣的狀態了
         if (stateDic.ContainsKey(type))
         {
             int addLayer = stateEffect.Layer;
             stateDic[type].AddLayer(addLayer);
-            foreach (StateEffect item in StateList)
-            {
-                if (item.effectType == type)
-                {
-                    item.AddLayer(addLayer);
-                }
-            }
+            //foreach (StateEffect item in StateList)
+            //{
+            //    if (item.effectType == type)
+            //    {
+            //        item.AddLayer(addLayer);
+            //    }
+            //}
         }
         else
         {
