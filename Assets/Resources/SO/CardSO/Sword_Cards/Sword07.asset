@@ -16,14 +16,14 @@ MonoBehaviour:
     id: 7
     cardName: "\u920D\u5316"
     cost: 2
-    initialnum: 0
+    initialnum: 5
     weaponData:
       id: 0
       weaponName: Sword
       atk: 4
       def: 1
       distance: 1
-      weaponType: 0
+      weaponType: 2
     cardActions:
     - actionType: 3
       actionParameter:
@@ -37,7 +37,7 @@ MonoBehaviour:
           atk: 4
           def: 1
           distance: 1
-          weaponType: 0
+          weaponType: 2
     - actionType: 6
       actionParameter:
         value: 2
@@ -50,4 +50,4 @@ MonoBehaviour:
           atk: 4
           def: 1
           distance: 1
-          weaponType: 0
+          weaponType: 2
