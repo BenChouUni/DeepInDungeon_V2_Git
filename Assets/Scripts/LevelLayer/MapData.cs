@@ -28,6 +28,10 @@ public class MapData
     {
         
         Debug.Log("Next Level");
+        if(currentLevel == null)
+        {
+            Debug.LogError("currentLevel is null");
+        }
         if (currentLevel.enemy == null)
         {
             Debug.Log("沒有層數，設定第一層");
