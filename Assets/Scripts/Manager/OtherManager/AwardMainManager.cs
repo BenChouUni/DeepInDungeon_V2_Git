@@ -39,7 +39,6 @@ public class AwardMainManager : MonoSingleton<AwardMainManager>, IDataPersistenc
         MainWeaponDeck = data.mainWeaponDeck;
         SupportWeaponDeck = data.supWeaponDeck;
         MapData = data.mapData;
-
     }
     public void SaveData(ref GameData data)
     {
