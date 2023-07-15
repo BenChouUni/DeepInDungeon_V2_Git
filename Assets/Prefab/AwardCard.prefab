@@ -91,10 +91,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4201613166e9e48be8d6ac8d22917f87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cardData:
+    id: 0
+    cardName: 
+    cost: 0
+    initialnum: 0
+    image: {fileID: 0}
+    weaponData:
+      id: 0
+      weaponName: 
+      atk: 0
+      def: 0
+      distance: 0
+      weaponType: 2
+    cardActions: []
   cardName_text: {fileID: 5348189821039741388}
   cost_text: {fileID: 6514911184673365179}
   initialnum_text: {fileID: 0}
   description_text: {fileID: 293945219571359688}
+  cardImage: {fileID: 967242210655884191}
 --- !u!114 &1174554652167393900
 MonoBehaviour:
   m_ObjectHideFlags: 0

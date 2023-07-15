@@ -48,7 +48,11 @@ public class CardDisplay : MonoBehaviour
         {
             description_text.text = getDescription();
         }
-        cardImage = cardData.image;
+        if (cardImage!=null)
+        {
+            cardImage.sprite = cardData.image;
+        }
+        
     }
 
     private string getDescription()

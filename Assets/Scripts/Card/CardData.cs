@@ -11,7 +11,7 @@ public class CardData
     public int cost;
     public int initialnum;
 
-    public Image image;
+    public Sprite image;
 
     public WeaponData WeaponData
     {

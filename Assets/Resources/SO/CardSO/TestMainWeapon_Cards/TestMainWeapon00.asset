@@ -17,7 +17,7 @@ MonoBehaviour:
     cardName: "\u6B66\u5668\u6253\u64CA5"
     cost: 1
     initialnum: 5
-    image: {fileID: 0}
+    image: {fileID: 21300000, guid: f26681567b6974f568cfb4526f148f31, type: 3}
     weaponData:
       id: 99
       weaponName: "\u6E2C\u8A66\u7528\u4E3B\u624B"

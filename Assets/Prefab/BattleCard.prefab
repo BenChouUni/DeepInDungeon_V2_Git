@@ -646,6 +646,7 @@ MonoBehaviour:
     cardName: 
     cost: 0
     initialnum: 0
+    image: {fileID: 0}
     weaponData:
       id: 0
       weaponName: 
@@ -658,6 +659,7 @@ MonoBehaviour:
   cost_text: {fileID: 2701326609538096791}
   initialnum_text: {fileID: 0}
   description_text: {fileID: 475676053954967388}
+  cardImage: {fileID: 6131308632964518939}
 --- !u!114 &6869170562606032672
 MonoBehaviour:
   m_ObjectHideFlags: 0
