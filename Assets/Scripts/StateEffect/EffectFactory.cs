@@ -6,22 +6,22 @@ using UnityEngine;
 /// </summary>
 public static class EffectFactory 
 {
-    public static StateEffect GetStatusEffect(StateEffectType effectType)
+    public static StateEffect GetStatusEffect(StateEffectType effectType, Character _myCharacter)
     {
         switch (effectType)
         {
             case StateEffectType.Wound:
-                return new WoundEffect();
+                return new WoundEffect(_myCharacter);
                 
             case StateEffectType.Bleed:
-                return new BleedEffect();
+                return new BleedEffect(_myCharacter);
 
             case StateEffectType.Weak:
-                return new WeakEffect();
+                return new WeakEffect(_myCharacter);
             case StateEffectType.Power:
-                return new PowerEffect();
+                return new PowerEffect(_myCharacter);
             case StateEffectType.Buffer:
-                return new BufferEffect();
+                return new BufferEffect(_myCharacter);
             default:
                 return null;
                 

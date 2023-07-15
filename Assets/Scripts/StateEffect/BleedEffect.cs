@@ -5,7 +5,7 @@ using UnityEngine;
 //[CreateAssetMenu(fileName ="BleedEffect",menuName ="Asset/CreateEffect/Bleed")]
 public class BleedEffect : StateEffect
 {
-    public BleedEffect():base("流血",false,StateEffectType.Bleed,LayerConsumeType.AfterUse) {
+    public BleedEffect(Character _myCharacter) :base("流血",false,StateEffectType.Bleed,LayerConsumeType.AfterUse,_myCharacter) {
     }
 
     public override void AtTurnEnd()

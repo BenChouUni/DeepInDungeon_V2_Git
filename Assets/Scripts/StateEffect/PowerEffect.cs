@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PowerEffect : StateEffect
 {
-    public  PowerEffect() : base("力量", false, StateEffectType.Power, LayerConsumeType.Never)
+    public  PowerEffect(Character _myCharacter) : base("力量", false, StateEffectType.Power, LayerConsumeType.Never,_myCharacter)
     {
 
     }

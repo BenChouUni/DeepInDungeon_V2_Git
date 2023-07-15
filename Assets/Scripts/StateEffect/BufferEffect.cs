@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BufferEffect : StateEffect
 {
-    public BufferEffect() : base("Buffer", false, StateEffectType.Buffer, LayerConsumeType.AfterUse)
+    public BufferEffect(Character _myCharacter) : base("Buffer", false, StateEffectType.Buffer, LayerConsumeType.AfterUse,_myCharacter)
     {
 
     }
@@ -15,7 +15,7 @@ public class BufferEffect : StateEffect
     /// <returns></returns>
     public override float AtReceiveDamage()
     {
-        Debug.Log("§P©w¨ìBuffer");
+        Debug.Log("ï¿½Pï¿½wï¿½ï¿½Buffer");
         ConsumeLayer();
         return 0f;
     }

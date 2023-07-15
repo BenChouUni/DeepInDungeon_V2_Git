@@ -9,7 +9,7 @@ public class BattlePlayerDataManager : MonoSingleton<BattlePlayerDataManager>,ID
     private PlayerData playerData = new PlayerData();
     //戰鬥中data
     [SerializeField]
-    private PlayerData battleplayerData;
+    public PlayerData battleplayerData;
     public EffectListDisplay effectListDisplayl;
 
     //生成角色資訊

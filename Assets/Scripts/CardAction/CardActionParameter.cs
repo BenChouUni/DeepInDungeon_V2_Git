@@ -63,7 +63,7 @@ public class CardActionParameter
         {
             if (myEffect==null)
             {
-                myEffect = EffectFactory.GetStatusEffect(stateEffectType);
+                myEffect = EffectFactory.GetStatusEffect(stateEffectType,Target);
             }
             return myEffect;
         }

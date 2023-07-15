@@ -248,13 +248,22 @@ public class BattleMainManager : MonoSingleton<BattleMainManager>
             Debug.Log("玩家回合結束");
             //battlePlayerDataManager.ResetEnergy();
             battleDeckManager.RefreshHandCards();
+            foreach (var item in battlePlayerDataManager.battleplayerData.StateList)
+            {
+                item.AtTurnEnd();
+            }
 
         }
         else if (turnPhaseManager.GamePhase == GamePhase.EnemyAction)
         {
             Debug.Log("敵人回合結束");
-            
+            foreach (var item in enemyManager.enemyData.StateList)
+            {
+                item.AtTurnEnd();
+            }
+
         }
+        //在PhaseManager那邊切換
     }
     public void GenerateHitNum(int num,Transform transform)
     {

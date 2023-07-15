@@ -26,17 +26,18 @@ public class StateEffect
     private Character myCharacter;
     private Action<StateEffect> removeSelf;
 
-    private StateEffect(): this("", true, StateEffectType.NULL,LayerConsumeType.AfterUse)
+    private StateEffect(): this("", true, StateEffectType.NULL,LayerConsumeType.AfterUse,null)
     {
            
     }
-    public StateEffect(string _name,bool _isBuff,StateEffectType _type, LayerConsumeType _coneumType)
+    public StateEffect(string _name,bool _isBuff,StateEffectType _type, LayerConsumeType _coneumType,Character _myCharacter)
     {
         this.effectName = _name;
         this.isBuff = _isBuff;
         this.effectType = _type;
         this.layer = 0;
         this.consumeType = _coneumType;
+        this.myCharacter = _myCharacter;
     }
     /// <summary>
     /// 在state被加入時要呼叫
@@ -84,6 +85,7 @@ public class StateEffect
         }
     }
 
+    //state 函數
     #region
     //多型函數，決定在什麼階段使用
     /// <summary>
