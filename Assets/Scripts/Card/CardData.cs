@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 [System.Serializable]
 public class CardData
@@ -9,6 +10,8 @@ public class CardData
     public string cardName;
     public int cost;
     public int initialnum;
+
+    public Image image;
 
     public WeaponData WeaponData
     {

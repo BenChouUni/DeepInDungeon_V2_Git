@@ -30,6 +30,7 @@ public class CardDisplay : MonoBehaviour
     public Text cost_text;
     public Text initialnum_text;
     public Text description_text;
+    public Image cardImage;
 
     private void Show()
     {
@@ -47,7 +48,7 @@ public class CardDisplay : MonoBehaviour
         {
             description_text.text = getDescription();
         }
-        
+        cardImage = cardData.image;
     }
 
     private string getDescription()

@@ -31,14 +31,18 @@ public class EnemyManager : MonoSingleton<EnemyManager>,IDataPersistence
 
     private void Start()
     {
-        enemyData.setDisplayAction(ShowEnemy, enemyHealthBar.Show, effectListDisplay.ShowStateList, EnemyDie,ShowHitNumber);
+        if (enemyData == null)
+        {
+            Debug.Log("沒有敵人");
+        }
+        enemyData?.setDisplayAction(ShowEnemy, enemyHealthBar.Show, effectListDisplay.ShowStateList, EnemyDie,ShowHitNumber);
         ShowEnemy(this.enemyData);
         enemyHealthBar.Show(this.enemyData.HpState);
     }
 
     void Update()
     {
-        enemyData.DtecAllState();
+        enemyData?.DtecAllState();
     }
     
     private void ShowEnemy(Character character)
