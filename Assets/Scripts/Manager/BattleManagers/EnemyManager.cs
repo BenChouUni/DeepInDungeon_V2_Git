@@ -19,6 +19,7 @@ public class EnemyManager : MonoSingleton<EnemyManager>,IDataPersistence
     public HealthBar enemyHealthBar;
     public Text enemyShield;
     public GameObject Shieldinformation;
+    public Image EnemyImage;
 
     private void Awake()
     {
@@ -57,6 +58,10 @@ public class EnemyManager : MonoSingleton<EnemyManager>,IDataPersistence
         else
         {
             Shieldinformation.SetActive(true);
+        }
+        if (EnemyImage!=null)
+        {
+            EnemyImage.sprite = enemyData.image;
         }
     }
 
