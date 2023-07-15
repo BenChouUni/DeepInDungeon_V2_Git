@@ -61,7 +61,7 @@ public class EnemyManager : MonoSingleton<EnemyManager>,IDataPersistence
         }
         if (EnemyImage!=null)
         {
-            EnemyImage.sprite = enemyData.image;
+            //EnemyImage.sprite = enemyData.image;
         }
     }
 

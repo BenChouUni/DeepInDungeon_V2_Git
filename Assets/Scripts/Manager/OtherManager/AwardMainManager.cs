@@ -46,7 +46,7 @@ public class AwardMainManager : MonoSingleton<AwardMainManager>, IDataPersistenc
     
     void Start()
     {
-        Text.GetComponent<UnityEngine.UI.Text>().text = "½Ğ¿ï¾Ü" + AwardNum + "±iµP§@¬°¼úÀy";
+        Text.GetComponent<UnityEngine.UI.Text>().text = "è«‹é¸æ“‡çå‹µ";
         SupportCardNum = CardNum - MainCardNum;
         MainID = PlayerData.MainWeaponData.id;
         SupportID = PlayerData.SupportWeaponData.id;
@@ -74,7 +74,7 @@ public class AwardMainManager : MonoSingleton<AwardMainManager>, IDataPersistenc
     }
 
     /// <summary>
-    /// ÀH¾÷ªZ¾¹id
+    /// ï¿½Hï¿½ï¿½ï¿½Zï¿½ï¿½id
     /// </summary>
     /// <param name="cardNum"></param>
     /// <returns></returns>
@@ -109,7 +109,7 @@ public class AwardMainManager : MonoSingleton<AwardMainManager>, IDataPersistenc
     }
 
     /// <summary>
-    /// ÀH¾÷¥dµPid
+    /// ï¿½Hï¿½ï¿½ï¿½dï¿½Pid
     /// </summary>
     /// <param name="id"></param>
     /// <returns></returns>
@@ -136,9 +136,9 @@ public class AwardMainManager : MonoSingleton<AwardMainManager>, IDataPersistenc
         {
             randomid = Random.Range(0, weaponcardnum);
             ID = id * 100 + randomid;
-            if (GetCardData(ID).initialnum == 0)    //¹LÂoªì©lµP
+            if (GetCardData(ID).initialnum == 0)    //ï¿½Lï¿½oï¿½ï¿½lï¿½P
             {
-                foreach (int item in AwardCardList)    //Á×§K­«½ÆµP
+                foreach (int item in AwardCardList)    //ï¿½×§Kï¿½ï¿½ï¿½ÆµP
                 {
                     if (ID == item)
                     {
@@ -199,14 +199,14 @@ public class AwardMainManager : MonoSingleton<AwardMainManager>, IDataPersistenc
         AwardNum--;
         if(AwardNum <= 0)
         {
-            Text.GetComponent<UnityEngine.UI.Text>().text = "¤w¿ï¾Ü¼úÀy¡A½ĞÄ~Äò«e¶i!";
+            Text.GetComponent<UnityEngine.UI.Text>().text = "ï¿½wï¿½ï¿½Ü¼ï¿½ï¿½yï¿½Aï¿½ï¿½ï¿½~ï¿½ï¿½eï¿½i!";
             MapData.NextLevel();
             Choosen = true;
             next_level_button.SetActive(true);
         }
         else
         {
-            Text.GetComponent<UnityEngine.UI.Text>().text = "½Ğ¿ï¾Ü" + AwardNum + "±iµP§@¬°¼úÀy";
+            Text.GetComponent<UnityEngine.UI.Text>().text = "ï¿½Ğ¿ï¿½ï¿½" + AwardNum + "ï¿½iï¿½Pï¿½@ï¿½ï¿½ï¿½ï¿½ï¿½y";
         }
         CardNum -= 1;
         ChangePanel();

@@ -28,6 +28,8 @@ public class WeaponDisplay : MonoBehaviour
     public Text distance_text;
     public Text discription_text;
 
+    public Image image;
+
     private void Show()
     {
         if (weaponName_text != null)
@@ -52,7 +54,10 @@ public class WeaponDisplay : MonoBehaviour
             distance_text.text = string.Format("最遠距離{0}", weaponData.distance);
         }
         */
-        
-        
+
+        if (image!=null)
+        {
+            //image.sprite = weaponData.image;
+        }
     }
 }

@@ -21,7 +21,7 @@ public class EnemyData : Character
 
     int actionIndex = 0;
 
-    public Sprite image;
+    //public Sprite image;
     //可能用做AI的實現
     [SerializeField]
     public List<EnemyActionSet> actionList;

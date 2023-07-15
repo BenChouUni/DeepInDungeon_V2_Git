@@ -2043,7 +2043,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6736520397406590470, guid: a94653aee16634bcd91959aaf9ff8d49, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 6736520397406590470, guid: a94653aee16634bcd91959aaf9ff8d49, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -3683,46 +3683,44 @@ MonoBehaviour:
   Panel: {fileID: 1615993873}
   MainID: 0
   SupportID: 0
-  Data:
-    weaponary: []
-    playerData:
-      targetType: 0
-      characterName: no name
-      hpState:
-        maxHp: 50
-        currentHp: 50
-      shield: 0
-      stateEffectTest:
-        effectName: 
-        effectType: 0
-        isBuff: 1
-        consumeType: 0
-        layer: 0
-      isDeath: 0
-      StateList: []
-      mainWeaponData:
-        id: 0
-        weaponName: 
-        atk: 0
-        def: 0
-        distance: 0
-        weaponType: 2
-      supportWeaponData:
-        id: 0
-        weaponName: 
-        atk: 0
-        def: 0
-        distance: 0
-        weaponType: 2
-      coin: 0
-      energy: 3
-    mainWeaponDeck: []
-    supWeaponDeck: []
-    mapData:
-      allLevels: []
-      currentLevel:
-        Layer: 0
-        enemy: {fileID: 0}
+  PlayerData:
+    targetType: 0
+    characterName: no name
+    hpState:
+      maxHp: 50
+      currentHp: 50
+    shield: 0
+    stateEffectTest:
+      effectName: 
+      effectType: 0
+      isBuff: 1
+      consumeType: 0
+      layer: 0
+    isDeath: 0
+    StateList: []
+    mainWeaponData:
+      id: 0
+      weaponName: 
+      atk: 0
+      def: 0
+      distance: 0
+      weaponType: 2
+    supportWeaponData:
+      id: 0
+      weaponName: 
+      atk: 0
+      def: 0
+      distance: 0
+      weaponType: 2
+    coin: 0
+    energy: 3
+  MainWeaponDeck: []
+  SupportWeaponDeck: []
+  MapData:
+    allLevels: []
+    currentLevel:
+      Layer: 0
+      enemy: {fileID: 0}
   Text: {fileID: 2139659791}
   next_level_button: {fileID: 6179761}
   MainCardNum: 2
@@ -4699,6 +4697,7 @@ MonoBehaviour:
   enemyHealthBar: {fileID: 2078670311}
   enemyShield: {fileID: 1078387168}
   Shieldinformation: {fileID: 1750212947}
+  EnemyImage: {fileID: 155179929}
 --- !u!114 &1928943969
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5589,7 +5588,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 
+  m_Text: "\u606D\u559C\u7372\u52DD\uFF0C\u8ACB\u9078\u64C7\u734E\u52F5"
 --- !u!222 &2139659792
 CanvasRenderer:
   m_ObjectHideFlags: 0
