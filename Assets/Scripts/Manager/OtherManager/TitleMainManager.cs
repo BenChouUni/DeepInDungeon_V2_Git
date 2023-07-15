@@ -32,7 +32,7 @@ public class TitleMainManager : MonoBehaviour
 
     public void Load()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(4);
     }
 
     public void Exit()

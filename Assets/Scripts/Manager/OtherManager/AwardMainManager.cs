@@ -213,6 +213,7 @@ public class AwardMainManager : MonoSingleton<AwardMainManager>, IDataPersistenc
     {
         AwardScene.SetActive(false);
         next_level_button.SetActive(false);
+        DataPersistenceManager.instance.Next();
         DataPersistenceManager.instance.SaveGame();
         SceneManager.LoadScene(4);
     }

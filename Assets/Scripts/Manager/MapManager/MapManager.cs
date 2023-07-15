@@ -18,6 +18,7 @@ public class MapManager : MonoSingleton<MapManager>
     public void CreateMap(int _layer)
     {
         this.layer = _layer;
+        Debug.LogFormat("{0}", layer);
         int[] monster = new int[layer]; 
         
 
@@ -29,13 +30,14 @@ public class MapManager : MonoSingleton<MapManager>
         for (int i = 0; i < layer; i++)
         {
 
-            monster[i] = randon.Next(1, 1);  
-            
-
+            monster[i] = randon.Next(1, 1);
+            CreateStoponMap();
+            /*
             pointer1[i] = new int[monster[i]];
             pointer2[i] = new int[monster[i]];
             line[i] = new int[monster[i]];
             point_positions[i] = new Vector3[monster[i]];
+            
             if (i > 0)
             {
                 
@@ -48,7 +50,10 @@ public class MapManager : MonoSingleton<MapManager>
                 second_assign(i, i - 1, monster, pointer1[i - 1], pointer2[i], line[i]);
                 //Show(pointer2, i);
             }
+            */
         }
+
+
         //DrawMap(monster, layer);
         //DrawLine(monster, layer, pointer1);
 
@@ -211,7 +216,7 @@ public class MapManager : MonoSingleton<MapManager>
             for (int j = 0; j < nodenum[i]; j++)
             {
                 point_positions[i][j] = new Vector3((1920 / nodenum[i]) * (j + 1) - 100, 1000 - (1000 / layer) * i, 0);
-                CreateStoponMap(point_positions[i][j].x, point_positions[i][j].y);
+                //CreateStoponMap(point_positions[i][j].x, point_positions[i][j].y);
             }
         }
     }
@@ -226,8 +231,9 @@ public class MapManager : MonoSingleton<MapManager>
         }
     }
 
-    public void CreateStoponMap(float x, float y)
+    public void CreateStoponMap()
     {
+        Debug.Log("生成地圖");
         GameObject new_point;
         GameObject new_layer;
         new_layer = Instantiate(LayerPrefab, MapPanel, false);

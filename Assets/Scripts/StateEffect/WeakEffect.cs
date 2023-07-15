@@ -16,7 +16,7 @@ public class WeakEffect : StateEffect
     /// <returns></returns>
     public override float AtDealDamage()
     {
-        Debug.Log("�P�w��Weak");
+        Debug.LogFormat("Weak：{0}", Layer);
         return 0.5f;
     }
 

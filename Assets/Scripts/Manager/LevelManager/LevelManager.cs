@@ -10,7 +10,11 @@ public class LevelManager : MonoBehaviour,IDataPersistence
 
     public GameObject LevelPanel;
     public GameObject now_Level;
-    GameObject[] Levels;
+    public GameObject level_prefab;
+    public GameObject layer_prefab;
+
+    public List<GameObject> Levels = new List<GameObject>();
+    //GameObject[] Levels;
     public int Layer;
     private int now_layer;
 
@@ -18,21 +22,30 @@ public class LevelManager : MonoBehaviour,IDataPersistence
 
     private void Start()
     {
+        Layer = mapData.allLevels.Count;
+        CreateMap();
+
         if (mapData == null)
         {
             Debug.LogError("map data is null");
             return;
         }
-        mapData.NextLevel();
+        //確認當前在哪一關
+        if(!mapData.Check_Layer())
+        {
+            Debug.LogFormat("全數通關");
+            SceneManager.LoadScene(3);
+        }
+        //mapData.NextLevel();
         if (mapData.Currentlevel == null)
         {
             
         }
-
         now_layer = mapData.Currentlevel.Layer;
+        Levels[now_layer].transform.GetComponent<Button>().interactable = true;
         //Layer = LevelPanel.transform.childCount;
-        change_layer(now_layer);
-        MapManager.instance.CreateMap(Layer);
+        //change_layer(now_layer);
+        //CreateMap();
     }
 
     public void Fight()
@@ -88,5 +101,21 @@ public class LevelManager : MonoBehaviour,IDataPersistence
     public void SaveData(ref GameData data)
     {
         data.mapData = this.mapData;
+    }
+
+    public void CreateMap()
+    {
+        for(int i = 0; i < Layer; i++)
+        {
+            Debug.Log("生成地圖");
+            GameObject new_level;
+            
+            GameObject new_layer;
+            new_layer = Instantiate(layer_prefab, LevelPanel.transform, false);
+            new_level = Instantiate(level_prefab, new_layer.transform, false);
+            //new_level.transform.GetComponent<Button>().onClick.AddListener(OnClick);
+            new_level.transform.GetComponent<Button>().onClick.AddListener(Fight);
+            Levels.Add(new_level);
+        }
     }
 }

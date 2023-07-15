@@ -97,4 +97,18 @@ public class DataPersistenceManager : MonoSingleton<DataPersistenceManager>
         SaveGame();
         LoadGame();
     }
+
+    /// <summary>
+    /// 進到下一關，在選完獎勵後按下前進按鈕觸發
+    /// </summary>
+    public void Next()
+    {
+        gameData.mapData.current_layer += 1;
+        Debug.LogFormat("{0}", gameData.mapData.current_layer);
+    }
+
+    public int now_layer()
+    {
+        return gameData.mapData.current_layer;
+    }
 }
