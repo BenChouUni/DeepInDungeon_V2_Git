@@ -18,7 +18,12 @@ public class AwardMainManager : MonoSingleton<AwardMainManager>, IDataPersistenc
     public Transform Panel;
     public int MainID;
     public int SupportID;
-    public GameData Data;
+
+    public PlayerData PlayerData;
+    public List<CardData> MainWeaponDeck;
+    public List<CardData> SupportWeaponDeck;
+
+
     public UnityEngine.UI.Text Text;
     public GameObject next_level_button;
     public int MainCardNum;
@@ -28,9 +33,13 @@ public class AwardMainManager : MonoSingleton<AwardMainManager>, IDataPersistenc
 
     public bool Choosen = false;
 
+    private MapData mapDate;
+
     public void LoadData(GameData data)
     {
-        Data = data;
+        PlayerData = data.playerData;
+        MainWeaponDeck = data.mainWeaponDeck;
+        SupportWeaponDeck = data.supWeaponDeck;
 
     }
     public void SaveData(ref GameData data)
@@ -41,8 +50,8 @@ public class AwardMainManager : MonoSingleton<AwardMainManager>, IDataPersistenc
     {
         Text.GetComponent<UnityEngine.UI.Text>().text = "請選擇" + AwardNum + "張牌作為獎勵";
         SupportCardNum = CardNum - MainCardNum;
-        MainID = Data.playerData.MainWeaponData.id;
-        SupportID = Data.playerData.SupportWeaponData.id;
+        MainID = PlayerData.MainWeaponData.id;
+        SupportID = PlayerData.SupportWeaponData.id;
         ChangePanel();
         int[] IDList = new int[CardNum];
         IDList = RandomWeapon(CardNum);
@@ -180,14 +189,14 @@ public class AwardMainManager : MonoSingleton<AwardMainManager>, IDataPersistenc
 
     public void AddCardToDeck(CardData _carddata)
     {
-        if (Data.playerData.MainWeaponData.id == (_carddata.id / 100))
+        if (PlayerData.MainWeaponData.id == (_carddata.id / 100))
         {
 
-            Data.mainWeaponDeck.Add(_carddata);
+            MainWeaponDeck.Add(_carddata);
         }
         else
         {
-            Data.supWeaponDeck.Add(_carddata);
+            SupportWeaponDeck.Add(_carddata);
         }
         AwardNum--;
         if(AwardNum <= 0)
@@ -213,7 +222,6 @@ public class AwardMainManager : MonoSingleton<AwardMainManager>, IDataPersistenc
     {
         AwardScene.SetActive(false);
         next_level_button.SetActive(false);
-        DataPersistenceManager.instance.Next();
         DataPersistenceManager.instance.SaveGame();
         SceneManager.LoadScene(4);
     }

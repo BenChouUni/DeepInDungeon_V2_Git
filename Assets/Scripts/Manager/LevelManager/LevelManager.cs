@@ -31,10 +31,17 @@ public class LevelManager : MonoBehaviour,IDataPersistence
             return;
         }
         //確認當前在哪一關
+        /*
         if(!mapData.Check_Layer())
         {
             Debug.LogFormat("全數通關");
             SceneManager.LoadScene(3);
+        }
+        */
+
+        if (!mapData.check_Ini())
+        {
+            mapData.NextLevel();
         }
         //mapData.NextLevel();
         if (mapData.Currentlevel == null)
