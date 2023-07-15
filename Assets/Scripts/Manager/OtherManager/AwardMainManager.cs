@@ -22,7 +22,7 @@ public class AwardMainManager : MonoSingleton<AwardMainManager>, IDataPersistenc
     public PlayerData PlayerData;
     public List<CardData> MainWeaponDeck;
     public List<CardData> SupportWeaponDeck;
-
+    public MapData MapData;
 
     public UnityEngine.UI.Text Text;
     public GameObject next_level_button;
@@ -33,14 +33,12 @@ public class AwardMainManager : MonoSingleton<AwardMainManager>, IDataPersistenc
 
     public bool Choosen = false;
 
-    private MapData mapDate;
-
     public void LoadData(GameData data)
     {
         PlayerData = data.playerData;
         MainWeaponDeck = data.mainWeaponDeck;
         SupportWeaponDeck = data.supWeaponDeck;
-
+        MapData = data.mapData;
     }
     public void SaveData(ref GameData data)
     {
@@ -202,6 +200,7 @@ public class AwardMainManager : MonoSingleton<AwardMainManager>, IDataPersistenc
         if(AwardNum <= 0)
         {
             Text.GetComponent<UnityEngine.UI.Text>().text = "已選擇獎勵，請繼續前進!";
+            MapData.NextLevel();
             Choosen = true;
             next_level_button.SetActive(true);
         }
