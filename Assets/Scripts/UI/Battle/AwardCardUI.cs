@@ -16,7 +16,7 @@ public class AwardCardUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         {
             if (Input.GetMouseButtonDown(0))
             {
-                Debug.Log(this.GetComponent<CardDisplay>().CardData.id);
+                //Debug.Log(this.GetComponent<CardDisplay>().CardData.id);
                 AwardMainManager.instance.AddCardToDeck(this.GetComponent<CardDisplay>().CardData);
                 this.gameObject.SetActive(false);
             }

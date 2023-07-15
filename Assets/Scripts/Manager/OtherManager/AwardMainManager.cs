@@ -6,7 +6,9 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using static System.Net.Mime.MediaTypeNames;
-
+/// <summary>
+/// 目前包辦mapdata的管理
+/// </summary>
 public class AwardMainManager : MonoSingleton<AwardMainManager>, IDataPersistence
 {
     public GameObject AwardScene;

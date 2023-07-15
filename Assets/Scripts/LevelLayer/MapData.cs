@@ -94,4 +94,9 @@ public class MapData
     {
         return null;
     }
+
+    public void Reset()
+    {
+        currentLevel = null;
+    }
 }

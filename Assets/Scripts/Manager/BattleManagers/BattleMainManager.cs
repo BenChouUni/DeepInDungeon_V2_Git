@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class BattleMainManager : MonoSingleton<BattleMainManager>
 {
@@ -29,6 +30,7 @@ public class BattleMainManager : MonoSingleton<BattleMainManager>
     [Header("傷害數字顯示")]
     public GameObject HitNumber;
 
+    
    
 
     private void Awake()
@@ -47,6 +49,7 @@ public class BattleMainManager : MonoSingleton<BattleMainManager>
         //開始準備階段結束
         //玩家回合先開始
         turnPhaseManager.InitialTurn();
+        
         
     }
     /*特殊使用，以後可能會更改*/
@@ -107,6 +110,8 @@ public class BattleMainManager : MonoSingleton<BattleMainManager>
         AwardMainManager.instance.ShowAwardScene();
         //跳轉到獎勵卡環節
         //儲存現在血量
+        battlePlayerDataManager.saveCurrentHealth();
+        DataPersistenceManager.instance.SaveGame();
     }
 
     public void LoseBattle()
@@ -114,6 +119,12 @@ public class BattleMainManager : MonoSingleton<BattleMainManager>
         EndBattle();
         Debug.Log("戰鬥失敗");
         //跳轉回武器選擇畫面
+        AwardMainManager.instance.MapData.Reset();
+        battlePlayerDataManager.ResetPlayerData();
+        DataPersistenceManager.instance.SaveGame();
+
+        SceneManager.LoadScene(0);
+
     }
 
     /// <summary>

@@ -70,12 +70,9 @@ public class BattlePlayerDataManager : MonoSingleton<BattlePlayerDataManager>,ID
     }
     public void SaveData(ref GameData data)
     {
-        if (isEndGame)
-        {
-            this.playerData.HpState.setCurrentHp(battleplayerData.HpState.CurrentHp);
-            data.playerData = this.playerData;
-        }
-        
+
+            
+         data.playerData = this.playerData;
     }
     public void InitialPlayerStatus()
     {
@@ -198,10 +195,26 @@ public class BattlePlayerDataManager : MonoSingleton<BattlePlayerDataManager>,ID
 
     private void PlayerDie()
     {
-        isEndGame = true;
+        //isEndGame = true;
         BattleMainManager.instance.LoseBattle();
     }
+    /// <summary>
+    /// 輸的時候呼叫
+    /// </summary>
+    public void ResetPlayerData()
+    {
+        this.playerData.HpState.ResetHp();
+    }
+    /// <summary>
+    /// 贏的時候呼叫
+    /// </summary>
+    public void saveCurrentHealth()
+    {
 
+        Debug.Log("儲存血量");
+        this.playerData.HpState.setCurrentHp(battleplayerData.HpState.CurrentHp);
+        
+    }
 }
 
 

@@ -114,7 +114,7 @@ public class LevelManager : MonoBehaviour,IDataPersistence
     {
         for(int i = 0; i < Layer; i++)
         {
-            Debug.Log("生成地圖");
+//            Debug.Log("生成地圖");
             GameObject new_level;
             
             GameObject new_layer;
