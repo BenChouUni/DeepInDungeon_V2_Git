@@ -52,11 +52,12 @@ public class AwardMainManager : MonoSingleton<AwardMainManager>, IDataPersistenc
         SupportCardNum = CardNum - MainCardNum;
         MainID = PlayerData.MainWeaponData.id;
         SupportID = PlayerData.SupportWeaponData.id;
-        ChangePanel();
+        ChangePanel();  //變更獎勵顯示長度
         int[] IDList = new int[CardNum];
         IDList = RandomWeapon(CardNum);
         for(int i = 0; i < CardNum; i++)
         {
+            Debug.LogFormat("第{0}張獎勵卡是：", i);
             if (IDList[i] == 0)
             {
                 CreateCardOnPanel(RandomCardID(MainID));
@@ -138,7 +139,7 @@ public class AwardMainManager : MonoSingleton<AwardMainManager>, IDataPersistenc
         {
             randomid = Random.Range(0, weaponcardnum);
             ID = id * 100 + randomid;
-            if (GetCardData(ID).initialnum == 0)    //�L�o��l�P
+            if (GetCardData(ID).initialnum >= 0)    //�L�o��l�P
             {
                 foreach (int item in AwardCardList)    //�קK���ƵP
                 {
@@ -150,6 +151,7 @@ public class AwardMainManager : MonoSingleton<AwardMainManager>, IDataPersistenc
                 }
                 if (flag == 1)
                 {
+                    Debug.LogFormat("{0}", ID);
                     break;
                 }
                 else
@@ -201,14 +203,14 @@ public class AwardMainManager : MonoSingleton<AwardMainManager>, IDataPersistenc
         AwardNum--;
         if(AwardNum <= 0)
         {
-            Text.GetComponent<UnityEngine.UI.Text>().text = "�w��ܼ��y�A���~��e�i!";
+            Text.GetComponent<UnityEngine.UI.Text>().text = "已選擇獎勵，請繼續前進!";
             MapData.NextLevel();
             Choosen = true;
             next_level_button.SetActive(true);
         }
         else
         {
-            Text.GetComponent<UnityEngine.UI.Text>().text = "�п��" + AwardNum + "�i�P�@�����y";
+            Text.GetComponent<UnityEngine.UI.Text>().text = "請選擇" + AwardNum + "張卡片作為獎勵";
         }
         CardNum -= 1;
         ChangePanel();
