@@ -77,7 +77,7 @@ public class EnemyManager : MonoSingleton<EnemyManager>,IDataPersistence
 
     private void ShowHitNumber(int num)
     {
-        BattleMainManager.instance.GenerateHitNum(num, enemyHealthBar.transform);
+        //BattleMainManager.instance.GenerateHitNum(num, enemyHealthBar.transform);
     }
 
     public void LoadData(GameData data)

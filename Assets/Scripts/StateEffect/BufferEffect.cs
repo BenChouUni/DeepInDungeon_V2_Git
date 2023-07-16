@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BufferEffect : StateEffect
 {
-    public BufferEffect(Character _myCharacter) : base("Buffer", false, StateEffectType.Buffer, LayerConsumeType.AfterUse,_myCharacter)
+    public BufferEffect(Character _myCharacter) : base("緩衝", false, StateEffectType.Buffer, LayerConsumeType.AfterUse,_myCharacter)
     {
 
     }

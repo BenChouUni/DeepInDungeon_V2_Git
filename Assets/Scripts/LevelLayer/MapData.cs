@@ -24,7 +24,11 @@ public class MapData
         allLevels = new List<LevelData>();
         currentLevel = null;
     }
-    public void NextLevel()
+    /// <summary>
+    /// 如果有下一層回傳true
+    /// </summary>
+    /// <returns></returns>
+    public bool NextLevel()
     {
         
         Debug.Log("Next Level");
@@ -43,8 +47,8 @@ public class MapData
             level++;
             if (level >= allLevels.Count)
             {
-                Debug.Log("there is no layer");
-                return;
+                Debug.Log("這是最後一層");
+                return false;
             }
             foreach (LevelData item in allLevels)
             {
@@ -53,7 +57,8 @@ public class MapData
                     this.currentLevel = item;
                 }
             }
-        } 
+        }
+        return true;
     }
 
 
