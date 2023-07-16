@@ -23,7 +23,7 @@ MonoBehaviour:
       atk: 4
       def: 1
       distance: 1
-      weaponType: 2
+      weaponType: 0
     cardActions:
     - actionType: 6
       actionParameter:
@@ -37,7 +37,7 @@ MonoBehaviour:
           atk: 4
           def: 1
           distance: 1
-          weaponType: 2
+          weaponType: 0
     - actionType: 6
       actionParameter:
         value: 1
@@ -50,4 +50,4 @@ MonoBehaviour:
           atk: 4
           def: 1
           distance: 1
-          weaponType: 2
+          weaponType: 0

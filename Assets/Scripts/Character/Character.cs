@@ -108,6 +108,37 @@ public abstract class Character
         }
         updateDisplay?.Invoke(this);
     }
+    public void GetDamage(int dmg, bool canBlock)
+    {
+        if (canBlock)
+        {
+            GetDamage(dmg);
+        }
+        else
+        {
+            if (dmg <= 0 || isDeath)
+            {
+                return;
+            }
+
+            int trueDmg = dmg;
+            hpState.LostHp(trueDmg);
+            ShowHitNumber?.Invoke(trueDmg);
+
+            if (hpState.CurrentHp == 0)
+            {
+                Debug.LogFormat("{0}死亡", this.characterName);
+                isDeath = true;
+                deathBehavior?.Invoke();
+            }
+            hpDisplay?.Invoke(this.HpState);
+            if (hpDisplay == null)
+            {
+                Debug.Log("hp 顯示器不見");
+            }
+            updateDisplay?.Invoke(this);
+        }
+    }
     /// <summary>
     /// 輸入傷害 輸出剩下的傷害
     /// </summary>
@@ -150,6 +181,7 @@ public abstract class Character
     /// <param name="stateEffect"></param>
     public void AddStateEffect(StateEffect stateEffect)
     {
+        Debug.LogFormat("Add {0}", stateEffect.effectName);
         StateEffectType type = stateEffect.effectType;
 
         stateEffect.SetRemoveAction(RemoveState);
@@ -161,15 +193,33 @@ public abstract class Character
         //如果已經有同樣的狀態了
         if (stateDic.ContainsKey(type))
         {
+            Boolean isZero = false;
+            if (stateDic[type].Layer == 0)
+            {
+                isZero = true;
+            }
             int addLayer = stateEffect.Layer;
             stateDic[type].AddLayer(addLayer);
-            //foreach (StateEffect item in StateList)
-            //{
-            //    if (item.effectType == type)
-            //    {
-            //        item.AddLayer(addLayer);
-            //    }
-            //}
+
+
+            if(isZero)
+            {
+
+                StateList.Add(stateDic[type]);
+            }
+            else
+            {
+                /*
+                foreach (StateEffect item in StateList)
+                {
+                    if (item.effectType == type)
+                    {
+                        item.AddLayer(addLayer);
+                    }
+                }
+                */
+            }
+            
         }
         else
         {
@@ -220,5 +270,11 @@ public abstract class Character
         //    item.DtecLayer();
         //}
     }
-    
+    /// <summary>
+    /// 當State層數削減，呼叫
+    /// </summary>
+    public void UpdateStateDisplay()
+    {
+        statesDisplay?.Invoke(this.StateList);
+    }
 }

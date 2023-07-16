@@ -32,7 +32,10 @@ public class WeaponAttackAction : CardActionBase
         {
             damagef += item.AddExtraDamage();
         }
-
+        foreach (StateEffect item in myStateList)
+        {
+            damagef *= item.AtDealDamage();
+        }
         foreach (StateEffect item in targetStateList)
         {
             damagef *= item.AtReceiveDamage();

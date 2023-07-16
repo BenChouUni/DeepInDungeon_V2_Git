@@ -35,6 +35,7 @@ public class BattleMainManager : MonoSingleton<BattleMainManager>
 
     private void Awake()
     {
+        Initialmanagers();
         //開場預設沒有拖拽東西
         isDragging = false;
         //button無法互動
@@ -42,7 +43,6 @@ public class BattleMainManager : MonoSingleton<BattleMainManager>
     }
     void Start()
     {
-        Initialmanagers();
 
        
         StartBattle();
@@ -62,10 +62,18 @@ public class BattleMainManager : MonoSingleton<BattleMainManager>
     {
         if (type == CharaterType.Enemy)
         {
+            if(enemyManager == null)
+            {
+                Debug.LogError("enemyData空");
+            }
             return enemyManager.enemyData;
         }
         else
         {
+            if (battlePlayerDataManager == null)
+            {
+                Debug.LogError("battlePlayerData空");
+            }
             return battlePlayerDataManager.GetPlayerData();
         }
     }
@@ -204,7 +212,7 @@ public class BattleMainManager : MonoSingleton<BattleMainManager>
         //UpdateStatus();
         yield return new WaitForSeconds(2);
         //turn end
-        turnPhaseManager.EndEnemyTurn();
+        turnPhaseManager.EndTurn();
     }
     /// <summary>
     /// 檢視死亡與否以及更新我方與敵人的狀態顯示，死亡則直接進入結束遊戲

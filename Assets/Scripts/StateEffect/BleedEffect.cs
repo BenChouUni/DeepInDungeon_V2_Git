@@ -12,6 +12,7 @@ public class BleedEffect : StateEffect
     {
         //造成純粹傷害
         Debug.Log("判定Bleed");
+        myCharacter.GetDamage(3, false);
         ConsumeLayer();
         //CardAction cardAction = new CardAction(ActionType.PureDamage,)
         //ActionManager.instance.DoAction();

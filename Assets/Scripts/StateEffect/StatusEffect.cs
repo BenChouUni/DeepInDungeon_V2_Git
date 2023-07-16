@@ -23,7 +23,7 @@ public class StateEffect
     public int Layer { get { return layer; } }
 
     //Action
-    private Character myCharacter;
+    protected Character myCharacter;
     private Action<StateEffect> removeSelf;
 
     private StateEffect(): this("", true, StateEffectType.NULL,LayerConsumeType.AfterUse,null)
@@ -63,6 +63,8 @@ public class StateEffect
     public virtual void ConsumeLayer()
     {
         layer -= 1;
+        //Update Display
+        myCharacter.UpdateStateDisplay();
         /*
         if (layer <= 0)
         {

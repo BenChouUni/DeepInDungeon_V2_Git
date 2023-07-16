@@ -16,14 +16,14 @@ MonoBehaviour:
     id: 303
     cardName: "\u7DE9\u885D\u683C\u6A94"
     cost: 2
-    initialnum: 2
+    initialnum: 0
     weaponData:
-      id: 0
-      weaponName: 
+      id: 3
+      weaponName: Shield
       atk: 0
-      def: 0
+      def: 2
       distance: 0
-      weaponType: 2
+      weaponType: 1
     cardActions:
     - actionType: 6
       actionParameter:
@@ -32,9 +32,9 @@ MonoBehaviour:
         selfType: 0
         stateEffectType: 5
         weaponData:
-          id: 0
-          weaponName: 
+          id: 3
+          weaponName: Shield
           atk: 0
-          def: 0
+          def: 2
           distance: 0
-          weaponType: 0
+          weaponType: 1
