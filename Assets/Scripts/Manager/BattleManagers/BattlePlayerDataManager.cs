@@ -103,7 +103,7 @@ public class BattlePlayerDataManager : MonoSingleton<BattlePlayerDataManager>,ID
     }
     public void ShowHitNumber(int num)
     {
-        BattleMainManager.instance.GenerateHitNum(num, playerHealthBar.transform);
+        //BattleMainManager.instance.GenerateHitNum(num, playerHealthBar.transform);
     }
     /// <summary>
     /// 顯示主副手武器
