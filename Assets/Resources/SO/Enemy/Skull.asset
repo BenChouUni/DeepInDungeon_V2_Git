@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyData:
     targetType: 1
-    characterName: "\u9AB7\u9ACF\u982D"
+    characterName: "\u9AB7\u9ACF\u58EB\u5175(test)"
     hpState:
-      maxHp: 200
-      currentHp: 200
+      maxHp: 30
+      currentHp: 30
     shield: 0
     stateEffectTest:
       effectName: 
@@ -34,5 +34,11 @@ MonoBehaviour:
       enemyActionParameter:
         value: 4
         targetType: 0
+        selfType: 1
+        stateEffectType: 0
+    - actionType: 1
+      enemyActionParameter:
+        value: 4
+        targetType: 1
         selfType: 1
         stateEffectType: 0

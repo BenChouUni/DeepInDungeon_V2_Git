@@ -256,7 +256,7 @@ public class BattleMainManager : MonoSingleton<BattleMainManager>
             Debug.Log("玩家回合結束");
             //battlePlayerDataManager.ResetEnergy();
             battleDeckManager.RefreshHandCards();
-            foreach (var item in battlePlayerDataManager.battleplayerData.StateList)
+            foreach (StateEffect item in battlePlayerDataManager.battleplayerData.StateList)
             {
                 item.AtTurnEnd();
             }

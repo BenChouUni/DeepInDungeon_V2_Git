@@ -50,7 +50,7 @@ public class EnemyData : Character
         }
         actionList[actionIndex].DoAction(this);
         actionIndex++;
-        if (actionIndex >= actionList.Count -1)
+        if (actionIndex >= actionList.Count)
         {
             actionIndex = 0;
         }

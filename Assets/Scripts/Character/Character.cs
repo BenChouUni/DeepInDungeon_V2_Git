@@ -193,32 +193,27 @@ public abstract class Character
         //如果已經有同樣的狀態了
         if (stateDic.ContainsKey(type))
         {
-            Boolean isZero = false;
             if (stateDic[type].Layer == 0)
             {
-                isZero = true;
+                Debug.LogFormat("state list Add {0}", stateEffect.effectName);
+                StateList.Add(stateDic[type]);
             }
             int addLayer = stateEffect.Layer;
             stateDic[type].AddLayer(addLayer);
 
-
-            if(isZero)
-            {
-
-                StateList.Add(stateDic[type]);
-            }
-            else
-            {
-                /*
-                foreach (StateEffect item in StateList)
-                {
-                    if (item.effectType == type)
-                    {
-                        item.AddLayer(addLayer);
-                    }
-                }
-                */
-            }
+            
+            //else
+            //{
+            //    /*
+            //    foreach (StateEffect item in StateList)
+            //    {
+            //        if (item.effectType == type)
+            //        {
+            //            item.AddLayer(addLayer);
+            //        }
+            //    }
+            //    */
+            //}
             
         }
         else

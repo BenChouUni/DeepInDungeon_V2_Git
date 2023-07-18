@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyData:
     targetType: 1
-    characterName: "\u8840\u7375\u72AC"
+    characterName: "\u8840\u7375\u72AC(test)"
     hpState:
       maxHp: 60
       currentHp: 60
@@ -29,11 +29,22 @@ MonoBehaviour:
     StateList: []
     id: 2
     atk: 3
-    image: {fileID: 0}
     actionList:
     - actionType: 2
       enemyActionParameter:
-        value: 1
+        value: 2
         targetType: 0
         selfType: 1
         stateEffectType: 2
+    - actionType: 1
+      enemyActionParameter:
+        value: 5
+        targetType: 1
+        selfType: 1
+        stateEffectType: 0
+    - actionType: 0
+      enemyActionParameter:
+        value: 5
+        targetType: 0
+        selfType: 1
+        stateEffectType: 0
