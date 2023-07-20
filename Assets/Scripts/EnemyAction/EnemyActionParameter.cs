@@ -5,55 +5,55 @@ using UnityEngine;
 /// 跟CardActionParameter高度重複，或許該用繼承
 /// </summary>
 [Serializable]
-public class EnemyActionParameter
+public class EnemyActionParameter : ActionParameter
 {
 
-    [Header("數值")]
-    public int value;
-    [Header("接受對象")]
-    public CharaterType targetType;
-    [Header("施放者")]
-    public CharaterType selfType;
-    [Header("狀態類型，不一定會使用")]
-    public StateEffectType stateEffectType;
+    //[Header("數值")]
+    //public int value;
+    //[Header("接受對象")]
+    //public CharaterType targetType;
+    //[Header("施放者")]
+    //public CharaterType selfType;
+    //[Header("狀態類型，不一定會使用")]
+    //public StateEffectType stateEffectType;
 
-    //由工廠產生
-    private Character target = null;
-    public Character Target
-    {
-        get
-        {
-            if (target == null)
-            {
-                target = BattleMainManager.instance.GetCharacterByType(targetType);
-            }
-            return target;
-        }
-    }
-    private Character self = null;
-    public Character Self
-    {
-        get
-        {
-            if (self == null)
-            {
-                self = BattleMainManager.instance.GetCharacterByType(selfType);
-            }
-            return self;
-        }
-    }
+    ////由工廠產生
+    //private Character target = null;
+    //public Character Target
+    //{
+    //    get
+    //    {
+    //        if (target == null)
+    //        {
+    //            target = BattleMainManager.instance.GetCharacterByType(targetType);
+    //        }
+    //        return target;
+    //    }
+    //}
+    //private Character self = null;
+    //public Character Self
+    //{
+    //    get
+    //    {
+    //        if (self == null)
+    //        {
+    //            self = BattleMainManager.instance.GetCharacterByType(selfType);
+    //        }
+    //        return self;
+    //    }
+    //}
 
-    private StateEffect myEffect = null;
-    public StateEffect StateEffect
-    {
-        get
-        {
-            if (myEffect == null)
-            {
-                myEffect = EffectFactory.GetStatusEffect(stateEffectType,Target);
-            }
-            return myEffect;
-        }
-    }
+    //private StateEffect myEffect = null;
+    //public StateEffect StateEffect
+    //{
+    //    get
+    //    {
+    //        if (myEffect == null)
+    //        {
+    //            myEffect = EffectFactory.GetStatusEffect(stateEffectType,Target);
+    //        }
+    //        return myEffect;
+    //    }
+    //}
 
 }

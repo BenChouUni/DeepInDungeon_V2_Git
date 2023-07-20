@@ -44,17 +44,22 @@ public class CardDisplay : MonoBehaviour
         {
             description_text.text = "";
         }
-        if (description_text!=null)
-        {
-            description_text.text = getDescription();
-        }
+
         if (cardImage!=null)
         {
             //cardImage.sprite = cardData.image;
         }
+        UpdateDescription();
         
     }
 
+    public void UpdateDescription()
+    {
+        if (description_text != null)
+        {
+            description_text.text = getDescription();
+        }
+    }
     private string getDescription()
     {
         StringBuilder stb = new StringBuilder("");

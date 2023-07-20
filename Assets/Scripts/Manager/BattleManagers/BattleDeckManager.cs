@@ -40,6 +40,14 @@ public class BattleDeckManager : MonoSingleton<BattleDeckManager>,IDataPersisten
         canDraw = true;
         ShowCardZoneCount();
     }
+    private void Update()
+    {
+        //更新傷害顯示
+        foreach (var item in handCardsObj)
+        {
+            item.GetComponent<CardDisplay>().UpdateDescription();
+        }
+    }
     /// <summary>
     /// 牌組洗牌
     /// </summary>

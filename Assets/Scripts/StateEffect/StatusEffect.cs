@@ -127,7 +127,7 @@ public class StateEffect
     public virtual float AtDealDamage() { return 1; }
 
     /// <summary>
-    /// 增加攻擊傷害的比率，有傳入參數
+    /// 額外增加攻擊數值
     /// </summary>
     /// <param name="dmg"></param>
     /// <returns></returns>
@@ -140,7 +140,11 @@ public class StateEffect
     /// <returns></returns>
     public virtual float AtReceiveDamage() { return 1; }
 
-
+    /// <summary>
+    /// 額外增加獲得護盾值
+    /// </summary>
+    /// <returns></returns>
+    public virtual int AddExtraDef() { return 0; }
     #endregion
 
 }
