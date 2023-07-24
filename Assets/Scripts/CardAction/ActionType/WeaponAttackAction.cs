@@ -8,7 +8,7 @@ public class WeaponAttackAction : CardActionBase
 
     public override string ActionDescribe(CardActionParameter parameter)
     {
-        return string.Format("使用{0}，造成{1}點傷害",parameter.WeaponData.weaponName ,parameter.value + parameter.WeaponData.atk);
+        return string.Format("使用{0}，造成{1}點傷害",parameter.WeaponData.weaponName , ValueCalculator.DmgCalculate(parameter, parameter.WeaponData.atk));
         
     }
 
@@ -26,23 +26,11 @@ public class WeaponAttackAction : CardActionBase
         List<StateEffect> myStateList = selCharacter.StateList;
 
         //這邊要計算公式
-        float damagef = (parameter.value + parameter.WeaponData.atk);
-
-        foreach (StateEffect item in myStateList)
-        {
-            damagef += item.AddExtraDamage();
-        }
-        foreach (StateEffect item in myStateList)
-        {
-            damagef *= item.AtDealDamage();
-        }
-        foreach (StateEffect item in targetStateList)
-        {
-            damagef *= item.AtReceiveDamage();
-        }
-        int damage = (int)damagef;
+        int damage = ValueCalculator.DmgCalculate(parameter, parameter.WeaponData.atk);
         
         targetCharater.GetDamage(damage);
         
     }
+
+
 }
