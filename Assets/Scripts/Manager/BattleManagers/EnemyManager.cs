@@ -20,6 +20,10 @@ public class EnemyManager : MonoSingleton<EnemyManager>,IDataPersistence
     public Text enemyShield;
     public GameObject Shieldinformation;
     public Image EnemyImage;
+    //ActionIcon
+    public GameObject attackIcon;
+    public GameObject defendIcon;
+    public GameObject otherIcon;
 
     private void Awake()
     {
@@ -39,6 +43,7 @@ public class EnemyManager : MonoSingleton<EnemyManager>,IDataPersistence
         enemyData?.setDisplayAction(ShowEnemy, enemyHealthBar.Show, effectListDisplay.ShowStateList, EnemyDie,ShowHitNumber);
         ShowEnemy(this.enemyData);
         enemyHealthBar.Show(this.enemyData.HpState);
+        HideEnemyAction();
     }
 
     void Update()
@@ -88,5 +93,46 @@ public class EnemyManager : MonoSingleton<EnemyManager>,IDataPersistence
     public void SaveData(ref GameData data)
     {
         
+    }
+    /// <summary>
+    /// 顯示敵人的下一步動作
+    /// </summary>
+    public void ShowEnemyAction()
+    {
+        Debug.Log("顯示敵人行為：");
+        EnemyActionSet nextAction = enemyData.NextEnemyAction;
+        EnemyActionParameter nextParameter = nextAction.enemyActionParameter;
+        if (nextParameter == null)
+        {
+            Debug.LogError("next parameter is null");
+        }
+        switch (nextAction.actionType)
+        {
+            case EnemyActionType.Attack:
+                Debug.Log("敵人下回合要攻擊");
+                ShowIcon(attackIcon, ValueCalculator.DmgCalculate(nextParameter, enemyData.ATK).ToString());
+                break;
+            case EnemyActionType.Defend:
+                Debug.Log("敵人要防禦");
+                ShowIcon(defendIcon, ValueCalculator.DefCalculate(nextParameter, enemyData.ATK).ToString());
+                break;
+
+            default:
+                Debug.Log("敵人使用特殊行為");
+                ShowIcon(otherIcon, ""); 
+                break;
+        }
+    }
+
+    public void HideEnemyAction()
+    {
+        attackIcon?.SetActive(false);
+        defendIcon?.SetActive(false);
+        otherIcon?.SetActive(false);
+    }
+    private void ShowIcon(GameObject icon,string str)
+    {
+        icon?.SetActive(true);
+        icon.GetComponentInChildren<Text>().text = str;
     }
 }

@@ -26,6 +26,16 @@ public class EnemyData : Character
     [SerializeField]
     public List<EnemyActionSet> actionList;
 
+    private EnemyActionSet nextEnemyAction;
+    public EnemyActionSet NextEnemyAction
+    {
+        get
+        {
+            if (nextEnemyAction == null) { nextEnemyAction = actionList[0]; }
+            return nextEnemyAction;
+        }
+    }
+
     public EnemyData(int _id,string _name, int _maxHp, int _shield,int _atk) : base(_name, _maxHp, _shield)
     {
         this.id = _id;
@@ -48,11 +58,13 @@ public class EnemyData : Character
             Debug.Log("敵人沒有行為");
             return;
         }
-        actionList[actionIndex].DoAction(this);
+        //執行下一步的行為
+        NextEnemyAction.DoAction(this);
         actionIndex++;
         if (actionIndex >= actionList.Count)
         {
             actionIndex = 0;
         }
+        nextEnemyAction = actionList[actionIndex];
     }
 }

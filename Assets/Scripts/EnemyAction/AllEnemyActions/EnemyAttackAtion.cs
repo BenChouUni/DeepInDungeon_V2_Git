@@ -19,19 +19,19 @@ public class EnemyAttackAtion : EnemyActionBase
         List<StateEffect> myStateList = selCharacter.StateList;
 
         //這邊要計算公式
-        float damagef = parameter.value;
-        damagef += enemyData.ATK;
+        //float damagef = parameter.value;
+        //damagef += enemyData.ATK;
 
-        foreach (StateEffect item in myStateList)
-        {
-            damagef += item.AddExtraDamage();
-        }
+        //foreach (StateEffect item in myStateList)
+        //{
+        //    damagef += item.AddExtraDamage();
+        //}
 
-        foreach (StateEffect item in targetStateList)
-        {
-            damagef *= item.AtReceiveDamage();
-        }
-        int damage = (int)damagef;
+        //foreach (StateEffect item in targetStateList)
+        //{
+        //    damagef *= item.AtReceiveDamage();
+        //}
+        int damage = ValueCalculator.DmgCalculate(parameter, enemyData.ATK);
         parameter.Target.GetDamage(damage);
         //Debug.Log(parameter.Target.CharacterName + "受到攻擊");
     }

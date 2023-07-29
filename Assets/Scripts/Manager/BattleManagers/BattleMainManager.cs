@@ -49,6 +49,7 @@ public class BattleMainManager : MonoSingleton<BattleMainManager>
         //開始準備階段結束
         //玩家回合先開始
         turnPhaseManager.InitialTurn();
+        TurnStart();
         
         
     }
@@ -97,8 +98,6 @@ public class BattleMainManager : MonoSingleton<BattleMainManager>
         turnPhaseManager.StartGame();
         //洗牌
         battleDeckManager.ShuffleDeck();
-        //抽牌
-        battleDeckManager.DrawCard(initialDrawCard);
         //初始化玩家資料
         battlePlayerDataManager.InitialPlayerStatus();
     }
@@ -241,11 +240,14 @@ public class BattleMainManager : MonoSingleton<BattleMainManager>
             Debug.Log("執行玩家回合開始準備");
             battlePlayerDataManager.ResetEnergy();
             battleDeckManager.DrawCard(initialDrawCard);
+            //敵人回合開始時顯示敵人下一步
+            enemyManager.ShowEnemyAction();
 
         }
         else if (turnPhaseManager.GamePhase == GamePhase.EnemyAction)
         {
             Debug.Log("執行敵人回合開始準備");
+            enemyManager.HideEnemyAction();
             StartCoroutine(EnemyBehave());
         }
     }
