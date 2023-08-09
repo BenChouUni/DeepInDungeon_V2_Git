@@ -391,51 +391,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 54038374}
   m_CullTransparentMesh: 1
---- !u!1 &70188709
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 70188710}
-  - component: {fileID: 70188711}
-  m_Layer: 0
-  m_Name: TrunPhaseManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &70188710
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 70188709}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1295968127}
-  m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &70188711
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 70188709}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: de69486d6d5a244f19337a22cc86efc4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  TurnDisplay: {fileID: 235715951}
 --- !u!1 &140303566
 GameObject:
   m_ObjectHideFlags: 0
@@ -466,7 +421,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1295968127}
-  m_RootOrder: 12
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &140303568
 MonoBehaviour:
@@ -652,7 +607,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 1411623469}
+    m_TransformParent: {fileID: 607435807}
     m_Modifications:
     - target: {fileID: 2691519618722604697, guid: 5bb098d7eb21047a49a4c73f2865b67b, type: 3}
       propertyPath: m_Name
@@ -668,7 +623,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4245705645282842920, guid: 5bb098d7eb21047a49a4c73f2865b67b, type: 3}
       propertyPath: m_RootOrder
-      value: 14
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4245705645282842920, guid: 5bb098d7eb21047a49a4c73f2865b67b, type: 3}
       propertyPath: m_AnchorMax.x
@@ -712,23 +667,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4245705645282842920, guid: 5bb098d7eb21047a49a4c73f2865b67b, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4245705645282842920, guid: 5bb098d7eb21047a49a4c73f2865b67b, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4245705645282842920, guid: 5bb098d7eb21047a49a4c73f2865b67b, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4245705645282842920, guid: 5bb098d7eb21047a49a4c73f2865b67b, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -141
+      value: -130
       objectReference: {fileID: 0}
     - target: {fileID: 4245705645282842920, guid: 5bb098d7eb21047a49a4c73f2865b67b, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 264
+      value: 98
       objectReference: {fileID: 0}
     - target: {fileID: 4245705645282842920, guid: 5bb098d7eb21047a49a4c73f2865b67b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1317,7 +1272,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1295968127}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &310268081
 MonoBehaviour:
@@ -1547,6 +1502,9 @@ RectTransform:
   - {fileID: 2016194623}
   - {fileID: 1750212948}
   - {fileID: 351684324}
+  - {fileID: 1520802347}
+  - {fileID: 193430557}
+  - {fileID: 8717848926697733720}
   m_Father: {fileID: 1411623469}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3049,7 +3007,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1295968127}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1060979143
 MonoBehaviour:
@@ -3149,7 +3107,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1295968127}
-  m_RootOrder: 11
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1077914575
 MonoBehaviour:
@@ -3869,7 +3827,6 @@ Transform:
   - {fileID: 724078737}
   - {fileID: 735222765}
   - {fileID: 752733921}
-  - {fileID: 70188710}
   - {fileID: 1060979142}
   - {fileID: 1928943967}
   - {fileID: 310268080}
@@ -4161,9 +4118,6 @@ RectTransform:
   - {fileID: 1402240267}
   - {fileID: 303366239}
   - {fileID: 594068317}
-  - {fileID: 1520802347}
-  - {fileID: 193430557}
-  - {fileID: 8717848926697733720}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4315,7 +4269,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 1411623469}
+    m_TransformParent: {fileID: 607435807}
     m_Modifications:
     - target: {fileID: 7107959740209660764, guid: 9efddf18d475544b09a24fb55cae8206, type: 3}
       propertyPath: m_Pivot.x
@@ -4327,7 +4281,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7107959740209660764, guid: 9efddf18d475544b09a24fb55cae8206, type: 3}
       propertyPath: m_RootOrder
-      value: 13
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7107959740209660764, guid: 9efddf18d475544b09a24fb55cae8206, type: 3}
       propertyPath: m_AnchorMax.x
@@ -4383,11 +4337,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7107959740209660764, guid: 9efddf18d475544b09a24fb55cae8206, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 7107959740209660764, guid: 9efddf18d475544b09a24fb55cae8206, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 264.00003
+      value: 98.00003
       objectReference: {fileID: 0}
     - target: {fileID: 7107959740209660764, guid: 9efddf18d475544b09a24fb55cae8206, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -4939,7 +4893,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1295968127}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1928943968
 MonoBehaviour:
@@ -5660,7 +5614,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2090945748}
   - component: {fileID: 2090945749}
-  - component: {fileID: 2090945750}
   m_Layer: 0
   m_Name: MainManager
   m_TagString: Untagged
@@ -5695,74 +5648,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c31e1107eb1454b95bfba656f8eaf585, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  turnPhaseManager: {fileID: 0}
   battleDeckManager: {fileID: 0}
   battlePlayerDataManager: {fileID: 0}
   cardsLayoutManager: {fileID: 0}
   enemyManager: {fileID: 0}
   initialDrawCard: 5
   HitNumber: {fileID: 1657651640707860410, guid: 1964a05725058407b9c946d52b4952d9, type: 3}
---- !u!114 &2090945750
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2090945747}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 43ed1f21e8b9144bda8848e7d1060717, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemyData:
-    targetType: 0
-    characterName: 
-    hpState:
-      maxHp: 0
-      currentHp: 0
-    shield: 0
-    stateEffectTest:
-      effectName: 
-      effectType: 0
-      isBuff: 1
-      consumeType: 0
-      layer: 0
-    isDeath: 0
-    StateList: []
-    id: 0
-    atk: 0
-    actionList: []
-  battleplayerData:
-    targetType: 0
-    characterName: no name
-    hpState:
-      maxHp: 50
-      currentHp: 50
-    shield: 0
-    stateEffectTest:
-      effectName: 
-      effectType: 0
-      isBuff: 1
-      consumeType: 0
-      layer: 0
-    isDeath: 0
-    StateList: []
-    mainWeaponData:
-      id: 0
-      weaponName: 
-      atk: 0
-      def: 0
-      distance: 0
-      weaponType: 2
-    supportWeaponData:
-      id: 0
-      weaponName: 
-      atk: 0
-      def: 0
-      distance: 0
-      weaponType: 2
-    coin: 0
-    energy: 3
+  TurnDisplay: {fileID: 235715951}
 --- !u!1 &2094084609
 GameObject:
   m_ObjectHideFlags: 0
@@ -5885,7 +5777,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 1411623469}
+    m_TransformParent: {fileID: 607435807}
     m_Modifications:
     - target: {fileID: 8174131080375451302, guid: 3ac9e1b715d55419ea8a7f6d007ca985, type: 3}
       propertyPath: m_Name
@@ -5901,7 +5793,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9085169520123796110, guid: 3ac9e1b715d55419ea8a7f6d007ca985, type: 3}
       propertyPath: m_RootOrder
-      value: 15
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 9085169520123796110, guid: 3ac9e1b715d55419ea8a7f6d007ca985, type: 3}
       propertyPath: m_AnchorMax.x
@@ -5957,11 +5849,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9085169520123796110, guid: 3ac9e1b715d55419ea8a7f6d007ca985, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 143
+      value: 154
       objectReference: {fileID: 0}
     - target: {fileID: 9085169520123796110, guid: 3ac9e1b715d55419ea8a7f6d007ca985, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 264
+      value: 98
       objectReference: {fileID: 0}
     - target: {fileID: 9085169520123796110, guid: 3ac9e1b715d55419ea8a7f6d007ca985, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -6413,7 +6305,7 @@ PrefabInstance:
     - target: {fileID: 6012063204041419909, guid: 98bbf2652755fea44ac9c43564b28d58, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 70188711}
+      objectReference: {fileID: 2090945749}
     - target: {fileID: 6012063204041419909, guid: 98bbf2652755fea44ac9c43564b28d58, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
@@ -6428,7 +6320,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6012063204041419909, guid: 98bbf2652755fea44ac9c43564b28d58, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: EndPlayerTurn
+      value: TurnEnd
       objectReference: {fileID: 0}
     - target: {fileID: 6012063204041419909, guid: 98bbf2652755fea44ac9c43564b28d58, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
@@ -6436,7 +6328,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6012063204041419909, guid: 98bbf2652755fea44ac9c43564b28d58, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: TurnPhaseManager, Assembly-CSharp
+      value: BattleMainManager, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 6012063204041419909, guid: 98bbf2652755fea44ac9c43564b28d58, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
