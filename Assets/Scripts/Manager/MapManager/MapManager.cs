@@ -1,6 +1,8 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using UnityEngine;
 
 public class MapManager : MonoSingleton<MapManager>
@@ -10,6 +12,7 @@ public class MapManager : MonoSingleton<MapManager>
     public Transform MapPanel;
     private int layer;
     public Vector3[][] point_positions;
+    
 
     private void Awake()
     {
@@ -23,20 +26,23 @@ public class MapManager : MonoSingleton<MapManager>
         
 
         System.Random randon = new System.Random();
-        int[][] pointer1 = new int[layer][];        
+        int[][] pointer1 = new int[layer][];
         int[][] pointer2 = new int[layer][];        
         int[][] line = new int[layer][];        
 
         for (int i = 0; i < layer; i++)
         {
 
-            monster[i] = randon.Next(1, 1);
-            CreateStoponMap();
-            /*
+            monster[i] = randon.Next(3, 5);
+
+            //CreateStoponMap();
+            
             pointer1[i] = new int[monster[i]];
+            resetPointer(pointer1[i]);
             pointer2[i] = new int[monster[i]];
+            resetPointer(pointer2[i]);
             line[i] = new int[monster[i]];
-            point_positions[i] = new Vector3[monster[i]];
+            //point_positions[i] = new Vector3[monster[i]];
             
             if (i > 0)
             {
@@ -50,7 +56,7 @@ public class MapManager : MonoSingleton<MapManager>
                 second_assign(i, i - 1, monster, pointer1[i - 1], pointer2[i], line[i]);
                 //Show(pointer2, i);
             }
-            */
+            
         }
 
 
@@ -59,20 +65,30 @@ public class MapManager : MonoSingleton<MapManager>
 
         //DrawLineManager.Setpoint(monster);
         //DrawLineManager.Draw(point_positions[0][0], point_positions[1][pointer1[0][0]]);
-        //Show(pointer1, layer);
-        //Show(pointer2, layer);
-        //Show(line, layer);
+        Show(pointer1, layer);
+        Show(pointer2, layer);
+        Show(line, layer);
     }
 
+
+    public void resetPointer(int[] s)
+    {
+        for(int i = 0; i < s.Length; i++)
+        {
+            s[i] = -1;
+        }
+    }
     public void Show(int[][] s, int layer)
     {
         for (int i = 0; i < layer; i++)
         {
+            string line = "";
             for (int j = 0; j < s[i].Length; j++)
             {
-                Debug.Log(s[i][j]);
+                line += s[i][j];
+                //Debug.Log(s[i][j]);
             }
-            Debug.Log("\n");
+            Debug.Log(line);
         }
         Debug.Log("\n");
     }
@@ -148,6 +164,10 @@ public class MapManager : MonoSingleton<MapManager>
     public static void second_assign(int now_layer, int pre_layer, int[] monster_num, int[] pointer1, int[] pointer2, int[] beassign)
     {
 
+        //當pre_pt連接到now_pt(包括左邊)時會發生交叉就將now_pt移位
+        //或now_pt的連接數為2時也要將now_pt移位
+        //最後一個pre_pt，不能連到倒數第三個點，
+        //當pre_pt連接到now_pt(包括右邊)時會發生交叉就將pre_pt移位
 
         System.Random randon = new System.Random();
 

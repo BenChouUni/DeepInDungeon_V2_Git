@@ -15,7 +15,7 @@ public class PowerEffect : StateEffect
     /// <returns></returns>
     public override int AddExtraDamage()
     {
-        Debug.Log("�P�w��Power" + Layer + "�h");
+        //Debug.Log("�P�w��Power" + Layer + "�h");
         return Layer;
     }
 }

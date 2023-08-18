@@ -22,7 +22,9 @@ public class LevelManager : MonoBehaviour,IDataPersistence
 
     private void Start()
     {
+        
         Layer = mapData.allLevels.Count;
+        MapManager.instance.CreateMap(Layer);
         CreateMap();
 
         if (mapData == null)
