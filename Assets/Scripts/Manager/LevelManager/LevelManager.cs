@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,19 +13,26 @@ public class LevelManager : MonoBehaviour,IDataPersistence
     public GameObject now_Level;
     public GameObject level_prefab;
     public GameObject layer_prefab;
+    public List<EnemySO> EnemyType;
 
     public List<GameObject> Levels = new List<GameObject>();
     //GameObject[] Levels;
     public int Layer;
     private int now_layer;
 
+    public int[] Levelsnum;
+
+
+
     public MapData mapData;
 
     private void Start()
     {
-        
-        Layer = mapData.allLevels.Count;
-        MapManager.instance.CreateMap(Layer);
+
+        Levelsnum = MapManager.instance.CreateLevels(Layer);
+        //Layer = mapData.allLevels.Count;
+        //MapManager.instance.CreateMap(Layer);
+        CreateLevelData();
         CreateMap();
 
         if (mapData == null)
@@ -41,16 +49,25 @@ public class LevelManager : MonoBehaviour,IDataPersistence
         }
         */
 
+        if (mapData.check_Layer())
+        {
+            mapData.NextLayer();
+        }
+        /*
         if (!mapData.check_Ini())
         {
             mapData.NextLevel();
         }
+        */
         //mapData.NextLevel();
         if (mapData.Currentlevel == null)
         {
             
         }
-        now_layer = mapData.Currentlevel.Layer;
+        if(!mapData.check_Level())
+        {
+            now_layer = mapData.Currentlevel.Layer;
+        }
         Levels[now_layer].transform.GetComponent<Button>().interactable = true;
         //Layer = LevelPanel.transform.childCount;
         //change_layer(now_layer);
@@ -116,15 +133,35 @@ public class LevelManager : MonoBehaviour,IDataPersistence
     {
         for(int i = 0; i < Layer; i++)
         {
-//            Debug.Log("生成地圖");
-            GameObject new_level;
-            
             GameObject new_layer;
             new_layer = Instantiate(layer_prefab, LevelPanel.transform, false);
-            new_level = Instantiate(level_prefab, new_layer.transform, false);
+            for (int j = 0; j < Levelsnum[i]; j++)
+            {
+                GameObject new_level;
+                new_level = Instantiate(level_prefab, new_layer.transform, false);
+                new_level.transform.GetComponent<Button>().onClick.AddListener(Fight);
+                new_level.GetComponent<LevelInfo>().levelData = mapData.allLevels[i][j];
+                Levels.Add(new_level);
+            }
+//            Debug.Log("生成地圖");
+            
             //new_level.transform.GetComponent<Button>().onClick.AddListener(OnClick);
-            new_level.transform.GetComponent<Button>().onClick.AddListener(Fight);
-            Levels.Add(new_level);
+            
+            
+        }
+    }
+
+    public void CreateLevelData()
+    {
+        for(int i = 0; i < Layer; i++)
+        {
+            mapData.allLevels.Add(new LevelData[Levelsnum[i]]);
+            for (int j = 0; j < Levelsnum[i]; j++)
+            {
+                LevelData leveldata = new LevelData(i, j, EnemyType[0]);
+                mapData.allLevels[i][j] = leveldata;
+                
+            }
         }
     }
 }

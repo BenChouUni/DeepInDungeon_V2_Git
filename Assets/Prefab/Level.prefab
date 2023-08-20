@@ -148,6 +148,7 @@ GameObject:
   - component: {fileID: 7880795326528146546}
   - component: {fileID: 7880795326528146549}
   - component: {fileID: 5108526774235911558}
+  - component: {fileID: 6150034724667896038}
   m_Layer: 5
   m_Name: Level
   m_TagString: Untagged
@@ -271,3 +272,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ZoomSize: 1.5
+--- !u!114 &6150034724667896038
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7880795326528146551}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c280cba4ceaf97409d85c3b049b531a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelData:
+    Layer: 0
+    number: 0
+    enemy: {fileID: 0}

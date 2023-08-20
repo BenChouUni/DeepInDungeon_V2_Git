@@ -11,12 +11,27 @@ public class MapManager : MonoSingleton<MapManager>
     public GameObject LayerPrefab;
     public Transform MapPanel;
     private int layer;
+    public int[] levels;  
     public Vector3[][] point_positions;
     
 
     private void Awake()
     {
         point_positions = new Vector3[layer][];
+    }
+
+    public int[] CreateLevels(int layer)
+    {
+        this.layer = layer;
+        int[] monster = new int[layer];
+        System.Random randon = new System.Random();
+        for (int i = 0; i < layer; i++)
+        {
+            monster[i] = randon.Next(3, 6);
+        }
+        levels = monster;
+        return levels;
+
     }
     public void CreateMap(int _layer)
     {

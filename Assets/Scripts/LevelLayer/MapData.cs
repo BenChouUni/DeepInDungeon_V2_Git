@@ -5,15 +5,22 @@ using UnityEngine;
 [System.Serializable]
 public class MapData 
 {
-    public List<LevelData> allLevels = new List<LevelData>();
+    
+    public List<LevelData[]> allLevels = new List<LevelData[]>();
+
     [SerializeField]
     private LevelData currentLevel = null;
+
+    [SerializeField]
+    private int currentLayer = -1;
+
     public LevelData Currentlevel
     {
         get {
             if (currentLevel.enemy == null)
             {
-                NextLevel();
+                Debug.Log("currentLevel為空");
+                //NextLevel();
             }
             return currentLevel;
         }
@@ -21,13 +28,41 @@ public class MapData
 
     public MapData()
     {
-        allLevels = new List<LevelData>();
+        allLevels = new List<LevelData[]>();
         currentLevel = null;
+        currentLayer = -1;
     }
+
+    /// <summary>
+    /// 如果沒有層數就設置為第一層(0)，若有就回傳下一層的層數
+    /// </summary>
+    /// <returns></returns>
+    public int NextLayer()
+    {
+        Debug.Log("Next Layer");
+        if (currentLayer < 0)
+        {
+            Debug.Log("沒有層數，設定第一層");
+            currentLayer= 0;
+        }
+        else
+        {
+            currentLayer ++;
+            if(currentLayer > allLevels.Count)
+            {
+                Debug.Log("這是最後一層");
+                return -1;
+            }
+        }
+        return currentLayer;
+    }
+
+
     /// <summary>
     /// 如果有下一層回傳true
     /// </summary>
     /// <returns></returns>
+    /*
     public bool NextLevel()
     {
         
@@ -60,11 +95,22 @@ public class MapData
         }
         return true;
     }
+    */
 
-
-    public bool check_Ini()
+    public bool check_Layer()
     {
-            return(currentLevel != null);
+        return (currentLayer < 0);
+    }
+    public bool check_Level()
+    {
+        if(currentLevel != null)
+        {
+            return (currentLevel.Layer != currentLayer);
+        }
+        else
+        {
+            return false; 
+        }
     }
 
 

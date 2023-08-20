@@ -1037,18 +1037,17 @@ MonoBehaviour:
   now_Level: {fileID: 0}
   level_prefab: {fileID: 7880795326528146551, guid: 74be508dd7727d74ba79ccdfd4208c90, type: 3}
   layer_prefab: {fileID: 3553043889223292996, guid: 3511d0286d982da44a7ee7967d362b73, type: 3}
+  EnemyType:
+  - {fileID: 11400000, guid: 7177dc3b67b0b4136a66676d96fdaff2, type: 2}
+  - {fileID: 11400000, guid: 720766f86d4fd4fc297e0e307843656e, type: 2}
   Levels: []
   Layer: 5
+  Levelsnum: 
   mapData:
-    allLevels:
-    - Layer: 0
-      enemy: {fileID: 11400000, guid: 720766f86d4fd4fc297e0e307843656e, type: 2}
-    - Layer: 1
-      enemy: {fileID: 11400000, guid: 7177dc3b67b0b4136a66676d96fdaff2, type: 2}
-    - Layer: 2
-      enemy: {fileID: 11400000, guid: 6932f7ccae1ad5545ad53d24801dcae5, type: 2}
+    allLevels: []
     currentLevel:
       Layer: 0
+      number: 0
       enemy: {fileID: 0}
 --- !u!1 &1856984611
 GameObject:
@@ -1097,6 +1096,7 @@ MonoBehaviour:
   StopPrefab: {fileID: 7880795326528146551, guid: 74be508dd7727d74ba79ccdfd4208c90, type: 3}
   LayerPrefab: {fileID: 3553043889223292996, guid: 3511d0286d982da44a7ee7967d362b73, type: 3}
   MapPanel: {fileID: 220639632}
+  levels: 
 --- !u!1 &1958878581
 GameObject:
   m_ObjectHideFlags: 0
