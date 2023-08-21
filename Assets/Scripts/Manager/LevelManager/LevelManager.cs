@@ -29,17 +29,26 @@ public class LevelManager : MonoBehaviour,IDataPersistence
     private void Start()
     {
 
-        Levelsnum = MapManager.instance.CreateLevels(Layer);
-        //Layer = mapData.allLevels.Count;
-        //MapManager.instance.CreateMap(Layer);
-        CreateLevelData();
-        CreateMap();
-
         if (mapData == null)
         {
             Debug.LogError("map data is null");
             return;
         }
+
+
+        if (mapData.CurrentLayer < 0)
+        {
+            Debug.Log("Create a new map");
+            Levelsnum = MapManager.instance.CreateLevels(Layer);
+            CreateLevelData();
+
+        }
+        CreateMap();
+
+
+        //Layer = mapData.allLevels.Count;
+        //MapManager.instance.CreateMap(Layer);
+
         //確認當前在哪一關
         /*
         if(!mapData.Check_Layer())
@@ -64,11 +73,23 @@ public class LevelManager : MonoBehaviour,IDataPersistence
         {
             
         }
+        //若目前的level是空，或與當前層數不合則切換層數按鈕
         if(!mapData.check_Level())
         {
+            foreach(GameObject level in Levels)
+            {
+                if(level.GetComponent<LevelInfo>().levelData.Layer == mapData.CurrentLayer)
+                {
+                    level.transform.GetComponent<Button>().interactable = true;
+                }
+                else
+                {
+                    level.transform.GetComponent<Button>().interactable = false;
+                }
+            }
             now_layer = mapData.Currentlevel.Layer;
         }
-        Levels[now_layer].transform.GetComponent<Button>().interactable = true;
+        //Levels[now_layer].transform.GetComponent<Button>().interactable = true;
         //Layer = LevelPanel.transform.childCount;
         //change_layer(now_layer);
         //CreateMap();
@@ -76,6 +97,8 @@ public class LevelManager : MonoBehaviour,IDataPersistence
 
     public void Fight()
     {
+        var now_level = UnityEngine.EventSystems.EventSystem.current.currentSelectedGameObject;
+        mapData.Currentlevel = now_level.GetComponent<LevelInfo>().levelData;
         SceneManager.LoadScene(1);
         Debug.Log("存檔");
         DataPersistenceManager.instance.SaveGame();
@@ -84,10 +107,18 @@ public class LevelManager : MonoBehaviour,IDataPersistence
         //Debug.Log(myObjArray[0].GetComponent<Image>().color = Color.blue);
     }
 
+    /// <summary>
+    /// 目前未用到，待修
+    /// </summary>
     public void OnClick()
     {
+        //transform.GetComponent<LevelInfo>().levelData.enemy
+        Debug.Log(GetComponent<LevelInfo>().levelData.enemy);
+        Debug.Log("OnClick");
+        mapData.Currentlevel = this.GetComponent<LevelInfo>().levelData;
+        //JClone.DeepClone<LevelData>(this.GetComponent<LevelInfo>().levelData);
         //now_layer++;
-        if(now_layer < Layer)
+        if (now_layer < Layer)
         {
             del_layer();
             change_layer(now_layer);
@@ -122,6 +153,9 @@ public class LevelManager : MonoBehaviour,IDataPersistence
 
         }
 
+        //改成讀取全部
+        this.mapData = data.mapData;
+
     }
 
     public void SaveData(ref GameData data)
@@ -135,12 +169,12 @@ public class LevelManager : MonoBehaviour,IDataPersistence
         {
             GameObject new_layer;
             new_layer = Instantiate(layer_prefab, LevelPanel.transform, false);
-            for (int j = 0; j < Levelsnum[i]; j++)
+            for (int j = 0; j < mapData.allLayers[i].this_layer_Levels.Count; j++)
             {
                 GameObject new_level;
                 new_level = Instantiate(level_prefab, new_layer.transform, false);
                 new_level.transform.GetComponent<Button>().onClick.AddListener(Fight);
-                new_level.GetComponent<LevelInfo>().levelData = mapData.allLevels[i][j];
+                new_level.GetComponent<LevelInfo>().levelData = mapData.allLayers[i].this_layer_Levels[j];
                 Levels.Add(new_level);
             }
 //            Debug.Log("生成地圖");
@@ -155,12 +189,11 @@ public class LevelManager : MonoBehaviour,IDataPersistence
     {
         for(int i = 0; i < Layer; i++)
         {
-            mapData.allLevels.Add(new LevelData[Levelsnum[i]]);
+            mapData.allLayers.Add(new LayerData(i, new List<LevelData>()));
             for (int j = 0; j < Levelsnum[i]; j++)
             {
                 LevelData leveldata = new LevelData(i, j, EnemyType[0]);
-                mapData.allLevels[i][j] = leveldata;
-                
+                mapData.allLayers[i].this_layer_Levels.Add(leveldata);
             }
         }
     }

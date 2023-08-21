@@ -7,7 +7,7 @@ public class MapData
 {
     
     public List<LevelData[]> allLevels = new List<LevelData[]>();
-
+    public List<LayerData> allLayers = new List<LayerData>();
     [SerializeField]
     private LevelData currentLevel = null;
 
@@ -23,6 +23,19 @@ public class MapData
                 //NextLevel();
             }
             return currentLevel;
+        }
+        set { currentLevel = value; }
+    }
+
+    public int CurrentLayer
+    {
+        get
+        {
+            if(currentLayer < 0)
+            {
+                Debug.Log("currentLayer為負的");
+            }
+            return currentLayer;
         }
     }
 
@@ -139,6 +152,11 @@ public class MapData
     public void setCurrentLevel(LevelData levelData)
     {
         currentLevel = levelData;
+    }
+
+    public void setCurrentLayer(int layer)
+    {
+        currentLayer = layer;
     }
 
     public LevelData getLevel()

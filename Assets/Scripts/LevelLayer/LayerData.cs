@@ -6,5 +6,10 @@ using UnityEngine;
 public class LayerData
 {
     public int Layer;
-    List<LevelData> Levels = new List<LevelData>();
+    public List<LevelData> this_layer_Levels = new List<LevelData>();
+
+    public LayerData(int layer, List<LevelData> leveldata) {
+        this.Layer = layer;
+        this.this_layer_Levels = leveldata;
+    }
 }

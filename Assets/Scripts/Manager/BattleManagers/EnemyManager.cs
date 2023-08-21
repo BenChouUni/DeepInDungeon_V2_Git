@@ -87,7 +87,15 @@ public class EnemyManager : MonoSingleton<EnemyManager>,IDataPersistence
 
     public void LoadData(GameData data)
     {
-        enemyData = JClone.DeepClone<EnemyData>(data.mapData.Currentlevel.enemy.enemyData);
+        if(data.mapData.Currentlevel.enemy != null)
+        {
+            enemyData = JClone.DeepClone<EnemyData>(data.mapData.Currentlevel.enemy.enemyData);
+        }
+        else
+        {
+            Debug.Log("currentlevel的enemy為空");
+        }
+        
     }
 
     public void SaveData(ref GameData data)
