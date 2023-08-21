@@ -208,6 +208,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 604763338}
+  - component: {fileID: 604763339}
   m_Layer: 5
   m_Name: ArrowEmitter
   m_TagString: Untagged
@@ -235,6 +236,22 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &604763339
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 604763337}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c56d05f49359487b8c94cdc0be7d86e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ArrowHeadPrefab: {fileID: 436351279}
+  ArrowNodePrefab: {fileID: 716539330}
+  nodeNumber: 8
+  scaleFactor: 1
 --- !u!1 &716539330
 GameObject:
   m_ObjectHideFlags: 0
