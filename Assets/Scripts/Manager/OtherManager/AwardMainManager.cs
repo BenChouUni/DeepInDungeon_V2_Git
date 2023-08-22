@@ -204,7 +204,7 @@ public class AwardMainManager : MonoSingleton<AwardMainManager>, IDataPersistenc
         if(AwardNum <= 0)
         {
             Text.GetComponent<UnityEngine.UI.Text>().text = "已選擇獎勵，請繼續前進!";
-            //MapData.NextLevel();
+            MapData.NextLayer();
             Choosen = true;
             next_level_button.SetActive(true);
         }

@@ -19,7 +19,7 @@ public class MapData
         get {
             if (currentLevel.enemy == null)
             {
-                Debug.Log("currentLevel為空");
+                //Debug.Log("currentLevel為空");
                 //NextLevel();
             }
             return currentLevel;
@@ -52,7 +52,7 @@ public class MapData
     /// <returns></returns>
     public int NextLayer()
     {
-        Debug.Log("Next Layer");
+        //Debug.LogFormat("now: {0} ,Next Layer",currentLayer);
         if (currentLayer < 0)
         {
             Debug.Log("沒有層數，設定第一層");
@@ -61,7 +61,8 @@ public class MapData
         else
         {
             currentLayer ++;
-            if(currentLayer > allLevels.Count)
+            Debug.Log(allLayers.Count);
+            if(currentLayer > allLayers.Count)
             {
                 Debug.Log("這是最後一層");
                 return -1;
@@ -114,11 +115,17 @@ public class MapData
     {
         return (currentLayer < 0);
     }
+
+    /// <summary>
+    /// 確認當前關卡是否是當前層
+    /// </summary>
+    /// <returns></returns>
     public bool check_Level()
     {
-        if(currentLevel != null)
+        if(currentLevel.enemy != null)
         {
-            return (currentLevel.Layer != currentLayer);
+            Debug.Log("currentLevel不為空");
+            return (currentLevel.Layer == currentLayer);
         }
         else
         {

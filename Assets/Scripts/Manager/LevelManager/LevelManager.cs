@@ -16,7 +16,6 @@ public class LevelManager : MonoBehaviour,IDataPersistence
     public List<EnemySO> EnemyType;
 
     public List<GameObject> Levels = new List<GameObject>();
-    //GameObject[] Levels;
     public int Layer;
     private int now_layer;
 
@@ -62,6 +61,7 @@ public class LevelManager : MonoBehaviour,IDataPersistence
         {
             mapData.NextLayer();
         }
+        now_layer = mapData.CurrentLayer;
         /*
         if (!mapData.check_Ini())
         {
@@ -85,6 +85,21 @@ public class LevelManager : MonoBehaviour,IDataPersistence
                 else
                 {
                     level.transform.GetComponent<Button>().interactable = false;
+                }
+            }
+            now_layer = mapData.Currentlevel.Layer;
+        }
+        else
+        {
+            foreach (GameObject level in Levels)
+            {
+                if (level.GetComponent<LevelInfo>().levelData.Layer == mapData.Currentlevel.Layer)
+                {
+                    if (level.GetComponent<LevelInfo>().levelData.number == mapData.Currentlevel.number)
+                    {
+                        level.transform.GetComponent<Button>().interactable = true;
+                        break;
+                    }
                 }
             }
             now_layer = mapData.Currentlevel.Layer;
