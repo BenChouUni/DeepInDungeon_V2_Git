@@ -11,6 +11,8 @@ public class CardData
     public int cost;
     public int initialnum;
 
+    //卡片是否可以需要箭頭指向
+    public bool isDirective;
     //public Sprite image;
 
     public WeaponData WeaponData
@@ -28,7 +30,7 @@ public class CardData
         this.cardName = "";
         this.cost = 0;
         initialnum = 0;
-        
+        this.isDirective = false;
         weaponData = null;
     }
     public CardData(int _id, string _cardName, int _cost, int _initialnum) : this()
