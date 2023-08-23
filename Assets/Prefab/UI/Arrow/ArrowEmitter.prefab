@@ -49,7 +49,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c56d05f49359487b8c94cdc0be7d86e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ArrowHeadPrefab: {fileID: 0}
-  ArrowNodePrefab: {fileID: 0}
+  ArrowHeadPrefab: {fileID: 216057328736360055, guid: dbca4855c70f24111a6b8c313f8080ba, type: 3}
+  ArrowNodePrefab: {fileID: 4552273959229703532, guid: dff913986166941068b4a729e0427e3e, type: 3}
   nodeNumber: 8
   scaleFactor: 1
