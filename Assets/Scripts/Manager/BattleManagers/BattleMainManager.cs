@@ -7,8 +7,8 @@ using UnityEngine.SceneManagement;
 public class BattleMainManager : MonoSingleton<BattleMainManager>
 {
     //managers
-    [HideInInspector]
-    public TurnPhaseManager turnPhaseManager;
+    //[HideInInspector]
+    //public TurnPhaseManager turnPhaseManager;
     [HideInInspector]
     public BattleDeckManager battleDeckManager;
     [HideInInspector]
@@ -30,8 +30,15 @@ public class BattleMainManager : MonoSingleton<BattleMainManager>
     [Header("傷害數字顯示")]
     public GameObject HitNumber;
 
-    
-   
+    private GamePhase gamePhase;
+    public GamePhase GamePhase
+    {
+        get { return gamePhase; }
+    }
+
+    private int TurnCount;
+    public Text TurnDisplay;
+
 
     private void Awake()
     {
@@ -48,7 +55,10 @@ public class BattleMainManager : MonoSingleton<BattleMainManager>
         StartBattle();
         //開始準備階段結束
         //玩家回合先開始
-        turnPhaseManager.InitialTurn();
+        TurnCount = 0;
+        gamePhase = GamePhase.PlayerAction;
+        ShowTurn();
+
         TurnStart();
         
         
@@ -82,7 +92,7 @@ public class BattleMainManager : MonoSingleton<BattleMainManager>
     private void Initialmanagers()
     {
         //透過monosingleton找到每個管理器
-        turnPhaseManager = TurnPhaseManager.instance;
+        //turnPhaseManager = TurnPhaseManager.instance;
         battlePlayerDataManager = BattlePlayerDataManager.instance;
         battleDeckManager = BattleDeckManager.instance;
         cardsLayoutManager = CardsLayoutManager.instance;
@@ -95,7 +105,8 @@ public class BattleMainManager : MonoSingleton<BattleMainManager>
     public void StartBattle()
     {
         //回合開始
-        turnPhaseManager.StartGame();
+        gamePhase = GamePhase.GameStart;
+        ShowTurn();
         //洗牌
         battleDeckManager.ShuffleDeck();
         //初始化玩家資料
@@ -106,7 +117,8 @@ public class BattleMainManager : MonoSingleton<BattleMainManager>
     public void EndBattle()
     {
         Debug.Log("戰鬥結束");
-        turnPhaseManager.EndBattle();
+        gamePhase = GamePhase.GameEnd;
+        ShowTurn();
 
     }
 
@@ -153,7 +165,7 @@ public class BattleMainManager : MonoSingleton<BattleMainManager>
     public void DropRequest()
     {
         // 判定現在回合階段
-        if (turnPhaseManager.GamePhase != GamePhase.PlayerAction)
+        if (gamePhase != GamePhase.PlayerAction)
         {
             Debug.Log("不是玩家回合無法使用卡牌");
             return;
@@ -211,7 +223,7 @@ public class BattleMainManager : MonoSingleton<BattleMainManager>
         //UpdateStatus();
         yield return new WaitForSeconds(2);
         //turn end
-        turnPhaseManager.EndTurn();
+        TurnEnd();
     }
     /// <summary>
     /// 檢視死亡與否以及更新我方與敵人的狀態顯示，死亡則直接進入結束遊戲
@@ -229,13 +241,15 @@ public class BattleMainManager : MonoSingleton<BattleMainManager>
     //        AwardMainManager.instance.ShowAwardScene();
     //    }
     //}
+    #region
+    //回合相關
     /// <summary>
     /// 每個回合開始呼叫，執行回合開始所需的初始動作
     /// </summary>
     public void TurnStart()
     {
         
-        if (turnPhaseManager.GamePhase == GamePhase.PlayerAction)
+        if (gamePhase == GamePhase.PlayerAction)
         {
             Debug.Log("執行玩家回合開始準備");
             battlePlayerDataManager.ResetEnergy();
@@ -244,16 +258,19 @@ public class BattleMainManager : MonoSingleton<BattleMainManager>
             enemyManager.ShowEnemyAction();
 
         }
-        else if (turnPhaseManager.GamePhase == GamePhase.EnemyAction)
+        else if (gamePhase == GamePhase.EnemyAction)
         {
             Debug.Log("執行敵人回合開始準備");
             enemyManager.HideEnemyAction();
             StartCoroutine(EnemyBehave());
+            //做完行為後結束回合
+            //TurnEnd();
         }
+
     }
     public void TurnEnd()
     {
-        if (turnPhaseManager.GamePhase == GamePhase.PlayerAction)
+        if (gamePhase == GamePhase.PlayerAction)
         {
             Debug.Log("玩家回合結束");
             //battlePlayerDataManager.ResetEnergy();
@@ -262,19 +279,34 @@ public class BattleMainManager : MonoSingleton<BattleMainManager>
             {
                 item.AtTurnEnd();
             }
-
+            gamePhase = GamePhase.EnemyAction;
         }
-        else if (turnPhaseManager.GamePhase == GamePhase.EnemyAction)
+        else if (gamePhase == GamePhase.EnemyAction)
         {
             Debug.Log("敵人回合結束");
             foreach (var item in enemyManager.enemyData.StateList)
             {
                 item.AtTurnEnd();
             }
-
+            gamePhase = GamePhase.PlayerAction;
         }
-        //在PhaseManager那邊切換
+        //重新開始下回合
+        TurnStart();
     }
+    private void ShowTurn()
+    {
+        TurnDisplay.text = gamePhase.ToString();
+    }
+
+    public void EndPlayerTurnBtn()
+    {
+        if (gamePhase == GamePhase.PlayerAction)
+        {
+            TurnEnd();
+        }
+    }
+    #endregion
+
     public void GenerateHitNum(int num,Transform transform)
     {
         var numberObj = Instantiate(HitNumber, transform);
