@@ -100,4 +100,15 @@ public class BezierArrows : MonoBehaviour
 
     }
     #endregion
+
+    public void Hide()
+    {
+        this.gameObject.SetActive(false);
+    }
+
+    public void Show(RectTransform rectTransform)
+    {
+        this.origin = rectTransform;
+        this.gameObject.SetActive(true);
+    }
 }
