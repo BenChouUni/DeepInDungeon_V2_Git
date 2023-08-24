@@ -203,12 +203,11 @@ public class CardsLayoutManager : MonoSingleton<CardsLayoutManager>
         //Debug.Log("Gather");
         //HandCardList[index].GetComponent<CardMoveUI>().stop_Move();
 
-        HandCardList[index].GetComponent<CardMoveUI>().call_Move(mid_pos, TargetPosition[index]);
-        HandCardList[index].rotation = (TargetRotation[index]);
 
         for(int i =0; i < HandCardList.Count; i++)
         {
             HandCardList[i].GetComponent<CardMoveUI>().call_Move(HandCardList[i].position, TargetPosition[i]);
+            HandCardList[i].rotation = (TargetRotation[i]);
         }
         /*
         //移動左右各兩張卡片
