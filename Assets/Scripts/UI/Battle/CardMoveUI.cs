@@ -4,10 +4,15 @@ using UnityEngine;
 
 public class CardMoveUI : MonoBehaviour
 {
-    public float Speed = 10f;
+    
     public bool moving = false;
+    public Vector3 original_pos;
+    public Vector3 destination_pos;
+
     public bool bedragging = false;
     public Vector3 Destination;
+
+    /*
     void Update()
     {
         if (moving && !bedragging)
@@ -33,6 +38,40 @@ public class CardMoveUI : MonoBehaviour
     {
         Destination = destination;
         moving = true;
+    }
+    */
+
+    public void call_Move(Vector3 ori_pos, Vector3 des_pos)
+    {
+        //Debug.LogFormat("±q{0} ¨ì {1}", ori_pos, des_pos);
+        //original_pos= ori_pos;
+        //destination_pos= des_pos;
+        StopAllCoroutines();
+        StartCoroutine(Move(ori_pos, des_pos));
+    }
+
+    public void stop_Move()
+    {
+        StopAllCoroutines();
+        
+    }
+
+    IEnumerator Move(Vector3 ori_pos, Vector3 des_pos)
+    {
+        float workTime = 0;
+        moving = true;
+        while (moving)
+        {
+            workTime += Time.deltaTime * 5;
+            transform.position = Vector3.Lerp(ori_pos, des_pos, workTime);
+
+            if (workTime >= 1)
+            {
+                transform.position = des_pos;
+                moving= false;
+            }
+            yield return null;
+        }
     }
 }
 

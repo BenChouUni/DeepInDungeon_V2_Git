@@ -152,6 +152,7 @@ public class BattleMainManager : MonoSingleton<BattleMainManager>
     /// <param name="go">被拖墜卡牌本身</param>
     public void StartDrag(GameObject go)
     {
+        Debug.Log("開始Drag");
         this.draggingCard = go;
         isDragging = true;
         cardsLayoutManager.SetLayout();
@@ -174,7 +175,7 @@ public class BattleMainManager : MonoSingleton<BattleMainManager>
         {
             
             UseCard();
-            CardsLayoutManager.instance.Nowdragging = false;
+            //CardsLayoutManager.instance.Nowdragging = false;
             cardsLayoutManager.SetLayout();
         }
     }

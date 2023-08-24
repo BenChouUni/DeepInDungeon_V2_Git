@@ -10,7 +10,7 @@ public class BattleCardDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
 
     private BattleMainManager battleMainManager;
 
-    public bool DropGoBack = false;
+    //public bool DropGoBack = false;
 
     private void Start()
     {
@@ -19,6 +19,12 @@ public class BattleCardDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
 
     public void OnBeginDrag(PointerEventData eventData)
     {
+        parentReturnTo = this.transform.parent;
+
+        battleMainManager.StartDrag(this.gameObject);
+        TurnRaycastBlock(false);
+
+        /*
         if (!DropGoBack)
         {
             parentReturnTo = this.transform.parent;
@@ -30,10 +36,14 @@ public class BattleCardDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
             CardsLayoutManager.instance.Nowdragging = true;
             this.GetComponent<CardMoveUI>().bedragging = false;
         }
+        */
     }
 
     public void OnDrag(PointerEventData eventData)
     {
+        this.transform.position = eventData.position;
+        this.transform.rotation = (Quaternion.Euler(0f, 0f, 0f));
+        /*
         if (!DropGoBack)
         {
             this.transform.position = eventData.position;
@@ -43,11 +53,16 @@ public class BattleCardDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
             CardsLayoutManager.instance.Nowdragging = true;
             this.GetComponent<CardMoveUI>().bedragging = true;
         }
+        */
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        if (!DropGoBack)
+        battleMainManager.EndDrag();
+        this.transform.SetParent(parentReturnTo);
+        TurnRaycastBlock(true);
+
+        /*if (!DropGoBack)
         {
             battleMainManager.EndDrag();
             this.transform.SetParent(parentReturnTo);
@@ -61,6 +76,7 @@ public class BattleCardDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
             CardsLayoutManager.instance.Nowdragging = false;
             DropGoBack = true;
         }
+        */
     }
 
     private void TurnRaycastBlock(bool value)
