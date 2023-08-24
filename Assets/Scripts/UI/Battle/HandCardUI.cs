@@ -10,14 +10,14 @@ public class HandCardUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 
     public int hand_index;
 
-    void Start()
-    {
-        
-    }
+    public bool be_dragging = false;
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        CardsLayoutManager.instance.Disperse(this.hand_index, this.transform.position);
+        if(!be_dragging)
+        {
+            CardsLayoutManager.instance.Disperse(this.hand_index, this.transform.position);
+        }
         //Debug.LogFormat("²{¦b¬O{0}", this.GetComponent<CardDisplay>().CardData.cardName);
         //Debug.Log("OnPointer");
         /*
@@ -37,7 +37,11 @@ public class HandCardUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        CardsLayoutManager.instance.Gather(this.hand_index, this.transform.position);
+        if(!be_dragging)
+        {
+            CardsLayoutManager.instance.Gather(this.hand_index, this.transform.position);
+        }
+        
         //Debug.Log("Exit");
         /*
         if (!this.GetComponent<BattleCardDrag>().DropGoBack && !CardsLayoutManager.instance.Nowdragging)

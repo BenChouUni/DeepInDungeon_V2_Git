@@ -21,6 +21,14 @@ public class BattleCardDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
     {
         parentReturnTo = this.transform.parent;
 
+        if(this.GetComponent<HandCardUI>() != null)
+        {
+            Debug.Log("開始拉牌，停止Move");
+            this.GetComponent<CardMoveUI>().stop_Move();
+            CardsLayoutManager.instance.locking_Card();
+            //this.GetComponent<HandCardUI>().enabled = false;
+        }
+
         battleMainManager.StartDrag(this.gameObject);
         TurnRaycastBlock(false);
 
@@ -60,6 +68,10 @@ public class BattleCardDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
     {
         battleMainManager.EndDrag();
         this.transform.SetParent(parentReturnTo);
+
+        //解除鎖定卡牌，手牌可繼續移動
+        CardsLayoutManager.instance.cancel_Lock();
+
         TurnRaycastBlock(true);
 
         /*if (!DropGoBack)

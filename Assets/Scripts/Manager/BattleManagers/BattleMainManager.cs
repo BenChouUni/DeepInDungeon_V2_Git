@@ -212,7 +212,7 @@ public class BattleMainManager : MonoSingleton<BattleMainManager>
         //Destroy(draggingCard);
         draggingCard = null;
 
-        
+        cardsLayoutManager.cancel_Lock();
 
     }
     private IEnumerator EnemyBehave()

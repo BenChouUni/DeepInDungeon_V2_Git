@@ -243,5 +243,21 @@ public class CardsLayoutManager : MonoSingleton<CardsLayoutManager>
             HandCardList[i].GetComponent<HandCardUI>().hand_index = i;
         }
     }
+
+    public void locking_Card()
+    {
+        foreach(Transform card in HandCardList)
+        {
+            card.GetComponent<HandCardUI>().enabled = false;
+        }
+    }
+
+    public void cancel_Lock()
+    {
+        foreach (Transform card in HandCardList)
+        {
+            card.GetComponent<HandCardUI>().enabled = true;
+        }
+    }
 }
 
