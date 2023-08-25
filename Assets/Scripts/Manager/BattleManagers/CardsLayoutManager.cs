@@ -32,6 +32,8 @@ public class CardsLayoutManager : MonoSingleton<CardsLayoutManager>
     public int CardGoBack = 0;
     public bool Nowdragging = false;
 
+    public GameObject arrow;
+
     void Update()
     {
         /*

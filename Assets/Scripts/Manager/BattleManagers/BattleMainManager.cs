@@ -155,7 +155,7 @@ public class BattleMainManager : MonoSingleton<BattleMainManager>
         Debug.Log("開始Drag");
         this.draggingCard = go;
         isDragging = true;
-        cardsLayoutManager.SetLayout();
+        //cardsLayoutManager.SetLayout();
     }
     public void EndDrag()
     {
@@ -165,6 +165,7 @@ public class BattleMainManager : MonoSingleton<BattleMainManager>
     }
     public void DropRequest()
     {
+        cardsLayoutManager.arrow.GetComponent<BezierArrows>().Hide();
         // 判定現在回合階段
         if (gamePhase != GamePhase.PlayerAction)
         {

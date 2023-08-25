@@ -1356,6 +1356,7 @@ MonoBehaviour:
   Nowpointer: 0
   CardGoBack: 0
   Nowdragging: 0
+  arrow: {fileID: 1763048781}
 --- !u!1001 &774873977
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3413,10 +3414,12 @@ MonoBehaviour:
   MainWeaponDeck: []
   SupportWeaponDeck: []
   MapData:
-    allLevels: []
+    allLayers: []
     currentLevel:
       Layer: 0
+      number: 0
       enemy: {fileID: 0}
+    currentLayer: -1
   Text: {fileID: 2139659791}
   next_level_button: {fileID: 6179761}
   MainCardNum: 2
@@ -4202,6 +4205,23 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 369877711998380816, guid: 4c7d1ab0ddaec4d54a295ef4bd7ef0c8, type: 3}
   m_PrefabInstance: {fileID: 3387150349570899019}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1763048781 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7160064952519562445, guid: 09f576f188e6d43db88f3493b697860a, type: 3}
+  m_PrefabInstance: {fileID: 47691867}
+  m_PrefabAsset: {fileID: 0}
+--- !u!225 &1763048782
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1763048781}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &1794101149
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,7 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Numerics;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using Quaternion = UnityEngine.Quaternion;
+using Vector2 = UnityEngine.Vector2;
 
 public class BattleCardDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
@@ -49,7 +52,14 @@ public class BattleCardDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
 
     public void OnDrag(PointerEventData eventData)
     {
-        this.transform.position = eventData.position;
+        //拖移時卡片更隨
+        //this.transform.position = eventData.position;
+
+        //呼叫Arrow
+        //this.transform.position = new Vector2(960f, 200f);
+        //this.transform.position = new Vector3(960f, 200f, eventData.position.z);
+        //this.transform.position = new Vector3(960f, 200f, 5f);
+        CardsLayoutManager.instance.arrow.GetComponent<BezierArrows>().Show(this.GetComponent<RectTransform>());
         this.transform.rotation = (Quaternion.Euler(0f, 0f, 0f));
         /*
         if (!DropGoBack)
@@ -66,9 +76,12 @@ public class BattleCardDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
 
     public void OnEndDrag(PointerEventData eventData)
     {
+        //Debug.Log("OnEndDrag");
+        CardsLayoutManager.instance.arrow.GetComponent<BezierArrows>().Hide();
         battleMainManager.EndDrag();
         this.transform.SetParent(parentReturnTo);
 
+        
         //解除鎖定卡牌，手牌可繼續移動
         CardsLayoutManager.instance.cancel_Lock();
 
