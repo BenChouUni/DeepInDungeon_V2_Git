@@ -69,25 +69,25 @@ public class BattleMainManager : MonoSingleton<BattleMainManager>
     /// </summary>
     /// <param name="type"></param>
     /// <returns></returns>
-    public Character GetCharacterByType(CharaterType type)
-    {
-        if (type == CharaterType.Enemy)
-        {
-            if(enemyManager == null)
-            {
-                Debug.LogError("enemyData空");
-            }
-            return enemyManager.enemyData;
-        }
-        else
-        {
-            if (battlePlayerDataManager == null)
-            {
-                Debug.LogError("battlePlayerData空");
-            }
-            return battlePlayerDataManager.GetPlayerData();
-        }
-    }
+    //public Character GetCharacterByType(CharaterType type)
+    //{
+    //    if (type == CharaterType.Enemy)
+    //    {
+    //        if(enemyManager == null)
+    //        {
+    //            Debug.LogError("enemyData空");
+    //        }
+    //        return enemyManager.enemyData;
+    //    }
+    //    else
+    //    {
+    //        if (battlePlayerDataManager == null)
+    //        {
+    //            Debug.LogError("battlePlayerData空");
+    //        }
+    //        return battlePlayerDataManager.GetPlayerData();
+    //    }
+    //}
     //省呼叫資源
     private void Initialmanagers()
     {
@@ -286,9 +286,13 @@ public class BattleMainManager : MonoSingleton<BattleMainManager>
         else if (gamePhase == GamePhase.EnemyAction)
         {
             Debug.Log("敵人回合結束");
-            foreach (var item in enemyManager.enemyData.StateList)
+            foreach (var item in enemyManager.enemyGroup.enemies)
             {
-                item.AtTurnEnd();
+                foreach (StateEffect effect in item.enemyData.StateList)
+                {
+                    effect.AtTurnEnd();
+                }
+                
             }
             gamePhase = GamePhase.PlayerAction;
         }

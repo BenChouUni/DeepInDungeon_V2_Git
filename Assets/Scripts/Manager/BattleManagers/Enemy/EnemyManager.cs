@@ -10,10 +10,10 @@ public class EnemyManager : MonoSingleton<EnemyManager>,IDataPersistence
     //[Header("暫時放上敵人SO來試試看效果")]
     //public EnemySO enemySO;
 
-    private EnemyGroupSO enemyGroup;
+    public EnemyGroupSO enemyGroup;
     public GameObject EnemyPrefab;
     public Transform EnemyArea;
-    private List<GameObject> EnemyObjs;
+    private List<EnemyControl> EnemyControls;
 
     /*
     [SerializeField]
@@ -52,8 +52,9 @@ public class EnemyManager : MonoSingleton<EnemyManager>,IDataPersistence
         foreach (EnemySO item in enemyGroup.enemies)
         {
             GameObject obj = Instantiate(EnemyPrefab, EnemyArea);
-            obj.GetComponent<EnemyControl>().setEnemyData(item.enemyData);
-            this.EnemyObjs.Add(obj);
+            EnemyControl enemyControl = obj.GetComponent<EnemyControl>();
+            enemyControl.setEnemyData(item.enemyData);
+            this.EnemyControls.Add(enemyControl);
         }
     }
 
@@ -80,12 +81,15 @@ public class EnemyManager : MonoSingleton<EnemyManager>,IDataPersistence
             //EnemyImage.sprite = enemyData.image;
         }
     }
-
+    */
     public void DoEnemyAction()
     {
-        enemyData.DoAction();
+        foreach (EnemySO item in enemyGroup.enemies)
+        {
+            item.enemyData.DoAction();
+        }
     }
-
+    /*
     private void EnemyDie()
     {
         BattleMainManager.instance.WinBattle();
@@ -113,47 +117,29 @@ public class EnemyManager : MonoSingleton<EnemyManager>,IDataPersistence
     {
         
     }
-    /*
+    
     /// <summary>
     /// 顯示敵人的下一步動作
     /// </summary>
     public void ShowEnemyAction()
     {
-        Debug.Log("顯示敵人行為：");
-        EnemyActionSet nextAction = enemyData.NextEnemyAction;
-        EnemyActionParameter nextParameter = nextAction.enemyActionParameter;
-        if (nextParameter == null)
+        foreach (var item in EnemyControls)
         {
-            Debug.LogError("next parameter is null");
-        }
-        switch (nextAction.actionType)
-        {
-            case EnemyActionType.Attack:
-                Debug.Log("敵人下回合要攻擊");
-                ShowIcon(attackIcon, ValueCalculator.DmgCalculate(nextParameter, enemyData.ATK).ToString());
-                break;
-            case EnemyActionType.Defend:
-                Debug.Log("敵人要防禦");
-                ShowIcon(defendIcon, ValueCalculator.DefCalculate(nextParameter, enemyData.ATK).ToString());
-                break;
-
-            default:
-                Debug.Log("敵人使用特殊行為");
-                ShowIcon(otherIcon, ""); 
-                break;
+            item.ShowEnemyAction();
         }
     }
 
     public void HideEnemyAction()
     {
-        attackIcon?.SetActive(false);
-        defendIcon?.SetActive(false);
-        otherIcon?.SetActive(false);
+        foreach (var item in EnemyControls)
+        {
+            item.HideEnemyAction();
+        }
     }
     private void ShowIcon(GameObject icon,string str)
     {
         icon?.SetActive(true);
         icon.GetComponentInChildren<Text>().text = str;
     }
-    */
+    
 }
