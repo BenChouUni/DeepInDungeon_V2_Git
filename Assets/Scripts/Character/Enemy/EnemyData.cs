@@ -21,6 +21,9 @@ public class EnemyData : Character
 
     int actionIndex = 0;
 
+    //新增敵人標籤
+    public MonstersType monstersType;
+    public EnemyChallengeType challengeType;
     //public Sprite image;
     //可能用做AI的實現
     [SerializeField]

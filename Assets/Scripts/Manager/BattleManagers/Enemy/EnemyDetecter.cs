@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class CardDropDetecter : MonoBehaviour, IDropHandler
+public class EnemyDetecter : MonoBehaviour, IDropHandler
 {
+    private EnemyData enemyData = null;
+
     public void OnDrop(PointerEventData eventData)
     {
         Debug.Log("Drop card");
