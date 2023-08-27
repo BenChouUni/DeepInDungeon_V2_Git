@@ -13,7 +13,7 @@ public class LevelManager : MonoBehaviour,IDataPersistence
     public GameObject now_Level;
     public GameObject level_prefab;
     public GameObject layer_prefab;
-    public List<EnemySO> EnemyType;
+    public List<EnemyGroupSO> EnemyGroups;
 
     public List<GameObject> Levels = new List<GameObject>();
     public int Layer;
@@ -128,7 +128,7 @@ public class LevelManager : MonoBehaviour,IDataPersistence
     public void OnClick()
     {
         //transform.GetComponent<LevelInfo>().levelData.enemy
-        Debug.Log(GetComponent<LevelInfo>().levelData.enemy);
+        Debug.Log(GetComponent<LevelInfo>().levelData.EnemyGroup.groupName);
         Debug.Log("OnClick");
         mapData.Currentlevel = this.GetComponent<LevelInfo>().levelData;
         //JClone.DeepClone<LevelData>(this.GetComponent<LevelInfo>().levelData);
@@ -207,7 +207,7 @@ public class LevelManager : MonoBehaviour,IDataPersistence
             mapData.allLayers.Add(new LayerData(i, new List<LevelData>()));
             for (int j = 0; j < Levelsnum[i]; j++)
             {
-                LevelData leveldata = new LevelData(i, j, EnemyType[0]);
+                LevelData leveldata = new LevelData(i, j, EnemyGroups[0]);
                 mapData.allLayers[i].this_layer_Levels.Add(leveldata);
             }
         }

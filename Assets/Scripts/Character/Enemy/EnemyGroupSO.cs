@@ -7,5 +7,6 @@ public class EnemyGroupSO : ScriptableObject
 {
     public int id;
     public string groupName;
+    public EnemyChallengeType challengeType;
     public List<EnemySO> enemies;
 }

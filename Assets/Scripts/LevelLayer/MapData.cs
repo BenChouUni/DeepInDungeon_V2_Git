@@ -17,7 +17,7 @@ public class MapData
     public LevelData Currentlevel
     {
         get {
-            if (currentLevel.enemy == null)
+            if (currentLevel.EnemyGroup == null)
             {
                 //Debug.Log("currentLevel為空");
                 //NextLevel();
@@ -122,7 +122,7 @@ public class MapData
     /// <returns></returns>
     public bool check_Level()
     {
-        if(currentLevel.enemy != null)
+        if(currentLevel.EnemyGroup != null)
         {
             Debug.Log("currentLevel不為空");
             return (currentLevel.Layer == currentLayer);

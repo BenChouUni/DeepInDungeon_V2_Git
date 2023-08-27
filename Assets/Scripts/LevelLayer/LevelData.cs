@@ -7,12 +7,12 @@ public class LevelData
 {
     public int Layer;
     public int number;
-    public EnemySO enemy;
+    public EnemyGroupSO EnemyGroup;
 
-    public LevelData(int _Layer, int _number, EnemySO _enemy)
+    public LevelData(int _Layer, int _number, EnemyGroupSO _enemy)
     {
         this.Layer = _Layer;
         this.number = _number;
-        this.enemy = _enemy;
+        this.EnemyGroup = _enemy;
     }
 }

@@ -7,12 +7,17 @@ using UnityEngine.UI;
 /// </summary>
 public class EnemyManager : MonoSingleton<EnemyManager>,IDataPersistence
 {
-    [Header("暫時放上敵人SO來試試看效果")]
-    public EnemySO enemySO;
+    //[Header("暫時放上敵人SO來試試看效果")]
+    //public EnemySO enemySO;
 
-   
+    private EnemyGroupSO enemyGroup;
+    public GameObject EnemyPrefab;
+    public Transform EnemyArea;
+    private List<GameObject> EnemyObjs;
+
+    /*
     [SerializeField]
-    public EnemyData enemyData;
+    //public EnemyData enemyData;
     public EffectListDisplay effectListDisplay;
     //UIShow
     public Text enemyName;
@@ -23,7 +28,7 @@ public class EnemyManager : MonoSingleton<EnemyManager>,IDataPersistence
     //ActionIcon
     public GameObject attackIcon;
     public GameObject defendIcon;
-    public GameObject otherIcon;
+    public GameObject otherIcon;*/
 
     private void Awake()
     {
@@ -36,21 +41,27 @@ public class EnemyManager : MonoSingleton<EnemyManager>,IDataPersistence
 
     private void Start()
     {
-        if (enemyData == null)
+        if (enemyGroup == null)
         {
-            Debug.Log("沒有敵人");
+            Debug.LogError("沒有敵人組合");
         }
-        enemyData?.setDisplayAction(ShowEnemy, enemyHealthBar.Show, effectListDisplay.ShowStateList, EnemyDie,ShowHitNumber);
-        ShowEnemy(this.enemyData);
-        enemyHealthBar.Show(this.enemyData.HpState);
-        HideEnemyAction();
+        //enemyData?.setDisplayAction(ShowEnemy, enemyHealthBar.Show, effectListDisplay.ShowStateList, EnemyDie,ShowHitNumber);
+        //ShowEnemy(this.enemyData);
+        //enemyHealthBar.Show(this.enemyData.HpState);
+        //HideEnemyAction();
+        foreach (EnemySO item in enemyGroup.enemies)
+        {
+            GameObject obj = Instantiate(EnemyPrefab, EnemyArea);
+            obj.GetComponent<EnemyControl>().setEnemyData(item.enemyData);
+            this.EnemyObjs.Add(obj);
+        }
     }
 
     void Update()
     {
-        enemyData?.DtecAllState();
+        //enemyData?.DtecAllState();
     }
-    
+    /*
     private void ShowEnemy(Character character)
     {
         //Debug.Log("Show Enemy");
@@ -84,12 +95,12 @@ public class EnemyManager : MonoSingleton<EnemyManager>,IDataPersistence
     {
         //BattleMainManager.instance.GenerateHitNum(num, enemyHealthBar.transform);
     }
-
+    */
     public void LoadData(GameData data)
     {
-        if(data.mapData.Currentlevel.enemy != null)
+        if(data.mapData.Currentlevel.EnemyGroup != null)
         {
-            enemyData = JClone.DeepClone<EnemyData>(data.mapData.Currentlevel.enemy.enemyData);
+            enemyGroup = JClone.DeepClone<EnemyGroupSO>(data.mapData.Currentlevel.EnemyGroup);
         }
         else
         {
@@ -102,6 +113,7 @@ public class EnemyManager : MonoSingleton<EnemyManager>,IDataPersistence
     {
         
     }
+    /*
     /// <summary>
     /// 顯示敵人的下一步動作
     /// </summary>
@@ -143,4 +155,5 @@ public class EnemyManager : MonoSingleton<EnemyManager>,IDataPersistence
         icon?.SetActive(true);
         icon.GetComponentInChildren<Text>().text = str;
     }
+    */
 }

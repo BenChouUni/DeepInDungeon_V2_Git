@@ -21,15 +21,15 @@ public class EnemyControl : MonoBehaviour
 
     private void Start()
     {
-        if (enemyData == null)
-        {
-            Debug.LogError("沒有敵人");
-            return;
-        }
-        enemyData?.setDisplayAction(ShowEnemy, enemyHealthBar.Show, effectListDisplay.ShowStateList, EnemyDie, ShowHitNumber);
-        ShowEnemy(this.enemyData);
-        enemyHealthBar.Show(this.enemyData.HpState);
-        HideEnemyAction();
+        //if (enemyData == null)
+        //{
+        //    Debug.LogError("沒有敵人");
+        //    return;
+        //}
+        //enemyData?.setDisplayAction(ShowEnemy, enemyHealthBar.Show, effectListDisplay.ShowStateList, EnemyDie, ShowHitNumber);
+        //ShowEnemy(this.enemyData);
+        //enemyHealthBar.Show(this.enemyData.HpState);
+        //HideEnemyAction();
     }
 
     void Update()
@@ -58,7 +58,17 @@ public class EnemyControl : MonoBehaviour
 
     public void setEnemyData(EnemyData _enemyData)
     {
+        if (enemyData == null)
+        {
+            Debug.LogError("沒有敵人");
+            return;
+        }
         this.enemyData = _enemyData;
+        enemyData?.setDisplayAction(ShowEnemy, enemyHealthBar.Show, effectListDisplay.ShowStateList, EnemyDie, ShowHitNumber);
+        ShowEnemy(this.enemyData);
+        enemyHealthBar.Show(this.enemyData.HpState);
+        HideEnemyAction();
+
     }
     public void DoEnemyAction()
     {
