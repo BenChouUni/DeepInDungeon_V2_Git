@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0461a2762b59407db2815412ac48df4, type: 3}
+  m_Name: Skeleton01
+  m_EditorClassIdentifier: 
+  id: 0
+  groupName: "\u96D9\u9AB7\u9ACF\u4EBA\u6230\u58EB"
+  enemies:
+  - {fileID: 11400000, guid: 720766f86d4fd4fc297e0e307843656e, type: 2}
+  - {fileID: 11400000, guid: 720766f86d4fd4fc297e0e307843656e, type: 2}
