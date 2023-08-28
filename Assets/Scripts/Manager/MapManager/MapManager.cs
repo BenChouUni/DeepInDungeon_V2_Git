@@ -1,4 +1,5 @@
 using JetBrains.Annotations;
+using Mono.Cecil;
 using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
@@ -85,6 +86,53 @@ public class MapManager : MonoSingleton<MapManager>
         Show(line, layer);
     }
 
+    public List<string> CreateLine(int[] monster, int layer)
+    {
+        int[][] pointer1 = new int[layer][];
+        int[][] pointer2 = new int[layer][];
+        int[][] line = new int[layer][];
+
+        for(int i = 0; i < layer; i++)
+        {
+            pointer1[i] = new int[monster[i]];
+            resetPointer(pointer1[i]);
+            pointer2[i] = new int[monster[i]];
+            resetPointer(pointer2[i]);
+            line[i] = new int[monster[i]];
+            //point_positions[i] = new Vector3[monster[i]];
+
+            if (i > 0)
+            {
+
+                fpt_and_endpt(i, i - 1, monster, pointer1[i - 1], line[i]);
+
+
+                first_assign(i, i - 1, monster, pointer1[i - 1], line[i]);
+                //Show(pointer1, i);
+
+                second_assign(i, i - 1, monster, pointer1[i - 1], pointer2[i], line[i]);
+                //Show(pointer2, i);
+            }
+
+        }
+        List<string> LineInfo= new List<string>();
+        foreach(string _line in combine_line(pointer1, layer))
+        {
+            LineInfo.Add(_line);
+        }
+        foreach (string _line in combine_line(pointer2, layer))
+        {
+            LineInfo.Add(_line);
+        }
+        /*
+        foreach (string _line in combine_line(line, layer))
+        {
+            LineInfo.Add(_line);
+        }
+        */
+        return LineInfo;
+    }
+
 
     public void resetPointer(int[] s)
     {
@@ -106,6 +154,29 @@ public class MapManager : MonoSingleton<MapManager>
             Debug.Log(line);
         }
         Debug.Log("\n");
+    }
+
+    public List<string> combine_line(int[][] s, int layer)
+    {
+        List<string> list = new List<string>();
+        for (int i = 0; i < layer; i++)
+        {
+            string line = "";
+            for (int j = 0; j < s[i].Length; j++)
+            {
+                if(s[i][j] == -1)
+                {
+                    line += "*";
+                }
+                else
+                {
+                    line += s[i][j];
+                }
+                //Debug.Log(s[i][j]);
+            }
+            list.Add(line);
+        }
+        return list;
     }
 
 

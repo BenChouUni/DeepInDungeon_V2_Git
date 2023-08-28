@@ -2,9 +2,11 @@ using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.UI.Extensions;
 
 public class LevelManager : MonoBehaviour,IDataPersistence
 {
@@ -14,14 +16,16 @@ public class LevelManager : MonoBehaviour,IDataPersistence
     public GameObject level_prefab;
     public GameObject layer_prefab;
     public List<EnemySO> EnemyType;
+    public GameObject Line_prefab;
+    public Transform Line_Panel;
 
-    public List<GameObject> Levels = new List<GameObject>();
+    public List<List<GameObject>> Levels = new List<List<GameObject>>();
     public int Layer;
     private int now_layer;
 
     public int[] Levelsnum;
 
-
+    public List<string> _lineInfo = new List<string>();
 
     public MapData mapData;
 
@@ -39,10 +43,17 @@ public class LevelManager : MonoBehaviour,IDataPersistence
         {
             Debug.Log("Create a new map");
             Levelsnum = MapManager.instance.CreateLevels(Layer);
+            _lineInfo = MapManager.instance.CreateLine(Levelsnum, Layer);
+            foreach(string line in _lineInfo)
+            {
+                Debug.Log(line);
+            }
+            mapData.line_Info = _lineInfo;
             CreateLevelData();
 
         }
         CreateMap();
+        CreateLine();
 
 
         //Layer = mapData.allLevels.Count;
@@ -76,33 +87,39 @@ public class LevelManager : MonoBehaviour,IDataPersistence
         //若目前的level是空，或與當前層數不合則切換層數按鈕
         if(!mapData.check_Level())
         {
-            foreach(GameObject level in Levels)
+            for(int i = 0; i < Layer; i++)
             {
-                if(level.GetComponent<LevelInfo>().levelData.Layer == mapData.CurrentLayer)
+                foreach (GameObject level in Levels[i])
                 {
-                    level.transform.GetComponent<Button>().interactable = true;
+                    if (level.GetComponent<LevelInfo>().levelData.Layer == mapData.CurrentLayer)
+                    {
+                        level.transform.GetComponent<Button>().interactable = true;
+                    }
+                    else
+                    {
+                        level.transform.GetComponent<Button>().interactable = false;
+                    }
                 }
-                else
-                {
-                    level.transform.GetComponent<Button>().interactable = false;
-                }
+                now_layer = mapData.Currentlevel.Layer;
             }
-            now_layer = mapData.Currentlevel.Layer;
         }
         else
         {
-            foreach (GameObject level in Levels)
+            for (int i = 0; i < Layer; i++)
             {
-                if (level.GetComponent<LevelInfo>().levelData.Layer == mapData.Currentlevel.Layer)
+                foreach (GameObject level in Levels[i])
                 {
-                    if (level.GetComponent<LevelInfo>().levelData.number == mapData.Currentlevel.number)
+                    if (level.GetComponent<LevelInfo>().levelData.Layer == mapData.Currentlevel.Layer)
                     {
-                        level.transform.GetComponent<Button>().interactable = true;
-                        break;
+                        if (level.GetComponent<LevelInfo>().levelData.number == mapData.Currentlevel.number)
+                        {
+                            level.transform.GetComponent<Button>().interactable = true;
+                            break;
+                        }
                     }
                 }
+                now_layer = mapData.Currentlevel.Layer;
             }
-            now_layer = mapData.Currentlevel.Layer;
         }
         //Levels[now_layer].transform.GetComponent<Button>().interactable = true;
         //Layer = LevelPanel.transform.childCount;
@@ -182,6 +199,7 @@ public class LevelManager : MonoBehaviour,IDataPersistence
     {
         for(int i = 0; i < Layer; i++)
         {
+            Levels.Add(new List<GameObject>());
             GameObject new_layer;
             new_layer = Instantiate(layer_prefab, LevelPanel.transform, false);
             for (int j = 0; j < mapData.allLayers[i].this_layer_Levels.Count; j++)
@@ -190,13 +208,56 @@ public class LevelManager : MonoBehaviour,IDataPersistence
                 new_level = Instantiate(level_prefab, new_layer.transform, false);
                 new_level.transform.GetComponent<Button>().onClick.AddListener(Fight);
                 new_level.GetComponent<LevelInfo>().levelData = mapData.allLayers[i].this_layer_Levels[j];
-                Levels.Add(new_level);
+                Levels[i].Add(new_level);
             }
 //            Debug.Log("生成地圖");
             
             //new_level.transform.GetComponent<Button>().onClick.AddListener(OnClick);
             
             
+        }
+    }
+
+    public void CreateLine()
+    {
+        for(int i = 0; i < Layer; i ++)
+        {
+            for(int j = 0; j < mapData.line_Info[i].Length; j++)
+            {
+                if (mapData.line_Info[i][j] != '*')
+                {
+                    GameObject new_line;
+                    new_line = Instantiate(Line_prefab, Line_Panel, false);
+                    RectTransform[] connect = new RectTransform[2] { Levels[i][j].GetComponent<RectTransform>(), Levels[i+1][int.Parse(mapData.line_Info[i][j].ToString())].GetComponent<RectTransform>() };
+                    new_line.GetComponent<UILineConnector>().transforms = connect;
+                }
+            }
+        }
+
+        for (int i = 0; i < Layer; i++)
+        {
+            for (int j = 0; j < mapData.line_Info[i].Length; j++)
+            {
+                if (mapData.line_Info[i + Layer][j] != '*')
+                {
+                    //Debug.LogFormat("{0}, {1}", mapData.line_Info[i + Layer][j], Levels[i - 1].Count);
+                    if (int.Parse(mapData.line_Info[i + Layer][j].ToString()) < Levels[i - 1].Count)
+                    {
+                        //Debug.LogFormat("{0}, {1}", mapData.line_Info[i + Layer][j], Levels[i - 1].Count);
+                        GameObject new_line;
+                        new_line = Instantiate(Line_prefab, Line_Panel, false);
+                        RectTransform[] connect = new RectTransform[2] { Levels[i][j].GetComponent<RectTransform>(), Levels[i - 1][int.Parse(mapData.line_Info[i + Layer][j].ToString())].GetComponent<RectTransform>() };
+                        new_line.GetComponent<UILineConnector>().transforms = connect;
+                    }
+                    else
+                    {
+                        GameObject new_line;
+                        new_line = Instantiate(Line_prefab, Line_Panel, false);
+                        RectTransform[] connect = new RectTransform[2] { Levels[i][j].GetComponent<RectTransform>(), Levels[i - 1][Levels[i - 1].Count - 1].GetComponent<RectTransform>() };
+                        new_line.GetComponent<UILineConnector>().transforms = connect;
+                    }
+                }
+            }
         }
     }
 

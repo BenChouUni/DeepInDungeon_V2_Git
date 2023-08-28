@@ -155,6 +155,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 2005995282}
   - {fileID: 220639632}
   - {fileID: 1168687680}
   m_Father: {fileID: 1958878585}
@@ -319,7 +320,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8080798}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -377,7 +378,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -706,11 +707,11 @@ RectTransform:
   m_Children:
   - {fileID: 1479740808}
   m_Father: {fileID: 8080798}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 903, y: -579}
+  m_AnchoredPosition: {x: 984, y: -579}
   m_SizeDelta: {x: 27.8309, y: 802.9177}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1168687681
@@ -1126,11 +1127,14 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 051a6992127394adbbe56db6240d04fc, type: 2}
   - {fileID: 11400000, guid: 7177dc3b67b0b4136a66676d96fdaff2, type: 2}
   - {fileID: 11400000, guid: 720766f86d4fd4fc297e0e307843656e, type: 2}
-  Levels: []
+  Line_prefab: {fileID: 1917171725365762816, guid: 499218400db6dcf408d034004fc8af31, type: 3}
+  Line_Panel: {fileID: 2005995282}
   Layer: 5
   Levelsnum: 
+  _lineInfo: []
   mapData:
     allLayers: []
+    line_Info: []
     currentLevel:
       Layer: 0
       number: 0
@@ -1286,3 +1290,34 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &2005995281
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2005995282}
+  m_Layer: 0
+  m_Name: line_panel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2005995282
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2005995281}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 162, y: 324, z: -91.81776}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8080798}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

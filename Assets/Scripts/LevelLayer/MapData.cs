@@ -8,6 +8,9 @@ public class MapData
     
     public List<LevelData[]> allLevels = new List<LevelData[]>();
     public List<LayerData> allLayers = new List<LayerData>();
+
+    public List<string> line_Info= new List<string>();
+
     [SerializeField]
     private LevelData currentLevel = null;
 
@@ -42,6 +45,7 @@ public class MapData
     public MapData()
     {
         allLevels = new List<LevelData[]>();
+        line_Info = new List<string>();
         currentLevel = null;
         currentLayer = -1;
     }
