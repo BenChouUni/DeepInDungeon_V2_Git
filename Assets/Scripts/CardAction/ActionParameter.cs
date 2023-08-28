@@ -22,7 +22,8 @@ public class ActionParameter
         {
             if (target == null)
             {
-                target = BattleMainManager.instance.GetCharacterByType(targetType);
+                Debug.LogError("no target");
+                //target = BattleMainManager.instance.GetCharacterByType(targetType);
             }
             return target;
         }
@@ -34,7 +35,8 @@ public class ActionParameter
         {
             if (self == null)
             {
-                self = BattleMainManager.instance.GetCharacterByType(selfType);
+                Debug.LogError("no self");
+                //self = BattleMainManager.instance.GetCharacterByType(selfType);
             }
             return self;
         }
@@ -51,5 +53,15 @@ public class ActionParameter
             }
             return myEffect;
         }
+    }
+
+    public void setTarget(Character _target)
+    {
+        this.target = _target;
+    }
+
+    public void setSelf(Character _self)
+    {
+        this.self = _self;
     }
 }

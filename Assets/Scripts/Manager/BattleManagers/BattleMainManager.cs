@@ -26,6 +26,7 @@ public class BattleMainManager : MonoSingleton<BattleMainManager>
     //drag drop
     private bool isDragging = false;
     private GameObject draggingCard;
+    private CardData prepareCard;
     //UI
     [Header("傷害數字顯示")]
     public GameObject HitNumber;
@@ -101,6 +102,7 @@ public class BattleMainManager : MonoSingleton<BattleMainManager>
         
         
     }
+    #region Battle Phase
     //開始戰鬥
     public void StartBattle()
     {
@@ -145,7 +147,9 @@ public class BattleMainManager : MonoSingleton<BattleMainManager>
         SceneManager.LoadScene(0);
 
     }
+    #endregion
 
+    #region Drag Drop
     /// <summary>
     /// 卡牌拖拽時追蹤
     /// </summary>
@@ -180,11 +184,22 @@ public class BattleMainManager : MonoSingleton<BattleMainManager>
             cardsLayoutManager.SetLayout();
         }
     }
+    #endregion
 
+    #region USE CARD
+    private void UseCardRequest(Character self)
+    {
+        if (prepareCard!=null)
+        {
+            Debug.Log("準備卡牌被佔用");
+        }
+        prepareCard = draggingCard.GetComponent<CardDisplay>().CardData;
+        prepareCard.setSelf(self);
+    }
     /// <summary>
     /// 玩家使用卡牌
     /// </summary>
-    private void UseCard()
+    private void UseCard(Character target)
     {
         CardData cardData = draggingCard.GetComponent<CardDisplay>().CardData;
         if (cardData.cost > battlePlayerDataManager.CurrentEnergy)
@@ -195,6 +210,8 @@ public class BattleMainManager : MonoSingleton<BattleMainManager>
         //消耗費用
         battlePlayerDataManager.ConsumeEnergy(cardData.cost);
 
+        //設定敵人
+        prepareCard.setTarget(target);
         //使用牌
         Debug.LogFormat("使用{0}", cardData.cardName);
         //actionManager.UseCardAllAction(cardData);
@@ -216,6 +233,11 @@ public class BattleMainManager : MonoSingleton<BattleMainManager>
         cardsLayoutManager.cancel_Lock();
 
     }
+    private void EndUseCard()
+    {
+        prepareCard = null;
+    }
+    #endregion
     private IEnumerator EnemyBehave()
     {
         //敵人行動
