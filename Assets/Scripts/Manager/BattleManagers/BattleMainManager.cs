@@ -168,6 +168,7 @@ public class BattleMainManager : MonoSingleton<BattleMainManager>
         isDragging = false;
         this.draggingCard = null;
         cardsLayoutManager.SetLayout();
+        EndUseCard();
     }
     public void DropRequest(Character target)
     {
@@ -176,6 +177,7 @@ public class BattleMainManager : MonoSingleton<BattleMainManager>
         if (gamePhase != GamePhase.PlayerAction)
         {
             Debug.Log("不是玩家回合無法使用卡牌");
+            EndUseCard();
             return;
         }
         if (draggingCard.TryGetComponent<BattleCardDrag>(out BattleCardDrag dragCard))
