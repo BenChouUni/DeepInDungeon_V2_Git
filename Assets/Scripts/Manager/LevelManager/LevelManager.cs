@@ -22,7 +22,7 @@ public class LevelManager : MonoBehaviour,IDataPersistence
     public int[] Levelsnum;
 
 
-
+    [Header("填入關卡（暫時）")]
     public MapData mapData;
 
     private void Start()

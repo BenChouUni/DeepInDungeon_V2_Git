@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class EnemyControl : MonoBehaviour
 {
@@ -126,6 +127,12 @@ public class EnemyControl : MonoBehaviour
     {
         icon?.SetActive(true);
         icon.GetComponentInChildren<Text>().text = str;
+    }
+
+    public void OnDrop(PointerEventData eventData)
+    {
+        Debug.Log("Drop card");
+        BattleMainManager.instance.DropRequest(enemyData);
     }
 
 }

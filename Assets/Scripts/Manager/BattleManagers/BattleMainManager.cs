@@ -160,6 +160,8 @@ public class BattleMainManager : MonoSingleton<BattleMainManager>
         this.draggingCard = go;
         isDragging = true;
         //cardsLayoutManager.SetLayout();
+        //預備使用卡
+        UseCardRequest(battlePlayerDataManager.battleplayerData);
     }
     public void EndDrag()
     {
@@ -167,7 +169,7 @@ public class BattleMainManager : MonoSingleton<BattleMainManager>
         this.draggingCard = null;
         cardsLayoutManager.SetLayout();
     }
-    public void DropRequest()
+    public void DropRequest(Character target)
     {
         cardsLayoutManager.arrow.GetComponent<BezierArrows>().Hide();
         // 判定現在回合階段
@@ -179,7 +181,7 @@ public class BattleMainManager : MonoSingleton<BattleMainManager>
         if (draggingCard.TryGetComponent<BattleCardDrag>(out BattleCardDrag dragCard))
         {
             
-            UseCard();
+            UseCard(target);
             //CardsLayoutManager.instance.Nowdragging = false;
             cardsLayoutManager.SetLayout();
         }
@@ -187,6 +189,7 @@ public class BattleMainManager : MonoSingleton<BattleMainManager>
     #endregion
 
     #region USE CARD
+    //self傳入角色，也許之後能擴充給敵人使用
     private void UseCardRequest(Character self)
     {
         if (prepareCard!=null)
@@ -201,6 +204,12 @@ public class BattleMainManager : MonoSingleton<BattleMainManager>
     /// </summary>
     private void UseCard(Character target)
     {
+        if (prepareCard == null)
+        {
+            Debug.Log("沒有卡進入準備狀態，無法使用");
+            EndUseCard();
+            return;
+        }
         CardData cardData = draggingCard.GetComponent<CardDisplay>().CardData;
         if (cardData.cost > battlePlayerDataManager.CurrentEnergy)
         {
@@ -231,6 +240,7 @@ public class BattleMainManager : MonoSingleton<BattleMainManager>
         draggingCard = null;
 
         cardsLayoutManager.cancel_Lock();
+        EndUseCard();
 
     }
     private void EndUseCard()

@@ -10,6 +10,6 @@ public class EnemyDetecter : MonoBehaviour, IDropHandler
     public void OnDrop(PointerEventData eventData)
     {
         Debug.Log("Drop card");
-        BattleMainManager.instance.DropRequest();
+        //BattleMainManager.instance.DropRequest();
     }
 }
