@@ -18,6 +18,7 @@ public class LevelManager : MonoBehaviour,IDataPersistence
     public List<EnemySO> EnemyType;
     public GameObject Line_prefab;
     public Transform Line_Panel;
+    public List<EnemyGroupSO> EnemyGroups;
 
     public List<List<GameObject>> Levels = new List<List<GameObject>>();
     public int Layer;
@@ -25,7 +26,11 @@ public class LevelManager : MonoBehaviour,IDataPersistence
 
     public int[] Levelsnum;
 
+
     public List<string> _lineInfo = new List<string>();
+
+
+    [Header("填入關卡（暫時）")]
 
     public MapData mapData;
 
@@ -145,7 +150,7 @@ public class LevelManager : MonoBehaviour,IDataPersistence
     public void OnClick()
     {
         //transform.GetComponent<LevelInfo>().levelData.enemy
-        Debug.Log(GetComponent<LevelInfo>().levelData.enemy);
+        Debug.Log(GetComponent<LevelInfo>().levelData.EnemyGroup.groupName);
         Debug.Log("OnClick");
         mapData.Currentlevel = this.GetComponent<LevelInfo>().levelData;
         //JClone.DeepClone<LevelData>(this.GetComponent<LevelInfo>().levelData);
@@ -268,7 +273,7 @@ public class LevelManager : MonoBehaviour,IDataPersistence
             mapData.allLayers.Add(new LayerData(i, new List<LevelData>()));
             for (int j = 0; j < Levelsnum[i]; j++)
             {
-                LevelData leveldata = new LevelData(i, j, EnemyType[0]);
+                LevelData leveldata = new LevelData(i, j, EnemyGroups[0]);
                 mapData.allLayers[i].this_layer_Levels.Add(leveldata);
             }
         }

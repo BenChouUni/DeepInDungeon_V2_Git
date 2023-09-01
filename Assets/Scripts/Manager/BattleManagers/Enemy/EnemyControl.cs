@@ -2,17 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-/// <summary>
-/// enemy顯示與管理
-/// </summary>
-public class EnemyManager : MonoSingleton<EnemyManager>,IDataPersistence
-{
-    [Header("暫時放上敵人SO來試試看效果")]
-    public EnemySO enemySO;
+using UnityEngine.EventSystems;
 
-   
+public class EnemyControl : MonoBehaviour
+{
     [SerializeField]
-    public EnemyData enemyData;
+    public EnemyData enemyData = null;
     public EffectListDisplay effectListDisplay;
     //UIShow
     public Text enemyName;
@@ -25,32 +20,24 @@ public class EnemyManager : MonoSingleton<EnemyManager>,IDataPersistence
     public GameObject defendIcon;
     public GameObject otherIcon;
 
-    private void Awake()
-    {
-        //暫時使用
-        //enemyData = new EnemyData(0, "木樁", 50, 0, 3);
-        //enemyData = JClone.DeepClone<EnemyData>(enemySO.enemyData);
-        //enemyData.hpDisplay += enemyHealthBar.Show;
-        
-    }
-
     private void Start()
     {
-        if (enemyData == null)
-        {
-            Debug.Log("沒有敵人");
-        }
-        enemyData?.setDisplayAction(ShowEnemy, enemyHealthBar.Show, effectListDisplay.ShowStateList, EnemyDie,ShowHitNumber);
-        ShowEnemy(this.enemyData);
-        enemyHealthBar.Show(this.enemyData.HpState);
-        HideEnemyAction();
+        //if (enemyData == null)
+        //{
+        //    Debug.LogError("沒有敵人");
+        //    return;
+        //}
+        //enemyData?.setDisplayAction(ShowEnemy, enemyHealthBar.Show, effectListDisplay.ShowStateList, EnemyDie, ShowHitNumber);
+        //ShowEnemy(this.enemyData);
+        //enemyHealthBar.Show(this.enemyData.HpState);
+        //HideEnemyAction();
     }
 
     void Update()
     {
         enemyData?.DtecAllState();
     }
-    
+
     private void ShowEnemy(Character character)
     {
         //Debug.Log("Show Enemy");
@@ -64,12 +51,26 @@ public class EnemyManager : MonoSingleton<EnemyManager>,IDataPersistence
         {
             Shieldinformation.SetActive(true);
         }
-        if (EnemyImage!=null)
+        if (EnemyImage != null)
         {
             //EnemyImage.sprite = enemyData.image;
         }
     }
 
+    public void setEnemyData(EnemyData _enemyData)
+    {
+        if (enemyData == null)
+        {
+            Debug.LogError("沒有敵人");
+            return;
+        }
+        this.enemyData = _enemyData;
+        enemyData?.setDisplayAction(ShowEnemy, enemyHealthBar.Show, effectListDisplay.ShowStateList, EnemyDie, ShowHitNumber);
+        ShowEnemy(this.enemyData);
+        enemyHealthBar.Show(this.enemyData.HpState);
+        HideEnemyAction();
+
+    }
     public void DoEnemyAction()
     {
         enemyData.DoAction();
@@ -77,7 +78,8 @@ public class EnemyManager : MonoSingleton<EnemyManager>,IDataPersistence
 
     private void EnemyDie()
     {
-        BattleMainManager.instance.WinBattle();
+        Debug.LogFormat("{0} die",enemyData.CharacterName);
+        //BattleMainManager.instance.WinBattle();
     }
 
     private void ShowHitNumber(int num)
@@ -85,23 +87,6 @@ public class EnemyManager : MonoSingleton<EnemyManager>,IDataPersistence
         //BattleMainManager.instance.GenerateHitNum(num, enemyHealthBar.transform);
     }
 
-    public void LoadData(GameData data)
-    {
-        if(data.mapData.Currentlevel.enemy != null)
-        {
-            enemyData = JClone.DeepClone<EnemyData>(data.mapData.Currentlevel.enemy.enemyData);
-        }
-        else
-        {
-            Debug.Log("currentlevel的enemy為空");
-        }
-        
-    }
-
-    public void SaveData(ref GameData data)
-    {
-        
-    }
     /// <summary>
     /// 顯示敵人的下一步動作
     /// </summary>
@@ -127,7 +112,7 @@ public class EnemyManager : MonoSingleton<EnemyManager>,IDataPersistence
 
             default:
                 Debug.Log("敵人使用特殊行為");
-                ShowIcon(otherIcon, ""); 
+                ShowIcon(otherIcon, "");
                 break;
         }
     }
@@ -138,9 +123,16 @@ public class EnemyManager : MonoSingleton<EnemyManager>,IDataPersistence
         defendIcon?.SetActive(false);
         otherIcon?.SetActive(false);
     }
-    private void ShowIcon(GameObject icon,string str)
+    private void ShowIcon(GameObject icon, string str)
     {
         icon?.SetActive(true);
         icon.GetComponentInChildren<Text>().text = str;
     }
+
+    public void OnDrop(PointerEventData eventData)
+    {
+        Debug.Log("Drop card");
+        BattleMainManager.instance.DropRequest(enemyData);
+    }
+
 }

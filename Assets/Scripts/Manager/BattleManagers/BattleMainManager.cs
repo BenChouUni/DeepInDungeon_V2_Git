@@ -26,6 +26,7 @@ public class BattleMainManager : MonoSingleton<BattleMainManager>
     //drag drop
     private bool isDragging = false;
     private GameObject draggingCard;
+    private CardData prepareCard;
     //UI
     [Header("傷害數字顯示")]
     public GameObject HitNumber;
@@ -69,25 +70,25 @@ public class BattleMainManager : MonoSingleton<BattleMainManager>
     /// </summary>
     /// <param name="type"></param>
     /// <returns></returns>
-    public Character GetCharacterByType(CharaterType type)
-    {
-        if (type == CharaterType.Enemy)
-        {
-            if(enemyManager == null)
-            {
-                Debug.LogError("enemyData空");
-            }
-            return enemyManager.enemyData;
-        }
-        else
-        {
-            if (battlePlayerDataManager == null)
-            {
-                Debug.LogError("battlePlayerData空");
-            }
-            return battlePlayerDataManager.GetPlayerData();
-        }
-    }
+    //public Character GetCharacterByType(CharaterType type)
+    //{
+    //    if (type == CharaterType.Enemy)
+    //    {
+    //        if(enemyManager == null)
+    //        {
+    //            Debug.LogError("enemyData空");
+    //        }
+    //        return enemyManager.enemyData;
+    //    }
+    //    else
+    //    {
+    //        if (battlePlayerDataManager == null)
+    //        {
+    //            Debug.LogError("battlePlayerData空");
+    //        }
+    //        return battlePlayerDataManager.GetPlayerData();
+    //    }
+    //}
     //省呼叫資源
     private void Initialmanagers()
     {
@@ -101,6 +102,7 @@ public class BattleMainManager : MonoSingleton<BattleMainManager>
         
         
     }
+    #region Battle Phase
     //開始戰鬥
     public void StartBattle()
     {
@@ -145,7 +147,9 @@ public class BattleMainManager : MonoSingleton<BattleMainManager>
         SceneManager.LoadScene(0);
 
     }
+    #endregion
 
+    #region Drag Drop
     /// <summary>
     /// 卡牌拖拽時追蹤
     /// </summary>
@@ -156,36 +160,58 @@ public class BattleMainManager : MonoSingleton<BattleMainManager>
         this.draggingCard = go;
         isDragging = true;
         //cardsLayoutManager.SetLayout();
+        //預備使用卡
+        UseCardRequest(battlePlayerDataManager.battleplayerData);
     }
     public void EndDrag()
     {
         isDragging = false;
         this.draggingCard = null;
         cardsLayoutManager.SetLayout();
+        EndUseCard();
     }
-    public void DropRequest()
+    public void DropRequest(Character target)
     {
         cardsLayoutManager.arrow.GetComponent<BezierArrows>().Hide();
         // 判定現在回合階段
         if (gamePhase != GamePhase.PlayerAction)
         {
             Debug.Log("不是玩家回合無法使用卡牌");
+            EndUseCard();
             return;
         }
         if (draggingCard.TryGetComponent<BattleCardDrag>(out BattleCardDrag dragCard))
         {
             
-            UseCard();
+            UseCard(target);
             //CardsLayoutManager.instance.Nowdragging = false;
             cardsLayoutManager.SetLayout();
         }
     }
+    #endregion
 
+    #region USE CARD
+    //self傳入角色，也許之後能擴充給敵人使用
+    private void UseCardRequest(Character self)
+    {
+        if (prepareCard!=null)
+        {
+            Debug.Log("準備卡牌被佔用");
+        }
+        prepareCard = draggingCard.GetComponent<CardDisplay>().CardData;
+        prepareCard.setSelf(self);
+    }
     /// <summary>
     /// 玩家使用卡牌
     /// </summary>
-    private void UseCard()
+    private void UseCard(Character target)
     {
+        if (prepareCard == null)
+        {
+            Debug.Log("沒有卡進入準備狀態，無法使用");
+            EndUseCard();
+            return;
+        }
         CardData cardData = draggingCard.GetComponent<CardDisplay>().CardData;
         if (cardData.cost > battlePlayerDataManager.CurrentEnergy)
         {
@@ -195,6 +221,8 @@ public class BattleMainManager : MonoSingleton<BattleMainManager>
         //消耗費用
         battlePlayerDataManager.ConsumeEnergy(cardData.cost);
 
+        //設定敵人
+        prepareCard.setTarget(target);
         //使用牌
         Debug.LogFormat("使用{0}", cardData.cardName);
         //actionManager.UseCardAllAction(cardData);
@@ -214,8 +242,14 @@ public class BattleMainManager : MonoSingleton<BattleMainManager>
         draggingCard = null;
 
         cardsLayoutManager.cancel_Lock();
+        EndUseCard();
 
     }
+    private void EndUseCard()
+    {
+        prepareCard = null;
+    }
+    #endregion
     private IEnumerator EnemyBehave()
     {
         //敵人行動
@@ -286,9 +320,13 @@ public class BattleMainManager : MonoSingleton<BattleMainManager>
         else if (gamePhase == GamePhase.EnemyAction)
         {
             Debug.Log("敵人回合結束");
-            foreach (var item in enemyManager.enemyData.StateList)
+            foreach (var item in enemyManager.enemyGroup.enemies)
             {
-                item.AtTurnEnd();
+                foreach (StateEffect effect in item.enemyData.StateList)
+                {
+                    effect.AtTurnEnd();
+                }
+                
             }
             gamePhase = GamePhase.PlayerAction;
         }

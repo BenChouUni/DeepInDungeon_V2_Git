@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fb4308699ff234b40bf456aa65310227, type: 3}
-  m_Name: Skull
+  m_Name: SkeletonWarrior
   m_EditorClassIdentifier: 
   enemyData:
     targetType: 1
@@ -29,6 +29,8 @@ MonoBehaviour:
     StateList: []
     id: 1
     atk: 2
+    monstersType: 2
+    challengeType: 2
     actionList:
     - actionType: 0
       enemyActionParameter:

@@ -50,6 +50,20 @@ public class CardData
         }
     }
 
+    public void setSelf(Character _self)
+    {
+        foreach (CardActionSet item in cardActions)
+        {
+            item.actionParameter.setSelf(_self);
+        }
+    }
+    public void setTarget(Character _target)
+    {
+        foreach (CardActionSet item in cardActions)
+        {
+            item.actionParameter.setTarget(_target);
+        }
+    }
 }
 
 

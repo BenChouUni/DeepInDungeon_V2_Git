@@ -1129,16 +1129,20 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 720766f86d4fd4fc297e0e307843656e, type: 2}
   Line_prefab: {fileID: 1917171725365762816, guid: 499218400db6dcf408d034004fc8af31, type: 3}
   Line_Panel: {fileID: 2005995282}
+  EnemyGroups: []
+  Levels: []
   Layer: 5
   Levelsnum: 
   _lineInfo: []
   mapData:
-    allLayers: []
     line_Info: []
+    allLayers:
+    - Layer: 0
+      this_layer_Levels: []
     currentLevel:
       Layer: 0
       number: 0
-      enemy: {fileID: 0}
+      EnemyGroup: {fileID: 0}
     currentLayer: -1
 --- !u!1 &1856984611
 GameObject:
