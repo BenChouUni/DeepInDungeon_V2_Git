@@ -32,7 +32,7 @@ public class LevelManager : MonoBehaviour,IDataPersistence
 
     [Header("填入關卡（暫時）")]
 
-    public MapData mapData;
+    public MapData mapData = new MapData();
 
     private void Start()
     {
@@ -47,8 +47,8 @@ public class LevelManager : MonoBehaviour,IDataPersistence
         if (mapData.CurrentLayer < 0)
         {
             Debug.Log("Create a new map");
-            Levelsnum = MapManager.instance.CreateLevels(Layer);
-            _lineInfo = MapManager.instance.CreateLine(Levelsnum, Layer);
+            Levelsnum = MapDisplay.instance.CreateLevels(Layer);
+            _lineInfo = MapDisplay.instance.CreateLine(Levelsnum, Layer);
             foreach(string line in _lineInfo)
             {
                 Debug.Log(line);
@@ -85,10 +85,12 @@ public class LevelManager : MonoBehaviour,IDataPersistence
         }
         */
         //mapData.NextLevel();
+        /*
         if (mapData.Currentlevel == null)
         {
             
         }
+        */
         //若目前的level是空，或與當前層數不合則切換層數按鈕
         if(!mapData.check_Level())
         {
@@ -273,7 +275,7 @@ public class LevelManager : MonoBehaviour,IDataPersistence
             mapData.allLayers.Add(new LayerData(i, new List<LevelData>()));
             for (int j = 0; j < Levelsnum[i]; j++)
             {
-                LevelData leveldata = new LevelData(i, j, EnemyGroups[0]);
+                LevelData leveldata = new LevelData(i, j, LevelType.Enemy, EnemyGroups[0].Enemygroupdata);
                 mapData.allLayers[i].this_layer_Levels.Add(leveldata);
             }
         }

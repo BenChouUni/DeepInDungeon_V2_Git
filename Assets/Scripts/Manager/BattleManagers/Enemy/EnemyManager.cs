@@ -10,7 +10,8 @@ public class EnemyManager : MonoSingleton<EnemyManager>,IDataPersistence
     //[Header("暫時放上敵人SO來試試看效果")]
     //public EnemySO enemySO;
 
-    public EnemyGroupSO enemyGroup;
+    //public EnemyGroupSO enemyGroup;
+    public EnemyGroupData enemyGroupData;
     public GameObject EnemyPrefab;
     public Transform EnemyArea;
     private List<EnemyControl> EnemyControls;
@@ -41,7 +42,7 @@ public class EnemyManager : MonoSingleton<EnemyManager>,IDataPersistence
 
     private void Start()
     {
-        if (enemyGroup == null)
+        if (enemyGroupData == null)
         {
             Debug.LogError("沒有敵人組合");
         }
@@ -49,11 +50,11 @@ public class EnemyManager : MonoSingleton<EnemyManager>,IDataPersistence
         //ShowEnemy(this.enemyData);
         //enemyHealthBar.Show(this.enemyData.HpState);
         //HideEnemyAction();
-        foreach (EnemySO item in enemyGroup.enemies)
+        foreach (EnemyData item in enemyGroupData.enemies)
         {
             GameObject obj = Instantiate(EnemyPrefab, EnemyArea);
             EnemyControl enemyControl = obj.GetComponent<EnemyControl>();
-            enemyControl.setEnemyData(item.enemyData);
+            enemyControl.setEnemyData(item);
             this.EnemyControls.Add(enemyControl);
         }
     }
@@ -84,9 +85,9 @@ public class EnemyManager : MonoSingleton<EnemyManager>,IDataPersistence
     */
     public void DoEnemyAction()
     {
-        foreach (EnemySO item in enemyGroup.enemies)
+        foreach (EnemyData item in enemyGroupData.enemies)
         {
-            item.enemyData.DoAction();
+            item.DoAction();
         }
     }
     /*
@@ -104,7 +105,8 @@ public class EnemyManager : MonoSingleton<EnemyManager>,IDataPersistence
     {
         if(data.mapData.Currentlevel.EnemyGroup != null)
         {
-            enemyGroup = JClone.DeepClone<EnemyGroupSO>(data.mapData.Currentlevel.EnemyGroup);
+            enemyGroupData = JClone.DeepClone<EnemyGroupData>(data.mapData.Currentlevel.EnemyGroup);
+            Debug.Log("mapdata的enemygroup不為空");
         }
         else
         {

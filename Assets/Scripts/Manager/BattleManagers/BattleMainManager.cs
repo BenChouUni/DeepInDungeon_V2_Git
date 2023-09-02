@@ -320,9 +320,9 @@ public class BattleMainManager : MonoSingleton<BattleMainManager>
         else if (gamePhase == GamePhase.EnemyAction)
         {
             Debug.Log("敵人回合結束");
-            foreach (var item in enemyManager.enemyGroup.enemies)
+            foreach (var item in enemyManager.enemyGroupData.enemies)
             {
-                foreach (StateEffect effect in item.enemyData.StateList)
+                foreach (StateEffect effect in item.StateList)
                 {
                     effect.AtTurnEnd();
                 }
