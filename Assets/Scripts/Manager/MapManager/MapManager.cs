@@ -6,7 +6,7 @@ using System.Drawing;
 using System.Linq;
 using UnityEngine;
 
-public class MapDisplay : MonoSingleton<MapDisplay>
+public class MapManager : MonoSingleton<MapManager>
 {
     public GameObject StopPrefab;
     public GameObject LayerPrefab;

@@ -10,8 +10,7 @@ public class EnemyManager : MonoSingleton<EnemyManager>,IDataPersistence
     //[Header("暫時放上敵人SO來試試看效果")]
     //public EnemySO enemySO;
 
-    //public EnemyGroupSO enemyGroup;
-    public EnemyGroupData enemyGroupData;
+    public EnemyGroupSO enemyGroup;
     public GameObject EnemyPrefab;
     public Transform EnemyArea;
     private List<EnemyControl> EnemyControls;
@@ -42,7 +41,7 @@ public class EnemyManager : MonoSingleton<EnemyManager>,IDataPersistence
 
     private void Start()
     {
-        if (enemyGroupData == null)
+        if (enemyGroup == null)
         {
             Debug.LogError("沒有敵人組合");
         }
@@ -50,11 +49,11 @@ public class EnemyManager : MonoSingleton<EnemyManager>,IDataPersistence
         //ShowEnemy(this.enemyData);
         //enemyHealthBar.Show(this.enemyData.HpState);
         //HideEnemyAction();
-        foreach (EnemyData item in enemyGroupData.enemies)
+        foreach (EnemySO item in enemyGroup.enemies)
         {
             GameObject obj = Instantiate(EnemyPrefab, EnemyArea);
             EnemyControl enemyControl = obj.GetComponent<EnemyControl>();
-            enemyControl.setEnemyData(item);
+            enemyControl.setEnemyData(item.enemyData);
             this.EnemyControls.Add(enemyControl);
         }
     }
@@ -85,9 +84,9 @@ public class EnemyManager : MonoSingleton<EnemyManager>,IDataPersistence
     */
     public void DoEnemyAction()
     {
-        foreach (EnemyData item in enemyGroupData.enemies)
+        foreach (EnemySO item in enemyGroup.enemies)
         {
-            item.DoAction();
+            item.enemyData.DoAction();
         }
     }
     /*
@@ -105,8 +104,7 @@ public class EnemyManager : MonoSingleton<EnemyManager>,IDataPersistence
     {
         if(data.mapData.Currentlevel.EnemyGroup != null)
         {
-            enemyGroupData = JClone.DeepClone<EnemyGroupData>(data.mapData.Currentlevel.EnemyGroup);
-            Debug.Log("mapdata的enemygroup不為空");
+            enemyGroup = JClone.DeepClone<EnemyGroupSO>(data.mapData.Currentlevel.EnemyGroup);
         }
         else
         {
