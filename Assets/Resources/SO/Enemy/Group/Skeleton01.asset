@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0461a2762b59407db2815412ac48df4, type: 3}
   m_Name: Skeleton01
   m_EditorClassIdentifier: 
-  id: 0
-  groupName: "\u96D9\u9AB7\u9ACF\u4EBA\u6230\u58EB"
-  challengeType: 2
-  enemies:
-  - {fileID: 11400000, guid: 720766f86d4fd4fc297e0e307843656e, type: 2}
-  - {fileID: 11400000, guid: 720766f86d4fd4fc297e0e307843656e, type: 2}
+  enemygroupdata:
+    id: 0
+    groupName: "\u9AB7\u9ACF\u58EB\u5175\u5718"
+    challengeType: 0
+    enemies:
+    - {fileID: 11400000, guid: 720766f86d4fd4fc297e0e307843656e, type: 2}
+    - {fileID: 11400000, guid: 720766f86d4fd4fc297e0e307843656e, type: 2}
