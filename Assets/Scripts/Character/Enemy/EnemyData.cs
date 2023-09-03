@@ -48,6 +48,13 @@ public class EnemyData : Character
 
     }
 
+    public void SetSelf(Character self)
+    {
+        foreach (EnemyActionSet item in actionList)
+        {
+            item.enemyActionParameter.setSelf(self);
+        }
+    }
     public void DoAction()
     {
         //暫時

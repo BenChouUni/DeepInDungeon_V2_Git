@@ -538,17 +538,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerEffectList: {fileID: 4472289264356732714}
   enemyEffectList: {fileID: 351684325}
---- !u!114 &155179929 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3387150349423650770, guid: 4c7d1ab0ddaec4d54a295ef4bd7ef0c8, type: 3}
-  m_PrefabInstance: {fileID: 3387150349570899019}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &157304359
 GameObject:
   m_ObjectHideFlags: 0
@@ -625,11 +614,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 157304359}
   m_CullTransparentMesh: 1
---- !u!1 &193430558 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 746367842759237326, guid: 4c7d1ab0ddaec4d54a295ef4bd7ef0c8, type: 3}
-  m_PrefabInstance: {fileID: 3387150349570899019}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &196164649
 GameObject:
   m_ObjectHideFlags: 0
@@ -2759,17 +2743,6 @@ MonoBehaviour:
   CardPrefab: {fileID: 6232508073499098107, guid: 6e89a30a7165ca648a25045790e82531, type: 3}
   CardShowListPanel: {fileID: 1402176666}
   DeckDisplay: {fileID: 303366238}
---- !u!114 &1078387168 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 369877712522186825, guid: 4c7d1ab0ddaec4d54a295ef4bd7ef0c8, type: 3}
-  m_PrefabInstance: {fileID: 3387150349570899019}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1086466440
 GameObject:
   m_ObjectHideFlags: 0
@@ -3415,10 +3388,16 @@ MonoBehaviour:
   SupportWeaponDeck: []
   MapData:
     allLayers: []
+    line_Info: []
     currentLevel:
       Layer: 0
+      leveltype: 0
       number: 0
-      enemy: {fileID: 0}
+      EnemyGroup:
+        id: 0
+        groupName: 
+        challengeType: 0
+        enemies: []
     currentLayer: -1
   Text: {fileID: 2139659791}
   next_level_button: {fileID: 6179761}
@@ -3899,11 +3878,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1118676197388022830, guid: 28281b884b8b593409e55bac4a73b013, type: 3}
   m_PrefabInstance: {fileID: 1439962339}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1520802348 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4809916518344294677, guid: 4c7d1ab0ddaec4d54a295ef4bd7ef0c8, type: 3}
-  m_PrefabInstance: {fileID: 3387150349570899019}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1615993872
 GameObject:
   m_ObjectHideFlags: 0
@@ -4200,11 +4174,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 3387150350178304084, guid: 4c7d1ab0ddaec4d54a295ef4bd7ef0c8, type: 3}
   m_PrefabInstance: {fileID: 976296260}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1750212947 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 369877711998380816, guid: 4c7d1ab0ddaec4d54a295ef4bd7ef0c8, type: 3}
-  m_PrefabInstance: {fileID: 3387150349570899019}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1763048781 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7160064952519562445, guid: 09f576f188e6d43db88f3493b697860a, type: 3}
@@ -4457,34 +4426,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcc60c919f29f4c3fa8f91f8809736b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemySO: {fileID: 11400000, guid: 051a6992127394adbbe56db6240d04fc, type: 2}
-  enemyData:
-    targetType: 0
-    characterName: 
-    hpState:
-      maxHp: 0
-      currentHp: 0
-    shield: 0
-    stateEffectTest:
-      effectName: 
-      effectType: 0
-      isBuff: 1
-      consumeType: 0
-      layer: 0
-    isDeath: 0
-    StateList: []
+  enemyGroupData:
     id: 0
-    atk: 0
-    actionList: []
-  effectListDisplay: {fileID: 1928943969}
-  enemyName: {fileID: 2016194624}
-  enemyHealthBar: {fileID: 2078670311}
-  enemyShield: {fileID: 1078387168}
-  Shieldinformation: {fileID: 1750212947}
-  EnemyImage: {fileID: 155179929}
-  attackIcon: {fileID: 1520802348}
-  defendIcon: {fileID: 193430558}
-  otherIcon: {fileID: 8618020565124110960}
+    groupName: 
+    challengeType: 0
+    enemies: []
+  EnemyPrefab: {fileID: 3387150350178304085, guid: 4c7d1ab0ddaec4d54a295ef4bd7ef0c8, type: 3}
+  EnemyArea: {fileID: 2003604613}
 --- !u!114 &1928943969
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4851,17 +4799,6 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
---- !u!114 &2016194624 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3387150351318633483, guid: 4c7d1ab0ddaec4d54a295ef4bd7ef0c8, type: 3}
-  m_PrefabInstance: {fileID: 3387150349570899019}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2044081212
 GameObject:
   m_ObjectHideFlags: 0
@@ -5139,17 +5076,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2068035396}
   m_CullTransparentMesh: 1
---- !u!114 &2078670311 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7070586959665104725, guid: 4c7d1ab0ddaec4d54a295ef4bd7ef0c8, type: 3}
-  m_PrefabInstance: {fileID: 3387150349570899019}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c073ebe9a67c3437cb98ac5e7903b79b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2090945747
 GameObject:
   m_ObjectHideFlags: 0
@@ -5902,8 +5828,3 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 98bbf2652755fea44ac9c43564b28d58, type: 3}
---- !u!1 &8618020565124110960 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6384080376590542395, guid: 4c7d1ab0ddaec4d54a295ef4bd7ef0c8, type: 3}
-  m_PrefabInstance: {fileID: 3387150349570899019}
-  m_PrefabAsset: {fileID: 0}

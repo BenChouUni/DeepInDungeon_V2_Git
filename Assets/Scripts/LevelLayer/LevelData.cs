@@ -6,13 +6,23 @@ using UnityEngine;
 public class LevelData
 {
     public int Layer;
+    public LevelType leveltype;
     public int number;
-    public EnemyGroupSO EnemyGroup;
+    public EnemyGroupData EnemyGroup;
 
-    public LevelData(int _Layer, int _number, EnemyGroupSO _enemy)
+    public LevelData(int _layer, int _number, LevelType _leveltype, EnemyGroupData _enemy)
     {
-        this.Layer = _Layer;
+        this.Layer = _layer;
+        this.leveltype = _leveltype;
         this.number = _number;
         this.EnemyGroup = _enemy;
+    }
+    public LevelData()
+    {
+        this.Layer = -2;
+        this.leveltype = LevelType.NULL;
+        this.number = -1;
+        this.EnemyGroup = null;
+
     }
 }

@@ -20,10 +20,14 @@ public static class ValueCalculator
         {
             damagef *= item.AtDealDamage();
         }
-        foreach (StateEffect item in target.StateList)
+        if (target!=null)
         {
-            damagef *= item.AtReceiveDamage();
+            foreach (StateEffect item in target.StateList)
+            {
+                damagef *= item.AtReceiveDamage();
+            }
         }
+        
 
         result = (int)damagef;
  

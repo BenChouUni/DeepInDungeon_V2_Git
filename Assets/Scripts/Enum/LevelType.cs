@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public enum EnemyChallengeType
+public enum LevelType
 {
-    Strong,
-    Medium,
-    Weak
+    NULL,
+    Enemy,
+    Fatal_Enemy,
+    Store,
+    Campfire,
+    Event
 }

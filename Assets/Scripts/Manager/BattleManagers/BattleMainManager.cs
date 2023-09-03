@@ -161,7 +161,7 @@ public class BattleMainManager : MonoSingleton<BattleMainManager>
         isDragging = true;
         //cardsLayoutManager.SetLayout();
         //預備使用卡
-        UseCardRequest(battlePlayerDataManager.battleplayerData);
+        UseCardRequest();
     }
     public void EndDrag()
     {
@@ -191,15 +191,14 @@ public class BattleMainManager : MonoSingleton<BattleMainManager>
     #endregion
 
     #region USE CARD
-    //self傳入角色，也許之後能擴充給敵人使用
-    private void UseCardRequest(Character self)
+    private void UseCardRequest()
     {
         if (prepareCard!=null)
         {
             Debug.Log("準備卡牌被佔用");
         }
         prepareCard = draggingCard.GetComponent<CardDisplay>().CardData;
-        prepareCard.setSelf(self);
+        //prepareCard.setSelf(self);
     }
     /// <summary>
     /// 玩家使用卡牌
@@ -320,9 +319,9 @@ public class BattleMainManager : MonoSingleton<BattleMainManager>
         else if (gamePhase == GamePhase.EnemyAction)
         {
             Debug.Log("敵人回合結束");
-            foreach (var item in enemyManager.enemyGroup.enemies)
+            foreach (var item in enemyManager.enemyGroupData.enemies)
             {
-                foreach (StateEffect effect in item.enemyData.StateList)
+                foreach (StateEffect effect in item.StateList)
                 {
                     effect.AtTurnEnd();
                 }

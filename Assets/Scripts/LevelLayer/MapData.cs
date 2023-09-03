@@ -5,14 +5,14 @@ using UnityEngine;
 [System.Serializable]
 public class MapData 
 {
-    
-    public List<LevelData[]> allLevels = new List<LevelData[]>();
+
+    //public List<LevelData[]> allLevels = new List<LevelData[]>();
     public List<LayerData> allLayers = new List<LayerData>();
 
     public List<string> line_Info= new List<string>();
 
     [SerializeField]
-    private LevelData currentLevel = null;
+    private LevelData currentLevel = new LevelData();
 
     [SerializeField]
     private int currentLayer = -1;
@@ -20,7 +20,7 @@ public class MapData
     public LevelData Currentlevel
     {
         get {
-            if (currentLevel.EnemyGroup == null)
+            if (currentLevel.EnemyGroup != null)
             {
                 //Debug.Log("currentLevel為空");
                 //NextLevel();
@@ -44,9 +44,9 @@ public class MapData
 
     public MapData()
     {
-        allLevels = new List<LevelData[]>();
+        //allLevels = new List<LevelData[]>();
         line_Info = new List<string>();
-        currentLevel = null;
+        currentLevel = new LevelData();
         currentLayer = -1;
     }
 
@@ -72,6 +72,7 @@ public class MapData
                 return -1;
             }
         }
+        //currentLevel= null;
         return currentLayer;
     }
 
@@ -126,6 +127,7 @@ public class MapData
     /// <returns></returns>
     public bool check_Level()
     {
+        Debug.LogFormat("130 ：{0}", currentLevel);
         if(currentLevel.EnemyGroup != null)
         {
             Debug.Log("currentLevel不為空");

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Skeleton01
   m_EditorClassIdentifier: 
   id: 0
-  groupName: "\u96D9\u9AB7\u9ACF\u4EBA\u6230\u58EB"
+  groupName: SkeletonBasicGroup
   challengeType: 2
   enemies:
   - {fileID: 11400000, guid: 720766f86d4fd4fc297e0e307843656e, type: 2}

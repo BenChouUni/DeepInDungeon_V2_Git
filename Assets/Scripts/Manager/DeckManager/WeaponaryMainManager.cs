@@ -279,10 +279,15 @@ public class WeaponaryMainManager : MonoSingleton<WeaponaryMainManager>
             DeckManager.instance.RemoveCardsByType(type);
         }
         List<int> cardIDs = WeaponToCardConverter.instance.WeaponIdToCardId(weaponId);
-
+        //載入一把武器的所有卡牌
         foreach (int cardId in cardIDs)
         {
             CardData data = DeckManager.instance.GetCardDataByID(cardId);
+            //如果卡牌是初始需要的
+            if (data.initialnum == 0)
+            {
+                continue;
+            }
 
             if (type == WeaponDropZoneType.MainWeapon)
             {
@@ -292,11 +297,10 @@ public class WeaponaryMainManager : MonoSingleton<WeaponaryMainManager>
             {
                 data.SetWeaponData(PlayerDataManager.instance.playerData.SupportWeaponData);
             }
+            data.setSelf(PlayerDataManager.instance.playerData);
+            Debug.LogFormat("卡牌的描述是：{0}", data.cardActions[0].getDescription());
+            DeckManager.instance.CreateCardOnPanel(data, type);
             
-            if(data.initialnum != 0)
-            {
-                DeckManager.instance.CreateCardOnPanel(data, type);
-            }
         }
         
     }

@@ -17,6 +17,7 @@ MonoBehaviour:
     cardName: "\u8840\u7532"
     cost: 1
     initialnum: 0
+    isDirective: 0
     weaponData:
       id: 0
       weaponName: Sword
