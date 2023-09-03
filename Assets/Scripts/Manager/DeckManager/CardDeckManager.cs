@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CardDeckManager : MonoBehaviour, IDataPersistence
+public class CardDeckManager : MonoBehaviour
 {
     public List<CardData> mainDeck;
     public List<CardData> supDeck;
@@ -12,25 +12,30 @@ public class CardDeckManager : MonoBehaviour, IDataPersistence
     //public RectTransform Panel;
     public GameObject DeckDisplay;
 
-    public void LoadData(GameData data)
-    {
-        this.mainDeck = data.mainWeaponDeck;
-        this.supDeck = data.supWeaponDeck;
+    //public void LoadData(GameData data)
+    //{
+    //    this.mainDeck = data.mainWeaponDeck;
+    //    this.supDeck = data.supWeaponDeck;
 
-    }
-    public void SaveData(ref GameData data)
-    {
+    //}
+    //public void SaveData(ref GameData data)
+    //{
 
-    }
+    //}
 
     void Start()
     {
-        foreach (CardData item in mainDeck)
-        {
-            CreateCardOnPanel(item);
-        }
+        //foreach (CardData item in mainDeck)
+        //{
+        //    CreateCardOnPanel(item);
+        //}
 
-        foreach (CardData item in supDeck)
+        //foreach (CardData item in supDeck)
+        //{
+        //    CreateCardOnPanel(item);
+        //}
+
+        foreach (CardData item in BattleDeckManager.instance.battleDeck)
         {
             CreateCardOnPanel(item);
         }

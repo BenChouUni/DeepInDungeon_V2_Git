@@ -67,6 +67,8 @@ public class BattlePlayerDataManager : MonoSingleton<BattlePlayerDataManager>,ID
         ShowPlayerCharacter(this.battleplayerData);
         playerHealthBar.Show(this.battleplayerData.HpState);
 
+
+
     }
     public void SaveData(ref GameData data)
     {

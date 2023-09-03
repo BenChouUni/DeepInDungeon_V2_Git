@@ -37,6 +37,7 @@ public class BattleDeckManager : MonoSingleton<BattleDeckManager>,IDataPersisten
 
     private void Start()
     {
+        SetAllDeckCardSelf();
         canDraw = true;
         ShowCardZoneCount();
     }
@@ -69,19 +70,35 @@ public class BattleDeckManager : MonoSingleton<BattleDeckManager>,IDataPersisten
 
     }
 
+    /// <summary>
+    /// 設定所有卡牌的self資料
+    /// </summary>
+    public void SetAllDeckCardSelf()
+    {
+        foreach (CardData item in battleDeck)
+        {
+            item.setSelf(BattlePlayerDataManager.instance.battleplayerData);
+        }
+    }
+
     public void LoadData(GameData data)
     {
 
         //將兩武器的牌組合併成完整牌組
         battleDeck = new List<CardData>();
+        
         //用迴圈避免用同一個ref而非複製
         foreach (CardData item in data.mainWeaponDeck)
         {
-            battleDeck.Add(item);
+            CardData temp;
+            temp = JClone.DeepClone<CardData>(item);
+            battleDeck.Add(temp);
         }
         foreach (CardData item in data.supWeaponDeck)
         {
-            battleDeck.Add(item);
+            CardData temp;
+            temp = JClone.DeepClone<CardData>(item);
+            battleDeck.Add(temp);
         }
     }
 

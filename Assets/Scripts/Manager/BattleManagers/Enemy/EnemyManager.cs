@@ -14,7 +14,7 @@ public class EnemyManager : MonoSingleton<EnemyManager>,IDataPersistence
     public EnemyGroupData enemyGroupData;
     public GameObject EnemyPrefab;
     public Transform EnemyArea;
-    private List<EnemyControl> EnemyControls;
+    private List<EnemyControl> EnemyControls = new List<EnemyControl>();
 
     /*
     [SerializeField]

@@ -28,6 +28,7 @@ public class DeckManager : MonoSingleton<DeckManager>,IDataPersistence
             CardData cardData = data.cardData;
             if (cardData.id == cardID)
             {
+                cardData.setSelf(PlayerDataManager.instance.playerData);
                 return cardData;
             }
         }

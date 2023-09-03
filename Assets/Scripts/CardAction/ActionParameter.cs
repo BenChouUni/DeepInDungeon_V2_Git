@@ -22,7 +22,7 @@ public class ActionParameter
         {
             if (target == null)
             {
-                Debug.LogError("no target");
+                //Debug.LogError("no target");
                 //target = BattleMainManager.instance.GetCharacterByType(targetType);
             }
             return target;

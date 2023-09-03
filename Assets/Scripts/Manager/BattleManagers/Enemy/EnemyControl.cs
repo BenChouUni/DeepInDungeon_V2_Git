@@ -31,6 +31,7 @@ public class EnemyControl : MonoBehaviour
         //ShowEnemy(this.enemyData);
         //enemyHealthBar.Show(this.enemyData.HpState);
         //HideEnemyAction();
+
     }
 
     void Update()
@@ -65,6 +66,7 @@ public class EnemyControl : MonoBehaviour
             return;
         }
         this.enemyData = _enemyData;
+        enemyData.SetSelf(enemyData);
         enemyData?.setDisplayAction(ShowEnemy, enemyHealthBar.Show, effectListDisplay.ShowStateList, EnemyDie, ShowHitNumber);
         ShowEnemy(this.enemyData);
         enemyHealthBar.Show(this.enemyData.HpState);

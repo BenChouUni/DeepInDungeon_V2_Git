@@ -17,14 +17,14 @@ MonoBehaviour:
     cardName: "\u63EE\u780D"
     cost: 1
     initialnum: 2
-    image: {fileID: 0}
+    isDirective: 0
     weaponData:
       id: 0
       weaponName: Sword
       atk: 4
       def: 1
       distance: 1
-      weaponType: 2
+      weaponType: 0
     cardActions:
     - actionType: 0
       actionParameter:
@@ -38,4 +38,4 @@ MonoBehaviour:
           atk: 4
           def: 1
           distance: 1
-          weaponType: 2
+          weaponType: 0
