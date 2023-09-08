@@ -17,6 +17,7 @@ MonoBehaviour:
     cardName: "\u6B63\u9762\u683C\u6A94"
     cost: 1
     initialnum: 2
+    isDirective: 0
     weaponData:
       id: 3
       weaponName: Shield
@@ -31,6 +32,7 @@ MonoBehaviour:
         targetType: 0
         selfType: 0
         stateEffectType: 0
+        aimable: 0
         weaponData:
           id: 3
           weaponName: Shield

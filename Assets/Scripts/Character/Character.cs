@@ -9,7 +9,7 @@ using System;
 public abstract class Character
 {
     [SerializeField]
-    public  CharaterType targetType;
+    public  CharacterType targetType;
 
     [SerializeField]
     private string characterName;

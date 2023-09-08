@@ -8,9 +8,9 @@ public class ActionParameter
     [Header("數值")]
     public int value;
     [Header("接受對象")]
-    public CharaterType targetType;
+    public CharacterType targetType;
     [Header("施放者")]
-    public CharaterType selfType;
+    public CharacterType selfType;
     [Header("狀態類型，不一定會使用")]
     public StateEffectType stateEffectType;
 

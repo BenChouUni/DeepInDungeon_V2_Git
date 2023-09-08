@@ -16,11 +16,11 @@ public class WeaponDefendAction : CardActionBase
         //如果沒有目標就直接跳出
         if (parameter.Target == null) return;
         Debug.Log(ActionDescribe(parameter));
-        Character targetCharater = parameter.Target;
+        Character self = parameter.Self;
         //這邊要計算公式
         int shield = ValueCalculator.DefCalculate(parameter, parameter.WeaponData.def);
         
 
-        targetCharater.AddShield(shield);
+        self.AddShield(shield);
     }
 }

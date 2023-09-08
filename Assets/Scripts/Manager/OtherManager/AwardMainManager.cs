@@ -168,7 +168,8 @@ public class AwardMainManager : MonoSingleton<AwardMainManager>, IDataPersistenc
     {
         CardData cardData = GetCardData(id);
         GameObject new_card;
-
+        //暫時
+        cardData.setSelf(BattlePlayerDataManager.instance.battleplayerData);
         if (cardData != null)
         {
             new_card = Instantiate(CardPrefab, Panel, false);

@@ -168,7 +168,7 @@ public class BattleMainManager : MonoSingleton<BattleMainManager>
         isDragging = false;
         this.draggingCard = null;
         cardsLayoutManager.SetLayout();
-        EndUseCard();
+        //EndUseCard();
     }
     public void DropRequest(Character target)
     {
@@ -193,6 +193,7 @@ public class BattleMainManager : MonoSingleton<BattleMainManager>
     #region USE CARD
     private void UseCardRequest()
     {
+        Debug.Log("Prepare use card");
         if (prepareCard!=null)
         {
             Debug.Log("準備卡牌被佔用");
@@ -205,6 +206,7 @@ public class BattleMainManager : MonoSingleton<BattleMainManager>
     /// </summary>
     private void UseCard(Character target)
     {
+        Debug.Log("use card");
         if (prepareCard == null)
         {
             Debug.Log("沒有卡進入準備狀態，無法使用");

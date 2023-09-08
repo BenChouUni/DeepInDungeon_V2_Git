@@ -85,6 +85,7 @@ public class EnemyManager : MonoSingleton<EnemyManager>,IDataPersistence
     */
     public void DoEnemyAction()
     {
+        Debug.Log("敵人執行動作:");
         foreach (EnemyData item in enemyGroupData.enemies)
         {
             item.DoAction();

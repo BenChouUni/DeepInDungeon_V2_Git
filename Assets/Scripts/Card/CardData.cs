@@ -64,6 +64,18 @@ public class CardData
             item.actionParameter.setTarget(_target);
         }
     }
+    //是否需要瞄準
+    public bool isAimable()
+    {
+        foreach (var item in cardActions)
+        {
+            if(item.actionParameter.aimable == true)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
 }
 
 

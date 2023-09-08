@@ -43,7 +43,7 @@ public class EnemyData : Character
     {
         this.id = _id;
         this.atk = _atk;
-        this.targetType = CharaterType.Enemy;
+        this.targetType = CharacterType.Enemy;
         actionIndex = 0;
 
     }
@@ -57,6 +57,7 @@ public class EnemyData : Character
     }
     public void DoAction()
     {
+        Debug.LogFormat("{0}執行動作",this.CharacterName);
         //暫時
         //foreach (var item in actionList)
         //{

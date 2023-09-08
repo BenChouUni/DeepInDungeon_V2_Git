@@ -26,7 +26,7 @@ public class BattleCardDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
 
         if(this.GetComponent<HandCardUI>() != null)
         {
-            Debug.Log("¶}©l©ÔµP¡A°±¤îMove");
+            Debug.Log("OnBeginDrag");
             this.GetComponent<CardMoveUI>().stop_Move();
             CardsLayoutManager.instance.locking_Card();
             //this.GetComponent<HandCardUI>().enabled = false;
@@ -52,10 +52,10 @@ public class BattleCardDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
 
     public void OnDrag(PointerEventData eventData)
     {
-        //©ì²¾®É¥d¤ù§óÀH
+        //ï¿½ì²¾ï¿½É¥dï¿½ï¿½ï¿½ï¿½ï¿½H
         //this.transform.position = eventData.position;
 
-        //©I¥sArrow
+        //ï¿½Iï¿½sArrow
         //this.transform.position = new Vector2(960f, 200f);
         //this.transform.position = new Vector3(960f, 200f, eventData.position.z);
         //this.transform.position = new Vector3(960f, 200f, 5f);
@@ -82,7 +82,7 @@ public class BattleCardDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
         this.transform.SetParent(parentReturnTo);
 
         
-        //¸Ñ°£Âê©w¥dµP¡A¤âµP¥iÄ~Äò²¾°Ê
+        //ï¿½Ñ°ï¿½ï¿½ï¿½wï¿½dï¿½Pï¿½Aï¿½ï¿½Pï¿½iï¿½~ï¿½ò²¾°ï¿½
         CardsLayoutManager.instance.cancel_Lock();
 
         TurnRaycastBlock(true);

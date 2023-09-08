@@ -8,6 +8,8 @@ using UnityEngine;
 [System.Serializable]
 public class CardActionParameter : ActionParameter
 {
+    //是否需要瞄準
+    public bool aimable = false;
     //[Header("數值")]
     //public int value;
     //[Header("接受對象")]
