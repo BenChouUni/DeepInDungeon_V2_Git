@@ -7,6 +7,7 @@ using UnityEngine.UI;
 /// </summary>
 public class WeaponDisplay : MonoBehaviour
 {
+    [SerializeField]
     private WeaponData weaponData;
     /// <summary>
     /// 傳入資料後自動顯示
@@ -60,7 +61,7 @@ public class WeaponDisplay : MonoBehaviour
         }
         if (image!=null)
         {
-            //image.sprite = weaponData.image;
+            image.sprite = weaponData.weaponSprite;
         }
     }
 }

@@ -47,7 +47,7 @@ public class CardDisplay : MonoBehaviour
 
         if (cardImage!=null)
         {
-            //cardImage.sprite = cardData.image;
+            cardImage.sprite = cardData.cardSprite;
         }
         UpdateDescription();
         
