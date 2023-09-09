@@ -54,7 +54,10 @@ public class WeaponDisplay : MonoBehaviour
             distance_text.text = string.Format("最遠距離{0}", weaponData.distance);
         }
         */
-
+        if (discription_text != null)
+        {
+            discription_text.text = weaponData.weaponDescription;
+        }
         if (image!=null)
         {
             //image.sprite = weaponData.image;

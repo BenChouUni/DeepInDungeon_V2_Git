@@ -14,6 +14,7 @@ public class WeaponData
     public int distance;
 
     //public Sprite image;
+    public string weaponDescription;
 
     public WeaponType weaponType;
     
