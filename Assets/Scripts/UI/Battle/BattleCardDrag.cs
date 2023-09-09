@@ -53,14 +53,22 @@ public class BattleCardDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
     public void OnDrag(PointerEventData eventData)
     {
         //�첾�ɥd�����H
+        CardData cardData = this.GetComponent<CardDisplay>().CardData;
+        if (cardData.isAimable())
+        {
+            CardsLayoutManager.instance.arrow.GetComponent<BezierArrows>().Show(this.GetComponent<RectTransform>());
+            this.transform.rotation = (Quaternion.Euler(0f, 0f, 0f));
+        }
+        else
+        {
+            this.transform.position = eventData.position;
+        }
         //this.transform.position = eventData.position;
 
         //�I�sArrow
-        //this.transform.position = new Vector2(960f, 200f);
-        //this.transform.position = new Vector3(960f, 200f, eventData.position.z);
-        //this.transform.position = new Vector3(960f, 200f, 5f);
-        CardsLayoutManager.instance.arrow.GetComponent<BezierArrows>().Show(this.GetComponent<RectTransform>());
-        this.transform.rotation = (Quaternion.Euler(0f, 0f, 0f));
+        
+        //CardsLayoutManager.instance.arrow.GetComponent<BezierArrows>().Show(this.GetComponent<RectTransform>());
+        //this.transform.rotation = (Quaternion.Euler(0f, 0f, 0f));
         /*
         if (!DropGoBack)
         {
