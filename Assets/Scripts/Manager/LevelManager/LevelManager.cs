@@ -173,20 +173,24 @@ public class LevelManager : MonoBehaviour,IDataPersistence
 
     public void switch_level()
     {
-        if (mapData.Currentlevel.EnemyGroup == null)
+        if (mapData.CurrentLayer == 0)
         {
+            Debug.Log("剛好為0層");
             foreach (GameObject level in Levels[0])
             {
                 level.transform.GetComponent<Button>().interactable = true;
             }
         }
-        else if (mapData.Currentlevel.EnemyGroup != null)
+        else if (mapData.CurrentLayer > 0)
         {
+            Debug.Log("大於0層");
             LevelData _leveldata = mapData.Currentlevel;
             if (!mapData.check_Level())
             {
                 if (_leveldata.Layer + 1 < Layer) {
+                    Debug.Log(mapData.line_Info[_leveldata.Layer][_leveldata.number]);
                     //the first line
+                    /*
                     if (mapData.line_Info[_leveldata.Layer][_leveldata.number] != '*')
                     {
                         GameObject level = Levels[_leveldata.Layer + 1][int.Parse(mapData.line_Info[_leveldata.Layer][_leveldata.number].ToString())];
@@ -206,6 +210,7 @@ public class LevelManager : MonoBehaviour,IDataPersistence
 
                         }
                     }
+                    */
                 }
                 else
                 {
