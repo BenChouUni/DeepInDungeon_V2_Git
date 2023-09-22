@@ -106,7 +106,7 @@ public class EnemyManager : MonoSingleton<EnemyManager>,IDataPersistence
     {
         if(data.mapData.Currentlevel.EnemyGroup != null)
         {
-            enemyGroupData = JClone.DeepClone<EnemyGroupData>(data.mapData.Currentlevel.EnemyGroup);
+            enemyGroupData = JClone.BinDeepClone<EnemyGroupData>(data.mapData.Currentlevel.EnemyGroup);
             Debug.Log("mapdata的enemygroup不為空");
         }
         else

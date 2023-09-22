@@ -60,7 +60,7 @@ public class BattlePlayerDataManager : MonoSingleton<BattlePlayerDataManager>,ID
         //讀檔
         this.playerData = data.playerData;
         //完全複製一份
-        battleplayerData = JClone.DeepClone<PlayerData>(playerData);
+        battleplayerData = JClone.DeepCopyByReflection<PlayerData>(playerData);
         //委派
         this.battleplayerData.setDisplayAction(ShowPlayerCharacter,
             playerHealthBar.Show,effectListDisplayl.ShowStateList,PlayerDie,ShowHitNumber);

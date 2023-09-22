@@ -88,17 +88,18 @@ public class BattleDeckManager : MonoSingleton<BattleDeckManager>,IDataPersisten
         battleDeck = new List<CardData>();
         
         //用迴圈避免用同一個ref而非複製
+        //由於深複製在sprite上導致的問題，暫時改掉
         foreach (CardData item in data.mainWeaponDeck)
         {
             CardData temp;
-            temp = JClone.DeepClone<CardData>(item);
-            battleDeck.Add(temp);
+            temp = JClone.DeepCopyByReflection<CardData>(item);
+            battleDeck.Add(item);
         }
         foreach (CardData item in data.supWeaponDeck)
         {
             CardData temp;
-            temp = JClone.DeepClone<CardData>(item);
-            battleDeck.Add(temp);
+            temp = JClone.DeepCopyByReflection<CardData>(item);
+            battleDeck.Add(item);
         }
     }
 

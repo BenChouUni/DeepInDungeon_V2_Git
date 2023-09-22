@@ -33,6 +33,11 @@ public class WeaponDisplay : MonoBehaviour
 
     private void Show()
     {
+        if (weaponData == null)
+        {
+            Debug.LogError("沒有武器資料");
+            return;
+        }
         if (weaponName_text != null)
         {
             weaponName_text.text = weaponData.weaponName;
