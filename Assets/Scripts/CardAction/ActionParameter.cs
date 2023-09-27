@@ -42,18 +42,18 @@ public class ActionParameter
         }
     }
 
-    private StateEffect myEffect = null;
-    public StateEffect StateEffect
-    {
-        get
-        {
-            if (myEffect == null)
-            {
-                myEffect = EffectFactory.GetStatusEffect(stateEffectType, Target);
-            }
-            return myEffect;
-        }
-    }
+    //private StateEffect myEffect = null;
+    //public StateEffect StateEffect
+    //{
+    //    get
+    //    {
+    //        if (myEffect == null)
+    //        {
+    //            myEffect = EffectFactory.GetStatusEffect(stateEffectType, Target);
+    //        }
+    //        return myEffect;
+    //    }
+    //}
 
     public void setTarget(Character _target)
     {

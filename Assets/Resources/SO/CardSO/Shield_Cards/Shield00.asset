@@ -18,13 +18,16 @@ MonoBehaviour:
     cost: 1
     initialnum: 2
     isDirective: 0
+    cardSprite: {fileID: 0}
     weaponData:
       id: 3
       weaponName: Shield
       atk: 0
       def: 2
       distance: 0
+      weaponDescription: "\u57FA\u790E\u7684\u76FE\u724C"
       weaponType: 1
+      weaponSprite: {fileID: 0}
     cardActions:
     - actionType: 1
       actionParameter:
@@ -39,4 +42,7 @@ MonoBehaviour:
           atk: 0
           def: 2
           distance: 0
+          weaponDescription: "\u57FA\u790E\u7684\u76FE\u724C"
           weaponType: 1
+          weaponSprite: {fileID: 0}
+  cardImage: {fileID: 0}
