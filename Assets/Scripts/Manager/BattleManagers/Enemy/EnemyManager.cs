@@ -52,6 +52,11 @@ public class EnemyManager : MonoSingleton<EnemyManager>,IDataPersistence
         //HideEnemyAction();
         foreach (EnemyData item in enemyGroupData.enemies)
         {
+            //設定敵人資料
+            item.SetSelf(item);
+            item.SetTarget(BattlePlayerDataManager.instance.battleplayerData);
+
+            //
             GameObject obj = Instantiate(EnemyPrefab, EnemyArea);
             EnemyControl enemyControl = obj.GetComponent<EnemyControl>();
             enemyControl.setEnemyData(item);

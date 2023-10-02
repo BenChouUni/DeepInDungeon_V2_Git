@@ -8,27 +8,28 @@ public class ActionParameter
     [Header("數值")]
     public int value;
     [Header("接受對象")]
-    public CharacterType targetType;
-    [Header("施放者")]
-    public CharacterType selfType;
+    public TargetType targetType;
+    //[Header("施放者")]
+    //public CharacterType selfType;
     [Header("狀態類型，不一定會使用")]
     public StateEffectType stateEffectType;
 
     //由工廠產生
-    private Character target = null;
-    public Character Target
+    protected Character target = null;
+    //可以被繼承override
+    public virtual Character Target
     {
         get
         {
             if (target == null)
             {
-                //Debug.LogError("no target");
+                Debug.LogWarning("no target");
                 //target = BattleMainManager.instance.GetCharacterByType(targetType);
             }
             return target;
         }
     }
-    private Character self = null;
+    protected Character self = null;
     public Character Self
     {
         get
@@ -55,7 +56,7 @@ public class ActionParameter
     //    }
     //}
 
-    public void setTarget(Character _target)
+    public virtual void setTarget(Character _target)
     {
         this.target = _target;
     }

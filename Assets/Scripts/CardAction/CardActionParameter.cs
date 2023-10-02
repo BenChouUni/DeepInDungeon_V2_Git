@@ -26,7 +26,7 @@ public class CardActionParameter : ActionParameter
     //    {
     //        if (target == null)
     //        {
-    //            target= BattleMainManager.instance.GetCharacterByType(targetType);
+    //            Debug.LogWarning("no target");
     //        }
     //        return target;
     //    }
@@ -38,7 +38,7 @@ public class CardActionParameter : ActionParameter
     //    {
     //        if (self == null)
     //        {
-    //            self = BattleMainManager.instance.GetCharacterByType(selfType);
+    //            Debug.LogError("no self");
     //        }
     //        return self;
     //    }

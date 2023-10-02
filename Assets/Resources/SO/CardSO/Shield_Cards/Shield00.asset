@@ -33,7 +33,6 @@ MonoBehaviour:
       actionParameter:
         value: 2
         targetType: 0
-        selfType: 0
         stateEffectType: 0
         aimable: 0
         weaponData:

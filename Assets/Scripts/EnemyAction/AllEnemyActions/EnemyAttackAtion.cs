@@ -10,7 +10,11 @@ public class EnemyAttackAtion : EnemyActionBase
     {
         Debug.Log("敵人使用基本攻擊");
 
-        if (parameter.Target == null) return;
+        if (parameter.Target == null) {
+            Debug.LogError("no target");
+            return;
+        }
+        
         Character targetCharater = parameter.Target;
 
         List<StateEffect> targetStateList = targetCharater.StateList;
