@@ -9,7 +9,7 @@ using UnityEngine;
 public class CardActionParameter : ActionParameter
 {
     //是否需要瞄準
-    public bool aimable = false;
+    //public bool aimable = false;
     //[Header("數值")]
     //public int value;
     //[Header("接受對象")]
@@ -26,7 +26,7 @@ public class CardActionParameter : ActionParameter
         {
             if (target == null)
             {
-                Debug.LogWarning("no target");
+                //Debug.LogWarning("no target");
                 return null;
             }
 

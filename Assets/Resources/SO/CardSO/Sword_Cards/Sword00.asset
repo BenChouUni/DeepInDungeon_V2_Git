@@ -31,11 +31,9 @@ MonoBehaviour:
     cardActions:
     - actionType: 0
       actionParameter:
-        value: 2
+        value: 50
         targetType: 1
-        selfType: 0
         stateEffectType: 0
-        aimable: 0
         weaponData:
           id: 0
           weaponName: Sword

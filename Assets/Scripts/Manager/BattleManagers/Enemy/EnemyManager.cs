@@ -91,9 +91,23 @@ public class EnemyManager : MonoSingleton<EnemyManager>,IDataPersistence
     public void DoEnemyAction()
     {
         Debug.Log("敵人執行動作:");
-        foreach (EnemyData item in enemyGroupData.enemies)
+        foreach (EnemyControl ec in EnemyControls)
         {
-            item.DoAction();
+            ec.enemyData.DoAction();
+        }
+    }
+    /// <summary>
+    /// enemycontrol 傳入自己死亡的訊息
+    /// </summary>
+    public void EnemyDie(EnemyControl enemyControl)
+    {
+
+        EnemyControls.Remove(enemyControl);
+        enemyControl.DeleteObject();
+
+        if (EnemyControls.Count == 0)
+        {
+            BattleMainManager.instance.WinBattle();
         }
     }
     /*

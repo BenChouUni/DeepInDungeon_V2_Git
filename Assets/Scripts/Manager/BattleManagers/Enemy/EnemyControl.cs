@@ -81,8 +81,10 @@ public class EnemyControl : MonoBehaviour,IDropHandler
     private void EnemyDie()
     {
         Debug.LogFormat("{0} die",enemyData.CharacterName);
+        EnemyManager.instance.EnemyDie(this);
         //BattleMainManager.instance.WinBattle();
     }
+
 
     private void ShowHitNumber(int num)
     {
@@ -137,4 +139,12 @@ public class EnemyControl : MonoBehaviour,IDropHandler
         BattleMainManager.instance.DropRequest(enemyData);
     }
 
+    /// <summary>
+    /// 給Enemymanager刪除
+    /// </summary>
+    public void DeleteObject()
+    {
+        Debug.Log("刪除物件");
+        Destroy(this.gameObject);
+    }
 }

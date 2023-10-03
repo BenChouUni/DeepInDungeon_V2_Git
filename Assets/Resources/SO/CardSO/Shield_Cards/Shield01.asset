@@ -33,9 +33,7 @@ MonoBehaviour:
       actionParameter:
         value: 0
         targetType: 0
-        selfType: 0
         stateEffectType: 0
-        aimable: 0
         weaponData:
           id: 3
           weaponName: Shield
@@ -49,9 +47,7 @@ MonoBehaviour:
       actionParameter:
         value: 1
         targetType: 1
-        selfType: 0
         stateEffectType: 3
-        aimable: 0
         weaponData:
           id: 3
           weaponName: Shield
