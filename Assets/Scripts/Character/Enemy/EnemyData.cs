@@ -43,8 +43,9 @@ public class EnemyData : Character
     {
         this.id = _id;
         this.atk = _atk;
-        this.targetType = CharacterType.Enemy;
+        this.characterType = CharacterType.Enemy;
         actionIndex = 0;
+
 
     }
 
@@ -55,6 +56,15 @@ public class EnemyData : Character
             item.enemyActionParameter.setSelf(self);
         }
     }
+
+    public void SetTarget(Character target)
+    {
+        foreach (EnemyActionSet item in actionList)
+        {
+            item.enemyActionParameter.setTarget(target);
+        }
+    }
+    
     public void DoAction()
     {
         Debug.LogFormat("{0}執行動作",this.CharacterName);

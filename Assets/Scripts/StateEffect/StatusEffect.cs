@@ -87,6 +87,11 @@ public class StateEffect
         }
     }
 
+    public void setMyCharacter(Character _character)
+    {
+        myCharacter = _character;
+    }
+
     //state 函數
     #region
     //多型函數，決定在什麼階段使用

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SkeletonWarrior
   m_EditorClassIdentifier: 
   enemyData:
-    targetType: 1
+    characterType: 0
     characterName: "\u9AB7\u9ACF\u58EB\u5175(test)"
     hpState:
       maxHp: 30
@@ -35,12 +35,10 @@ MonoBehaviour:
     - actionType: 0
       enemyActionParameter:
         value: 4
-        targetType: 0
-        selfType: 1
+        targetType: 1
         stateEffectType: 0
     - actionType: 1
       enemyActionParameter:
         value: 4
-        targetType: 1
-        selfType: 1
+        targetType: 0
         stateEffectType: 0

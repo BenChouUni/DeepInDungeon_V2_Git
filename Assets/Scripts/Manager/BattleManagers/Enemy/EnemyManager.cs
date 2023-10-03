@@ -52,6 +52,11 @@ public class EnemyManager : MonoSingleton<EnemyManager>,IDataPersistence
         //HideEnemyAction();
         foreach (EnemyData item in enemyGroupData.enemies)
         {
+            //設定敵人資料
+            item.SetSelf(item);
+            item.SetTarget(BattlePlayerDataManager.instance.battleplayerData);
+
+            //
             GameObject obj = Instantiate(EnemyPrefab, EnemyArea);
             EnemyControl enemyControl = obj.GetComponent<EnemyControl>();
             enemyControl.setEnemyData(item);
@@ -86,9 +91,23 @@ public class EnemyManager : MonoSingleton<EnemyManager>,IDataPersistence
     public void DoEnemyAction()
     {
         Debug.Log("敵人執行動作:");
-        foreach (EnemyData item in enemyGroupData.enemies)
+        foreach (EnemyControl ec in EnemyControls)
         {
-            item.DoAction();
+            ec.enemyData.DoAction();
+        }
+    }
+    /// <summary>
+    /// enemycontrol 傳入自己死亡的訊息
+    /// </summary>
+    public void EnemyDie(EnemyControl enemyControl)
+    {
+
+        EnemyControls.Remove(enemyControl);
+        enemyControl.DeleteObject();
+
+        if (EnemyControls.Count == 0)
+        {
+            BattleMainManager.instance.WinBattle();
         }
     }
     /*
@@ -106,7 +125,7 @@ public class EnemyManager : MonoSingleton<EnemyManager>,IDataPersistence
     {
         if(data.mapData.Currentlevel.EnemyGroup != null)
         {
-            enemyGroupData = JClone.DeepClone<EnemyGroupData>(data.mapData.Currentlevel.EnemyGroup);
+            enemyGroupData = JClone.BinDeepClone<EnemyGroupData>(data.mapData.Currentlevel.EnemyGroup);
             Debug.Log("mapdata的enemygroup不為空");
         }
         else

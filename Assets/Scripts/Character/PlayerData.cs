@@ -43,7 +43,7 @@ public class PlayerData : Character,ICloneable
         mainWeaponData = null;
         supportWeaponData = null;
         this.energy = 3;
-        this.targetType = CharacterType.Player; //兩構造函數應該要整合
+        this.characterType = CharacterType.Player; //兩構造函數應該要整合
     }
     public PlayerData(string _name, int _maxHp, int _shield,int _energy) :base(_name,_maxHp,_shield)
     {
@@ -51,7 +51,7 @@ public class PlayerData : Character,ICloneable
         mainWeaponData = null;
         supportWeaponData = null;
         this.energy = _energy;
-        this.targetType = CharacterType.Player;
+        this.characterType = CharacterType.Player;
     }
 
 

@@ -13,7 +13,8 @@ public class CardData
 
     //卡片是否可以需要箭頭指向
     public bool isDirective;
-    //public Sprite image;
+    [SerializeField]
+    public Sprite cardSprite;
 
     public WeaponData WeaponData
     {
@@ -69,7 +70,7 @@ public class CardData
     {
         foreach (var item in cardActions)
         {
-            if(item.actionParameter.aimable == true)
+            if(item.actionParameter.targetType == TargetType.Target)
             {
                 return true;
             }
