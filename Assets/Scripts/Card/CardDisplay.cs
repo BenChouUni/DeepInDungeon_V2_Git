@@ -9,6 +9,7 @@ using System.Text;
 /// </summary>
 public class CardDisplay : MonoBehaviour
 {
+    //private CardSO cardSO;
     [SerializeField]
     private CardData cardData;
     /// <summary>
@@ -20,7 +21,8 @@ public class CardDisplay : MonoBehaviour
         {
             return cardData;
         }
-        set {
+        set
+        {
             cardData = value;
             Show();
         }
@@ -31,6 +33,12 @@ public class CardDisplay : MonoBehaviour
     public Text initialnum_text;
     public Text description_text;
     public Image cardImage;
+
+    //public void SetCardSO(CardSO _cardSO)
+    //{
+    //    cardSO = _cardSO;
+    //    cardData = cardSO.cardData;
+    //}
 
     private void Show()
     {
@@ -47,7 +55,7 @@ public class CardDisplay : MonoBehaviour
 
         if (cardImage!=null)
         {
-            //cardImage.sprite = cardData.image;
+            cardImage.sprite = cardData.cardSprite;
         }
         UpdateDescription();
         

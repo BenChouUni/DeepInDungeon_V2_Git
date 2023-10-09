@@ -58,6 +58,7 @@ MonoBehaviour:
   def_text: {fileID: 7747981215885801878}
   distance_text: {fileID: 4689107488450207350}
   discription_text: {fileID: 7858373639661216289}
+  image: {fileID: 3837004939966647697}
 --- !u!114 &6231292227945731958
 MonoBehaviour:
   m_ObjectHideFlags: 0

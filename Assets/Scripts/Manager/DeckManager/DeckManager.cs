@@ -37,6 +37,7 @@ public class DeckManager : MonoSingleton<DeckManager>,IDataPersistence
 
     public void CreateCardOnPanel(CardData cardData,WeaponDropZoneType type)
     {
+        //CardData cardData = cardSO.cardData;
         Debug.Log(cardData.cardName + " " + cardData.initialnum);
         GameObject new_initialcard;
 

@@ -7,6 +7,7 @@ using UnityEngine.UI;
 /// </summary>
 public class WeaponDisplay : MonoBehaviour
 {
+    [SerializeField]
     private WeaponData weaponData;
     /// <summary>
     /// 傳入資料後自動顯示
@@ -32,6 +33,11 @@ public class WeaponDisplay : MonoBehaviour
 
     private void Show()
     {
+        if (weaponData == null)
+        {
+            Debug.LogError("沒有武器資料");
+            return;
+        }
         if (weaponName_text != null)
         {
             weaponName_text.text = weaponData.weaponName;
@@ -54,10 +60,13 @@ public class WeaponDisplay : MonoBehaviour
             distance_text.text = string.Format("最遠距離{0}", weaponData.distance);
         }
         */
-
+        if (discription_text != null)
+        {
+            discription_text.text = weaponData.weaponDescription;
+        }
         if (image!=null)
         {
-            //image.sprite = weaponData.image;
+            image.sprite = weaponData.weaponSprite;
         }
     }
 }

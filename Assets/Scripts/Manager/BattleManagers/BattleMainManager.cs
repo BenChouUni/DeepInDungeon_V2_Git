@@ -70,11 +70,11 @@ public class BattleMainManager : MonoSingleton<BattleMainManager>
     /// </summary>
     /// <param name="type"></param>
     /// <returns></returns>
-    //public Character GetCharacterByType(CharaterType type)
+    //public Character GetCharacterByType(CharacterType type)
     //{
-    //    if (type == CharaterType.Enemy)
+    //    if (type == CharacterType.Enemy)
     //    {
-    //        if(enemyManager == null)
+    //        if (enemyManager == null)
     //        {
     //            Debug.LogError("enemyData空");
     //        }
