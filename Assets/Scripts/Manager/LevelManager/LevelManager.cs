@@ -91,7 +91,7 @@ public class LevelManager : MonoBehaviour,IDataPersistence
             
         }
         */
-
+        Debug.LogFormat("現在層數：{0}", now_layer);
         switch_level();
 
         //若目前的level是空，或與當前層數不合則切換層數按鈕
@@ -183,19 +183,21 @@ public class LevelManager : MonoBehaviour,IDataPersistence
         }
         else if (mapData.CurrentLayer > 0)
         {
-            Debug.Log("大於0層");
+            //Debug.Log("大於0層");
             LevelData _leveldata = mapData.Currentlevel;
             if (!mapData.check_Level())
             {
+                //Debug.LogFormat("now_Layer:{0} allLayer:{1}", _leveldata.Layer, Layer);
                 if (_leveldata.Layer + 1 < Layer) {
-                    Debug.Log(mapData.line_Info[_leveldata.Layer][_leveldata.number]);
+                    //Debug.Log(mapData.line_Info[_leveldata.Layer][_leveldata.number]);
                     //the first line
-                    /*
+                    
                     if (mapData.line_Info[_leveldata.Layer][_leveldata.number] != '*')
                     {
                         GameObject level = Levels[_leveldata.Layer + 1][int.Parse(mapData.line_Info[_leveldata.Layer][_leveldata.number].ToString())];
                         level.transform.GetComponent<Button>().interactable = true;
                     }
+                    
                     //the second line
                     string _line = mapData.line_Info[Layer + _leveldata.Layer + 1];
                     for (int i = 0; i < _line.Length; i++)
@@ -210,7 +212,7 @@ public class LevelManager : MonoBehaviour,IDataPersistence
 
                         }
                     }
-                    */
+                    
                 }
                 else
                 {
