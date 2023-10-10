@@ -49,31 +49,26 @@ public class BattleCardDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
         }
         */
     }
-    /// <summary>
-    /// 要判斷卡牌是否需要箭頭
-    /// </summary>
-    /// <param name="eventData"></param>
+
     public void OnDrag(PointerEventData eventData)
     {
         //�첾�ɥd�����H
-        //this.transform.position = eventData.position;
-
-        //�I�sArrow
-        //this.transform.position = new Vector2(960f, 200f);
-        //this.transform.position = new Vector3(960f, 200f, eventData.position.z);
-        //this.transform.position = new Vector3(960f, 200f, 5f);
-
-        this.transform.rotation = (Quaternion.Euler(0f, 0f, 0f));
-        if (this.GetComponent<CardDisplay>().CardData.isAimable())
+        CardData cardData = this.GetComponent<CardDisplay>().CardData;
+        if (cardData.isAimable())
         {
             CardsLayoutManager.instance.arrow.GetComponent<BezierArrows>().Show(this.GetComponent<RectTransform>());
+            this.transform.rotation = (Quaternion.Euler(0f, 0f, 0f));
         }
         else
         {
-            //卡牌跟隨滑鼠，拖拽到指定區域放下後觸發
+            this.transform.position = eventData.position;
         }
+        //this.transform.position = eventData.position;
+
+        //�I�sArrow
         
-        
+        //CardsLayoutManager.instance.arrow.GetComponent<BezierArrows>().Show(this.GetComponent<RectTransform>());
+        //this.transform.rotation = (Quaternion.Euler(0f, 0f, 0f));
         /*
         if (!DropGoBack)
         {

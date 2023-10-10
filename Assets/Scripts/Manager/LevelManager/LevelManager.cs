@@ -91,7 +91,11 @@ public class LevelManager : MonoBehaviour,IDataPersistence
             
         }
         */
+        Debug.LogFormat("現在層數：{0}", now_layer);
+        switch_level();
+
         //若目前的level是空，或與當前層數不合則切換層數按鈕
+        /*
         if(!mapData.check_Level())
         {
             for(int i = 0; i < Layer; i++)
@@ -128,9 +132,9 @@ public class LevelManager : MonoBehaviour,IDataPersistence
                 now_layer = mapData.Currentlevel.Layer;
             }
         }
+        */
         //Levels[now_layer].transform.GetComponent<Button>().interactable = true;
         //Layer = LevelPanel.transform.childCount;
-        //change_layer(now_layer);
         //CreateMap();
     }
 
@@ -149,6 +153,7 @@ public class LevelManager : MonoBehaviour,IDataPersistence
     /// <summary>
     /// 目前未用到，待修
     /// </summary>
+    /*
     public void OnClick()
     {
         //transform.GetComponent<LevelInfo>().levelData.enemy
@@ -164,14 +169,60 @@ public class LevelManager : MonoBehaviour,IDataPersistence
         }
         Fight();
     }
+    */
 
-    public void change_layer(int _layer)
+    public void switch_level()
     {
-        now_Level = LevelPanel.transform.GetChild(_layer).gameObject;
-        for (int i = 0; i < now_Level.transform.childCount; i++)
+        if (mapData.CurrentLayer == 0)
         {
-            now_Level.transform.GetChild(i).GetComponent<Button>().interactable = true;
-            now_Level.transform.GetChild(i).GetComponent<Button>().onClick.AddListener(OnClick);
+            Debug.Log("剛好為0層");
+            foreach (GameObject level in Levels[0])
+            {
+                level.transform.GetComponent<Button>().interactable = true;
+            }
+        }
+        else if (mapData.CurrentLayer > 0)
+        {
+            //Debug.Log("大於0層");
+            LevelData _leveldata = mapData.Currentlevel;
+            if (!mapData.check_Level())
+            {
+                //Debug.LogFormat("now_Layer:{0} allLayer:{1}", _leveldata.Layer, Layer);
+                if (_leveldata.Layer + 1 < Layer) {
+                    //Debug.Log(mapData.line_Info[_leveldata.Layer][_leveldata.number]);
+                    //the first line
+                    
+                    if (mapData.line_Info[_leveldata.Layer][_leveldata.number] != '*')
+                    {
+                        GameObject level = Levels[_leveldata.Layer + 1][int.Parse(mapData.line_Info[_leveldata.Layer][_leveldata.number].ToString())];
+                        level.transform.GetComponent<Button>().interactable = true;
+                    }
+                    
+                    //the second line
+                    string _line = mapData.line_Info[Layer + _leveldata.Layer + 1];
+                    for (int i = 0; i < _line.Length; i++)
+                    {
+                        if (_line[i] != '*')
+                        {
+                            if (int.Parse(_line[i].ToString()) == _leveldata.number)
+                            {
+                                GameObject level = Levels[_leveldata.Layer + 1][i];
+                                level.transform.GetComponent<Button>().interactable = true;
+                            }
+
+                        }
+                    }
+                    
+                }
+                else
+                {
+                    GameObject level = Levels[_leveldata.Layer][_leveldata.number];
+                    if (level != null)
+                    {
+                        level.transform.GetComponent<Button>().interactable = true;
+                    }
+                }
+            } 
         }
     }
 

@@ -127,10 +127,10 @@ public class MapData
     /// <returns></returns>
     public bool check_Level()
     {
-        Debug.LogFormat("130 ：{0}", currentLevel);
+        //Debug.LogFormat("130 ：{0}", currentLevel);
         if(currentLevel.EnemyGroup != null)
         {
-            Debug.Log("currentLevel不為空");
+            //Debug.Log("currentLevel不為空");
             return (currentLevel.Layer == currentLayer);
         }
         else
