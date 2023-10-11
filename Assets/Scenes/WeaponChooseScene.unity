@@ -437,9 +437,9 @@ RectTransform:
   - {fileID: 1577984547}
   - {fileID: 923093766}
   - {fileID: 1914455219}
-  - {fileID: 1521140751}
   - {fileID: 368533365}
   - {fileID: 1133097507}
+  - {fileID: 1521140751}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -628,7 +628,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerData:
-    targetType: 0
+    characterType: 0
     characterName: no name
     hpState:
       maxHp: 50
@@ -648,14 +648,18 @@ MonoBehaviour:
       atk: 0
       def: 0
       distance: 0
+      weaponDescription: 
       weaponType: 2
+      weaponSprite: {fileID: 0}
     supportWeaponData:
       id: 0
       weaponName: 
       atk: 0
       def: 0
       distance: 0
+      weaponDescription: 
       weaponType: 2
+      weaponSprite: {fileID: 0}
     coin: 0
     energy: 3
   playerName_text: {fileID: 714339127}
@@ -1330,7 +1334,7 @@ RectTransform:
   m_Children:
   - {fileID: 1131494566}
   m_Father: {fileID: 336855594}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1586,7 +1590,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 336855594}
-  m_RootOrder: 6
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2319,7 +2323,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6736520397406590470, guid: a94653aee16634bcd91959aaf9ff8d49, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 6736520397406590470, guid: a94653aee16634bcd91959aaf9ff8d49, type: 3}
       propertyPath: m_AnchorMax.x

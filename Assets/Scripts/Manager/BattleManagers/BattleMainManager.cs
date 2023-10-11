@@ -25,6 +25,11 @@ public class BattleMainManager : MonoSingleton<BattleMainManager>
     public int initialDrawCard;
     //drag drop
     private bool isDragging = false;
+    public bool IsDragging
+    {
+        get { return isDragging; }
+    }
+
     private GameObject draggingCard;
     private CardData prepareCard;
     //UI

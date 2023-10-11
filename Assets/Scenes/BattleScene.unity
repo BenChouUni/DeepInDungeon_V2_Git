@@ -779,7 +779,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1411623469}
-  m_RootOrder: 7
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1953,7 +1953,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1411623469}
-  m_RootOrder: 8
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &933528971
 GameObject:
@@ -2390,7 +2390,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8778942204298097157, guid: a6aea09202a16dc4bbd3d7d12caf3afc, type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8778942204298097157, guid: a6aea09202a16dc4bbd3d7d12caf3afc, type: 3}
       propertyPath: m_AnchorMax.x
@@ -2512,7 +2512,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   battleplayerData:
-    targetType: 0
+    characterType: 0
     characterName: no name
     hpState:
       maxHp: 50
@@ -2532,14 +2532,18 @@ MonoBehaviour:
       atk: 0
       def: 0
       distance: 0
+      weaponDescription: 
       weaponType: 2
+      weaponSprite: {fileID: 0}
     supportWeaponData:
       id: 0
       weaponName: 
       atk: 0
       def: 0
       distance: 0
+      weaponDescription: 
       weaponType: 2
+      weaponSprite: {fileID: 0}
     coin: 0
     energy: 3
   effectListDisplayl: {fileID: 1060979144}
@@ -2548,6 +2552,7 @@ MonoBehaviour:
   Panel: {fileID: 1402240267}
   WeaponInformationPrefab: {fileID: 3500494093462828073, guid: 960eba0b2ed7b4044b7da8167faeae1e, type: 3}
   Shieldinformation: {fileID: 1004802243}
+  Canvas: {fileID: 1411623469}
   maxenergy: 0
   playerName: {fileID: 820084601}
   playerHealthBar: {fileID: 774873979}
@@ -3228,7 +3233,7 @@ MonoBehaviour:
   MainID: 0
   SupportID: 0
   PlayerData:
-    targetType: 0
+    characterType: 0
     characterName: no name
     hpState:
       maxHp: 50
@@ -3248,14 +3253,18 @@ MonoBehaviour:
       atk: 0
       def: 0
       distance: 0
+      weaponDescription: 
       weaponType: 2
+      weaponSprite: {fileID: 0}
     supportWeaponData:
       id: 0
       weaponName: 
       atk: 0
       def: 0
       distance: 0
+      weaponDescription: 
       weaponType: 2
+      weaponSprite: {fileID: 0}
     coin: 0
     energy: 3
   MainWeaponDeck: []
@@ -3498,7 +3507,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1411623469}
-  m_RootOrder: 4
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1411623465
 GameObject:
@@ -3595,14 +3604,14 @@ RectTransform:
   - {fileID: 651165665}
   - {fileID: 941544957}
   - {fileID: 1125357548}
-  - {fileID: 1661347450}
-  - {fileID: 1402240267}
   - {fileID: 2003604613}
   - {fileID: 1794101150}
   - {fileID: 235715950}
-  - {fileID: 916356348}
+  - {fileID: 1661347450}
+  - {fileID: 1402240267}
   - {fileID: 428932314}
   - {fileID: 835289501}
+  - {fileID: 916356348}
   - {fileID: 303366239}
   - {fileID: 594068317}
   - {fileID: 267668652}
@@ -3901,7 +3910,7 @@ RectTransform:
   - {fileID: 871969443}
   - {fileID: 4472289264356732713}
   m_Father: {fileID: 1411623469}
-  m_RootOrder: 3
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -4090,7 +4099,7 @@ RectTransform:
   m_Children:
   - {fileID: 2044081213}
   m_Father: {fileID: 1411623469}
-  m_RootOrder: 6
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -4385,7 +4394,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8778942204298097157, guid: a6aea09202a16dc4bbd3d7d12caf3afc, type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 8778942204298097157, guid: a6aea09202a16dc4bbd3d7d12caf3afc, type: 3}
       propertyPath: m_AnchorMax.x
@@ -4633,7 +4642,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1411623469}
-  m_RootOrder: 5
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}

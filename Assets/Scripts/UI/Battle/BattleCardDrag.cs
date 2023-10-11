@@ -26,8 +26,8 @@ public class BattleCardDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
 
         if(this.GetComponent<HandCardUI>() != null)
         {
-            Debug.Log("OnBeginDrag");
-            this.GetComponent<CardMoveUI>().stop_Move();
+            //Debug.Log("OnBeginDrag");
+            this.GetComponent<CardMoveUI>().stop_Move();    //停止所有正在移動的卡牌
             CardsLayoutManager.instance.locking_Card();
             //this.GetComponent<HandCardUI>().enabled = false;
         }

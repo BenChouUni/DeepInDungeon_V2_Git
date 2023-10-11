@@ -327,6 +327,7 @@ GameObject:
   - component: {fileID: 5801621023337570098}
   - component: {fileID: 7069932224540612527}
   - component: {fileID: -4213027692127241926}
+  - component: {fileID: 3156608586462644118}
   m_Layer: 5
   m_Name: InitialCardDisplay
   m_TagString: Untagged
@@ -408,11 +409,42 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4201613166e9e48be8d6ac8d22917f87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cardData:
+    id: 0
+    cardName: 
+    cost: 0
+    initialnum: 0
+    isDirective: 0
+    cardSprite: {fileID: 0}
+    weaponData:
+      id: 0
+      weaponName: 
+      atk: 0
+      def: 0
+      distance: 0
+      weaponDescription: 
+      weaponType: 2
+      weaponSprite: {fileID: 0}
+    cardActions: []
   cardName_text: {fileID: 704851744482004965}
   cost_text: {fileID: 5145146865696524951}
   initialnum_text: {fileID: 7571993972587754727}
   description_text: {fileID: 0}
+  cardImage: {fileID: 0}
 --- !u!114 &-4213027692127241926
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5801621023337570092}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0c318bc0d74943a8897fc35ecae87fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ZoomSize: 1.15
+--- !u!114 &3156608586462644118
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -421,10 +453,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 5801621023337570092}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0c318bc0d74943a8897fc35ecae87fa, type: 3}
+  m_Script: {fileID: 11500000, guid: 78171c54649957448a3352065dc0529a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ZoomSize: 1.15
+  Card_prefab: {fileID: 6232508073499098107, guid: 6e89a30a7165ca648a25045790e82531, type: 3}
 --- !u!1 &5801621024267528988
 GameObject:
   m_ObjectHideFlags: 0
