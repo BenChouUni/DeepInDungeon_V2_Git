@@ -16,12 +16,12 @@ public class PureDefendAction : CardActionBase
     public override void DoAction(CardActionParameter parameter)
     {
         //如果沒有目標就直接跳出
-        if (parameter.Target == null) return;
-        Character targetCharater = parameter.Target;
-        //這邊要計算公式
-        int shield = parameter.value;
+        if (parameter.TargetList == null) return;
 
-
-        targetCharater.AddShield(shield);
+        foreach (Character item in parameter.TargetList)
+        {
+         
+            item.AddShield(parameter.value);
+        }
     }
 }

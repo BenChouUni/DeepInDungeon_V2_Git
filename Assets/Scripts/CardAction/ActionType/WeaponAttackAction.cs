@@ -8,7 +8,7 @@ public class WeaponAttackAction : CardActionBase
 
     public override string ActionDescribe(CardActionParameter parameter)
     {
-        return string.Format("使用{0}，造成{1}點傷害",parameter.WeaponData.weaponName , ValueCalculator.DmgCalculate(parameter, parameter.WeaponData.atk));
+        return string.Format("使用{0}，造成{1}點傷害",parameter.WeaponData.weaponName , parameter.value + parameter.WeaponData.atk);
         
     }
 
@@ -16,19 +16,15 @@ public class WeaponAttackAction : CardActionBase
     {
         
         //如果沒有目標就直接跳出
-        if (parameter.Target == null) return;
+        if (parameter.TargetList == null) return;
         Debug.Log(ActionDescribe(parameter));
-        Character targetCharater = parameter.Target;
+        foreach (Character item in parameter.TargetList)
+        {
+            int dmg = ValueCalculator.DmgCalculate(parameter.Self, item, parameter.value + parameter.WeaponData.atk);
+            item.GetDamage(dmg);
+        }
 
-        List<StateEffect> targetStateList = targetCharater.StateList;
 
-        Character selCharacter = parameter.Self;
-        List<StateEffect> myStateList = selCharacter.StateList;
-
-        //這邊要計算公式
-        int damage = ValueCalculator.DmgCalculate(parameter, parameter.WeaponData.atk);
-        
-        targetCharater.GetDamage(damage);
         
     }
 

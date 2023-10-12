@@ -9,8 +9,10 @@ public class EnemyDefendActions : EnemyActionBase
     public override void DoAction(EnemyActionParameter parameter, EnemyData enemyData)
     {
         Debug.Log("敵人使用防禦");
-        int def = ValueCalculator.DefCalculate(parameter, enemyData.ATK);
-        //這邊可能有算式
-        parameter.Target.AddShield(def);
+        foreach (Character item in parameter.TargetList)
+        {
+            int shield = ValueCalculator.DefCalculate(parameter.Self, item, parameter.value);
+            item.AddShield(shield);
+        }
     }
 }

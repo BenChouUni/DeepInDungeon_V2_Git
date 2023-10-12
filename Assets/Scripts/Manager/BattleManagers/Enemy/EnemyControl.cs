@@ -107,11 +107,11 @@ public class EnemyControl : MonoBehaviour,IDropHandler
         {
             case EnemyActionType.Attack:
                 Debug.Log("敵人下回合要攻擊");
-                ShowIcon(attackIcon, ValueCalculator.DmgCalculate(nextParameter, enemyData.ATK).ToString());
+                ShowIcon(attackIcon, ValueCalculator.DmgCalculate(nextParameter.Self,nextParameter.Opponent, nextParameter.value + enemyData.ATK).ToString());
                 break;
             case EnemyActionType.Defend:
                 Debug.Log("敵人要防禦");
-                ShowIcon(defendIcon, ValueCalculator.DefCalculate(nextParameter, enemyData.ATK).ToString());
+                ShowIcon(defendIcon, ValueCalculator.DefCalculate(nextParameter.Self, nextParameter.Opponent, nextParameter.value).ToString());
                 break;
 
             default:

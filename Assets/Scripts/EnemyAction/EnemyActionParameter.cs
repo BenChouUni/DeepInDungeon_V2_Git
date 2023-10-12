@@ -1,5 +1,6 @@
+using System.Collections;
+using System.Collections.Generic;
 using System;
-
 using UnityEngine;
 /// <summary>
 /// 跟CardActionParameter高度重複，或許該用繼承
@@ -17,28 +18,10 @@ public class EnemyActionParameter : ActionParameter
     //[Header("狀態類型，不一定會使用")]
     //public StateEffectType stateEffectType;
 
-
+    public override Character Opponent => BattlePlayerDataManager.instance.battleplayerData;
     ////由工廠產生
     //private Character target = null;
-    public override Character Target
-    {
-        get
-        {
-            if (targetType == TargetType.Self)
-            {
-                return Self;
-            }
-            else if(targetType == TargetType.Target)
-            {
-                return Player;
-            }
-            else
-            {
-                Debug.LogError("enemy's targetType has problem");
-                return null;
-            }
-        }
-    }
+
     //private Character self = null;
     //public Character Self
     //{
@@ -52,19 +35,7 @@ public class EnemyActionParameter : ActionParameter
     //    }
     //}
 
-    private Character player = null;
-    public Character Player
-    {
-        get
-        {
-            if (player == null)
-            {
-                Debug.LogWarning("player is null");
-                player = BattlePlayerDataManager.instance.battleplayerData;
-            }
-            return player;
-        }
-    }
+
 
     //private StateEffect myEffect = null;
     //public StateEffect StateEffect

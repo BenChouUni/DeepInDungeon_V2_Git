@@ -13,12 +13,17 @@ public class GiveStateAction : CardActionBase
 
     public override void DoAction(CardActionParameter parameter)
     {
-        Character targetCharater = parameter.Target;
-        StateEffect stateEffect = EffectFactory.GetStatusEffect(parameter.stateEffectType,targetCharater);
-        stateEffect.setLayer(parameter.value);
 
-        Debug.LogFormat("給予{0}狀態{1}層", stateEffect.effectType, parameter.value);
-        targetCharater.AddStateEffect(stateEffect);
+        
+
+        foreach (Character item in parameter.TargetList)
+        { 
+            StateEffect stateEffect = EffectFactory.GetStatusEffect(parameter.stateEffectType,item);
+            stateEffect.setLayer(parameter.value);
+
+            Debug.LogFormat("給予{0}狀態{1}層", stateEffect.effectType, parameter.value);
+            item.AddStateEffect(stateEffect);
+        }
 
     }
 }

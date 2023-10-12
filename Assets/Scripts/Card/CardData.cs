@@ -70,7 +70,7 @@ public class CardData
     {
         foreach (var item in cardActions)
         {
-            if(item.actionParameter.targetType == TargetType.Target)
+            if(item.actionParameter.targetType == TargetType.Opponent)
             {
                 return true;
             }
