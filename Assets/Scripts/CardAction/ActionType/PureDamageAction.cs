@@ -42,6 +42,7 @@ public class PureDamageAction : CardActionBase
             damagef *= item.AtDealDamage();
         }
         int damage = (int)damagef;
+        //Debug.Log(damage);
 
         targetCharater.GetDamage(damage);
     }

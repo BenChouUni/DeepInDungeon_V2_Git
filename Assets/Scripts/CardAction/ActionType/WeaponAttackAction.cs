@@ -27,7 +27,8 @@ public class WeaponAttackAction : CardActionBase
 
         //這邊要計算公式
         int damage = ValueCalculator.DmgCalculate(parameter, parameter.WeaponData.atk);
-        
+
+        Debug.Log(damage);
         targetCharater.GetDamage(damage);
         
     }

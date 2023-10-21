@@ -18,19 +18,21 @@ MonoBehaviour:
     cost: 1
     initialnum: 0
     isDirective: 0
+    cardSprite: {fileID: 0}
     weaponData:
       id: 0
       weaponName: Sword
       atk: 4
       def: 1
       distance: 1
+      weaponDescription: 
       weaponType: 0
+      weaponSprite: {fileID: 0}
     cardActions:
     - actionType: 4
       actionParameter:
         value: 1
         targetType: 0
-        selfType: 0
         stateEffectType: 0
         weaponData:
           id: 0
@@ -38,12 +40,13 @@ MonoBehaviour:
           atk: 4
           def: 1
           distance: 1
+          weaponDescription: 
           weaponType: 0
+          weaponSprite: {fileID: 0}
     - actionType: 1
       actionParameter:
         value: 1
         targetType: 0
-        selfType: 0
         stateEffectType: 0
         weaponData:
           id: 0
@@ -51,4 +54,7 @@ MonoBehaviour:
           atk: 4
           def: 1
           distance: 1
+          weaponDescription: 
           weaponType: 0
+          weaponSprite: {fileID: 0}
+  cardImage: {fileID: 0}

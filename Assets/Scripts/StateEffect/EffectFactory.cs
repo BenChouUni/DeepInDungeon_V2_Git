@@ -22,6 +22,8 @@ public static class EffectFactory
                 return new PowerEffect(_myCharacter);
             case StateEffectType.Buffer:
                 return new BufferEffect(_myCharacter);
+            case StateEffectType.Concentrate:
+                return new ConcentrateEffect(_myCharacter);
             default:
                 return null;
                 

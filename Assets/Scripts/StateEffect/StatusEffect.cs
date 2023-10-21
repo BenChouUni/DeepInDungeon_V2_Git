@@ -131,6 +131,7 @@ public class StateEffect
     /// <returns></returns>
     public virtual float AtDealDamage() { return 1; }
 
+
     /// <summary>
     /// 額外增加攻擊數值
     /// </summary>
