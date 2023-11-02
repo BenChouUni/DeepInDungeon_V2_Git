@@ -1,35 +1,36 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-/// <summary>
-/// ä¸é€éæ­¦å™¨çš„ç´”ç²¹å‚·å®³
-/// </summary>
-public class PureDamageAction : CardActionBase
+
+public class UnarmedDamageAction : CardActionBase
 {
-    public override ActionType type => ActionType.PureDamage;
+    public override ActionType type => ActionType.UnarmedDamage;
 
     public override string ActionDescribe(CardActionParameter parameter)
     {
-        return string.Format("ç›´æ¥å‘{0}é€ æˆ{1}é»å‚·å®³",parameter.targetType ,parameter.value);
+        return string.Format("ª½±µ¦V{0}³y¦¨{1}ÂI®{¤â¶Ë®`", parameter.targetType, parameter.value);
     }
 
     public override void DoAction(CardActionParameter parameter)
     {
-        //å¦‚æœæ²’æœ‰ç›®æ¨™å°±ç›´æ¥è·³å‡º
+        //¦pªG¨S¦³¥Ø¼Ğ´Nª½±µ¸õ¥X
         if (parameter.Target == null) return;
         Character targetCharater = parameter.Target;
+
         List<StateEffect> targetStateList = targetCharater.StateList;
 
         Character selCharacter = parameter.Self;
         List<StateEffect> myStateList = selCharacter.StateList;
 
 
-        //é€™é‚Šè¦è¨ˆç®—å…¬å¼
+        //³oÃä­n­pºâ¤½¦¡
         float damagef = (parameter.value);
-
-        int damage = (int)damagef;
-        //Debug.Log(damage);
-
+        int damage = ValueCalculator.DmgCalculate(parameter, 0);
+        foreach (StateEffect item in myStateList)
+        {
+            item.AfterUse(type);
+        }
+        Debug.Log(damage);
         targetCharater.GetDamage(damage);
     }
 }

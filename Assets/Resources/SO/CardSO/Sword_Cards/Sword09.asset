@@ -16,7 +16,7 @@ MonoBehaviour:
     id: 9
     cardName: "\u653E\u5927\u65AC"
     cost: 3
-    initialnum: 0
+    initialnum: 5
     isDirective: 0
     cardSprite: {fileID: 0}
     weaponData:
@@ -29,7 +29,7 @@ MonoBehaviour:
       weaponType: 0
       weaponSprite: {fileID: 0}
     cardActions:
-    - actionType: 2
+    - actionType: 8
       actionParameter:
         value: 25
         targetType: 1

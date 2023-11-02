@@ -13,4 +13,5 @@ public enum ActionType
     Heal,
     Give,
     RealDefend,
+    UnarmedDamage,
 }
