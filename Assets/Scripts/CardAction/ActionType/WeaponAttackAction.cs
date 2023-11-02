@@ -28,6 +28,11 @@ public class WeaponAttackAction : CardActionBase
         //這邊要計算公式
         int damage = ValueCalculator.DmgCalculate(parameter, parameter.WeaponData.atk);
 
+        //reduce layer after weaponaction
+        foreach(StateEffect item in myStateList)
+        {
+            item.AfterUse(type);
+        }
         Debug.Log(damage);
         targetCharater.GetDamage(damage);
         
