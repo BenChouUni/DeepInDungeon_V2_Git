@@ -34,7 +34,6 @@ MonoBehaviour:
         value: 1
         targetType: 1
         stateEffectType: 0
-        aimable: 1
         weaponData:
           id: 0
           weaponName: Sword
@@ -49,7 +48,6 @@ MonoBehaviour:
         value: 1
         targetType: 0
         stateEffectType: 4
-        aimable: 1
         weaponData:
           id: 0
           weaponName: Sword

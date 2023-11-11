@@ -386,7 +386,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 0}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -414,11 +414,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c48612b12c88407bbd266484acc0e63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weaponData:
+    id: 0
+    weaponName: 
+    atk: 0
+    def: 0
+    distance: 0
+    weaponDescription: 
+    weaponType: 2
+    weaponSprite: {fileID: 0}
   weaponName_text: {fileID: 4287902950066746104}
   atk_text: {fileID: 7425046540912937774}
   def_text: {fileID: 5349897782447724443}
   distance_text: {fileID: 9117307423145409458}
   discription_text: {fileID: 1801005990453965924}
+  image: {fileID: 0}
 --- !u!1 &3538943774866822129
 GameObject:
   m_ObjectHideFlags: 0
@@ -716,7 +726,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:

@@ -17,11 +17,16 @@ MonoBehaviour:
     cardName: "\u7570\u8CEA\u683C\u6A94"
     cost: 1
     initialnum: 0
+    isDirective: 0
+    cardSprite: {fileID: 0}
     weaponData:
       id: 0
       weaponName: 
       atk: 0
       def: 0
       distance: 0
+      weaponDescription: 
       weaponType: 2
+      weaponSprite: {fileID: 0}
     cardActions: []
+  cardImage: {fileID: 0}

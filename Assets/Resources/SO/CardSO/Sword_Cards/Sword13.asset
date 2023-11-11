@@ -16,12 +16,31 @@ MonoBehaviour:
     id: 13
     cardName: "\u78E8\u5200"
     cost: 1
-    initialnum: 0
+    initialnum: 3
+    isDirective: 0
+    cardSprite: {fileID: 0}
     weaponData:
       id: 0
       weaponName: Sword
       atk: 4
       def: 1
-      distance: 0
+      distance: 1
+      weaponDescription: "\u57FA\u790E\u7684\u8FD1\u6230\u6B66\u5668"
       weaponType: 0
-    cardActions: []
+      weaponSprite: {fileID: 21300000, guid: 4b6ca536d3deb42f9aba3d89d5d214b4, type: 3}
+    cardActions:
+    - actionType: 6
+      actionParameter:
+        value: 2
+        targetType: 0
+        stateEffectType: 6
+        weaponData:
+          id: 0
+          weaponName: Sword
+          atk: 4
+          def: 1
+          distance: 1
+          weaponDescription: "\u57FA\u790E\u7684\u8FD1\u6230\u6B66\u5668"
+          weaponType: 0
+          weaponSprite: {fileID: 21300000, guid: 4b6ca536d3deb42f9aba3d89d5d214b4, type: 3}
+  cardImage: {fileID: 0}

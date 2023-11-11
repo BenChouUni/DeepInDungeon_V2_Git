@@ -32,8 +32,11 @@ public static class CardActionFactory
             case ActionType.Give:
                 cardActionBase = new GiveStateAction();
                 break;
-            
-            
+            case ActionType.UnarmedDamage:
+                cardActionBase = new UnarmedDamageAction();
+                break;
+
+
         }
         return cardActionBase;
     }

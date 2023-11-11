@@ -18,6 +18,7 @@ public class BattlePlayerDataManager : MonoSingleton<BattlePlayerDataManager>,ID
     public Transform Panel;
     public GameObject WeaponInformationPrefab;
     public GameObject Shieldinformation;
+    public Transform Canvas;
 
     private int currentEnergy;
     public int CurrentEnergy
@@ -130,12 +131,15 @@ public class BattlePlayerDataManager : MonoSingleton<BattlePlayerDataManager>,ID
     }
     public GameObject CallWeaponInformation(WeaponData data) 
     {
-        
-        GameObject WeaponInformation;
-        WeaponInformation = Instantiate(WeaponInformationPrefab, Status, false);
-        WeaponInformation.GetComponent<WeaponDisplay>().WeaponData = data;
-        WeaponInformation.transform.position = new Vector3(Panel.position.x, Panel.position.y, 0);
-        return WeaponInformation;
+        if (BattleMainManager.instance.IsDragging == false)     //若正在拖移卡片
+        {
+            GameObject WeaponInformation;
+            WeaponInformation = Instantiate(WeaponInformationPrefab, Canvas, false);
+            WeaponInformation.GetComponent<WeaponDisplay>().WeaponData = data;
+            WeaponInformation.transform.position = new Vector3(Panel.position.x, Panel.position.y, 0);
+            return WeaponInformation;
+        }
+        return null;
     }
     public void RemoveWeaponInformation(GameObject weaponInformation)
     {

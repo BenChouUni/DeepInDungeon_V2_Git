@@ -18,4 +18,6 @@ MonoBehaviour:
     atk: 0
     def: 3
     distance: 0
+    weaponDescription: 
     weaponType: 1
+    weaponSprite: {fileID: 0}

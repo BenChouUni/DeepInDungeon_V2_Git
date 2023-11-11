@@ -20,3 +20,4 @@ MonoBehaviour:
     distance: 0
     weaponDescription: "\u57FA\u790E\u7684\u76FE\u724C"
     weaponType: 1
+    weaponSprite: {fileID: 0}

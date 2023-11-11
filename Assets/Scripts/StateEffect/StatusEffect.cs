@@ -103,10 +103,18 @@ public class StateEffect
     /// 回合結束時發動
     /// </summary>
     public virtual void AtTurnEnd() { }
+
+    /// <summary>
+    /// Use and then consume, determine by actiontype
+    /// </summary>
+    /// <param name="type"></param>
+    public virtual void AfterUse(ActionType type){}
+
     /// <summary>
     /// 武器攻擊前時發動
     /// </summary>
     /// <param name="weaponData"></param>
+    /// 
     public virtual void AtWeaponAttackStart(WeaponData weaponData) { }
     /// <summary>
     /// 武器攻擊後發動
@@ -130,6 +138,7 @@ public class StateEffect
     /// </summary>
     /// <returns></returns>
     public virtual float AtDealDamage() { return 1; }
+
 
     /// <summary>
     /// 額外增加攻擊數值

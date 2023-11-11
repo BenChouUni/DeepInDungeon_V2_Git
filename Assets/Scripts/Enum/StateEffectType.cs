@@ -10,5 +10,6 @@ public enum StateEffectType
     Bleed,
     Weak,
     Power,
-    Buffer
+    Buffer,
+    Concentrate
 }

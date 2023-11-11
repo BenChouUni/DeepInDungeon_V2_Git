@@ -20,3 +20,4 @@ MonoBehaviour:
     distance: 0
     weaponDescription: 
     weaponType: 2
+    weaponSprite: {fileID: 0}
