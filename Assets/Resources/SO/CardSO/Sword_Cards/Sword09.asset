@@ -25,9 +25,9 @@ MonoBehaviour:
       atk: 4
       def: 1
       distance: 1
-      weaponDescription: 
+      weaponDescription: "\u57FA\u790E\u7684\u8FD1\u6230\u6B66\u5668"
       weaponType: 0
-      weaponSprite: {fileID: 0}
+      weaponSprite: {fileID: 21300000, guid: 4b6ca536d3deb42f9aba3d89d5d214b4, type: 3}
     cardActions:
     - actionType: 8
       actionParameter:
@@ -40,7 +40,7 @@ MonoBehaviour:
           atk: 4
           def: 1
           distance: 1
-          weaponDescription: 
+          weaponDescription: "\u57FA\u790E\u7684\u8FD1\u6230\u6B66\u5668"
           weaponType: 0
-          weaponSprite: {fileID: 0}
+          weaponSprite: {fileID: 21300000, guid: 4b6ca536d3deb42f9aba3d89d5d214b4, type: 3}
   cardImage: {fileID: 0}
