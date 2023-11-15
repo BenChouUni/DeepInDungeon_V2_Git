@@ -79,7 +79,7 @@ public class StateEffect
     /// </summary>
     public virtual void DtecLayer()
     {
-        if (layer <= 0)
+        if (layer == 0)
         {
             layer = 0;
             removeSelf?.Invoke(this);

@@ -20,12 +20,17 @@ public class BattlePlayerDataManager : MonoSingleton<BattlePlayerDataManager>,ID
     public GameObject Shieldinformation;
     public Transform Canvas;
 
+
+    //Now_Info
     private int currentEnergy;
     public int CurrentEnergy
     {
         get { return currentEnergy;}
     }
     public int maxenergy;
+
+    public int this_turn_usecard_num;   //use to record this turn use how many card
+
 
     public Text playerName;
     public HealthBar playerHealthBar;
