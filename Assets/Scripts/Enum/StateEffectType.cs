@@ -11,5 +11,6 @@ public enum StateEffectType
     Weak,
     Power,
     Buffer,
-    Concentrate
+    Concentrate,
+    Accumulation
 }
