@@ -247,6 +247,9 @@ public class BattleMainManager : MonoSingleton<BattleMainManager>
         //Destroy(draggingCard);
         draggingCard = null;
 
+
+        BattlePlayerDataManager.instance.this_turn_usecard_num += 1;
+
         cardsLayoutManager.cancel_Lock();
         EndUseCard();
 
@@ -299,6 +302,7 @@ public class BattleMainManager : MonoSingleton<BattleMainManager>
             //敵人回合開始時顯示敵人下一步
             enemyManager.ShowEnemyAction();
 
+            BattlePlayerDataManager.instance.this_turn_usecard_num = 0;
         }
         else if (gamePhase == GamePhase.EnemyAction)
         {
@@ -348,6 +352,7 @@ public class BattleMainManager : MonoSingleton<BattleMainManager>
     {
         if (gamePhase == GamePhase.PlayerAction)
         {
+            //BattlePlayerDataManager.instance.this_turn_usecard_num = 1;
             TurnEnd();
         }
     }

@@ -24,7 +24,7 @@ public class ConcentrateEffect : StateEffect
 
     public override void AfterUse(ActionType type)
     {
-        if(type == ActionType.WeaponAttack || type == ActionType.RealDefend)
+        if(type == ActionType.WeaponAttack || type == ActionType.UnarmedDamage)
         {
             while (Layer != 0)
             {

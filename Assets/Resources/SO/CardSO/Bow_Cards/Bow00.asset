@@ -28,5 +28,19 @@ MonoBehaviour:
       weaponDescription: 
       weaponType: 2
       weaponSprite: {fileID: 0}
-    cardActions: []
+    cardActions:
+    - actionType: 0
+      actionParameter:
+        value: 2
+        targetType: 1
+        stateEffectType: 0
+        weaponData:
+          id: 0
+          weaponName: 
+          atk: 0
+          def: 0
+          distance: 0
+          weaponDescription: 
+          weaponType: 0
+          weaponSprite: {fileID: 0}
   cardImage: {fileID: 0}
