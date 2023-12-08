@@ -8,21 +8,19 @@ public class WeaponDefendAction : CardActionBase
 
     public override string ActionDescribe(CardActionParameter parameter)
     {
-        return string.Format("使用{0}，獲得{1}點護甲", parameter.WeaponData.weaponName, parameter.value + parameter.WeaponData.def);
+        return string.Format("使用{0}，獲得{1}點護甲", parameter.WeaponData.weaponName, ValueCalculator.DefCalculate(parameter.Self, parameter.TargetList[0], parameter.WeaponData.def));
     }
 
     public override void DoAction(CardActionParameter parameter)
     {
         //如果沒有目標就直接跳出
         if (parameter.TargetList == null) return;
-        //Debug.Log(ActionDescribe(parameter));
+        Debug.Log(ActionDescribe(parameter));
 
-        foreach (Character item in parameter.TargetList)
-        {
-            int shield = ValueCalculator.DefCalculate(parameter.Self, item,parameter.value + parameter.WeaponData.def);
-            item.AddShield(shield);
-        }
-        
+        Character self = parameter.Self;
+        //這邊要計算公式
+        int shield = ValueCalculator.DefCalculate(parameter.Self, null, parameter.WeaponData.def);
 
+        self.AddShield(shield);
     }
 }

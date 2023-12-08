@@ -16,20 +16,24 @@ public class PureDamageAction : CardActionBase
     public override void DoAction(CardActionParameter parameter)
     {
         //如果沒有目標就直接跳出
-        if (parameter.Target == null) return;
-        Character targetCharater = parameter.Target;
-        List<StateEffect> targetStateList = targetCharater.StateList;
+        if (parameter.TargetList == null) return;
+        foreach (Character target in parameter.TargetList)
+        {
+            Character targetCharater = target;
+            List<StateEffect> targetStateList = targetCharater.StateList;
 
-        Character selCharacter = parameter.Self;
-        List<StateEffect> myStateList = selCharacter.StateList;
+            Character selCharacter = parameter.Self;
+            List<StateEffect> myStateList = selCharacter.StateList;
 
 
-        //這邊要計算公式
-        float damagef = (parameter.value);
+            //這邊要計算公式
+            float damagef = (parameter.value);
 
-        int damage = (int)damagef;
-        //Debug.Log(damage);
+            int damage = (int)damagef;
+            //Debug.Log(damage);
 
-        targetCharater.GetDamage(damage);
+            targetCharater.GetDamage(damage);
+        }
+        
     }
 }

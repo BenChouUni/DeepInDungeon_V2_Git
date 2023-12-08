@@ -4,7 +4,7 @@ using UnityEngine;
 [Serializable]
 public abstract class EnemyActionBase 
 {
-    public abstract EnemyActionType type { get; }
+    public abstract ActionType type { get; }
 
     protected EnemyActionBase() { }
 

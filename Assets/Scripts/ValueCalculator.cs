@@ -5,6 +5,13 @@ using UnityEngine;
 
 public static class ValueCalculator
 {
+    /// <summary>
+    /// receiver可以為null
+    /// </summary>
+    /// <param name="giver"></param>
+    /// <param name="receiver"></param>
+    /// <param name="basicDmg"></param>
+    /// <returns></returns>
     public static int DmgCalculate(Character giver,Character receiver,float basicDmg)
     {
         int result = 0;

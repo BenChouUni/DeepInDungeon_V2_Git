@@ -175,6 +175,7 @@ public class BattleMainManager : MonoSingleton<BattleMainManager>
         cardsLayoutManager.SetLayout();
         //EndUseCard();
     }
+    //在敵人身上drop的時候
     public void DropRequest(Character target)
     {
         cardsLayoutManager.arrow.GetComponent<BezierArrows>().Hide();

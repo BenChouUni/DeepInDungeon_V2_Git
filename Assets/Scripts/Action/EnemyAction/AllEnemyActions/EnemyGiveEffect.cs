@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyGiveEffect : EnemyActionBase
 {
-    public override EnemyActionType type => EnemyActionType.GiveEffect;
+    public override ActionType type => ActionType.Give;
 
     public override void DoAction(EnemyActionParameter parameter, EnemyData enemyData)
     {
@@ -17,6 +17,13 @@ public class EnemyGiveEffect : EnemyActionBase
             stateEffect.setLayer(parameter.value);
             item.AddStateEffect(stateEffect);
         }
+
+        //Character item  = parameter.Target;
+        
+
+        //    StateEffect stateEffect = EffectFactory.GetStatusEffect(parameter.stateEffectType, item);
+        //    stateEffect.setLayer(parameter.value);
+        //    item.AddStateEffect(stateEffect);
         
 
     }

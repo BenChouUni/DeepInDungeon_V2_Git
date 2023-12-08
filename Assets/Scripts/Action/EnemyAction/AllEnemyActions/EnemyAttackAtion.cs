@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Progress;
 
 public class EnemyAttackAtion : EnemyActionBase
 {
-    public override EnemyActionType type => EnemyActionType.Attack;
+    public override ActionType type => ActionType.WeaponAttack;
 
     public override void DoAction(EnemyActionParameter parameter, EnemyData enemyData)
     {
@@ -15,10 +16,12 @@ public class EnemyAttackAtion : EnemyActionBase
             return;
         }
 
-
+        //Character item = parameter.Target;
+        //int dmg = ValueCalculator.DmgCalculate(parameter.Self, item, parameter.value + enemyData.ATK);
+        //item.GetDamage(dmg);
         foreach (Character item in parameter.TargetList)
         {
-            int dmg= ValueCalculator.DmgCalculate(parameter.Self, item, parameter.value + enemyData.ATK);
+            int dmg = ValueCalculator.DmgCalculate(parameter.Self, item, parameter.value + enemyData.ATK);
             item.GetDamage(dmg);
         }
     }
