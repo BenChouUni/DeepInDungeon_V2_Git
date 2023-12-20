@@ -18,7 +18,7 @@ public class ConcentrateEffect : StateEffect
     {
         int num = Layer;
         
-        return num;
+        return  (1 + num);
         
     }
 

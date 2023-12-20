@@ -31,7 +31,7 @@ MonoBehaviour:
     cardActions:
     - actionType: 6
       actionParameter:
-        value: 2
+        value: 1
         targetType: 0
         stateEffectType: 6
         weaponData:
