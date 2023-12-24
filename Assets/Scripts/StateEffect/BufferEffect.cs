@@ -19,4 +19,10 @@ public class BufferEffect : StateEffect
         ConsumeLayer();
         return 0f;
     }
+
+
+    public override void AfterUse(ActionType type)
+    {
+
+    }
 }

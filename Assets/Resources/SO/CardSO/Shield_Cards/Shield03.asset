@@ -25,7 +25,7 @@ MonoBehaviour:
       atk: 0
       def: 2
       distance: 0
-      weaponDescription: 
+      weaponDescription: "\u57FA\u790E\u7684\u76FE\u724C"
       weaponType: 1
       weaponSprite: {fileID: 0}
     cardActions:
@@ -40,7 +40,7 @@ MonoBehaviour:
           atk: 0
           def: 2
           distance: 0
-          weaponDescription: 
+          weaponDescription: "\u57FA\u790E\u7684\u76FE\u724C"
           weaponType: 1
           weaponSprite: {fileID: 0}
   cardImage: {fileID: 0}

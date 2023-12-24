@@ -17,11 +17,16 @@ MonoBehaviour:
     cardName: "\u62D4\u5200"
     cost: 0
     initialnum: 0
+    isDirective: 0
+    cardSprite: {fileID: 0}
     weaponData:
       id: 0
       weaponName: Sword
       atk: 4
       def: 1
       distance: 0
+      weaponDescription: 
       weaponType: 0
+      weaponSprite: {fileID: 0}
     cardActions: []
+  cardImage: {fileID: 0}
