@@ -6,7 +6,7 @@ public class EnemyDefendActions : EnemyActionBase
 {
     public override ActionType type => ActionType.WeaponDefend;
 
-    public override void DoAction(EnemyActionParameter parameter, EnemyData enemyData)
+    public override void DoEnemyAction(EnemyActionParameter parameter, EnemyData enemyData)
     {
         Debug.Log("敵人使用防禦");
         //Character item = parameter.Self;

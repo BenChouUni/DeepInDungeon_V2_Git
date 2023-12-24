@@ -26,6 +26,6 @@ public class EnemyActionSet
 
     public void DoAction(EnemyData enemyData)
     {
-        EnemyActionBase.DoAction(enemyActionParameter, enemyData);
+        EnemyActionBase.DoEnemyAction(enemyActionParameter, enemyData);
     }
 }

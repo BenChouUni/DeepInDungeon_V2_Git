@@ -7,7 +7,7 @@ public class EnemyAttackAtion : EnemyActionBase
 {
     public override ActionType type => ActionType.WeaponAttack;
 
-    public override void DoAction(EnemyActionParameter parameter, EnemyData enemyData)
+    public override void DoEnemyAction(EnemyActionParameter parameter, EnemyData enemyData)
     {
         Debug.Log("敵人使用基本攻擊");
 

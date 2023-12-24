@@ -45,11 +45,14 @@ public static class ValueCalculator
         int result = 0;
         float deff = basic;
 
-
-        foreach (StateEffect item in receiver.StateList)
+        if (receiver!=null)
         {
-            deff += item.AddExtraDef();
+            foreach (StateEffect item in receiver.StateList)
+            {
+                deff += item.AddExtraDef();
+            }
         }
+
 
 
         result = (int)deff;
