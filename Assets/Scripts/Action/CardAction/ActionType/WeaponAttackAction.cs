@@ -9,12 +9,10 @@ public class WeaponAttackAction : CardActionBase
     public override string ActionDescribe(CardActionParameter parameter)
     {
         return string.Format("使用{0}，造成{1}點傷害",parameter.WeaponData.weaponName , ValueCalculator.DmgCalculate(parameter, parameter.WeaponData.atk));
-        
     }
 
     public override void DoAction(CardActionParameter parameter)
     {
-        
         //如果沒有目標就直接跳出
         if (parameter.Target == null) return;
         Debug.Log(ActionDescribe(parameter));
@@ -35,8 +33,5 @@ public class WeaponAttackAction : CardActionBase
         }
         Debug.Log(damage);
         targetCharater.GetDamage(damage);
-        
     }
-
-
 }

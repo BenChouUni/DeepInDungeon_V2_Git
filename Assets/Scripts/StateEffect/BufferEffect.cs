@@ -15,7 +15,7 @@ public class BufferEffect : StateEffect
     /// <returns></returns>
     public override float AtReceiveDamage()
     {
-        Debug.Log("�P�w��Buffer");
+        //Debug.Log("Use Buffer to withstand one time damage");
         ConsumeLayer();
         return 0f;
     }
