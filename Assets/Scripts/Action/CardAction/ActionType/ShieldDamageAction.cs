@@ -11,7 +11,7 @@ public class ShieldDamageAction : CardActionBase
 
     public override string ActionDescribe(CardActionParameter parameter)
     {
-        return string.Format("向{0}造成{1}點防禦傷害", parameter.targetType, parameter.Self.Shield);
+        return string.Format("向{0}造成{1}點防禦傷害", parameter.targetType, ValueCalculator.DmgCalculate(parameter.Self, parameter.TargetList[0], parameter.Self.Shield));
     }
 
     public override void DoAction(CardActionParameter parameter)
@@ -29,8 +29,12 @@ public class ShieldDamageAction : CardActionBase
 
             //這邊要計算公式
             float damagef = (parameter.Self.Shield);
-
-            int damage = (int)damagef;
+            int damage = ValueCalculator.DmgCalculate(parameter.Self, targetCharater, parameter.Self.Shield);
+            foreach (StateEffect item in myStateList)
+            {
+                item.AfterUse(type);
+            }
+            //int damage = (int)damagef;
             //Debug.Log(damage);
 
             targetCharater.GetDamage(damage);

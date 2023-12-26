@@ -8,7 +8,7 @@ public class UnarmedDamageAction : CardActionBase
 
     public override string ActionDescribe(CardActionParameter parameter)
     {
-        return string.Format("�����V{0}�y��{1}�I�{��ˮ`", parameter.targetType, parameter.value);
+        return string.Format("Attack {0}, {1}Damage", parameter.targetType, ValueCalculator.DmgCalculate(parameter.Self, parameter.TargetList[0], parameter.value));
     }
 
     public override void DoAction(CardActionParameter parameter)
@@ -25,7 +25,7 @@ public class UnarmedDamageAction : CardActionBase
 
             //�o��n�p�⤽��
             float damagef = (parameter.value);
-            int damage = ValueCalculator.DmgCalculate(parameter.Self, targetCharater, 0);
+            int damage = ValueCalculator.DmgCalculate(parameter.Self, targetCharater, damagef);
             foreach (StateEffect item in myStateList)
             {
                 item.AfterUse(type);

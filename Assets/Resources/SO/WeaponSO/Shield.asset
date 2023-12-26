@@ -16,7 +16,7 @@ MonoBehaviour:
     id: 3
     weaponName: Shield
     atk: 0
-    def: 2
+    def: 4
     distance: 0
     weaponDescription: "\u57FA\u790E\u7684\u76FE\u724C"
     weaponType: 1

@@ -8,7 +8,7 @@ public class WeaponAttackAction : CardActionBase
 
     public override string ActionDescribe(CardActionParameter parameter)
     {
-        return string.Format("使用{0}，造成{1}點傷害",parameter.WeaponData.weaponName , ValueCalculator.DmgCalculate(parameter.Self, parameter.TargetList[0], parameter.WeaponData.atk));
+        return string.Format("使用{0}，造成{1}點傷害",parameter.WeaponData.weaponName , ValueCalculator.DmgCalculate(parameter.Self, parameter.TargetList[0], parameter.value + parameter.WeaponData.atk));
         
     }
 
@@ -27,7 +27,8 @@ public class WeaponAttackAction : CardActionBase
             List<StateEffect> myStateList = selCharacter.StateList;
 
             //這邊要計算公式
-            int damage = ValueCalculator.DmgCalculate(parameter.Self, targetCharater, parameter.WeaponData.atk);
+            float damagef = (parameter.value);
+            int damage = ValueCalculator.DmgCalculate(parameter.Self, targetCharater, damagef + parameter.WeaponData.atk);
             //reduce layer after weaponaction
             foreach (StateEffect item in myStateList)
             {
