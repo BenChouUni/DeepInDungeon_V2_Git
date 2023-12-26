@@ -35,6 +35,10 @@ public static class CardActionFactory
             case ActionType.UnarmedDamage:
                 cardActionBase = new UnarmedDamageAction();
                 break;
+            case ActionType.ShieldDamage:
+                cardActionBase = new ShieldDamageAction();
+               break;
+                
 
 
         }
