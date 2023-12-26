@@ -5,24 +5,29 @@ using UnityEngine;
 
 public static class ValueCalculator
 {
-    public static int DmgCalculate(ActionParameter parameter,int atk)
+    /// <summary>
+    /// receiver可以為null
+    /// </summary>
+    /// <param name="giver"></param>
+    /// <param name="receiver"></param>
+    /// <param name="basicDmg"></param>
+    /// <returns></returns>
+    public static int DmgCalculate(Character giver,Character receiver,float basicDmg)
     {
         int result = 0;
-        float damagef = (parameter.value + atk);
-
-        Character self = parameter.Self;
-        Character target = parameter.Target;
-        foreach (StateEffect item in self.StateList)
+        float damagef = basicDmg;
+ 
+        foreach (StateEffect item in giver.StateList)
         {
             damagef += item.AddExtraDamage();
         }
-        foreach (StateEffect item in self.StateList)
+        foreach (StateEffect item in giver.StateList)
         {
             damagef *= item.AtDealDamage();
         }
-        if (target!=null)
+        if (receiver!=null)
         {
-            foreach (StateEffect item in target.StateList)
+            foreach (StateEffect item in receiver.StateList)
             {
                 damagef *= item.AtReceiveDamage();
             }
@@ -35,17 +40,19 @@ public static class ValueCalculator
         return result;
     }
 
-    public static int DefCalculate(ActionParameter parameter, int def)
+    public static int DefCalculate(Character giver, Character receiver, float basic)
     {
         int result = 0;
-        float deff = (parameter.value + def);
-        Character self = parameter.Self;
-        Character target = parameter.Target;
+        float deff = basic;
 
-        foreach (StateEffect item in self.StateList)
+        if (receiver!=null)
         {
-            deff += item.AddExtraDef();
+            foreach (StateEffect item in receiver.StateList)
+            {
+                deff += item.AddExtraDef();
+            }
         }
+
 
 
         result = (int)deff;

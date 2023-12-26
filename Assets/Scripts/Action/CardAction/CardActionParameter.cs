@@ -18,29 +18,7 @@ public class CardActionParameter : ActionParameter
     //public CharaterType selfType;
     //[Header("狀態類型，不一定會使用")]
     //public StateEffectType stateEffectType;
-    ////由工廠產生
-    //private Character target = null;
-    public override Character Target
-    {
-        get
-        {
-            if (target == null)
-            {
-                //Debug.LogWarning("no target");
-                return null;
-            }
 
-            if (targetType == TargetType.Self)
-            {
-                return Self;
-            }
-            else 
-            {
-                return target;
-            }
-            //return target;
-        }
-    }
     //private Character self = null;
     //public Character Self
     //{

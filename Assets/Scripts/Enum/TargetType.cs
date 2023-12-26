@@ -4,5 +4,6 @@ using UnityEngine;
 
 public enum TargetType
 {
-    Self,Target
+    Self,Opponent,AllEnemies,Random
+
 }

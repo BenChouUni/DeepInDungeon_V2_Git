@@ -8,29 +8,32 @@ public class UnarmedDamageAction : CardActionBase
 
     public override string ActionDescribe(CardActionParameter parameter)
     {
-        return string.Format("ª½±µ¦V{0}³y¦¨{1}ÂI®{¤â¶Ë®`", parameter.targetType, parameter.value);
+        return string.Format("ï¿½ï¿½ï¿½ï¿½ï¿½V{0}ï¿½yï¿½ï¿½{1}ï¿½Iï¿½{ï¿½ï¿½Ë®`", parameter.targetType, parameter.value);
     }
 
     public override void DoAction(CardActionParameter parameter)
     {
-        //¦pªG¨S¦³¥Ø¼Ð´Nª½±µ¸õ¥X
-        if (parameter.Target == null) return;
-        Character targetCharater = parameter.Target;
-
-        List<StateEffect> targetStateList = targetCharater.StateList;
-
-        Character selCharacter = parameter.Self;
-        List<StateEffect> myStateList = selCharacter.StateList;
-
-
-        //³oÃä­n­pºâ¤½¦¡
-        float damagef = (parameter.value);
-        int damage = ValueCalculator.DmgCalculate(parameter, 0);
-        foreach (StateEffect item in myStateList)
+        //ï¿½pï¿½Gï¿½Sï¿½ï¿½ï¿½Ø¼Ð´Nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½X
+        if (parameter.TargetList == null) return;
+        foreach (Character targetCharater in parameter.TargetList)
         {
-            item.AfterUse(type);
+            List<StateEffect> targetStateList = targetCharater.StateList;
+
+            Character selCharacter = parameter.Self;
+            List<StateEffect> myStateList = selCharacter.StateList;
+
+
+            //ï¿½oï¿½ï¿½nï¿½pï¿½â¤½ï¿½ï¿½
+            float damagef = (parameter.value);
+            int damage = ValueCalculator.DmgCalculate(parameter.Self, targetCharater, 0);
+            foreach (StateEffect item in myStateList)
+            {
+                item.AfterUse(type);
+            }
+            Debug.Log(damage);
+            targetCharater.GetDamage(damage);
         }
-        Debug.Log(damage);
-        targetCharater.GetDamage(damage);
+
+
     }
 }

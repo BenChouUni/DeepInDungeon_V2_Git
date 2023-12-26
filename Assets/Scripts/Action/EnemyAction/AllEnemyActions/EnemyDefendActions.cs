@@ -4,13 +4,18 @@ using UnityEngine;
 
 public class EnemyDefendActions : EnemyActionBase
 {
-    public override EnemyActionType type => EnemyActionType.Defend;
+    public override ActionType type => ActionType.WeaponDefend;
 
-    public override void DoAction(EnemyActionParameter parameter, EnemyData enemyData)
+    public override void DoEnemyAction(EnemyActionParameter parameter, EnemyData enemyData)
     {
         Debug.Log("敵人使用防禦");
-        int def = ValueCalculator.DefCalculate(parameter, enemyData.ATK);
-        //這邊可能有算式
-        parameter.Target.AddShield(def);
+        //Character item = parameter.Self;
+        //int shield = ValueCalculator.DefCalculate(parameter.Self, item, parameter.value);
+        //item.AddShield(shield);
+        foreach (Character item in parameter.TargetList)
+        {
+            int shield = ValueCalculator.DefCalculate(parameter.Self, item, parameter.value);
+            item.AddShield(shield);
+        }
     }
 }
