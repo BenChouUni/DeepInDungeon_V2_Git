@@ -19,4 +19,9 @@ public class BufferEffect : StateEffect
         ConsumeLayer();
         return 0f;
     }
+
+    public override string EffectDescription()
+    {
+        return "緩衝：";
+    }
 }

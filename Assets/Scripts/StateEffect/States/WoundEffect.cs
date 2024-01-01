@@ -25,4 +25,9 @@ public class WoundEffect : StateEffect
     {
         ConsumeLayer();
     }
+
+    public override string EffectDescription()
+    {
+        return "傷口：受到傷害時額外受到1.5倍傷害，回合結束後消耗一層";
+    }
 }

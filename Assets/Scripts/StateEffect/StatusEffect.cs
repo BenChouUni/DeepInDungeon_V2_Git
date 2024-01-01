@@ -92,8 +92,11 @@ public class StateEffect
         myCharacter = _character;
     }
 
-    //state 函數
-    #region
+    public virtual string EffectDescription()
+    {
+        return "";
+    }
+    #region StateEffectMethods
     //多型函數，決定在什麼階段使用
     /// <summary>
     /// 回合開始時發動
@@ -159,6 +162,8 @@ public class StateEffect
     /// </summary>
     /// <returns></returns>
     public virtual int AddExtraDef() { return 0; }
+
+    
     #endregion
 
 }

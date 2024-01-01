@@ -33,4 +33,8 @@ public class ConcentrateEffect : StateEffect
         }
     }
 
+    public override string EffectDescription()
+    {
+        return "聚精會神：每次造成傷害時消耗所有層數造成等同層數的額外傷害";
+    }
 }
