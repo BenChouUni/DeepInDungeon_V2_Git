@@ -17,4 +17,9 @@ public class BleedEffect : StateEffect
         //CardAction cardAction = new CardAction(ActionType.PureDamage,)
         //ActionManager.instance.DoAction();
     }
+
+    public override string EffectDescription()
+    {
+        return "流血：每回合結束扣三點血，並減少一層";
+    }
 }

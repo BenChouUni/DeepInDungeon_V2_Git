@@ -5,7 +5,7 @@ using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class AccumulationEffect : StateEffect
 {
-    public AccumulationEffect(Character _myCharacter) : base("�W�O", false, StateEffectType.Accumulation, LayerConsumeType.TurnEnd, _myCharacter)
+    public AccumulationEffect(Character _myCharacter) : base("�W�O", false, StateEffectType.Accumulation, LayerConsumeType.TurnEnd, _myCharacter)
     {
 
     }
@@ -43,5 +43,10 @@ public class AccumulationEffect : StateEffect
         {
             ConsumeLayer();
         }
+    }
+
+    public override string EffectDescription()
+    {
+        return "蓄力：每一層蓄力增加1/4傷害，最多累積三層";
     }
 }

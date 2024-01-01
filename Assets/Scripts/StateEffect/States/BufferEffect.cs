@@ -15,14 +15,13 @@ public class BufferEffect : StateEffect
     /// <returns></returns>
     public override float AtReceiveDamage()
     {
-        //Debug.Log("Use Buffer to withstand one time damage");
+        Debug.Log("�P�w��Buffer");
         ConsumeLayer();
         return 0f;
     }
 
-
-    public override void AfterUse(ActionType type)
+    public override string EffectDescription()
     {
-
+        return "緩衝：";
     }
 }

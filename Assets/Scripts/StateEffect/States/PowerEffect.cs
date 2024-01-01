@@ -18,4 +18,9 @@ public class PowerEffect : StateEffect
         //Debug.Log("�P�w��Power" + Layer + "�h");
         return Layer;
     }
+
+    public override string EffectDescription()
+    {
+        return "力量：每層額外增加一點造成的傷害";
+    }
 }
