@@ -32,6 +32,16 @@ public class PureDamageAction : CardActionBase
             int damage = (int)damagef;
             //Debug.Log(damage);
 
+            foreach (StateEffect item in myStateList)
+            {
+                item.AfterUse(type);
+            }
+
+            foreach (StateEffect item in targetStateList)
+            {
+                item.AfterBeUse(type);
+            }
+
             targetCharater.GetDamage(damage);
         }
         

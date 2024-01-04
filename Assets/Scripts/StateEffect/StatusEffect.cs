@@ -5,7 +5,7 @@ using System;
 [SerializeField]
 public enum LayerConsumeType
 {
-    AfterUse,TurnEnd,Never
+    AfterUse,AfterBeUse,TurnEnd,Never
 }
 [System.Serializable]
 public class StateEffect
@@ -112,6 +112,12 @@ public class StateEffect
     /// </summary>
     /// <param name="type"></param>
     public virtual void AfterUse(ActionType type){}
+
+    /// <summary>
+    /// Use and then consume, determine by actiontype
+    /// </summary>
+    /// <param name="type"></param>
+    public virtual void AfterBeUse(ActionType type) { }
 
     /// <summary>
     /// 武器攻擊前時發動

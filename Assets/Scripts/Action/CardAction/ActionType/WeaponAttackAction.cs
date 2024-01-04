@@ -30,10 +30,17 @@ public class WeaponAttackAction : CardActionBase
             float damagef = (parameter.value);
             int damage = ValueCalculator.DmgCalculate(parameter.Self, targetCharater, damagef + parameter.WeaponData.atk);
             //reduce layer after weaponaction
+
             foreach (StateEffect item in myStateList)
             {
                 item.AfterUse(type);
             }
+
+            foreach (StateEffect item in targetStateList)
+            {
+                item.AfterBeUse(type);
+            }
+
             Debug.Log(damage);
             targetCharater.GetDamage(damage);
         }

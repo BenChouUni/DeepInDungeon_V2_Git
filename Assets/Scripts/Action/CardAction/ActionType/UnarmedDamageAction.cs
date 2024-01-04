@@ -30,6 +30,12 @@ public class UnarmedDamageAction : CardActionBase
             {
                 item.AfterUse(type);
             }
+
+            foreach (StateEffect item in targetStateList)
+            {
+                item.AfterBeUse(type);
+            }
+
             Debug.Log(damage);
             targetCharater.GetDamage(damage);
         }

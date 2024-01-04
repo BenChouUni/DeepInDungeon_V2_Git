@@ -34,8 +34,12 @@ public class ShieldDamageAction : CardActionBase
             {
                 item.AfterUse(type);
             }
-            //int damage = (int)damagef;
-            //Debug.Log(damage);
+
+            foreach (StateEffect item in targetStateList)
+            {
+                item.AfterBeUse(type);
+            }
+
 
             targetCharater.GetDamage(damage);
         }

@@ -16,6 +16,10 @@ public class EnemyAttackAtion : EnemyActionBase
             return;
         }
 
+        List<StateEffect> targetStateList = parameter.TargetList[0].StateList;
+
+        List<StateEffect> myStateList = parameter.Self.StateList;
+
         //Character item = parameter.Target;
         //int dmg = ValueCalculator.DmgCalculate(parameter.Self, item, parameter.value + enemyData.ATK);
         //item.GetDamage(dmg);
@@ -24,5 +28,17 @@ public class EnemyAttackAtion : EnemyActionBase
             int dmg = ValueCalculator.DmgCalculate(parameter.Self, item, parameter.value + enemyData.ATK);
             item.GetDamage(dmg);
         }
+
+        foreach (StateEffect item in myStateList)
+        {
+            item.AfterUse(type);
+        }
+
+        foreach (StateEffect item in targetStateList)
+        {
+            Debug.Log(type);
+            item.AfterBeUse(type);
+        }
     }
+
 }
