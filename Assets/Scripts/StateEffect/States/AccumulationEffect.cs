@@ -26,6 +26,8 @@ public class AccumulationEffect : StateEffect
         }
     }
 
+
+
     public override void AtTurnEnd()
     {
         consumeall();
