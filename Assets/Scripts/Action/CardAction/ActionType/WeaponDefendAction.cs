@@ -19,7 +19,7 @@ public class WeaponDefendAction : CardActionBase
 
         Character self = parameter.Self;
         //這邊要計算公式
-        int shield = ValueCalculator.DefCalculate(parameter.Self, null, parameter.WeaponData.def);
+        int shield = ValueCalculator.DefCalculate(parameter.Self, null, parameter.value + parameter.WeaponData.def);
 
         self.AddShield(shield);
     }
