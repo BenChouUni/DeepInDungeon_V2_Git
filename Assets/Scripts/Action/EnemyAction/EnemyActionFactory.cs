@@ -23,6 +23,9 @@ public static class EnemyActionFactory
             case EnemyActionType.GiveEffect:
                 enemyActionBase = new EnemyGiveEffect();
                 break;
+            case EnemyActionType.Wait:
+                enemyActionBase = new EnemyWaitAction();
+                break;
         }
 
         return enemyActionBase;

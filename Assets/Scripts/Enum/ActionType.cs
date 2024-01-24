@@ -14,5 +14,6 @@ public enum ActionType
     Give,
     RealDefend,
     UnarmedDamage,
-    ShieldDamage
+    ShieldDamage,
+    Wait
 }

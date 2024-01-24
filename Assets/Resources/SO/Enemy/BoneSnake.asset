@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb4308699ff234b40bf456aa65310227, type: 3}
+  m_Name: BoneSnake
+  m_EditorClassIdentifier: 
+  enemyData:
+    characterType: 1
+    characterName: "\u9AA8\u86C7"
+    hpState:
+      maxHp: 30
+      currentHp: 30
+    shield: 0
+    stateEffectTest:
+      effectName: 
+      effectType: 0
+      isBuff: 1
+      consumeType: 0
+      layer: 0
+    isDeath: 0
+    StateList: []
+    id: 0
+    atk: 0
+    monstersType: 0
+    challengeType: 2
+    actionList:
+    - actionType: 0
+      enemyActionParameter:
+        value: 6
+        targetType: 1
+        stateEffectType: 0
+    - actionType: 0
+      enemyActionParameter:
+        value: 6
+        targetType: 1
+        stateEffectType: 0
+    - actionType: 4
+      enemyActionParameter:
+        value: 0
+        targetType: 0
+        stateEffectType: 0
+    - actionType: 0
+      enemyActionParameter:
+        value: 15
+        targetType: 1
+        stateEffectType: 0
