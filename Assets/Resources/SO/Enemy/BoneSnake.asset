@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyData:
     characterType: 1
-    characterName: "\u9AA8\u86C7"
+    characterName: "\u5C16\u9AA8\u86C7"
     hpState:
-      maxHp: 30
-      currentHp: 30
+      maxHp: 40
+      currentHp: 40
     shield: 0
     stateEffectTest:
       effectName: 
@@ -27,19 +27,19 @@ MonoBehaviour:
       layer: 0
     isDeath: 0
     StateList: []
-    id: 0
-    atk: 0
+    id: 3
+    atk: 3
     monstersType: 0
     challengeType: 2
     actionList:
     - actionType: 0
       enemyActionParameter:
-        value: 6
+        value: 3
         targetType: 1
         stateEffectType: 0
     - actionType: 0
       enemyActionParameter:
-        value: 6
+        value: 3
         targetType: 1
         stateEffectType: 0
     - actionType: 4
@@ -49,6 +49,6 @@ MonoBehaviour:
         stateEffectType: 0
     - actionType: 0
       enemyActionParameter:
-        value: 15
+        value: 12
         targetType: 1
         stateEffectType: 0

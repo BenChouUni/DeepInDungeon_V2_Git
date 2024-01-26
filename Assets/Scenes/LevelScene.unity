@@ -1130,7 +1130,7 @@ MonoBehaviour:
   Line_prefab: {fileID: 1917171725365762816, guid: 499218400db6dcf408d034004fc8af31, type: 3}
   Line_Panel: {fileID: 2005995282}
   EnemyGroups:
-  - {fileID: 11400000, guid: d8bc67a93345644438e5af3a390b4111, type: 2}
+  - {fileID: 11400000, guid: b1e925867f64e744ca36ebb0373f454c, type: 2}
   Layer: 5
   Levelsnum: 
   _lineInfo: []

@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fb4308699ff234b40bf456aa65310227, type: 3}
-  m_Name: BloodyDog
+  m_Name: GrindTeethRat
   m_EditorClassIdentifier: 
   enemyData:
-    characterType: 0
-    characterName: "\u8840\u7375\u72AC(test)"
+    characterType: 1
+    characterName: "\u78E8\u7259\u9F20"
     hpState:
-      maxHp: 40
-      currentHp: 40
+      maxHp: 30
+      currentHp: 30
     shield: 0
     stateEffectTest:
       effectName: 
@@ -27,23 +27,23 @@ MonoBehaviour:
       layer: 0
     isDeath: 0
     StateList: []
-    id: 2
-    atk: 3
+    id: 4
+    atk: 1
     monstersType: 0
     challengeType: 2
     actionList:
-    - actionType: 2
+    - actionType: 0
       enemyActionParameter:
-        value: 2
-        targetType: 0
-        stateEffectType: 2
-    - actionType: 1
-      enemyActionParameter:
-        value: 5
+        value: 3
         targetType: 1
         stateEffectType: 0
     - actionType: 0
       enemyActionParameter:
-        value: 5
-        targetType: 0
+        value: 3
+        targetType: 1
         stateEffectType: 0
+    - actionType: 2
+      enemyActionParameter:
+        value: 3
+        targetType: 0
+        stateEffectType: 4
