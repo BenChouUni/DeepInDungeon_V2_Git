@@ -26,6 +26,8 @@ public static class EffectFactory
                 return new ConcentrateEffect(_myCharacter);
             case StateEffectType.Accumulation:
                 return new AccumulationEffect(_myCharacter);
+            case StateEffectType.Solid:
+                return new SolidEffect(_myCharacter);
             default:
                 return null;
                 

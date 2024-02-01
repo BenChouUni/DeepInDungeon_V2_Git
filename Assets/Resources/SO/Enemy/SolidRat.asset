@@ -1,0 +1,59 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb4308699ff234b40bf456aa65310227, type: 3}
+  m_Name: SolidRat
+  m_EditorClassIdentifier: 
+  enemyData:
+    characterType: 1
+    characterName: "\u92FC\u7259\u9F20"
+    hpState:
+      maxHp: 20
+      currentHp: 20
+    shield: 0
+    stateEffectTest:
+      effectName: 
+      effectType: 0
+      isBuff: 1
+      consumeType: 0
+      layer: 0
+    isDeath: 0
+    StateList: []
+    id: 5
+    atk: 1
+    monstersType: 2
+    challengeType: 2
+    actionList:
+    - actionType: 2
+      enemyActionParameter:
+        value: 10
+        targetType: 0
+        stateEffectType: 8
+    - actionType: 0
+      enemyActionParameter:
+        value: 4
+        targetType: 1
+        stateEffectType: 0
+    - actionType: 0
+      enemyActionParameter:
+        value: 4
+        targetType: 1
+        stateEffectType: 0
+    - actionType: 0
+      enemyActionParameter:
+        value: 5
+        targetType: 1
+        stateEffectType: 0
+    - actionType: 2
+      enemyActionParameter:
+        value: 1
+        targetType: 0
+        stateEffectType: 4

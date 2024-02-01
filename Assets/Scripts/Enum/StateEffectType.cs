@@ -12,5 +12,6 @@ public enum StateEffectType
     Power,
     Buffer,
     Concentrate,
-    Accumulation
+    Accumulation,
+    Solid
 }

@@ -16,4 +16,4 @@ MonoBehaviour:
   groupName: "\u6E2C\u8A66\u7528\u6575\u4EBA"
   challengeType: 2
   enemies:
-  - {fileID: 11400000, guid: 79ce0d00c7b66994983966719fa97c35, type: 2}
+  - {fileID: 11400000, guid: b159aff41c1a0d04c99ee8cd1252a7fc, type: 2}
