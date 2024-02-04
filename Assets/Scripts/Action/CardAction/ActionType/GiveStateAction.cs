@@ -14,8 +14,6 @@ public class GiveStateAction : CardActionBase
     public override void DoAction(CardActionParameter parameter)
     {
 
-        
-
         foreach (Character item in parameter.TargetList)
         { 
             StateEffect stateEffect = EffectFactory.GetStatusEffect(parameter.stateEffectType,item);

@@ -6,7 +6,7 @@ using UnityEngine.TextCore.Text;
 //[CreateAssetMenu(fileName ="BleedEffect",menuName ="Asset/CreateEffect/Bleed")]
 public class SolidEffect : StateEffect
 {
-    public SolidEffect(Character _myCharacter) : base("°íµw", false, StateEffectType.Solid, LayerConsumeType.TurnEnd, _myCharacter)
+    public SolidEffect(Character _myCharacter) : base("°íµw", false, StateEffectType.Solid, LayerConsumeType.Never, _myCharacter)
     {
     }
 
@@ -15,7 +15,6 @@ public class SolidEffect : StateEffect
         myCharacter.AddShield(Layer);
         //³y¦¨¯Âºé¶Ë®`
         Debug.Log("§P©wSolid");
-        ConsumeLayer();
     }
 
     public override string EffectDescription()

@@ -96,6 +96,16 @@ public class EnemyManager : MonoSingleton<EnemyManager>,IDataPersistence
             ec.enemyData.DoAction();
         }
     }
+
+    public void DoIniPrepare()
+    {
+        Debug.Log("敵人進行初始化:");
+        foreach (EnemyControl ec in EnemyControls)
+        {
+            ec.enemyData.IniPrepare();
+        }
+    }
+
     /// <summary>
     /// enemycontrol 傳入自己死亡的訊息
     /// </summary>

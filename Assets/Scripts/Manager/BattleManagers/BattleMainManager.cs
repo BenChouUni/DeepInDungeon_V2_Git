@@ -114,10 +114,13 @@ public class BattleMainManager : MonoSingleton<BattleMainManager>
         //回合開始
         gamePhase = GamePhase.GameStart;
         ShowTurn();
+        //敵人初始化附加效果
+        enemyManager.DoIniPrepare();
         //洗牌
         battleDeckManager.ShuffleDeck();
         //初始化玩家資料
         battlePlayerDataManager.InitialPlayerStatus();
+
     }
 
     //戰鬥結束
@@ -294,7 +297,6 @@ public class BattleMainManager : MonoSingleton<BattleMainManager>
     /// </summary>
     public void TurnStart()
     {
-        
         if (gamePhase == GamePhase.PlayerAction)
         {
             Debug.Log("執行玩家回合開始準備");

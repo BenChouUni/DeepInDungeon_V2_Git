@@ -19,7 +19,14 @@ public class EnemyData : Character
         get { return atk; }
     }
 
-    int actionIndex = 0;
+    [SerializeField]
+    private int iniactionIndex = 0;     //一串動作的開始，在初始化附加效果之後
+    public int IniactionIndex
+    {
+        get { return iniactionIndex; }
+    }
+
+    int nowactionIndex = 0;
 
     //新增敵人標籤
     public MonstersType monstersType;
@@ -44,7 +51,7 @@ public class EnemyData : Character
         this.id = _id;
         this.atk = _atk;
         this.characterType = CharacterType.Enemy;
-        actionIndex = 0;
+        nowactionIndex = 0;
 
 
     }
@@ -81,11 +88,22 @@ public class EnemyData : Character
         }
         //執行下一步的行為
         NextEnemyAction.DoAction(this);
-        actionIndex++;
-        if (actionIndex >= actionList.Count)
+        nowactionIndex++;
+        if (nowactionIndex >= actionList.Count)
         {
-            actionIndex = 0;
+            nowactionIndex = iniactionIndex;
         }
-        nextEnemyAction = actionList[actionIndex];
+        nextEnemyAction = actionList[nowactionIndex];
+    }
+
+    public void IniPrepare()    //初始化附加效果
+    {
+        if(nowactionIndex < iniactionIndex)
+        {
+            NextEnemyAction.DoAction(this);
+            nowactionIndex++;
+            nextEnemyAction = actionList[nowactionIndex];
+        }
+        return;
     }
 }

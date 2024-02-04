@@ -29,12 +29,13 @@ MonoBehaviour:
     StateList: []
     id: 5
     atk: 1
+    iniactionIndex: 1
     monstersType: 2
     challengeType: 2
     actionList:
     - actionType: 2
       enemyActionParameter:
-        value: 10
+        value: 15
         targetType: 0
         stateEffectType: 8
     - actionType: 0

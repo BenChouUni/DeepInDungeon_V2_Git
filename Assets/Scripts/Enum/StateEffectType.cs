@@ -13,5 +13,6 @@ public enum StateEffectType
     Buffer,
     Concentrate,
     Accumulation,
-    Solid
+    Solid,
+    SwordDance
 }
