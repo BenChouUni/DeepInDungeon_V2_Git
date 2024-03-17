@@ -17,3 +17,4 @@ MonoBehaviour:
   challengeType: 2
   enemies:
   - {fileID: 11400000, guid: b159aff41c1a0d04c99ee8cd1252a7fc, type: 2}
+  - {fileID: 11400000, guid: 720766f86d4fd4fc297e0e307843656e, type: 2}

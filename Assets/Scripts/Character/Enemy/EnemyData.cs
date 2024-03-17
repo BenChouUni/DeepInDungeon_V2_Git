@@ -26,11 +26,12 @@ public class EnemyData : Character
         get { return iniactionIndex; }
     }
 
-    int nowactionIndex = 0;
+    int nowactionIndex = 0;//現在動作索引
 
     //新增敵人標籤
-    public MonstersType monstersType;
+    public MonstersType monstersType; //怪物類型
     public EnemyChallengeType challengeType;
+    public EnemyClassType enemyClassType;//敵人階級:普通菁英首領
     //public Sprite image;
     //可能用做AI的實現
     [SerializeField]
@@ -89,6 +90,7 @@ public class EnemyData : Character
         //執行下一步的行為
         NextEnemyAction.DoAction(this);
         nowactionIndex++;
+        //如果動作序列輪完後
         if (nowactionIndex >= actionList.Count)
         {
             nowactionIndex = iniactionIndex;
