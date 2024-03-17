@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class EnemyControl : MonoBehaviour,IDropHandler
+public class EnemyControl : MonoBehaviour,IDropHandler//,IPointerEnterHandler,IPointerExitHandler
 {
     [SerializeField]
     public EnemyData enemyData = null;
